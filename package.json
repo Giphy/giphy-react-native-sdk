@@ -24,7 +24,7 @@
   "scripts": {
     "test": "jest",
     "typescript": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,ts,tsx}\" --fix ",
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
@@ -119,7 +119,8 @@
           "singleQuote": true,
           "tabWidth": 2,
           "trailingComma": "es5",
-          "useTabs": false
+          "useTabs": false,
+          "semi": false
         }
       ]
     }
@@ -133,7 +134,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
-    "useTabs": false
+    "useTabs": false,
+    "semi": false
   },
   "react-native-builder-bob": {
     "source": "src",

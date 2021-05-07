@@ -1,12 +1,3 @@
-import { requireNativeComponent, ViewStyle } from 'react-native';
+import * as GiphySDK from './GiphySDK'
 
-type GiphyReactNativeSdkProps = {
-  color: string;
-  style: ViewStyle;
-};
-
-export const GiphyReactNativeSdkViewManager = requireNativeComponent<GiphyReactNativeSdkProps>(
-  'GiphyReactNativeSdkView'
-);
-
-export default GiphyReactNativeSdkViewManager;
+export default GiphySDK

@@ -1,15 +1,7 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { StyleSheet, View } from 'react-native';
-import GiphyReactNativeSdkViewManager from 'giphy-react-native-sdk';
+import { StyleSheet, View } from 'react-native'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <GiphyReactNativeSdkViewManager color="#32a852" style={styles.box} />
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -22,4 +14,12 @@ const styles = StyleSheet.create({
     height: 60,
     marginVertical: 20,
   },
-});
+})
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      {/* <GiphyReactNativeSdkViewManager color="#32a852" style={styles.box} /> */}
+    </View>
+  )
+}
