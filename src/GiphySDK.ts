@@ -1,10 +1,10 @@
-import {NativeModules} from 'react-native'
+import { NativeModules } from 'react-native'
 
 export const NativeGiphySDK: INativeGiphySDK = NativeModules.GiphyReactNativeSDK
 
 export interface INativeGiphySDK {
-  configure(apiKey: string): void;
-  showGiphyView(): void;
+  configure(apiKey: string): void
+  showGiphyView(): void
 }
 
 export class GiphySDK {
@@ -16,5 +16,3 @@ export class GiphySDK {
     return NativeGiphySDK.showGiphyView()
   }
 }
-
-
