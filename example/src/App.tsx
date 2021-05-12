@@ -1,7 +1,7 @@
-import * as React from 'react'
-
-import { StyleSheet, View } from 'react-native'
-
+import * as React from 'react';
+import {StyleSheet, View, Button} from 'react-native';
+import {GIPHY_API_KEY} from 'react-native-dotenv'
+import {GiphySDK} from 'giphy-react-native-sdk';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,17 +9,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-})
+});
 
 export default function App() {
+  React.useEffect(() => {
+    if (GIPHY_API_KEY) {
+      GiphySDK.configure(GIPHY_API_KEY);
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
-      {/* <GiphyReactNativeSdkViewManager color="#32a852" style={styles.box} /> */}
+      <Button title="Show Giphy View" onPress={() => GiphySDK.showGiphyView()}/>
     </View>
-  )
+  );
 }
+
+

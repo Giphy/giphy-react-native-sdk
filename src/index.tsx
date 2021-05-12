@@ -1,3 +1,3 @@
-import * as GiphySDK from './GiphySDK'
+export {GiphySDK} from './GiphySDK'
 
-export default GiphySDK
+

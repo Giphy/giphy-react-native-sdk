@@ -1,7 +1,6 @@
 //
 //  File.swift
-//  GiphyReactNativeSDKExample
+//  GiphyReactNativeSDK
 //
 
 import Foundation
-

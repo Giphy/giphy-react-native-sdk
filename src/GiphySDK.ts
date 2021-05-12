@@ -1,11 +1,20 @@
-import { NativeModules } from 'react-native'
+import {NativeModules} from 'react-native'
 
-const { GiphyReactNativeSDK } = NativeModules
+export const NativeGiphySDK: INativeGiphySDK = NativeModules.GiphyReactNativeSDK
 
-class GiphySDK {
-  static configure(apiKey: String) {
-    GiphyReactNativeSDK.configure(apiKey)
+export interface INativeGiphySDK {
+  configure(apiKey: string): void;
+  showGiphyView(): void;
+}
+
+export class GiphySDK {
+  static configure(apiKey: string) {
+    NativeGiphySDK.configure(apiKey)
+  }
+
+  static showGiphyView() {
+    return NativeGiphySDK.showGiphyView()
   }
 }
 
-export default GiphySDK
+
