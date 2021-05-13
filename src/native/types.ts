@@ -1,4 +1,4 @@
-export enum GiphyTheme {
+export enum GiphyThemePreset {
   Automatic = 'automatic',
   Dark = 'dark',
   Light = 'light',
@@ -7,6 +7,7 @@ export enum GiphyTheme {
 export enum GiphyMediaType {
   Emoji = 'emoji',
   Gif = 'gif',
+  Recents = 'recents',
   Sticker = 'sticker',
   Text = 'text',
 }
@@ -41,3 +42,11 @@ export enum GiphyRendition {
   DownsizedLarge = 'downsized_large',
   DownsizedStill = 'downsized_still',
 }
+
+export enum GiphyStickersColumnCount {
+  Two = 2,
+  Three,
+  Four,
+}
+
+export type GiphyMedia = {}
