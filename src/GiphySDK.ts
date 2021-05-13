@@ -1,9 +1,9 @@
-import { NGiphySDK, NGiphySDKConfig } from './native'
+import { NativeGiphySDK, NativeGiphySDKConfig } from './native'
 
-export type GiphySDKConfig = NGiphySDKConfig
+export type GiphySDKConfig = NativeGiphySDKConfig
 
 export class GiphySDK {
   static configure(options: GiphySDKConfig) {
-    NGiphySDK.configure(options)
+    NativeGiphySDK.configure(options)
   }
 }
