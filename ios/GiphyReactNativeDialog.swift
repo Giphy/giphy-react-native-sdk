@@ -4,12 +4,12 @@ import GiphyUISDK
 class GiphyReactNativeDialog: NSObject {
   let rootViewController = UIApplication.shared.keyWindow!.rootViewController!
   var giphyViewController: GiphyViewController?
-  
+
   @objc
   static func requiresMainQueueSetup() -> Bool {
     return true
   }
-  
+
   @objc(show)
   func show() -> Void {
     DispatchQueue.main.async {
@@ -19,11 +19,11 @@ class GiphyReactNativeDialog: NSObject {
       })
     }
   }
-  
+
   @objc(hide)
   func hide() -> Void {
     DispatchQueue.main.async {
-      self.giphy?.dismiss(animated: true, completion: {
+      self.giphyViewController?.dismiss(animated: true, completion: {
         self.giphyViewController = nil
       })
     }
