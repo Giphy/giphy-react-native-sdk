@@ -1,1 +1,1 @@
-export { GiphySDK } from './GiphySDK'
+export { GiphySDK, GiphySDKConfig } from './GiphySDK'

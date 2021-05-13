@@ -11,19 +11,14 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function App() {
-  React.useEffect(() => {
-    if (GIPHY_API_KEY) {
-      GiphySDK.configure(GIPHY_API_KEY)
-    }
-  }, [])
+if (GIPHY_API_KEY) {
+  GiphySDK.configure({ apiKey: GIPHY_API_KEY })
+}
 
+export default function App() {
   return (
     <View style={styles.container}>
-      <Button
-        title="Show Giphy View"
-        onPress={() => GiphySDK.showGiphyView()}
-      />
+      <Button title="Show Giphy View" onPress={() => void 0} />
     </View>
   )
 }
