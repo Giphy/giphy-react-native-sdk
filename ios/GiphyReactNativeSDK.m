@@ -2,10 +2,6 @@
 
 @interface RCT_EXTERN_MODULE(GiphyReactNativeSDK, NSObject)
 
-RCT_EXTERN_METHOD(
-    configure:(NSString)apiKey
-)
-
-RCT_EXTERN_METHOD(showGiphyView)
+RCT_EXTERN_METHOD(configure:(NSDictionary)config)
 
 @end

@@ -22,10 +22,10 @@ export class GiphyDialog {
   }
 
   static show() {
-    throw new Error('Not implemented')
+    NativeGiphyDialog.show()
   }
 
   static hide() {
-    throw new Error('Not implemented')
+    NativeGiphyDialog.hide()
   }
 }
