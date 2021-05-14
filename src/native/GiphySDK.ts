@@ -2,6 +2,7 @@ import { NativeModules } from 'react-native'
 
 export type NativeGiphySDKConfig = {
   apiKey: string
+  verificationMode?: boolean
 }
 
 export interface INativeGiphySDK {
