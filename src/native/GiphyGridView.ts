@@ -1,6 +1,6 @@
 import { requireNativeComponent } from 'react-native'
 
-import type { GiphyMedia, GiphyListMediaResponse } from './types'
+import type { GiphyMedia, GiphyContentRequest } from './types'
 
 export enum NativeGiphyGridViewOrientation {
   Horizontal = 'horizontal',
@@ -13,7 +13,7 @@ export type NativeGiphyGridViewProps = {
   spanCount?: number
   showCheckeredBackground?: boolean
   fixedSizeCells?: boolean
-  content?: GiphyListMediaResponse
+  content?: GiphyContentRequest
 }
 
 export type NativeGiphyGridViewEvents =

@@ -54,23 +54,18 @@ export type GiphyMedia = {
   // todo add rest properties
 }
 
-export type GiphyPagination = {
-  totalCount: number
-  count: number
-  filteredCount: number
-  offset: number
-  nextCursor?: string
+export enum GiphyContentRequestType {
+  Trending = 'trending',
+  Search = 'search',
+  Emoji = 'emoji',
+  Recents = 'recents',
+  Animate = 'animate',
 }
 
-export type GiphyResponseMeta = {
-  errorCode: string
-  msg: string
-  responseId: string
-  status: number
-}
-
-export type GiphyListMediaResponse = {
-  data: GiphyMedia[]
-  meta: GiphyResponseMeta
-  pagination: GiphyPagination
+export type GiphyContentRequest = {
+  searchQuery: string
+  mediaType: GiphyMediaType
+  rating: GiphyRating
+  includeDynamicResults: boolean
+  requestType: GiphyContentRequestType
 }

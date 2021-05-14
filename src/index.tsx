@@ -1,11 +1,10 @@
 export type {
-  GiphyListMediaResponse,
+  GiphyContentRequest,
+  GiphyContentRequestType,
   GiphyMedia,
   GiphyMediaType,
-  GiphyPagination,
   GiphyRating,
   GiphyRendition,
-  GiphyResponseMeta,
   GiphyStickersColumnCount,
   GiphyThemePreset,
 } from './native/types'
