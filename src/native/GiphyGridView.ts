@@ -26,4 +26,4 @@ export type NativeGiphyGridViewEvents =
       payload: { media: GiphyMedia }
     }
 
-export const NativeGiphyGridView = requireNativeComponent<NativeGiphyGridViewProps>('NativeGiphyGridView')
+export const NativeGiphyGridView = requireNativeComponent<NativeGiphyGridViewProps>('GiphyReactNativeGridView')

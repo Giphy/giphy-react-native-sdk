@@ -51,7 +51,7 @@ export enum GiphyStickersColumnCount {
 
 export type GiphyMedia = {
   id: string
-  url: string
+  // todo add rest properties
 }
 
 export type GiphyPagination = {
