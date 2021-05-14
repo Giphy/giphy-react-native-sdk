@@ -5,14 +5,16 @@ class RNGiphyDialogConfig: NSObject {
   var mediaTypeConfig: [GPHContentType]?
   var rating: GPHRatingType?
   var renditionType: GPHRenditionType?
-  var showConfirmationScreen: Bool = false
+  var showConfirmationScreen: Bool?
+  var stickerColumnCount: GPHStickerColumnCount?
+  var theme: GPHTheme?
+  var shouldLocalizeSearch: Bool?
+  var trayHeightMultiplier: Float?
 
   init(_ maybeOptions: NSDictionary?) {
     guard
       let options = maybeOptions
     else { return }
-    
-    self.showConfirmationScreen = options["showConfirmationScreen"] as? Bool ?? false
     
     if let rawMediaTypes = options["mediaTypes"] as? [String] {
       self.mediaTypeConfig = (rawMediaTypes
@@ -26,6 +28,14 @@ class RNGiphyDialogConfig: NSObject {
 
     if let rawRenditionType = options["renditionType"] as? String {
       self.renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType)
+    }
+    
+    if let rawStickerColumnCount = options["stickerColumnCount"] as? Int {
+      self.stickerColumnCount = GPHStickerColumnCount.fromRNValue(value: rawStickerColumnCount)
+    }
+    
+    if let rawTheme = options["theme"] as? String {
+      self.theme = GPHTheme.fromRNValue(value: rawTheme)
     }
   }
 }
@@ -74,8 +84,6 @@ class RNGiphyDialog: NSObject {
       let config = self.config
     else { return }
     
-    giphy.showConfirmationScreen = config.showConfirmationScreen
-    
     if let mediaTypeConfig = config.mediaTypeConfig as? [GPHContentType] {
       giphy.mediaTypeConfig = mediaTypeConfig
     }
@@ -86,7 +94,14 @@ class RNGiphyDialog: NSObject {
 
     if let renditionType = config.renditionType as? GPHRenditionType {
       giphy.renditionType = renditionType
-      print(renditionType)
+    }
+    
+    if let stickerColumnCount = config.stickerColumnCount as? GPHStickerColumnCount {
+      giphy.stickerColumnCount = stickerColumnCount
+    }
+    
+    if let theme = config.theme as? GPHTheme {
+      giphy.theme = theme
     }
   }
 }

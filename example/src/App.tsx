@@ -5,6 +5,8 @@ import {
   GiphyMediaType,
   GiphyRating,
   GiphyRendition,
+  GiphyStickersColumnCount,
+  GiphyThemePreset,
 } from 'giphy-react-native-sdk'
 
 import './giphy.setup'
@@ -19,8 +21,10 @@ const styles = StyleSheet.create({
 
 GiphyDialog.configure({
   mediaTypes: [GiphyMediaType.Sticker],
-  rating: GiphyRating.PG13,
-  renditionType: GiphyRendition.Looping,
+  rating: GiphyRating.R,
+  renditionType: GiphyRendition.FixedWidth,
+  stickerColumnCount: GiphyStickersColumnCount.Two,
+  theme: GiphyThemePreset.Light,
 })
 
 export default function App() {

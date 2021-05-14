@@ -20,7 +20,7 @@ public extension GPHContentType {
 }
 
 public extension GPHRatingType {
-  static func fromRNValue(value: String) -> GPHRatingType {
+  static func fromRNValue(value: String) -> GPHRatingType? {
     switch value {
     case "g":
       return .ratedG
@@ -35,7 +35,7 @@ public extension GPHRatingType {
     case "y":
       return .ratedY
     default:
-      return .unrated
+      return nil
     }
   }
 }
@@ -83,6 +83,36 @@ public extension GPHRenditionType {
       return .downsizedStill
     default:
       return nil
+    }
+  }
+}
+
+public extension GPHStickerColumnCount {
+  static func fromRNValue(value: Int) -> GPHStickerColumnCount? {
+    switch value {
+    case 2:
+      return .two
+    case 3:
+      return .three
+    case 4:
+      return .four
+    default:
+      return nil
+    }
+  }
+}
+
+public extension GPHTheme {
+  static func fromRNValue(value: String) -> GPHTheme? {
+    switch value {
+    case "automatic":
+        return GPHTheme(type: .automatic)
+    case "dark":
+        return GPHTheme(type: .dark)
+    case "light":
+        return GPHTheme(type: .light)
+    default:
+        return nil
     }
   }
 }
