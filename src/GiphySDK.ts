@@ -1,4 +1,4 @@
-import { NativeGiphySDK, NativeGiphySDKConfig } from './native'
+import { NativeGiphySDK, NativeGiphySDKConfig } from './native/GiphySDK'
 
 export type GiphySDKConfig = NativeGiphySDKConfig
 

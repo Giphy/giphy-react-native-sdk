@@ -49,4 +49,28 @@ export enum GiphyStickersColumnCount {
   Four,
 }
 
-export type GiphyMedia = {}
+export type GiphyMedia = {
+  id: string
+  url: string
+}
+
+export type GiphyPagination = {
+  totalCount: number
+  count: number
+  filteredCount: number
+  offset: number
+  nextCursor?: string
+}
+
+export type GiphyResponseMeta = {
+  errorCode: string
+  msg: string
+  responseId: string
+  status: number
+}
+
+export type GiphyListMediaResponse = {
+  data: GiphyMedia[]
+  meta: GiphyResponseMeta
+  pagination: GiphyPagination
+}

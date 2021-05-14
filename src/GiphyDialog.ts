@@ -1,24 +1,17 @@
-import { Platform } from 'react-native'
-
-import { NativeGiphyDialog, IOSGiphyDialogConfig, AndroidGiphyDialogConfig } from './native'
+import {
+  NativeGiphyDialog,
+  IOSGiphyDialogConfig,
+  AndroidGiphyDialogConfig,
+  getNativeDialogConfig,
+} from './native/GiphyDialog'
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
-
-function getIOSDialogConfig(config: GiphyDialogConfig): IOSGiphyDialogConfig {
-  console.log(config)
-  throw new Error('Not implemented')
-}
-
-function getAndroidDialogConfig(config: GiphyDialogConfig): AndroidGiphyDialogConfig {
-  console.log(config)
-  throw new Error('Not implemented')
-}
 
 export class GiphyDialog {
   // todo add event emitter
 
   static configure(config: GiphyDialogConfig) {
-    NativeGiphyDialog.configure(Platform.OS === 'ios' ? getIOSDialogConfig(config) : getAndroidDialogConfig(config))
+    NativeGiphyDialog.configure(getNativeDialogConfig(config))
   }
 
   static show() {
