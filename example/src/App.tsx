@@ -1,6 +1,11 @@
 import * as React from 'react'
-import { StyleSheet, View, Button } from 'react-native'
-import { GiphyDialog } from 'giphy-react-native-sdk'
+import { Button, StyleSheet, View } from 'react-native'
+import {
+  GiphyDialog,
+  GiphyMediaType,
+  GiphyRating,
+  GiphyRendition,
+} from 'giphy-react-native-sdk'
 
 import './giphy.setup'
 
@@ -10,6 +15,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+})
+
+GiphyDialog.configure({
+  mediaTypes: [GiphyMediaType.Sticker],
+  rating: GiphyRating.PG13,
+  renditionType: GiphyRendition.Looping,
 })
 
 export default function App() {
