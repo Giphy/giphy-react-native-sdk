@@ -25,6 +25,8 @@ GiphyDialog.configure({
   renditionType: GiphyRendition.FixedWidth,
   stickerColumnCount: GiphyStickersColumnCount.Two,
   theme: GiphyThemePreset.Light,
+  showConfirmationScreen: true,
+  trayHeightMultiplier: 1,
 })
 
 export default function App() {

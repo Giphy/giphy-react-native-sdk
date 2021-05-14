@@ -9,7 +9,7 @@ class RNGiphyDialogConfig: NSObject {
   var stickerColumnCount: GPHStickerColumnCount?
   var theme: GPHTheme?
   var shouldLocalizeSearch: Bool?
-  var trayHeightMultiplier: Float?
+  var trayHeightMultiplier: CGFloat?
 
   init(_ maybeOptions: NSDictionary?) {
     guard
@@ -30,12 +30,24 @@ class RNGiphyDialogConfig: NSObject {
       self.renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType)
     }
     
+    if let showConfirmationScreen = options["renditionType"] as? Bool {
+      self.showConfirmationScreen = showConfirmationScreen
+    }
+    
     if let rawStickerColumnCount = options["stickerColumnCount"] as? Int {
       self.stickerColumnCount = GPHStickerColumnCount.fromRNValue(value: rawStickerColumnCount)
     }
     
     if let rawTheme = options["theme"] as? String {
       self.theme = GPHTheme.fromRNValue(value: rawTheme)
+    }
+    
+    if let shouldLocalizeSearch = options["shouldLocalizeSearch"] as? Bool {
+      self.shouldLocalizeSearch = shouldLocalizeSearch
+    }
+    
+    if let trayHeightMultiplier = options["trayHeightMultiplier"] as? CGFloat {
+      self.trayHeightMultiplier = trayHeightMultiplier
     }
   }
 }
@@ -96,12 +108,24 @@ class RNGiphyDialog: NSObject {
       giphy.renditionType = renditionType
     }
     
+    if let showConfirmationScreen = config.renditionType as? Bool {
+      giphy.showConfirmationScreen = showConfirmationScreen
+    }
+    
     if let stickerColumnCount = config.stickerColumnCount as? GPHStickerColumnCount {
       giphy.stickerColumnCount = stickerColumnCount
     }
     
     if let theme = config.theme as? GPHTheme {
       giphy.theme = theme
+    }
+    
+    if let shouldLocalizeSearch = config.shouldLocalizeSearch as? Bool {
+      giphy.shouldLocalizeSearch = shouldLocalizeSearch
+    }
+    
+    if let trayHeightMultiplier = config.trayHeightMultiplier as? CGFloat {
+      GiphyViewController.trayHeightMultiplier = trayHeightMultiplier
     }
   }
 }
