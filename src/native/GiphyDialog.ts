@@ -1,4 +1,4 @@
-import { NativeModules } from 'react-native'
+import { NativeModules, EventSubscriptionVendor } from 'react-native'
 
 import type {
   GiphyMediaType,
@@ -33,17 +33,16 @@ export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
 
 export type NativeGiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
 
-export type NativeGiphyDialogEvents =
-  | {
-      type: 'onMediaSelect'
-      payload: { media: GiphyMedia }
-    }
-  | {
-      type: 'onDismiss'
-      payload: void
-    }
+export enum GiphyDialogEvent {
+  MediaSelected = 'onMediaSelect',
+  Dismissed = 'onDismiss',
+}
 
-export interface INativeGiphyDialog {
+export type GiphyDialogMediaSelectEventHandler = (e: { media: GiphyMedia }) => void
+
+export type GiphyDialogDismissEventHandler = (e: undefined) => void
+
+export interface INativeGiphyDialog extends EventSubscriptionVendor {
   configure(options: NativeGiphyDialogConfig): void
 
   show(): void

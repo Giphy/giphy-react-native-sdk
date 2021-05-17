@@ -1,5 +1,10 @@
 import GiphyUISDK
 
+struct RNGiphyDialogEvents {
+  static let onMediaSelect = "onMediaSelect"
+  static let onDismiss = "onDismiss"
+}
+
 public extension GiphyViewController {
   func applyRNConfig(_ options: NSDictionary) -> Void {
     if let rawMediaTypes = options["mediaTypes"] as? [String] {
@@ -45,10 +50,8 @@ public extension GiphyViewController {
   }
 }
 
-
-
 @objc(RNGiphyDialog)
-class RNGiphyDialog: NSObject {
+open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   let rootViewController = UIApplication.shared.keyWindow!.rootViewController!
   var giphyViewController: GiphyViewController?
   var config: NSMutableDictionary
@@ -58,9 +61,19 @@ class RNGiphyDialog: NSObject {
     super.init()
   }
   
-  @objc
-  static func requiresMainQueueSetup() -> Bool {
+  override public static func requiresMainQueueSetup() -> Bool {
     return true
+  }
+  
+  override public static func moduleName() -> String! {
+    return "RNGiphyDialog"
+  }
+  
+  open override func supportedEvents() -> [String]! {
+    return [
+      RNGiphyDialogEvents.onMediaSelect,
+      RNGiphyDialogEvents.onDismiss
+    ]
   }
   
   @objc(configure:)
@@ -76,6 +89,7 @@ class RNGiphyDialog: NSObject {
     DispatchQueue.main.async {
       let giphy = GiphyViewController()
       giphy.applyRNConfig(self.config)
+      giphy.delegate = self
       self.rootViewController.present(giphy, animated: true, completion: {
         self.giphyViewController = giphy
       })
@@ -91,4 +105,17 @@ class RNGiphyDialog: NSObject {
     }
   }
   
+  open func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
+    sendEvent(withName: RNGiphyDialogEvents.onMediaSelect, body: [
+      "media": [
+        "id": media.id,
+        "url": media.url(rendition: giphyViewController.renditionType, fileType: .gif) as Any,
+        "aspectRatio": media.aspectRatio,
+      ]
+    ])
+  }
+  
+  open func didDismiss(controller: GiphyViewController?) {
+    sendEvent(withName: RNGiphyDialogEvents.onDismiss, body: nil)
+  }
 }

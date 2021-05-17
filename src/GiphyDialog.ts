@@ -1,19 +1,22 @@
+import { NativeEventEmitter } from 'react-native'
 import { NativeGiphyDialog, IOSGiphyDialogConfig, AndroidGiphyDialogConfig } from './native/GiphyDialog'
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
 
-export class GiphyDialog {
-  // todo add event emitter
+export const GiphyDialog = new (class extends NativeEventEmitter {
+  constructor() {
+    super(NativeGiphyDialog)
+  }
 
-  static configure(config: GiphyDialogConfig) {
+  configure(config: GiphyDialogConfig) {
     NativeGiphyDialog.configure(config)
   }
 
-  static show() {
+  show() {
     NativeGiphyDialog.show()
   }
 
-  static hide() {
+  hide() {
     NativeGiphyDialog.hide()
   }
-}
+})()

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { GiphyDialog, GiphyDialogConfig } from 'giphy-react-native-sdk'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import {
+  GiphyDialog,
+  GiphyDialogConfig,
+  GiphyDialogEvent,
+  GiphyDialogMediaSelectEventHandler,
+  GiphyMedia,
+} from 'giphy-react-native-sdk'
 
 import './giphy.setup'
 import { GiphyDialogSettings } from './GiphyDialogSettings'
@@ -31,10 +37,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
+  previewImg: {
+    width: '100%',
+  },
 })
 
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
+  const [media, setMedia] = useState<GiphyMedia | null>(null)
   const [
     giphyDialogSettings,
     setGiphyDialogSettings,
@@ -43,6 +53,30 @@ export default function App() {
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
+
+  useEffect(() => {
+    const listener = GiphyDialog.addListener(
+      GiphyDialogEvent.Dismissed,
+      GiphyDialog.hide
+    )
+    return () => {
+      listener.remove()
+    }
+  }, [])
+
+  useEffect(() => {
+    const handler: GiphyDialogMediaSelectEventHandler = (e) => {
+      setMedia(e.media)
+      GiphyDialog.hide()
+    }
+    const listener = GiphyDialog.addListener(
+      GiphyDialogEvent.MediaSelected,
+      handler
+    )
+    return () => {
+      listener.remove()
+    }
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -70,6 +104,15 @@ export default function App() {
           onSettingsChange={setGiphyDialogSettings}
         />
       </SettingsDialog>
+      <View style={styles.card}>
+        <Text style={styles.header}>Preview</Text>
+        {media && (
+          <Image
+            style={[styles.previewImg, { aspectRatio: media.aspectRatio }]}
+            source={{ uri: media.url }}
+          />
+        )}
+      </View>
     </View>
   )
 }

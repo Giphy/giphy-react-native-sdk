@@ -27,7 +27,7 @@ const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
     GiphyMediaType.Sticker,
     GiphyMediaType.Recents,
   ],
-  rating: GiphyRating.PG13,
+  rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
   showConfirmationScreen: false,
   stickerColumnCount: GiphyStickersColumnCount.Three,
