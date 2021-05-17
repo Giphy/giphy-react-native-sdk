@@ -6,15 +6,12 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableMap
 import com.giphy.sdk.ui.GPHSettings
-import com.giphy.sdk.ui.themes.GPHTheme
-import com.giphy.sdk.ui.themes.GridType
 import com.giphy.sdk.ui.views.GiphyDialogFragment
 
 class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext) {
 
   private var settings: GPHSettings = GPHSettings()
   private var gifsDialog: GiphyDialogFragment? = null
-  private var initialized = false
 
   override fun getName(): String {
     return "GiphyReactNativeDialog"
@@ -31,9 +28,7 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
 
   @ReactMethod
   fun show(){
-    if (!initialized) {
-      initializeDialog()
-    }
+    initializeDialog()
 
     val compatActivity: AppCompatActivity = currentActivity as AppCompatActivity
     val fragmentManager = compatActivity.supportFragmentManager
