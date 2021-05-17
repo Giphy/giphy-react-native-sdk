@@ -1,4 +1,4 @@
-export type {
+export {
   GiphyContentRequest,
   GiphyContentRequestType,
   GiphyMedia,
@@ -8,6 +8,12 @@ export type {
   GiphyStickersColumnCount,
   GiphyThemePreset,
 } from './native/types'
+
+export {
+  GiphyDialogEvent,
+  GiphyDialogMediaSelectEventHandler,
+  GiphyDialogDismissEventHandler,
+} from './native/GiphyDialog'
 
 export { GiphySDK, GiphySDKConfig } from './GiphySDK'
 
