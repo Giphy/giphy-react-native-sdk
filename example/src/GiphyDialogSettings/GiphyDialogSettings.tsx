@@ -31,7 +31,7 @@ const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
   renditionType: GiphyRendition.FixedWidth,
   showConfirmationScreen: false,
   stickerColumnCount: GiphyStickersColumnCount.Three,
-  theme: GiphyThemePreset.Light,
+  theme: GiphyThemePreset.Dark,
   shouldLocalizeSearch: false,
   trayHeightMultiplier: 0.7,
   confirmationRenditionType: GiphyRendition.FixedWidth,
@@ -82,6 +82,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
           const isEnabled = settings.mediaTypes.includes(value)
           return (
             <SwitchCardField
+              key={label}
               selectedLabel={label}
               unselectedLabel={label}
               value={isEnabled}
