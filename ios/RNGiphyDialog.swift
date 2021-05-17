@@ -1,85 +1,96 @@
 import GiphyUISDK
 
-@objc(RNGiphyDialogConfig)
-class RNGiphyDialogConfig: NSObject {
-  var mediaTypeConfig: [GPHContentType]?
-  var rating: GPHRatingType?
-  var renditionType: GPHRenditionType?
-  var showConfirmationScreen: Bool?
-  var stickerColumnCount: GPHStickerColumnCount?
-  var theme: GPHTheme?
-  var shouldLocalizeSearch: Bool?
-  var trayHeightMultiplier: CGFloat?
-
-  init(_ maybeOptions: NSDictionary?) {
-    guard
-      let options = maybeOptions
-    else { return }
-    
+public extension GiphyViewController {
+  func applyRNConfig(_ options: NSDictionary) -> Void {
     if let rawMediaTypes = options["mediaTypes"] as? [String] {
       self.mediaTypeConfig = (rawMediaTypes
                                 .map { GPHContentType.fromRNValue(value: $0) }
                                 .filter { $0 != nil } as! [GPHContentType])
     }
-
-    if let rawRating = options["rating"] as? String {
-      self.rating = GPHRatingType.fromRNValue(value: rawRating)
-    }
-
-    if let rawRenditionType = options["renditionType"] as? String {
-      self.renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType)
+    
+    let rawRating = options["rating"] as? String
+    if let rating = GPHRatingType.fromRNValue(value: rawRating) {
+      self.rating = rating
     }
     
-    if let showConfirmationScreen = options["renditionType"] as? Bool {
-      self.showConfirmationScreen = showConfirmationScreen
+    let rawRenditionType = options["renditionType"] as? String
+    if let renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType) {
+      self.renditionType = renditionType
     }
     
-    if let rawStickerColumnCount = options["stickerColumnCount"] as? Int {
-      self.stickerColumnCount = GPHStickerColumnCount.fromRNValue(value: rawStickerColumnCount)
+    let showConfirmationScreen = options["showConfirmationScreen"] as? Bool
+    if showConfirmationScreen != nil {
+      self.showConfirmationScreen = showConfirmationScreen!
     }
     
-    if let rawTheme = options["theme"] as? String {
-      self.theme = GPHTheme.fromRNValue(value: rawTheme)
+    let rawStickerColumnCount = options["stickerColumnCount"] as? Int
+    if let stickerColumnCount = GPHStickerColumnCount.fromRNValue(value: rawStickerColumnCount) {
+      self.stickerColumnCount = stickerColumnCount
     }
     
-    if let shouldLocalizeSearch = options["shouldLocalizeSearch"] as? Bool {
-      self.shouldLocalizeSearch = shouldLocalizeSearch
+    let rawTheme = options["theme"] as? String
+    if let theme = GPHTheme.fromRNValue(value: rawTheme) {
+      self.theme = theme
     }
     
-    if let trayHeightMultiplier = options["trayHeightMultiplier"] as? CGFloat {
-      self.trayHeightMultiplier = trayHeightMultiplier
+    let shouldLocalizeSearch = options["shouldLocalizeSearch"] as? Bool
+    if shouldLocalizeSearch != nil {
+      self.shouldLocalizeSearch = shouldLocalizeSearch!
     }
+    
+    let trayHeightMultiplier = options["trayHeightMultiplier"] as? CGFloat
+    if trayHeightMultiplier != nil {
+      GiphyViewController.trayHeightMultiplier = trayHeightMultiplier!
+    }
+    
+    //    debugPrint("mediaTypeConfig", config.mediaTypeConfig, giphy.mediaTypeConfig)
+    //    debugPrint("rating", config.rating, giphy.rating)
+    //    debugPrint("renditionType", config.renditionType, giphy.renditionType)
+        debugPrint("showConfirmationScreen", showConfirmationScreen, self.showConfirmationScreen)
+    //    debugPrint("stickerColumnCount", config.stickerColumnCount, giphy.stickerColumnCount)
+    //    debugPrint("shouldLocalizeSearch", config.shouldLocalizeSearch, giphy.shouldLocalizeSearch)
+    //    debugPrint("trayHeightMultiplier", config.trayHeightMultiplier, GiphyViewController.trayHeightMultiplier)
+    
   }
 }
+
+
 
 @objc(RNGiphyDialog)
 class RNGiphyDialog: NSObject {
   let rootViewController = UIApplication.shared.keyWindow!.rootViewController!
   var giphyViewController: GiphyViewController?
-  var config: RNGiphyDialogConfig?
-
+  var config: NSMutableDictionary
+  
+  override init() {
+    self.config = NSMutableDictionary(dictionary: [:])
+    super.init()
+  }
+  
   @objc
   static func requiresMainQueueSetup() -> Bool {
     return true
   }
-
+  
   @objc(configure:)
   open func configure(options: NSDictionary?) -> Void {
-    self.config = RNGiphyDialogConfig(options)
-    self.applyConfig(self.giphyViewController)
+    self.config.addEntries(from: options as? Dictionary<String,Any> ?? [:])
+    if let giphy = self.giphyViewController {
+      giphy.applyRNConfig(self.config)
+    }
   }
-
+  
   @objc
   open func show() -> Void {
     DispatchQueue.main.async {
       let giphy = GiphyViewController()
-      self.applyConfig(giphy)
+      giphy.applyRNConfig(self.config)
       self.rootViewController.present(giphy, animated: true, completion: {
         self.giphyViewController = giphy
       })
     }
   }
-
+  
   @objc
   open func hide() -> Void {
     DispatchQueue.main.async {
@@ -88,44 +99,5 @@ class RNGiphyDialog: NSObject {
       })
     }
   }
-
-  @objc
-  private func applyConfig(_ giphyViewController: GiphyViewController?) -> Void {
-    guard
-      let giphy = giphyViewController,
-      let config = self.config
-    else { return }
-    
-    if let mediaTypeConfig = config.mediaTypeConfig as? [GPHContentType] {
-      giphy.mediaTypeConfig = mediaTypeConfig
-    }
-
-    if let rating = config.rating as? GPHRatingType {
-      giphy.rating = rating
-    }
-
-    if let renditionType = config.renditionType as? GPHRenditionType {
-      giphy.renditionType = renditionType
-    }
-    
-    if let showConfirmationScreen = config.renditionType as? Bool {
-      giphy.showConfirmationScreen = showConfirmationScreen
-    }
-    
-    if let stickerColumnCount = config.stickerColumnCount as? GPHStickerColumnCount {
-      giphy.stickerColumnCount = stickerColumnCount
-    }
-    
-    if let theme = config.theme as? GPHTheme {
-      giphy.theme = theme
-    }
-    
-    if let shouldLocalizeSearch = config.shouldLocalizeSearch as? Bool {
-      giphy.shouldLocalizeSearch = shouldLocalizeSearch
-    }
-    
-    if let trayHeightMultiplier = config.trayHeightMultiplier as? CGFloat {
-      GiphyViewController.trayHeightMultiplier = trayHeightMultiplier
-    }
-  }
+  
 }

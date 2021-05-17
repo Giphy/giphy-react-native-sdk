@@ -1,7 +1,7 @@
 import GiphyUISDK
 
 public extension GPHContentType {
-  static func fromRNValue(value: String) -> GPHContentType? {
+  static func fromRNValue(value: String?) -> GPHContentType? {
     switch value {
     case "emoji":
       return .emoji
@@ -20,7 +20,7 @@ public extension GPHContentType {
 }
 
 public extension GPHRatingType {
-  static func fromRNValue(value: String) -> GPHRatingType? {
+  static func fromRNValue(value: String?) -> GPHRatingType? {
     switch value {
     case "g":
       return .ratedG
@@ -41,7 +41,7 @@ public extension GPHRatingType {
 }
 
 public extension GPHRenditionType {
-  static func fromRNValue(value: String) -> GPHRenditionType? {
+  static func fromRNValue(value: String?) -> GPHRenditionType? {
     switch value {
     case "original":
       return .original
@@ -88,7 +88,7 @@ public extension GPHRenditionType {
 }
 
 public extension GPHStickerColumnCount {
-  static func fromRNValue(value: Int) -> GPHStickerColumnCount? {
+  static func fromRNValue(value: Int?) -> GPHStickerColumnCount? {
     switch value {
     case 2:
       return .two
@@ -103,7 +103,7 @@ public extension GPHStickerColumnCount {
 }
 
 public extension GPHTheme {
-  static func fromRNValue(value: String) -> GPHTheme? {
+  static func fromRNValue(value: String?) -> GPHTheme? {
     switch value {
     case "automatic":
         return GPHTheme(type: .automatic)
