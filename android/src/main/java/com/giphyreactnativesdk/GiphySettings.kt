@@ -8,12 +8,6 @@ import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.themes.GPHTheme
 import java.util.*
 
-private fun capitalize(word: String): String {
-  return word.replaceFirstChar {
-    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-  }
-}
-
 private enum class RNSettings {
   renditionType,
   confirmationRenditionType,
@@ -28,6 +22,12 @@ private enum class RNSettings {
   theme
 }
 
+
+private fun capitalize(word: String): String {
+  return word.replaceFirstChar {
+    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+  }
+}
 
 private fun snakeToCamel(value: String?): String? {
   return when(value) {
