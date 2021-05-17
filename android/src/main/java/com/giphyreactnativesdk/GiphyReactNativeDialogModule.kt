@@ -42,5 +42,7 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
   }
 
   @ReactMethod
-  fun hide(){}
+  fun hide(){
+    gifsDialog!!.dismiss()
+  }
 }
