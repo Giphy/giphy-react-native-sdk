@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native'
+import { NativeModules, EventSubscriptionVendor } from 'react-native'
 
 import type {
   GiphyMediaType,
@@ -31,53 +31,23 @@ export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
   useBlurredBackground?: boolean
 }
 
-export type NativeGiphyDialogConfig = IOSGiphyDialogConfig | AndroidGiphyDialogConfig
+export type NativeGiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
 
-export type NativeGiphyDialogEvents =
-  | {
-      type: 'onMediaSelect'
-      payload: { media: GiphyMedia }
-    }
-  | {
-      type: 'onDismiss'
-      payload: void
-    }
+export enum GiphyDialogEvent {
+  MediaSelected = 'onMediaSelect',
+  Dismissed = 'onDismiss',
+}
 
-export interface INativeGiphyDialog {
+export type GiphyDialogMediaSelectEventHandler = (e: { media: GiphyMedia }) => void
+
+export type GiphyDialogDismissEventHandler = (e: undefined) => void
+
+export interface INativeGiphyDialog extends EventSubscriptionVendor {
   configure(options: NativeGiphyDialogConfig): void
 
   show(): void
 
   hide(): void
-}
-
-export const BASE_NATIVE_DIALOG_CONFIG_KEYS: ReadonlySet<keyof BaseNativeGiphyDialogConfig> = new Set<
-  keyof BaseNativeGiphyDialogConfig
->(['mediaTypes', 'rating', 'renditionType', 'showConfirmationScreen', 'stickerColumnCount', 'theme'])
-
-export const ANDROID_DIALOG_CONFIG_KEYS: ReadonlySet<keyof AndroidGiphyDialogConfig> = new Set<
-  keyof AndroidGiphyDialogConfig
->([
-  ...BASE_NATIVE_DIALOG_CONFIG_KEYS,
-  'confirmationRenditionType',
-  'selectedContentType',
-  'showCheckeredBackground',
-  'showSuggestionsBar',
-  'useBlurredBackground',
-])
-
-export const IOS_DIALOG_CONFIG_KEYS: ReadonlySet<keyof IOSGiphyDialogConfig> = new Set<keyof IOSGiphyDialogConfig>([
-  ...BASE_NATIVE_DIALOG_CONFIG_KEYS,
-  'shouldLocalizeSearch',
-  'trayHeightMultiplier',
-])
-
-export function getNativeDialogConfig(
-  config: AndroidGiphyDialogConfig & IOSGiphyDialogConfig & Record<string, any>
-): NativeGiphyDialogConfig {
-  const platformKeys: ReadonlySet<string> = Platform.OS === 'ios' ? IOS_DIALOG_CONFIG_KEYS : ANDROID_DIALOG_CONFIG_KEYS
-  const filteredPairs = Object.entries(config).filter(([key]) => platformKeys.has(key))
-  return Object.fromEntries(filteredPairs)
 }
 
 export const NativeGiphyDialog: INativeGiphyDialog = NativeModules.GiphyReactNativeDialog
