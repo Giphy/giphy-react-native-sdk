@@ -1,9 +1,4 @@
-import {
-  NativeGiphyDialog,
-  IOSGiphyDialogConfig,
-  AndroidGiphyDialogConfig,
-  getNativeDialogConfig,
-} from './native/GiphyDialog'
+import { NativeGiphyDialog, IOSGiphyDialogConfig, AndroidGiphyDialogConfig } from './native/GiphyDialog'
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
 
@@ -11,7 +6,7 @@ export class GiphyDialog {
   // todo add event emitter
 
   static configure(config: GiphyDialogConfig) {
-    NativeGiphyDialog.configure(getNativeDialogConfig(config))
+    NativeGiphyDialog.configure(config)
   }
 
   static show() {
