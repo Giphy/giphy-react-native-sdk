@@ -10,7 +10,7 @@ import {
 } from 'giphy-react-native-sdk'
 
 import './giphy.setup'
-import { GiphyDialogSettings } from './GiphyDialogSettings'
+import { GiphyDialogSettings } from './Settings'
 import { SettingsDialog } from './SettingsDialog'
 
 const styles = StyleSheet.create({
