@@ -42,15 +42,6 @@ public extension GiphyViewController {
     if trayHeightMultiplier != nil {
       GiphyViewController.trayHeightMultiplier = trayHeightMultiplier!
     }
-    
-    //    debugPrint("mediaTypeConfig", config.mediaTypeConfig, giphy.mediaTypeConfig)
-    //    debugPrint("rating", config.rating, giphy.rating)
-    //    debugPrint("renditionType", config.renditionType, giphy.renditionType)
-        debugPrint("showConfirmationScreen", showConfirmationScreen, self.showConfirmationScreen)
-    //    debugPrint("stickerColumnCount", config.stickerColumnCount, giphy.stickerColumnCount)
-    //    debugPrint("shouldLocalizeSearch", config.shouldLocalizeSearch, giphy.shouldLocalizeSearch)
-    //    debugPrint("trayHeightMultiplier", config.trayHeightMultiplier, GiphyViewController.trayHeightMultiplier)
-    
   }
 }
 
