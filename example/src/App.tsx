@@ -7,6 +7,7 @@ import {
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
   GiphyMedia,
+  GiphyMediaView,
 } from 'giphy-react-native-sdk'
 
 import './giphy.setup'
@@ -40,6 +41,13 @@ const styles = StyleSheet.create({
   previewImg: {
     width: '100%',
   },
+  wrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ededed',
+    height: 10,
+    width: 100,
+  },
 })
 
 export default function App() {
@@ -53,16 +61,6 @@ export default function App() {
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
-
-  useEffect(() => {
-    const listener = GiphyDialog.addListener(
-      GiphyDialogEvent.Dismissed,
-      GiphyDialog.hide
-    )
-    return () => {
-      listener.remove()
-    }
-  }, [])
 
   useEffect(() => {
     const handler: GiphyDialogMediaSelectEventHandler = (e) => {
@@ -106,6 +104,7 @@ export default function App() {
       </SettingsDialog>
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
+        <GiphyMediaView style={styles.wrapper} />
         {media && (
           <Image
             style={[styles.previewImg, { aspectRatio: media.aspectRatio }]}

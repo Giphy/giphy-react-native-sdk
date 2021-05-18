@@ -79,9 +79,6 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   @objc(configure:)
   open func configure(options: NSDictionary?) -> Void {
     self.config.addEntries(from: options as? Dictionary<String,Any> ?? [:])
-    if let giphy = self.giphyViewController {
-      giphy.applyRNConfig(self.config)
-    }
   }
   
   @objc
