@@ -1,6 +1,5 @@
 package com.giphyreactnativesdk
 
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.react.bridge.*
 import com.giphy.sdk.core.models.Image
