@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import {
   GiphyDialog,
   GiphyDialogConfig,
@@ -38,15 +38,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-  previewImg: {
-    width: '100%',
-  },
-  wrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ededed',
-    height: 10,
-    width: 100,
+  giphyView: {
+    borderStyle: 'solid',
+    borderColor: '#f00',
+    borderWidth: 4,
+    minHeight: 300,
+    minWidth: 200,
   },
 })
 
@@ -104,13 +101,7 @@ export default function App() {
       </SettingsDialog>
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
-        <GiphyMediaView style={styles.wrapper} />
-        {media && (
-          <Image
-            style={[styles.previewImg, { aspectRatio: media.aspectRatio }]}
-            source={{ uri: media.url }}
-          />
-        )}
+        {media && <GiphyMediaView style={styles.giphyView} media={media} />}
       </View>
     </View>
   )
