@@ -63,7 +63,7 @@ fun giphySettingsFromReadableMap(
   if (options.hasKey(RNSettings.renditionType.toString())) {
     settings.renditionType = RenditionType.values().firstOrNull {
       it.name == snakeToCamel(options.getString(RNSettings.renditionType.toString()))
-    }
+    } ?: RenditionType.downsized
   }
 
   if (options.hasKey(RNSettings.confirmationRenditionType.toString())) {
