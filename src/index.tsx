@@ -21,3 +21,6 @@ export { GiphyDialog } from './GiphyDialog'
 
 export type { GiphyMediaViewProps } from './GiphyMediaView'
 export { GiphyMediaView } from './GiphyMediaView'
+
+export type { GiphyContentSearchOptions, GiphyContentTrendingOptions } from './GiphyContent'
+export { GiphyContent } from './GiphyContent'
