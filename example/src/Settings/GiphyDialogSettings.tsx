@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import {
   GiphyDialogConfig,
+  GiphyFileExtension,
   GiphyMediaType,
   GiphyRating,
   GiphyRendition,
@@ -29,6 +30,7 @@ const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
   ],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
+  fileType: GiphyFileExtension.GIF,
   showConfirmationScreen: false,
   stickerColumnCount: GiphyStickersColumnCount.Three,
   theme: GiphyThemePreset.Dark,
@@ -108,6 +110,12 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         items={enumToPickerItems(GiphyRendition)}
         value={settings.renditionType}
         onValueChange={(renditionType) => updateSettings({ renditionType })}
+      />
+      <PickerSelectCard
+        title="File Type"
+        items={enumToPickerItems(GiphyFileExtension)}
+        value={settings.fileType}
+        onValueChange={(fileType) => updateSettings({ fileType })}
       />
       <SwitchCard
         title="Show Confirmation Screen"

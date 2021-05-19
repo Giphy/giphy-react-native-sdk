@@ -49,11 +49,16 @@ export enum GiphyStickersColumnCount {
   Four,
 }
 
+export enum GiphyFileExtension {
+  GIF = 'gif',
+  MP4 = 'mp4',
+  WebP = 'webp',
+}
+
 export type GiphyMedia = {
   id: string
   url: string
   aspectRatio: number
-  // todo add rest properties
 }
 
 export enum GiphyContentRequestType {

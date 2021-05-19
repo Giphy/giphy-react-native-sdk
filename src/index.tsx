@@ -1,6 +1,7 @@
 export {
   GiphyContentRequest,
   GiphyContentRequestType,
+  GiphyFileExtension,
   GiphyMedia,
   GiphyMediaType,
   GiphyRating,
@@ -9,12 +10,14 @@ export {
   GiphyThemePreset,
 } from './native/types'
 
-export {
-  GiphyDialogEvent,
-  GiphyDialogMediaSelectEventHandler,
-  GiphyDialogDismissEventHandler,
-} from './native/GiphyDialog'
+export type { GiphyDialogMediaSelectEventHandler, GiphyDialogDismissEventHandler } from './native/GiphyDialog'
+export { GiphyDialogEvent } from './native/GiphyDialog'
 
-export { GiphySDK, GiphySDKConfig } from './GiphySDK'
+export type { GiphySDKConfig } from './GiphySDK'
+export { GiphySDK } from './GiphySDK'
 
-export { GiphyDialog, GiphyDialogConfig } from './GiphyDialog'
+export type { GiphyDialogConfig } from './GiphyDialog'
+export { GiphyDialog } from './GiphyDialog'
+
+export type { GiphyMediaViewProps } from './GiphyMediaView'
+export { GiphyMediaView } from './GiphyMediaView'

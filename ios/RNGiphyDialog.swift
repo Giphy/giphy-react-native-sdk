@@ -79,9 +79,6 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   @objc(configure:)
   open func configure(options: NSDictionary?) -> Void {
     self.config.addEntries(from: options as? Dictionary<String,Any> ?? [:])
-    if let giphy = self.giphyViewController {
-      giphy.applyRNConfig(self.config)
-    }
   }
   
   @objc
@@ -106,10 +103,16 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   }
   
   open func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
+    let rawFileType = self.config["fileType"] as? String
+    var fileType: GPHFileExtension = .gif
+    if rawFileType != nil {
+      fileType = GPHFileExtension.fromRNValue(value: rawFileType!) ?? .gif
+    }
+    
     sendEvent(withName: RNGiphyDialogEvents.onMediaSelect, body: [
       "media": [
         "id": media.id,
-        "url": media.url(rendition: giphyViewController.renditionType, fileType: .gif) as Any,
+        "url": media.url(rendition: giphyViewController.renditionType, fileType: fileType) as Any,
         "aspectRatio": media.aspectRatio,
       ]
     ])

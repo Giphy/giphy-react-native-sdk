@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native'
 import {
   GiphyDialog,
   GiphyDialogConfig,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
   GiphyMedia,
+  GiphyMediaView,
 } from 'giphy-react-native-sdk'
 
 import './giphy.setup'
@@ -37,7 +44,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-  previewImg: {
+  preview: {
+    backgroundColor: '#fff',
+    maxHeight: 400,
+    padding: 4,
     width: '100%',
   },
 })
@@ -53,16 +63,6 @@ export default function App() {
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
-
-  useEffect(() => {
-    const listener = GiphyDialog.addListener(
-      GiphyDialogEvent.Dismissed,
-      GiphyDialog.hide
-    )
-    return () => {
-      listener.remove()
-    }
-  }, [])
 
   useEffect(() => {
     const handler: GiphyDialogMediaSelectEventHandler = (e) => {
@@ -107,10 +107,13 @@ export default function App() {
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         {media && (
-          <Image
-            style={[styles.previewImg, { aspectRatio: media.aspectRatio }]}
-            source={{ uri: media.url }}
-          />
+          <ScrollView style={styles.preview}>
+            <GiphyMediaView
+              media={media}
+              renditionType={giphyDialogSettings.renditionType}
+              style={{ aspectRatio: media.aspectRatio }}
+            />
+          </ScrollView>
         )}
       </View>
     </View>
