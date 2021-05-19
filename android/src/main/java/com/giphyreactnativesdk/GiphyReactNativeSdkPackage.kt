@@ -7,13 +7,14 @@ import com.facebook.react.uimanager.ViewManager
 
 
 class GiphyReactNativeSdkPackage : ReactPackage {
-    override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return listOf<NativeModule>(
-          GiphySDKModule(reactContext)
-        )
-    }
+  override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
+    return listOf<NativeModule>(
+      GiphySDKModule(reactContext),
+      GiphyReactNativeDialogModule(reactContext)
+    )
+  }
 
-    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return emptyList()
-    }
+  override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
+    return emptyList()
+  }
 }
