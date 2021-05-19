@@ -51,16 +51,23 @@ export class GiphyContent {
     })
   }
 
+  static trendingText(): GiphyContentRequest {
+    return makeGiphyContentRequest({
+      mediaType: GiphyMediaType.Text,
+      requestType: GiphyContentRequestType.Trending,
+    })
+  }
+
   static recents(): GiphyContentRequest {
     return makeGiphyContentRequest({
-      mediaType: GiphyMediaType.Recents,
+      mediaType: GiphyMediaType.Gif,
       requestType: GiphyContentRequestType.Recents,
     })
   }
 
   static emoji(): GiphyContentRequest {
     return makeGiphyContentRequest({
-      mediaType: GiphyMediaType.Emoji,
+      mediaType: GiphyMediaType.Sticker,
       requestType: GiphyContentRequestType.Emoji,
     })
   }
