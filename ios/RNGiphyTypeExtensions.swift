@@ -106,13 +106,28 @@ public extension GPHTheme {
   static func fromRNValue(value: String?) -> GPHTheme? {
     switch value {
     case "automatic":
-        return GPHTheme(type: .automatic)
+      return GPHTheme(type: .automatic)
     case "dark":
-        return GPHTheme(type: .dark)
+      return GPHTheme(type: .dark)
     case "light":
-        return GPHTheme(type: .light)
+      return GPHTheme(type: .light)
     default:
-        return nil
+      return nil
+    }
+  }
+}
+
+public extension GPHFileExtension {
+  static func fromRNValue(value: String) -> GPHFileExtension? {
+    switch value {
+    case "gif":
+      return .gif
+    case "mp4":
+      return .mp4
+    case "webp":
+      return .webp
+    default:
+      return nil
     }
   }
 }

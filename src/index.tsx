@@ -1,6 +1,7 @@
 export {
   GiphyContentRequest,
   GiphyContentRequestType,
+  GiphyFileExtension,
   GiphyMedia,
   GiphyMediaType,
   GiphyRating,

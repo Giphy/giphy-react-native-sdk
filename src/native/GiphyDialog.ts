@@ -7,6 +7,7 @@ import type {
   GiphyRating,
   GiphyRendition,
   GiphyMedia,
+  GiphyFileExtension,
 } from './types'
 
 export type BaseNativeGiphyDialogConfig = {
@@ -16,6 +17,7 @@ export type BaseNativeGiphyDialogConfig = {
   showConfirmationScreen?: boolean
   stickerColumnCount?: GiphyStickersColumnCount
   theme?: GiphyThemePreset
+  fileType?: GiphyFileExtension
 }
 
 export type IOSGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
