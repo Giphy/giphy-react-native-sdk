@@ -14,9 +14,7 @@ RCT_EXPORT_VIEW_PROPERTY(cellPadding, CGFloat)
 
 RCT_EXPORT_VIEW_PROPERTY(orientation, NSString)
 
-RCT_EXPORT_VIEW_PROPERTY(spanCount, CGFloat)
-
-RCT_EXPORT_VIEW_PROPERTY(showCheckeredBackground, Bool)
+RCT_EXPORT_VIEW_PROPERTY(spanCount, Int)
 
 RCT_EXPORT_VIEW_PROPERTY(fixedSizeCells, Bool)
 

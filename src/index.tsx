@@ -2,6 +2,7 @@ export {
   GiphyContentRequest,
   GiphyContentRequestType,
   GiphyContentType,
+  GiphyDirection,
   GiphyFileExtension,
   GiphyMedia,
   GiphyMediaType,

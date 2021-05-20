@@ -1,3 +1,5 @@
+import UIKit
+
 import GiphyUISDK
 
 public extension GPHContentType {
@@ -128,6 +130,19 @@ public extension GPHFileExtension {
       return .webp
     default:
       return nil
+    }
+  }
+}
+
+public extension UICollectionView.ScrollDirection {
+  static func fromRNValue(value: String) -> UICollectionView.ScrollDirection {
+    switch value {
+    case "horizontal":
+      return .horizontal
+    case "vertical":
+      return .vertical
+    default:
+      return .vertical
     }
   }
 }

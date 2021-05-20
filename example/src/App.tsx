@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
   ScrollView,
+  StyleSheet,
+  Text,
   TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native'
 import {
   GiphyContent,
@@ -14,6 +14,7 @@ import {
   GiphyDialogConfig,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
+  GiphyDirection,
   GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
@@ -144,8 +145,11 @@ export default function App() {
           />
           {searchVisible && (
             <GiphyGridView
-              cellPadding={2}
               content={GiphyContent.search({ searchQuery: searchQuery })}
+              cellPadding={3}
+              fixedSizeCells
+              orientation={GiphyDirection.Vertical}
+              spanCount={1}
               style={styles.giphyGridView}
               onContentUpdate={(e) =>
                 console.log(

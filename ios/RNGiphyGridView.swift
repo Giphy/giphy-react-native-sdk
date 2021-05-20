@@ -30,8 +30,8 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
   }
   
   //MARK: RN Properties
-  @objc func setContent(_ value: NSDictionary?) -> Void {
-    gridController.content = GPHContent.fromRNValue(value: value ?? [:])
+  @objc func setContent(_ value: NSDictionary) -> Void {
+    gridController.content = GPHContent.fromRNValue(value: value)
     gridController.update()
   }
   
@@ -39,14 +39,27 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     self.gridController.cellPadding = value
   }
   
+  @objc func setOrientation(_ value: NSString) -> Void {
+    self.gridController.direction = UICollectionView.ScrollDirection.fromRNValue(value: value as String)
+  }
+  
+  @objc func setSpanCount(_ value: Int) -> Void {
+    self.gridController.numberOfTracks = value
+  }
+  
+  @objc func setFixedSizeCells(_ value: Bool) -> Void {
+    self.gridController.fixedSizeCells = value
+  }
+  
+  
   //MARK: GPHGridDelegate stubs
-  open func contentDidUpdate(resultCount: Int,error: Error?) {
+  func contentDidUpdate(resultCount: Int,error: Error?) {
     if self.onContentUpdate != nil {
       self.onContentUpdate!(["resultCount": resultCount])
     }
   }
   
-  open func didSelectMedia(media: GPHMedia, cell: UICollectionViewCell) {
+  func didSelectMedia(media: GPHMedia, cell: UICollectionViewCell) {
     if self.onMediaSelect != nil {
       self.onMediaSelect!(["media": [
         "id": media.id,
@@ -56,11 +69,11 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     }
   }
   
-  open func didScroll(offset: CGFloat) {
+  func didScroll(offset: CGFloat) {
     if self.onScroll != nil {
       self.onScroll!(["offset": offset])
     }
   }
   
-  open func didSelectMoreByYou(query: String) {}
+  func didSelectMoreByYou(query: String) {}
 }

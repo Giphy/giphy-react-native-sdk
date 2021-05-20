@@ -68,6 +68,11 @@ export type GiphyMedia = {
   aspectRatio: number
 }
 
+export enum GiphyDirection {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+}
+
 export enum GiphyContentRequestType {
   Trending = 'trending',
   Search = 'search',
