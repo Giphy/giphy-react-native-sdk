@@ -43,7 +43,7 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     self.gridController.direction = UICollectionView.ScrollDirection.fromRNValue(value: value as String)
   }
   
-  @objc func setSpanCount(_ value: Int) -> Void {
+  @objc func setSpanCount(_ value: NSInteger) -> Void {
     self.gridController.numberOfTracks = value
   }
   
@@ -51,9 +51,8 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     self.gridController.fixedSizeCells = value
   }
   
-  
   //MARK: GPHGridDelegate stubs
-  func contentDidUpdate(resultCount: Int,error: Error?) {
+  func contentDidUpdate(resultCount: Int, error: Error?) {
     if self.onContentUpdate != nil {
       self.onContentUpdate!(["resultCount": resultCount])
     }

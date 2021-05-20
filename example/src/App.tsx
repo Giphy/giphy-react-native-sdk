@@ -147,7 +147,7 @@ export default function App() {
             <GiphyGridView
               content={GiphyContent.search({ searchQuery: searchQuery })}
               cellPadding={3}
-              fixedSizeCells
+              fixedSizeCells={false}
               orientation={GiphyDirection.Vertical}
               spanCount={1}
               style={styles.giphyGridView}
