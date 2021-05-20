@@ -29,7 +29,7 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     gridController.view.bottomAnchor.constraint(equalTo: self.safeBottomAnchor).isActive = true
   }
   
-  //MARK: - RN Properties
+  //MARK: RN Properties
   @objc func setContent(_ value: NSDictionary?) -> Void {
     gridController.content = GPHContent.fromRNValue(value: value ?? [:])
     gridController.update()
@@ -37,10 +37,9 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
   
   @objc func setCellPadding(_ value: CGFloat) -> Void {
     self.gridController.cellPadding = value
-    gridController.viewWillAppear(true)
   }
   
-  //MARK: - GPHGridDelegate stubs
+  //MARK: GPHGridDelegate stubs
   open func contentDidUpdate(resultCount: Int,error: Error?) {
     if self.onContentUpdate != nil {
       self.onContentUpdate!(["resultCount": resultCount])
