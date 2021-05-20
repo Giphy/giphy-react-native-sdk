@@ -6,8 +6,10 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  TextInput,
 } from 'react-native'
 import {
+  GiphyContent,
   GiphyDialog,
   GiphyDialogConfig,
   GiphyDialogEvent,
@@ -15,12 +17,11 @@ import {
   GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
-  GiphyContent,
 } from 'giphy-react-native-sdk'
 
 import './giphy.setup'
 import { GiphyDialogSettings } from './Settings'
-import { SettingsDialog } from './SettingsDialog'
+import { Dialog } from './Dialog'
 
 const styles = StyleSheet.create({
   container: {
@@ -46,6 +47,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
+  textInput: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    marginHorizontal: 8,
+  },
+  giphyGridView: {
+    height: 400,
+    marginHorizontal: 8,
+  },
   preview: {
     backgroundColor: '#fff',
     maxHeight: 400,
@@ -54,11 +69,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const content = GiphyContent.search({ searchQuery: 'who' })
-
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
+  const [searchVisible, setSearchVisible] = useState(false)
   const [media, setMedia] = useState<GiphyMedia | null>(null)
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const [
     giphyDialogSettings,
     setGiphyDialogSettings,
@@ -84,13 +99,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Giphy Dialog</Text>
       <View style={styles.card}>
         <TouchableOpacity
           style={styles.cardButton}
           onPress={() => setDialogSettingsVisible(true)}
         >
-          <Text style={styles.cardButtonText}>Settings</Text>
+          <Text style={styles.cardButtonText}>Dialog Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.cardButton}
@@ -99,7 +113,7 @@ export default function App() {
           <Text style={styles.cardButtonText}>Show Dialog</Text>
         </TouchableOpacity>
       </View>
-      <SettingsDialog
+      <Dialog
         visible={dialogSettingsVisible}
         onRequestClose={() => setDialogSettingsVisible(false)}
       >
@@ -107,13 +121,52 @@ export default function App() {
           settings={giphyDialogSettings}
           onSettingsChange={setGiphyDialogSettings}
         />
-      </SettingsDialog>
+      </Dialog>
+
+      <View style={styles.card}>
+        <TextInput
+          autoFocus={false}
+          onFocus={() => setSearchVisible(true)}
+          placeholder="Search..."
+          style={styles.textInput}
+          value={searchQuery}
+        />
+        <Dialog
+          visible={searchVisible}
+          onRequestClose={() => setSearchVisible(false)}
+        >
+          <TextInput
+            autoFocus
+            onChangeText={setSearchQuery}
+            placeholder="Search..."
+            style={styles.textInput}
+            value={searchQuery}
+          />
+          {searchVisible && (
+            <GiphyGridView
+              cellPadding={2}
+              content={GiphyContent.search({ searchQuery: searchQuery })}
+              style={styles.giphyGridView}
+              onContentUpdate={(e) =>
+                console.log(
+                  'onContentUpdate',
+                  JSON.stringify(e.nativeEvent, null, 2)
+                )
+              }
+              onScroll={(e) =>
+                console.log('onScroll', JSON.stringify(e.nativeEvent, null, 2))
+              }
+              onMediaSelect={(e) => {
+                setSearchVisible(false)
+                setMedia(e.nativeEvent.media)
+              }}
+            />
+          )}
+        </Dialog>
+      </View>
+
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
-        <GiphyGridView
-          content={content}
-          style={[styles.preview, { minHeight: 400, minWidth: 400 }]}
-        />
         {media && (
           <ScrollView style={styles.preview}>
             <GiphyMediaView
