@@ -29,7 +29,7 @@ private fun capitalize(word: String): String {
   }
 }
 
-private fun snakeToCamel(value: String?): String? {
+fun snakeToCamel(value: String?): String? {
   return when(value) {
     null -> null
     else -> value.split("_").mapIndexed {
