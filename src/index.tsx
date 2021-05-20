@@ -1,6 +1,7 @@
 export {
   GiphyContentRequest,
   GiphyContentRequestType,
+  GiphyContentType,
   GiphyFileExtension,
   GiphyMedia,
   GiphyMediaType,
@@ -24,3 +25,6 @@ export { GiphyMediaView } from './GiphyMediaView'
 
 export type { GiphyContentSearchOptions, GiphyContentTrendingOptions } from './GiphyContent'
 export { GiphyContent } from './GiphyContent'
+
+export type { GiphyGridViewProps } from './GiphyGridView'
+export { GiphyGridView } from './GiphyGridView'

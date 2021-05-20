@@ -12,8 +12,10 @@ import {
   GiphyDialogConfig,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
+  GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
+  GiphyContent,
 } from 'giphy-react-native-sdk'
 
 import './giphy.setup'
@@ -51,6 +53,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 })
+
+const content = GiphyContent.search({ searchQuery: 'who' })
 
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
@@ -106,6 +110,10 @@ export default function App() {
       </SettingsDialog>
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
+        <GiphyGridView
+          content={content}
+          style={[styles.preview, { minHeight: 400, minWidth: 400 }]}
+        />
         {media && (
           <ScrollView style={styles.preview}>
             <GiphyMediaView

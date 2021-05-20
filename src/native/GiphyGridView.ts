@@ -16,14 +16,13 @@ export type NativeGiphyGridViewProps = {
   content?: GiphyContentRequest
 }
 
-export type NativeGiphyGridViewEvents =
-  | {
-      type: 'onContentUpdate'
-      payload: { resultCount: number }
-    }
-  | {
-      type: 'onMediaSelect'
-      payload: { media: GiphyMedia }
-    }
+export enum NativeGiphyGridViewEvent {
+  ContentUpdated = 'onContentUpdate',
+  MediaSelected = 'onMediaSelect',
+}
+
+export type NativeGGVMediaSelectEventHandler = (e: { media: GiphyMedia }) => void
+
+export type NativeGGVContentUpdatedEventHandler = (e: { resultCount: number }) => void
 
 export const NativeGiphyGridView = requireNativeComponent<NativeGiphyGridViewProps>('GiphyReactNativeGridView')

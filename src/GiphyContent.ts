@@ -1,14 +1,16 @@
-import { GiphyMediaType, GiphyRating, GiphyContentRequest, GiphyContentRequestType } from './native/types'
+import { GiphyContentRequest, GiphyContentRequestType, GiphyMediaType } from './native/types'
 
 export type GiphyContentSearchOptions = {
   searchQuery: string
   mediaType?: GiphyMediaType
-  rating?: GiphyRating
 }
 
 export type GiphyContentTrendingOptions = {
   mediaType?: GiphyMediaType
-  rating?: GiphyRating
+}
+
+export type GiphyContentAnimateOptions = {
+  searchQuery: string
 }
 
 function makeGiphyContentRequest(
@@ -17,7 +19,6 @@ function makeGiphyContentRequest(
   return {
     searchQuery: '',
     mediaType: GiphyMediaType.Gif,
-    rating: GiphyRating.PG13,
     ...options,
   }
 }
@@ -69,6 +70,13 @@ export class GiphyContent {
     return makeGiphyContentRequest({
       mediaType: GiphyMediaType.Sticker,
       requestType: GiphyContentRequestType.Emoji,
+    })
+  }
+
+  static animate(options: GiphyContentAnimateOptions): GiphyContentRequest {
+    return makeGiphyContentRequest({
+      ...options,
+      requestType: GiphyContentRequestType.Animate,
     })
   }
 }

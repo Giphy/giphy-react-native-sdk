@@ -131,3 +131,32 @@ public extension GPHFileExtension {
     }
   }
 }
+
+public extension GPHMediaType {
+  static func fromRNValue(value: String) -> GPHMediaType {
+    return GPHMediaType.init(rawValue: value) ?? .gif
+  }
+}
+
+public extension GPHContent {
+  static func fromRNValue(value: NSDictionary) -> GPHContent {
+    let requestType = value["requestType"] as? String
+    let searchQuery = value["searchQuery"] as? String ?? ""
+    let mediaType = GPHMediaType.fromRNValue(value: value["searchQuery"] as? String ?? "")
+    
+    switch requestType {
+    case "search":
+      return GPHContent.search(withQuery: searchQuery, mediaType: mediaType, language: .english)
+    case "trending":
+      return GPHContent.trending(mediaType: mediaType)
+    case "emoji":
+      return GPHContent.emoji
+    case "recents":
+      return GPHContent.recents
+    case "animate":
+      return GPHContent.animate(searchQuery)
+    default:
+      return GPHContent()
+    }
+  }
+}

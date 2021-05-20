@@ -4,12 +4,19 @@ export enum GiphyThemePreset {
   Light = 'light',
 }
 
-export enum GiphyMediaType {
+export enum GiphyContentType {
   Emoji = 'emoji',
   Gif = 'gif',
   Recents = 'recents',
   Sticker = 'sticker',
   Text = 'text',
+}
+
+export enum GiphyMediaType {
+  Gif = 'gif',
+  Sticker = 'sticker',
+  Text = 'text',
+  Video = 'video',
 }
 
 export enum GiphyRating {
@@ -73,5 +80,4 @@ export type GiphyContentRequest = {
   searchQuery: string
   requestType: GiphyContentRequestType
   mediaType: GiphyMediaType
-  rating: GiphyRating
 }
