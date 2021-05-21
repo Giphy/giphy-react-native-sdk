@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import {
   GiphyDialogConfig,
   GiphyFileExtension,
-  GiphyMediaType,
+  GiphyContentType,
   GiphyRating,
   GiphyRendition,
   GiphyStickersColumnCount,
@@ -21,12 +21,12 @@ export type GiphyDialogSettingsProps = {
 }
 
 const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
-  mediaTypes: [
-    GiphyMediaType.Gif,
-    GiphyMediaType.Emoji,
-    GiphyMediaType.Text,
-    GiphyMediaType.Sticker,
-    GiphyMediaType.Recents,
+  mediaTypeConfig: [
+    GiphyContentType.Gif,
+    GiphyContentType.Emoji,
+    GiphyContentType.Text,
+    GiphyContentType.Sticker,
+    GiphyContentType.Recents,
   ],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
@@ -37,7 +37,7 @@ const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
   shouldLocalizeSearch: false,
   trayHeightMultiplier: 0.7,
   confirmationRenditionType: GiphyRendition.FixedWidth,
-  selectedContentType: GiphyMediaType.Gif,
+  selectedContentType: GiphyContentType.Gif,
   showCheckeredBackground: false,
   showSuggestionsBar: true,
   useBlurredBackground: false,
@@ -79,9 +79,9 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         value={settings.theme}
         onValueChange={(theme) => updateSettings({ theme })}
       />
-      <Card title="Media Type">
-        {enumToPickerItems(GiphyMediaType).map(({ value, label }) => {
-          const isEnabled = settings.mediaTypes.includes(value)
+      <Card title="Media Type Config">
+        {enumToPickerItems(GiphyContentType).map(({ value, label }) => {
+          const isEnabled = settings.mediaTypeConfig.includes(value)
           return (
             <SwitchCardField
               key={label}
@@ -90,9 +90,9 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
               value={isEnabled}
               onValueChange={() =>
                 updateSettings({
-                  mediaTypes: isEnabled
-                    ? settings.mediaTypes.filter((a) => a !== value)
-                    : [...settings.mediaTypes, value],
+                  mediaTypeConfig: isEnabled
+                    ? settings.mediaTypeConfig.filter((a) => a !== value)
+                    : [...settings.mediaTypeConfig, value],
                 })
               }
             />
@@ -156,7 +156,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
       />
       <PickerSelectCard
         title="Selected Content Type (*Android)"
-        items={enumToPickerItems(GiphyMediaType)}
+        items={enumToPickerItems(GiphyContentType)}
         value={settings.selectedContentType}
         onValueChange={(selectedContentType) =>
           updateSettings({ selectedContentType })

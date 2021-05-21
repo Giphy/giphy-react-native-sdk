@@ -1,7 +1,7 @@
 import { NativeModules, EventSubscriptionVendor } from 'react-native'
 
 import type {
-  GiphyMediaType,
+  GiphyContentType,
   GiphyThemePreset,
   GiphyStickersColumnCount,
   GiphyRating,
@@ -11,7 +11,7 @@ import type {
 } from './types'
 
 export type BaseNativeGiphyDialogConfig = {
-  mediaTypes?: GiphyMediaType[]
+  mediaTypeConfig?: GiphyContentType[]
   rating?: GiphyRating
   renditionType?: GiphyRendition
   showConfirmationScreen?: boolean
@@ -27,7 +27,7 @@ export type IOSGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
 
 export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
   confirmationRenditionType?: GiphyRendition
-  selectedContentType?: GiphyMediaType
+  selectedContentType?: GiphyContentType
   showCheckeredBackground?: boolean
   showSuggestionsBar?: boolean
   useBlurredBackground?: boolean

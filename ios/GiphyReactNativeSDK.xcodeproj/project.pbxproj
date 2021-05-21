@@ -34,6 +34,9 @@
 		D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = RNGiphyMediaViewManager.m; sourceTree = "<group>"; tabWidth = 2; };
 		D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RNGiphyMediaView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		D74FE6D8264BF6F100672E94 /* GiphyReactNativeSDK-Bridging-Header.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = "GiphyReactNativeSDK-Bridging-Header.h"; sourceTree = "<group>"; tabWidth = 2; };
+		D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridViewManager.swift; sourceTree = "<group>"; };
+		D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGiphyGridViewManager.m; sourceTree = "<group>"; };
+		D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridView.swift; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* RNGiphySDK.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RNGiphySDK.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
@@ -64,6 +67,9 @@
 				D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */,
 				D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */,
 				D74FE6D8264BF6F100672E94 /* GiphyReactNativeSDK-Bridging-Header.h */,
+				D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */,
+				D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */,
+				D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */,
 				F4FF95D6245B92E800C19C63 /* RNGiphySDK.swift */,
 				D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */,
 				B3E7B5891CC2AC0600A0062D /* RNGiphySDK.m */,

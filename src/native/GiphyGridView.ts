@@ -1,29 +1,16 @@
-import { requireNativeComponent } from 'react-native'
+import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
 
-import type { GiphyMedia, GiphyContentRequest } from './types'
+import type { GiphyMedia, GiphyContentRequest, GiphyDirection } from './types'
 
-export enum NativeGiphyGridViewOrientation {
-  Horizontal = 'horizontal',
-  Vertical = 'vertical',
-}
-
-export type NativeGiphyGridViewProps = {
+export type NativeGiphyGridViewProps = ViewProps & {
   cellPadding?: number
-  orientation?: NativeGiphyGridViewOrientation
-  spanCount?: number
-  showCheckeredBackground?: boolean
-  fixedSizeCells?: boolean
   content?: GiphyContentRequest
+  fixedSizeCells?: boolean
+  onContentUpdate?: (e: NativeSyntheticEvent<{ resultCount: number }>) => void
+  onMediaSelect?: (e: NativeSyntheticEvent<{ media: GiphyMedia }>) => void
+  onScroll?: (e: NativeSyntheticEvent<{ offset: number }>) => void
+  orientation?: GiphyDirection
+  spanCount?: number
 }
-
-export type NativeGiphyGridViewEvents =
-  | {
-      type: 'onContentUpdate'
-      payload: { resultCount: number }
-    }
-  | {
-      type: 'onMediaSelect'
-      payload: { media: GiphyMedia }
-    }
 
 export const NativeGiphyGridView = requireNativeComponent<NativeGiphyGridViewProps>('GiphyReactNativeGridView')

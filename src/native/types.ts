@@ -4,12 +4,19 @@ export enum GiphyThemePreset {
   Light = 'light',
 }
 
-export enum GiphyMediaType {
+export enum GiphyContentType {
   Emoji = 'emoji',
   Gif = 'gif',
   Recents = 'recents',
   Sticker = 'sticker',
   Text = 'text',
+}
+
+export enum GiphyMediaType {
+  Gif = 'gif',
+  Sticker = 'sticker',
+  Text = 'text',
+  Video = 'video',
 }
 
 export enum GiphyRating {
@@ -61,6 +68,11 @@ export type GiphyMedia = {
   aspectRatio: number
 }
 
+export enum GiphyDirection {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+}
+
 export enum GiphyContentRequestType {
   Trending = 'trending',
   Search = 'search',
@@ -71,8 +83,6 @@ export enum GiphyContentRequestType {
 
 export type GiphyContentRequest = {
   searchQuery: string
-  mediaType: GiphyMediaType
-  rating: GiphyRating
-  includeDynamicResults: boolean
   requestType: GiphyContentRequestType
+  mediaType: GiphyMediaType
 }

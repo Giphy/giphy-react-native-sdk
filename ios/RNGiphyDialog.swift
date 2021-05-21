@@ -7,8 +7,8 @@ struct RNGiphyDialogEvents {
 
 public extension GiphyViewController {
   func applyRNConfig(_ options: NSDictionary) -> Void {
-    if let rawMediaTypes = options["mediaTypes"] as? [String] {
-      self.mediaTypeConfig = (rawMediaTypes
+    if let rawMediaTypeConfig = options["mediaTypeConfig"] as? [String] {
+      self.mediaTypeConfig = (rawMediaTypeConfig
                                 .map { GPHContentType.fromRNValue(value: $0) }
                                 .filter { $0 != nil } as! [GPHContentType])
     }
@@ -77,7 +77,7 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   }
   
   @objc(configure:)
-  open func configure(options: NSDictionary?) -> Void {
+  open func configure(options: NSDictionary) -> Void {
     self.config.addEntries(from: options as? Dictionary<String,Any> ?? [:])
   }
   

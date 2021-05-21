@@ -1,8 +1,8 @@
-import { requireNativeComponent } from 'react-native'
+import { requireNativeComponent, ViewProps } from 'react-native'
 
 import type { GiphyMedia, GiphyRendition } from './types'
 
-export type NativeGiphyMediaViewProps = {
+export type NativeGiphyMediaViewProps = ViewProps & {
   media?: GiphyMedia
   renditionType?: GiphyRendition
 }

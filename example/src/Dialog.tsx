@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export const SettingsDialog: React.FC<ModalProps> = (props) => {
+export const Dialog: React.FC<ModalProps> = (props) => {
   const { children, onRequestClose, ...other } = props
 
   return (

@@ -1,6 +1,8 @@
 export {
   GiphyContentRequest,
   GiphyContentRequestType,
+  GiphyContentType,
+  GiphyDirection,
   GiphyFileExtension,
   GiphyMedia,
   GiphyMediaType,
@@ -21,3 +23,9 @@ export { GiphyDialog } from './GiphyDialog'
 
 export type { GiphyMediaViewProps } from './GiphyMediaView'
 export { GiphyMediaView } from './GiphyMediaView'
+
+export type { GiphyContentSearchOptions, GiphyContentTrendingOptions } from './GiphyContent'
+export { GiphyContent } from './GiphyContent'
+
+export type { GiphyGridViewProps } from './GiphyGridView'
+export { GiphyGridView } from './GiphyGridView'
