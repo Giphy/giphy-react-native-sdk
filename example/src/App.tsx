@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   preview: {
+    alignSelf: 'center',
     backgroundColor: '#fff',
     maxHeight: 400,
     padding: 4,
@@ -172,7 +173,9 @@ export default function App() {
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         {media && (
-          <ScrollView style={styles.preview}>
+          <ScrollView
+            style={[styles.preview, { aspectRatio: media.aspectRatio }]}
+          >
             <GiphyMediaView
               media={media}
               renditionType={giphyDialogSettings.renditionType}
