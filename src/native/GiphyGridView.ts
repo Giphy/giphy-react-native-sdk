@@ -1,8 +1,8 @@
-import { NativeSyntheticEvent, requireNativeComponent } from 'react-native'
+import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
 
 import type { GiphyMedia, GiphyContentRequest, GiphyDirection } from './types'
 
-export type NativeGiphyGridViewProps = {
+export type NativeGiphyGridViewProps = ViewProps & {
   cellPadding?: number
   content?: GiphyContentRequest
   fixedSizeCells?: boolean
