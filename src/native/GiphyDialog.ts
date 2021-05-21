@@ -11,7 +11,7 @@ import type {
 } from './types'
 
 export type BaseNativeGiphyDialogConfig = {
-  mediaTypes?: GiphyContentType[]
+  mediaTypeConfig?: GiphyContentType[]
   rating?: GiphyRating
   renditionType?: GiphyRendition
   showConfirmationScreen?: boolean

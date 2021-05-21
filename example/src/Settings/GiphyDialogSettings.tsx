@@ -21,7 +21,7 @@ export type GiphyDialogSettingsProps = {
 }
 
 const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
-  mediaTypes: [
+  mediaTypeConfig: [
     GiphyContentType.Gif,
     GiphyContentType.Emoji,
     GiphyContentType.Text,
@@ -79,9 +79,9 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         value={settings.theme}
         onValueChange={(theme) => updateSettings({ theme })}
       />
-      <Card title="Media Type">
+      <Card title="Media Type Config">
         {enumToPickerItems(GiphyContentType).map(({ value, label }) => {
-          const isEnabled = settings.mediaTypes.includes(value)
+          const isEnabled = settings.mediaTypeConfig.includes(value)
           return (
             <SwitchCardField
               key={label}
@@ -90,9 +90,9 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
               value={isEnabled}
               onValueChange={() =>
                 updateSettings({
-                  mediaTypes: isEnabled
-                    ? settings.mediaTypes.filter((a) => a !== value)
-                    : [...settings.mediaTypes, value],
+                  mediaTypeConfig: isEnabled
+                    ? settings.mediaTypeConfig.filter((a) => a !== value)
+                    : [...settings.mediaTypeConfig, value],
                 })
               }
             />
