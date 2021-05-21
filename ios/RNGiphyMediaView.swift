@@ -1,7 +1,7 @@
 import UIKit
 import GiphyUISDK
 
-let DEFAULT_RENDTION_TYPE: GPHRenditionType = .fixedWidth
+let DEFAULT_RENDITION_TYPE: GPHRenditionType = .fixedWidth
 
 func giphyMediaByRNValue(_ rnValue: NSDictionary?, completion: @escaping (_ result: GPHMedia?) -> Void) {
   guard
@@ -22,12 +22,11 @@ class RNGiphyMediaView: UIView {
     didSet { self.updateMediaViewSource() }
   }
   
-  private var renditionType: GPHRenditionType {
+  private var renditionType: GPHRenditionType = DEFAULT_RENDITION_TYPE {
     didSet { self.updateMediaViewSource() }
   }
   
   override init(frame: CGRect) {
-    self.renditionType = DEFAULT_RENDTION_TYPE
     super.init(frame: frame)
     self.setupView()
   }
@@ -36,31 +35,31 @@ class RNGiphyMediaView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override public func layoutSubviews() {
-      super.layoutSubviews()
-      let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-      self.mediaView.frame = frame
-  }
-  
   lazy var mediaView: GPHMediaView = {
     return GPHMediaView()
   }()
   
-  @objc func setMedia(_ rnValue: NSDictionary?) -> Void {
+  @objc func setMedia(_ rnValue: NSDictionary) -> Void {
     giphyMediaByRNValue(rnValue) { self.media = $0 }
   }
   
-  @objc func setRenditionType(_ rnValue: NSString?) -> Void {
+  @objc func setRenditionType(_ rnValue: NSString) -> Void {
     let value = rnValue as String?
     if (value == nil) {
-      self.renditionType = DEFAULT_RENDTION_TYPE
+      self.renditionType = DEFAULT_RENDITION_TYPE
     } else {
-      self.renditionType = GPHRenditionType.fromRNValue(value: value!) ?? DEFAULT_RENDTION_TYPE
+      self.renditionType = GPHRenditionType.fromRNValue(value: value!) ?? DEFAULT_RENDITION_TYPE
     }
   }
   
   private func setupView() -> Void {
     self.addSubview(self.mediaView)
+    
+    self.mediaView.translatesAutoresizingMaskIntoConstraints = false
+    self.mediaView.leftAnchor.constraint(equalTo: self.safeLeftAnchor).isActive = true
+    self.mediaView.rightAnchor.constraint(equalTo: self.safeRightAnchor).isActive = true
+    self.mediaView.topAnchor.constraint(equalTo: self.safeTopAnchor).isActive = true
+    self.mediaView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor).isActive = true
   }
   
   private func updateMediaViewSource() -> Void {
