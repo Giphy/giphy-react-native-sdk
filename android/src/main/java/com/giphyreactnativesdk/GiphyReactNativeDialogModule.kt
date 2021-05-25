@@ -2,9 +2,7 @@ package com.giphyreactnativesdk
 
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.react.bridge.*
-import com.giphy.sdk.core.models.Image
 import com.giphy.sdk.core.models.Media
-import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.GPHContentType
 import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.utils.aspectRatio
@@ -24,28 +22,22 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
     return "GiphyReactNativeDialog"
   }
 
-  private fun getGifURL(media: Media, settings: GPHSettings): String? {
-    val rendition = settings.renditionType ?: RenditionType.downsized
-    val image = readInstanceProperty<Image>(media.images, rendition.name)
-    return image.gifUrl
-  }
-
   private fun getGifSelectionListener() = object : GiphyDialogFragment.GifSelectionListener {
     override fun onGifSelected(media: Media, searchTerm: String?, selectedContentType: GPHContentType) {
       val mediaMap = Arguments.createMap()
       mediaMap.putString("id", media.id)
-      mediaMap.putString("url", getGifURL(media, settings))
+      mediaMap.putString("url", getGifURL(media, settings.renditionType))
       mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
 
       val params = Arguments.createMap()
       params.putMap("media", mediaMap)
 
-      emitEvent(reactApplicationContext, GiphyDialogEvents.MediaSelected.rnEvent, params)
+      emitModuleEvent(reactApplicationContext, GiphyDialogEvents.MediaSelected.rnEvent, params)
 
     }
 
     override fun onDismissed(selectedContentType: GPHContentType) {
-      emitEvent(reactApplicationContext, GiphyDialogEvents.Dismissed.rnEvent, null)
+      emitModuleEvent(reactApplicationContext, GiphyDialogEvents.Dismissed.rnEvent, null)
     }
 
     override fun didSearchTerm(term: String) {}

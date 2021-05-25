@@ -45,7 +45,7 @@ private fun getConfirmationRendition(renditionName: String?): RenditionType? {
   }
 }
 
-private fun getContentType(contentType: String?): GPHContentType {
+fun getContentType(contentType: String?): GPHContentType {
   return when(contentType) {
     null -> GPHContentType.gif
     else -> GPHContentType.values().firstOrNull { it.name == contentType.lowercase() }
