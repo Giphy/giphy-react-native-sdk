@@ -122,6 +122,7 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
       view.cellPadding
     }
   }
+
   @ReactProp(name="fixedSizeCells")
   fun setFixedSizeCells(view: GiphyGridView, value: Boolean){
     view.fixedSizeCells = value
