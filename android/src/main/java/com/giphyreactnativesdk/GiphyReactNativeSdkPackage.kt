@@ -19,7 +19,8 @@ class GiphyReactNativeSdkPackage : ReactPackage {
   override fun createViewManagers(reactContext: ReactApplicationContext):
     List<ViewManager<out View, out ReactShadowNode<*>>> {
     return listOf(
-      GiphyMediaViewManager()
+      GiphyMediaViewManager(),
+      GiphyGridViewManager()
     )
   }
 }
