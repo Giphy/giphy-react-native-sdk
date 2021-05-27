@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - '12'
+cache: yarn
+install:
+  - yarn install
+jobs:
+  include:
+    - stage: Lint & Test
+      script:
+        - yarn lint
+        - yarn test
+    - stage: Release Package
+      before_deploy:
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc
+      deploy:
+        provider: npm
+        email: $NPM_USER
+        skip_cleanup: true
+        on:
+          all_branches: true
+#          tags: true
