@@ -18,7 +18,7 @@ import {
   GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
-} from 'giphy-react-native-sdk'
+} from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { GiphyDialogSettings } from './Settings'

@@ -8,7 +8,7 @@ import {
   GiphyRendition,
   GiphyStickersColumnCount,
   GiphyThemePreset,
-} from 'giphy-react-native-sdk'
+} from '@giphy/react-native-sdk'
 
 import { Card } from './Card'
 import { SwitchCard, SwitchCardField } from './SwitchCard'
