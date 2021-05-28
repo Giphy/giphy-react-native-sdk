@@ -1,6 +1,6 @@
 {
-  "name": "giphy-react-native-sdk",
-  "version": "0.1.0",
+  "name": "@giphy/react-native-sdk",
+  "version": "0.1.2",
   "description": "Giphy React Native SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -44,6 +44,7 @@
   },
   "homepage": "https://github.com/Giphy/giphy-react-native-sdk#readme",
   "publishConfig": {
+    "access": "restricted",
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
@@ -86,10 +87,11 @@
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
+      "tagName": "v${version}",
+      "requireBranch": "main"
     },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
       "release": true
