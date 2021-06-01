@@ -1,27 +1,13 @@
-# giphy-react-native-sdk
+<p align="center">
+<img width="750" height="150" src="docs/assets/sdk_logo.gif">
+</p>
 
-Giphy React Native SDK
+<img align="right" width="300" height="483" src="docs/assets/example_app.gif">
 
-## Installation
+# GIPHY SDK for Android
 
-```sh
-npm install giphy-react-native-sdk
-```
+The fastest and easiest way to bring the full GIPHY experience directly to your app is with GIPHY SDK. Built with developers and product designers in mind, GIPHY SDK is a top-to-bottom solution for all things GIF in your app. This includes interfacing with GIPHY API, fetching and caching assets, and displaying GIFs and Stickers on screen in customizable UI templates.
 
-## Usage
+With billions of requests a day, it’s safe to say GIPHY knows GIFs. We're excited to share our best-in-class tools with you so your users can have the best GIF experience possible, with all the same features they're already enjoying on Facebook, Slack, Instagram, and more – with just a few lines of code.
 
-```js
-import GiphyReactNativeSdk from "giphy-react-native-sdk";
-
-// ...
-
-const result = await GiphyReactNativeSdk.multiply(3, 7);
-```
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
-
-MIT
+### [Get Started](docs/api.md)
