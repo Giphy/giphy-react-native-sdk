@@ -1,12 +1,16 @@
 ## Getting Started
 
-### [Installation](#installation)
-### [API](api.md)
+### Requirements
+- Android:
+  - Giphy SDK only supports projects that have been upgraded to [androidx](https://developer.android.com/jetpack/androidx/)
+  - Requires minSdkVersion 19
+  - A Giphy Android SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true)
+- iOS:
+  - iOS 10.2 or later
+  - Xcode 12 and later
+  - A Giphy iOS SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true)
 
 ### Installation
-
-1. Install the package
-
 ```bash
 yarn add @giphy/react-native-sdk
 ```
@@ -15,18 +19,6 @@ or using npm
 npm install @giphy/react-native-sdk --save
 ```
 
-2. Link the library
-
-#### RN >= 0.60
-If you are using RN >= 0.60, only run `npx pod-install`. Then rebuild your project.
-
-#### RN < 0.60
-For RN < 0.60, you need to link the dependency using `react-native link`:
-
-```bash
-react-native link @giphy/react-native-sdk
-```
-
-Then run `npx pod-install` and rebuild your project.
-
-
+### Linking
+The package is [automatically linked](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) when building the app. All you need to do is:
+`npx pod-install`

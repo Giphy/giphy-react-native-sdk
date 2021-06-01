@@ -10,4 +10,5 @@ The fastest and easiest way to bring the full GIPHY experience directly to your 
 
 With billions of requests a day, it’s safe to say GIPHY knows GIFs. We're excited to share our best-in-class tools with you so your users can have the best GIF experience possible, with all the same features they're already enjoying on Facebook, Slack, Instagram, and more – with just a few lines of code.
 
-### [Get Started](docs/getting-started.md)
+### [Getting Started](docs/getting-started.md)
+### [API](docs/api.md)
