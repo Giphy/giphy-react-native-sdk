@@ -19,7 +19,7 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 
 * #### [Requirements](docs/getting-started.md#requirements)
 * #### [Installation](docs/getting-started.md#installation)
-* #### [Linking](docs/getting-started.md#linking)
+* #### [Troubleshooting](docs/getting-started.md#troubleshooting)
 
 ### [Example App](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example)
 

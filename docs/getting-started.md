@@ -24,11 +24,14 @@ or using npm
 npm install @giphy/react-native-sdk --save
 ```
 
-### Linking
-
-The package is [automatically linked](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md)
-when building the app. All you have to do is run the following command:
+Go to your ios folder and run:
 
 ```bash
 npx pod-install
 ```
+
+### Troubleshooting
+
+If you have issues linking your iOS project check out
+this [StackOverflow thread](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios)
+on how to fix it.
