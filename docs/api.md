@@ -82,7 +82,7 @@ Hide the Giphy Dialog.
 The Giphy Dialog implements the React NativeEventEmitter interface and supports the following events:
 
 * onMediaSelect ```GiphyDialog.addListener('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
-* onMediaSelect ```GiphyDialog.addListener('onDismiss', () => ...)```
+* onDismiss ```GiphyDialog.addListener('onDismiss', () => ...)```
 
 #### Example
 
