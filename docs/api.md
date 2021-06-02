@@ -91,6 +91,7 @@ GiphySDK.configure({ apiKey: '*************' });
 export default function App() {
   const [media, setMedia] = useState<GiphyMedia | null>(null);
 
+  // Handling GIFs selection in GiphyDialog
   useEffect(() => {
     const handler: GiphyDialogMediaSelectEventHandler = (e) => {
       setMedia(e.media);
