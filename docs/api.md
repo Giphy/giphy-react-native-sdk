@@ -11,7 +11,7 @@ Contains methods for configuring basic parameters, such as API keys.
 
 ### </> configure: `configure(options: GiphySDKConfig) => void`
 
-Configure the basic settings of Giphy SDK.
+Configure basic settings of Giphy SDK.
 
 #### Options
 
@@ -24,6 +24,7 @@ Configure the basic settings of Giphy SDK.
 
 ```typescript
 // giphy.setup.ios.ts
+import { GiphySDK } from '@giphy/react-native-sdk';
 
 GiphySDK.configure({
   apiKey: '*************', // iOS SDK key
@@ -33,6 +34,7 @@ GiphySDK.configure({
 
 ```typescript jsx
 // giphy.setup.android.ts
+import { GiphySDK } from '@giphy/react-native-sdk';
 
 GiphySDK.configure({
   apiKey: '*************', // Android SDK key
@@ -77,10 +79,10 @@ Hide the Giphy Dialog.
 
 ### Supported events &#x1F514;
 
-Giphy Dialog implements the React NativeEventEmitter interface and supports the following events:
+The Giphy Dialog implements the React NativeEventEmitter interface and supports the following events:
 
-* onMediaSelect ```addListener('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
-* onMediaSelect ```addListener('onDismiss', () => ...)```
+* onMediaSelect ```GiphyDialog.addListener('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
+* onMediaSelect ```GiphyDialog.addListener('onDismiss', () => ...)```
 
 #### Example
 
@@ -124,6 +126,7 @@ import {
   GiphySDK,
   GiphyMedia,
   GiphyMediaView,
+  GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler
 } from '@giphy/react-native-sdk';
 
