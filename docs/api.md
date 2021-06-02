@@ -2,8 +2,7 @@
 
 * [GiphySDK](#giphysdk)
 * [GiphyDialog](#giphydialog)
-
-<br/>
+* [GiphyMediaView](#giphymediaview)
 
 ## GiphySDK
 Contains methods for configuring basic parameters, such as API keys.
@@ -52,8 +51,8 @@ Show the Giphy Dialog
 Hide the Giphy Dialog
 ### Supported events &#x1F514;
 Giphy Dialog implements the React NativeEventEmitter interface and supports the following events:
-* onMediaSelect ```on('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
-* onMediaSelect ```on('onDismiss', () => ...)```
+* onMediaSelect ```addListener('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
+* onMediaSelect ```addListener('onDismiss', () => ...)```
 #### Example
 ```typescript jsx
 import React from 'react';
