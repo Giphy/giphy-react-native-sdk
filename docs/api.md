@@ -11,7 +11,7 @@ Contains methods for configuring basic parameters, such as API keys.
 
 ### </> configure: `configure(options: GiphySDKConfig) => void`
 
-Configure the basic settings of Giphy SDK
+Configure the basic settings of Giphy SDK.
 
 #### Options
 
@@ -31,13 +31,22 @@ GiphySDK.configure({
 })
 ```
 
+```typescript jsx
+// giphy.setup.android.ts
+
+GiphySDK.configure({
+  apiKey: '*************', // Android SDK key
+  verificationMode: false
+})
+```
+
 ## GiphyDialog
 
-Singleton, which provides pre-built templates that handle the entirety of the GIPHY experience
+Singleton, which provides pre-built templates that handle the entirety of the GIPHY experience.
 
 ### </> configure: `configure(options: GiphyDialogConfig) => void`
 
-Configure the `GiphyDialog` view and behavior
+Configure the `GiphyDialog` view and behavior.
 
 #### Options
 
@@ -60,11 +69,11 @@ Configure the `GiphyDialog` view and behavior
 
 ### </> show: `show() => void`
 
-Show the Giphy Dialog
+Show the Giphy Dialog.
 
 ### </> hide: `hide() => void`
 
-Hide the Giphy Dialog
+Hide the Giphy Dialog.
 
 ### Supported events &#x1F514;
 
@@ -96,7 +105,7 @@ export default function App() {
 
 Designed to
 render [GiphyMedia](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69)
-objects
+objects.
 
 #### Props
 
@@ -178,7 +187,7 @@ Customizable implementation of a Giphy Grid only.
 
 ```typescript jsx
 import React, { useState } from 'react';
-import { SafeAreaView, Button } from 'react-native';
+import { SafeAreaView, TextInput } from 'react-native';
 import { GiphySDK, GiphyGridView, GiphyContent } from '@giphy/react-native-sdk';
 
 // Configure API keys
@@ -197,6 +206,71 @@ export default function App() {
       />
       <GiphyGridView
         content={GiphyContent.search({ searchQuery: searchQuery })}
+        cellPadding={3}
+        style={{ height: 400 }}
+        onMediaSelect={(e) => {
+          console.log(e.nativeEvent.media)
+        }}
+      />
+    </SafeAreaView>
+  );
+};
+```
+
+## GiphyContent
+
+Provides methods to describe a content request to the Giphy API.
+
+### </> search: `(options: GiphyContentSearchOptions) => GiphyContentRequest`
+
+#### Options
+
+| Option      | Description                                                    | Type                                                                                                                                          | Default | Platform                        |
+|-------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
+| searchQuery | A custom search input (e.g. cats)                              | `string`                                                                                                                                      | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| mediaType   | A media type that should be loaded (e.g. `GiphyMediaType.Gif`) | [`GiphyMediaType`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L15-L20) | `.Gif`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+### </> trending: `(options: GiphyContentTrendingOptions) => GiphyContentRequest`
+
+#### Options
+
+| Option    | Description                                                    | Type                                                                                                                                          | Default | Platform                        |
+|-----------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
+| mediaType | A media type that should be loaded (e.g. `GiphyMediaType.Gif`) | [`GiphyMediaType`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L15-L20) | `.Gif`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+### </> trendingGifs: `() => GiphyContentRequest`
+
+### </> trendingStickers: `() => GiphyContentRequest`
+
+### </> trendingText: `() => GiphyContentRequest`
+
+### </> recents: `() => GiphyContentRequest`
+
+### </> emoji: `() => GiphyContentRequest`
+
+### </> animate: `(options: GiphyContentAnimateOptions) => GiphyContentRequest`
+
+#### Options
+
+| Option      | Description                       | Type     | Default | Platform                        |
+|-------------|-----------------------------------|----------|---------|---------------------------------|
+| searchQuery | A custom search input (e.g. cats) | `string` | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+### Example
+
+```typescript jsx
+import React from 'react';
+import { SafeAreaView } from 'react-native';
+import { GiphySDK, GiphyGridView, GiphyContent } from '@giphy/react-native-sdk';
+
+// Configure API keys
+GiphySDK.configure({ apiKey: '*************' });
+
+export default function App() {
+  return (
+    <SafeAreaView>
+      <GiphyGridView
+        content={GiphyContent.trendingGifs()}
         cellPadding={3}
         style={{ height: 400 }}
         onMediaSelect={(e) => {
