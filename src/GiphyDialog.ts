@@ -3,9 +3,14 @@ import { NativeGiphyDialog, IOSGiphyDialogConfig, AndroidGiphyDialogConfig } fro
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
 
+function noop() {}
+
 export const GiphyDialog = new (class extends NativeEventEmitter {
   constructor() {
     super(NativeGiphyDialog)
+    // listener stubs
+    this.addListener('onMediaSelect', noop)
+    this.addListener('onDismiss', noop)
   }
 
   configure(config: GiphyDialogConfig) {
