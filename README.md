@@ -21,6 +21,8 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 * #### [Installation](docs/getting-started.md#installation)
 * #### [Linking](docs/getting-started.md#linking)
 
+### [Example App](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example)
+
 ### [API Reference](docs/api.md)
 
 * #### [GiphySDK](docs/api.md#giphysdk)
