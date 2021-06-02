@@ -21,4 +21,6 @@ npm install @giphy/react-native-sdk --save
 
 ### Linking
 The package is [automatically linked](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) when building the app. All you need to do is:
-`npx pod-install`
+```bash
+npx pod-install
+```
