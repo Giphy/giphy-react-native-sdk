@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */; };
+		D7F008472667CBB700D31762 /* RNGiphyMediaViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */; };
+		D7F008482667CBBC00D31762 /* RNGiphyMediaViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */; };
+		D7F008492667CBC000D31762 /* RNGiphyMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */; };
+		D7F0084A2667CBD000D31762 /* RNGiphyGridViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */; };
+		D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */; };
+		D7F0084C2667CBD900D31762 /* RNGiphyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */; };
+		D7F0084D2667CBE500D31762 /* RNGiphySDK.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNGiphySDK.m */; };
+		D7F0084E2667CBEA00D31762 /* RNGiphyDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BEF264D7FEC00AF36FA /* RNGiphyDialog.m */; };
 		E09779C4375186BB133A97FA /* Pods_GiphyReactNativeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A70D494DD5AC43DFB0586E2 /* Pods_GiphyReactNativeSDK.framework */; };
 		F4FF95D7245B92E800C19C63 /* RNGiphySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* RNGiphySDK.swift */; };
 /* End PBXBuildFile section */
@@ -33,10 +41,10 @@
 		D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyMediaViewManager.swift; sourceTree = "<group>"; };
 		D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = RNGiphyMediaViewManager.m; sourceTree = "<group>"; tabWidth = 2; };
 		D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RNGiphyMediaView.swift; sourceTree = "<group>"; tabWidth = 2; };
-		D74FE6D8264BF6F100672E94 /* GiphyReactNativeSDK-Bridging-Header.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = "GiphyReactNativeSDK-Bridging-Header.h"; sourceTree = "<group>"; tabWidth = 2; };
 		D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridViewManager.swift; sourceTree = "<group>"; };
 		D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGiphyGridViewManager.m; sourceTree = "<group>"; };
 		D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridView.swift; sourceTree = "<group>"; };
+		D7F008502667D6E700D31762 /* GiphyReactNativeSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GiphyReactNativeSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* RNGiphySDK.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RNGiphySDK.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
@@ -63,10 +71,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				D7F008502667D6E700D31762 /* GiphyReactNativeSDK-Bridging-Header.h */,
 				D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */,
 				D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */,
 				D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */,
-				D74FE6D8264BF6F100672E94 /* GiphyReactNativeSDK-Bridging-Header.h */,
 				D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */,
 				D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */,
 				D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */,
@@ -170,8 +178,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F0084E2667CBEA00D31762 /* RNGiphyDialog.m in Sources */,
+				D7F0084D2667CBE500D31762 /* RNGiphySDK.m in Sources */,
+				D7F0084C2667CBD900D31762 /* RNGiphyGridView.swift in Sources */,
+				D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */,
+				D7F008482667CBBC00D31762 /* RNGiphyMediaViewManager.swift in Sources */,
+				D7F008492667CBC000D31762 /* RNGiphyMediaView.swift in Sources */,
+				D7F0084A2667CBD000D31762 /* RNGiphyGridViewManager.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* RNGiphySDK.swift in Sources */,
 				D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */,
+				D7F008472667CBB700D31762 /* RNGiphyMediaViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,11 +304,12 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_MAP_FILE_PATH = "$(SDKROOT)/usr/lib/swift";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = GiphyReactNativeSDK;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "GiphyReactNativeSdk-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GiphyReactNativeSDK-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -307,11 +324,12 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_MAP_FILE_PATH = "$(SDKROOT)/usr/lib/swift";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = GiphyReactNativeSDK;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "GiphyReactNativeSdk-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GiphyReactNativeSDK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

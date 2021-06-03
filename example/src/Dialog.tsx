@@ -45,7 +45,7 @@ export const Dialog: React.FC<ModalProps> = (props) => {
         <ScrollView style={styles.content}>{children}</ScrollView>
         <TouchableOpacity
           style={styles.buttonClose}
-          onPress={() => (onRequestClose ? onRequestClose() : void 0)}
+          onPress={() => (onRequestClose ? onRequestClose() : undefined)}
         >
           <Text style={styles.buttonTextClose}>Close</Text>
         </TouchableOpacity>

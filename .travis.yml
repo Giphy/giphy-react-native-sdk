@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "12"
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
+install:
+  - yarn install
+script:
+  - yarn lint
+  - yarn test
+deploy:
+  provider: npm
+  api_key: $NPM_TOKEN
+  email: $NPM_USER
+  skip_cleanup: true
+  on:
+    tags: true

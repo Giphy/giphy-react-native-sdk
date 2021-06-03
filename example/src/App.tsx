@@ -18,7 +18,7 @@ import {
   GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
-} from 'giphy-react-native-sdk'
+} from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { GiphyDialogSettings } from './Settings'
@@ -76,10 +76,8 @@ export default function App() {
   const [searchVisible, setSearchVisible] = useState(false)
   const [media, setMedia] = useState<GiphyMedia | null>(null)
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const [
-    giphyDialogSettings,
-    setGiphyDialogSettings,
-  ] = useState<GiphyDialogConfig>({})
+  const [giphyDialogSettings, setGiphyDialogSettings] =
+    useState<GiphyDialogConfig>({})
 
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)

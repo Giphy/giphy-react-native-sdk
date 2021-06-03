@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+if [ -t 1 ]; then
+  exec < /dev/tty && node_modules/.bin/cz --hook || true
+fi
