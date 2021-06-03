@@ -40,8 +40,8 @@ on how to fix it.
 
 You have two common ways to integrate GIPHY into your project:
 
-- use [Giphy Dialog](api.md#giphydialog), which handles the entire GIPHY experience, [example](api.md#example-3).
-- use [Giphy Grid View](api.md#giphygridview) to create your own solution, [example](api.md#example-4).
+- use [Giphy Dialog](api.md#giphydialog), which handles the entire GIPHY experience, [example](api.md#example-2).
+- use [Giphy Grid View](api.md#giphygridview) to create your own solution, [example](api.md#example-3).
 
 You can also find more complex examples in
 the [demo app](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example).

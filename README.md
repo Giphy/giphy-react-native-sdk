@@ -17,16 +17,16 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 
 ### [Getting Started](docs/getting-started.md)
 
-- #### [Requirements](docs/getting-started.md#requirements)
-- #### [Installation](docs/getting-started.md#installation)
-- #### [Troubleshooting](docs/getting-started.md#troubleshooting)
-- #### [Basic Usage](docs/getting-started.md#basic-usage)
+- [Requirements](docs/getting-started.md#requirements)
+- [Installation](docs/getting-started.md#installation)
+- [Troubleshooting](docs/getting-started.md#troubleshooting)
+- [Basic Usage](docs/getting-started.md#basic-usage)
 
 ### [Example App](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example)
 
 ### [API Reference](docs/api.md)
 
-- #### [GiphySDK](docs/api.md#giphysdk)
-- #### [GiphyDialog](docs/api.md#giphydialog)
-- #### [GiphyMediaView](docs/api.md#giphymediaview)
-- #### [GiphyGridView](docs/api.md#giphygridview)
+- [GiphySDK](docs/api.md#giphysdk)
+- [GiphyDialog](docs/api.md#giphydialog)
+- [GiphyMediaView](docs/api.md#giphymediaview)
+- [GiphyGridView](docs/api.md#giphygridview)
