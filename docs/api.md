@@ -1,9 +1,10 @@
 ## API Reference
 
-* [GiphySDK](#giphysdk)
-* [GiphyDialog](#giphydialog)
-* [GiphyMediaView](#giphymediaview)
-* [GiphyGridView](#giphygridview)
+- [GiphySDK](#giphysdk)
+- [GiphyDialog](#giphydialog)
+- [GiphyMediaView](#giphymediaview)
+- [GiphyGridView](#giphygridview)
+- [GiphyContent](#giphycontent)
 
 ## GiphySDK
 
@@ -11,20 +12,20 @@ Contains methods for configuring basic parameters, such as API keys.
 
 ### </> configure: `configure(options: GiphySDKConfig) => void`
 
-Configure basic settings of Giphy SDK.
+Configure basic settings of GIPHY SDK.
 
 #### Options
 
 | Option           | Description                                                                                                                        | Type      | Default | Platform                        |
 |------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------|---------|---------------------------------|
 | apiKey           | Android or iOS SDK key. Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to. | `string`  | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| verificationMode | When you're ready to get a production key from Giphy, turn on the verification mode by setting this option to `true`.              | `boolean` | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| verificationMode | When you're ready to get a production key from GIPHY, turn on the verification mode by setting this option to `true`.              | `boolean` | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 #### Example
 
 ```typescript
 // giphy.setup.ios.ts
-import { GiphySDK } from '@giphy/react-native-sdk';
+import { GiphySDK } from '@giphy/react-native-sdk'
 
 GiphySDK.configure({
   apiKey: '*************', // iOS SDK key
@@ -34,7 +35,7 @@ GiphySDK.configure({
 
 ```typescript jsx
 // giphy.setup.android.ts
-import { GiphySDK } from '@giphy/react-native-sdk';
+import { GiphySDK } from '@giphy/react-native-sdk'
 
 GiphySDK.configure({
   apiKey: '*************', // Android SDK key
@@ -81,26 +82,26 @@ Hide the Giphy Dialog.
 
 The Giphy Dialog implements the React NativeEventEmitter interface and supports the following events:
 
-* onMediaSelect ```GiphyDialog.addListener('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
-* onDismiss ```GiphyDialog.addListener('onDismiss', () => ...)```
+- onMediaSelect ```GiphyDialog.addListener('onMediaSelect', (e: { media: GiphyMedia }) => ...)```
+- onDismiss ```GiphyDialog.addListener('onDismiss', () => ...)```
 
 #### Example
 
 ```typescript jsx
-import React from 'react';
-import { SafeAreaView, Button } from 'react-native';
-import { GiphyDialog, GiphySDK } from '@giphy/react-native-sdk';
+import React from 'react'
+import { SafeAreaView, Button } from 'react-native'
+import { GiphyDialog, GiphySDK } from '@giphy/react-native-sdk'
 
 // Configure API keys
-GiphySDK.configure({ apiKey: '*************' });
+GiphySDK.configure({ apiKey: '*************' })
 
 export default function App() {
   return (
     <SafeAreaView>
       <Button title="Show Giphy Dialog" onPress={() => GiphyDialog.show()} />
     </SafeAreaView>
-  );
-};
+  )
+}
 ```
 
 ## GiphyMediaView
@@ -120,44 +121,42 @@ objects.
 
 ```typescript jsx
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Button, ScrollView } from 'react-native';
+import { SafeAreaView, Button, ScrollView } from 'react-native'
 import {
   GiphyDialog,
-  GiphySDK,
+  GiphyDialogEvent,
+  GiphyDialogMediaSelectEventHandler,
   GiphyMedia,
   GiphyMediaView,
-  GiphyDialogEvent,
-  GiphyDialogMediaSelectEventHandler
-} from '@giphy/react-native-sdk';
+  GiphySDK,
+} from 'giphy-react-native-sdk'
 
 // Configure API keys
-GiphySDK.configure({ apiKey: '*************' });
+GiphySDK.configure({ apiKey: '*************' })
 
 export default function App() {
-  const [media, setMedia] = useState<GiphyMedia | null>(null);
+  const [media, setMedia] = useState<GiphyMedia | null>(null)
 
   // Handling GIFs selection in GiphyDialog
   useEffect(() => {
     const handler: GiphyDialogMediaSelectEventHandler = (e) => {
-      setMedia(e.media);
-      GiphyDialog.hide();
-    };
+      setMedia(e.media)
+      GiphyDialog.hide()
+    }
     const listener = GiphyDialog.addListener(
       GiphyDialogEvent.MediaSelected,
       handler
-    );
+    )
     return () => {
-      listener.remove();
+      listener.remove()
     }
-  }, []);
+  }, [])
 
   return (
     <SafeAreaView>
       <Button title="Show Giphy Dialog" onPress={() => GiphyDialog.show()} />
       {media && (
-        <ScrollView
-          style={{ aspectRatio: media.aspectRatio, maxHeight: 400, width: '100%' }}
-        >
+        <ScrollView style={{ aspectRatio: media.aspectRatio, maxHeight: 400, padding: 24, width: '100%' }}>
           <GiphyMediaView
             media={media}
             style={{ aspectRatio: media.aspectRatio }}
@@ -165,8 +164,8 @@ export default function App() {
         </ScrollView>
       )}
     </SafeAreaView>
-  );
-};
+  )
+}
 ```
 
 ## GiphyGridView
@@ -189,15 +188,22 @@ Customizable implementation of a Giphy Grid only.
 #### Example
 
 ```typescript jsx
-import React, { useState } from 'react';
-import { SafeAreaView, TextInput } from 'react-native';
-import { GiphySDK, GiphyGridView, GiphyContent } from '@giphy/react-native-sdk';
+import React, { useState } from 'react'
+import { SafeAreaView, TextInput, ScrollView } from 'react-native'
+import {
+  GiphyContent,
+  GiphyGridView,
+  GiphyMedia,
+  GiphyMediaView,
+  GiphySDK,
+} from '@giphy/react-native-sdk'
 
 // Configure API keys
-GiphySDK.configure({ apiKey: '*************' });
+GiphySDK.configure({ apiKey: '************' })
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const [media, setMedia] = useState<GiphyMedia | null>(null)
 
   return (
     <SafeAreaView>
@@ -210,14 +216,20 @@ export default function App() {
       <GiphyGridView
         content={GiphyContent.search({ searchQuery: searchQuery })}
         cellPadding={3}
-        style={{ height: 400 }}
-        onMediaSelect={(e) => {
-          console.log(e.nativeEvent.media)
-        }}
+        style={{ height: 300, marginTop: 24 }}
+        onMediaSelect={(e) => setMedia(e.nativeEvent.media)}
       />
+      {media && (
+        <ScrollView style={{ aspectRatio: media.aspectRatio, maxHeight: 400, padding: 24, width: '100%', }}>
+          <GiphyMediaView
+            media={media}
+            style={{ aspectRatio: media.aspectRatio }}
+          />
+        </ScrollView>
+      )}
     </SafeAreaView>
-  );
-};
+  )
+}
 ```
 
 ## GiphyContent
@@ -262,12 +274,12 @@ Provides methods to describe a content request to the Giphy API.
 ### Example
 
 ```typescript jsx
-import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { GiphySDK, GiphyGridView, GiphyContent } from '@giphy/react-native-sdk';
+import React from 'react'
+import { SafeAreaView } from 'react-native'
+import { GiphySDK, GiphyGridView, GiphyContent } from '@giphy/react-native-sdk'
 
 // Configure API keys
-GiphySDK.configure({ apiKey: '*************' });
+GiphySDK.configure({ apiKey: '*************' })
 
 export default function App() {
   return (
@@ -281,6 +293,6 @@ export default function App() {
         }}
       />
     </SafeAreaView>
-  );
-};
+  )
+}
 ```

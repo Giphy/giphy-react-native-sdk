@@ -27,7 +27,7 @@ npm install @giphy/react-native-sdk --save
 Go to your ios folder and run:
 
 ```bash
-npx pod-install
+pod install
 ```
 
 ### Troubleshooting
@@ -35,3 +35,13 @@ npx pod-install
 If you have issues linking your iOS project check out
 this [StackOverflow thread](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios)
 on how to fix it.
+
+### Basic Usage
+
+You have two common ways to integrate GIPHY into your project:
+
+- use [Giphy Dialog](api.md#giphydialog), which handles the entire GIPHY experience, [example](api.md#example-3).
+- use [Giphy Grid View](api.md#giphygridview) to create your own solution, [example](api.md#example-4).
+
+You can also find more complex examples in
+the [demo app](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example).
