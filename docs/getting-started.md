@@ -32,16 +32,19 @@ pod install
 
 ### Troubleshooting
 
-If you have issues linking your iOS project check out
-this [StackOverflow thread](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios)
-on how to fix it.
+This [StackOverflow thread](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios)
+may be helpful if you experience issues linking your iOS project.
+
+Feel free to open an [issue](https://github.com/Giphy/giphy-react-native-sdk/issues) here in this repo if you run into
+any problems.
 
 ### Basic Usage
 
-You have two common ways to integrate GIPHY into your project:
+We offer two solutions for the SDK user interface - pre-built templates which handle the entirety of the GIPHY
+experience, and a [Grid-Only implementation](https://developers.giphy.com/docs/sdk#grid) which allows for endless
+customization.
 
-- use [Giphy Dialog](api.md#giphydialog), which handles the entire GIPHY experience, [example](api.md#example-2).
-- use [Giphy Grid View](api.md#giphygridview) to create your own solution, [example](api.md#example-3).
+See [customization](https://developers.giphy.com/docs/sdk#grid) to determine what's best for you.
 
-You can also find more complex examples in
-the [demo app](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example).
+- use [Giphy Dialog](api.md#giphydialog) for the plug and play GIPHY experience ([example](api.md#example-2)).
+- use [Giphy Grid View](api.md#giphygridview) for a more customizable solution ([example](api.md#example-3)).
