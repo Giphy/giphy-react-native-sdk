@@ -6,11 +6,13 @@
   - Giphy SDK only supports projects that have been upgraded
     to [androidx](https://developer.android.com/jetpack/androidx/)
   - Requires minSdkVersion 21
-  - A Giphy Android SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true)
+  - A Giphy Android SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
+    Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
 - iOS:
   - iOS 10.2 or later
   - Xcode 12 and later
-  - A Giphy iOS SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true)
+  - A Giphy iOS SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
+    Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
 
 ### Installation
 
