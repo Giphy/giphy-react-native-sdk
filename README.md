@@ -6,10 +6,11 @@
 
 # GIPHY SDK for React Native
 
-The fastest and easiest way to bring the full GIPHY experience directly to your app is with GIPHY SDK. Built with
-developers and product designers in mind, GIPHY SDK is a top-to-bottom solution for all things GIF in your app. This
-includes interfacing with GIPHY API, fetching and caching assets, and displaying GIFs and Stickers on screen in
-customizable UI templates.
+The fastest and easiest way to bring the full GIPHY experience directly to your app is with the GIPHY SDK. Built with
+developers and product designers in mind, GIPHY SDK is a top-to-bottom solution for all things GIF in your app. With the
+React Native SDK we're taking this one step ahead - no more tedious API implementations, time-consuming wrapper setup.
+It comes with ready to use wrappers officially supported by the GIPHY crew and includes interfacing with GIPHY API,
+fetching and caching assets, and displaying GIFs and Stickers on screen in customizable UI templates.
 
 With billions of requests a day, it’s safe to say GIPHY knows GIFs. We're excited to share our best-in-class tools with
 you so your users can have the best GIF experience possible, with all the same features they're already enjoying on
