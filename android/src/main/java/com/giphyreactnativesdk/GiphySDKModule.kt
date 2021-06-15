@@ -12,6 +12,8 @@ import com.giphy.sdk.ui.themes.GridType
 import com.giphy.sdk.ui.views.GiphyDialogFragment
 
 class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext) {
+  val VERIFICATION_MODE_KEY = "verificationMode"
+
   override fun getName(): String {
     return "GiphyReactNativeSDK"
   }
@@ -19,8 +21,13 @@ class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJav
   @ReactMethod
   fun configure(settings: ReadableMap) {
     val apiKey = settings.getString("apiKey")
+    var verificationMode = false
+
+    if (settings.hasKey(VERIFICATION_MODE_KEY)) {
+      verificationMode = settings.getBoolean(VERIFICATION_MODE_KEY)
+    }
     if (apiKey != null) {
-      Giphy.configure(reactApplicationContext, apiKey)
+      Giphy.configure(reactApplicationContext, apiKey, verificationMode)
     }
   }
 
