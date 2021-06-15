@@ -16,7 +16,7 @@ private enum class RNSettings {
   showSuggestionsBar,
   selectedContentType,
   useBlurriedBackground,
-  mediaTypes,
+  mediaTypeConfig,
   showCheckeredBackground,
   stickerColumnCount,
   theme
@@ -98,10 +98,11 @@ fun giphySettingsFromReadableMap(
     settings.useBlurredBackground = options.getBoolean(RNSettings.useBlurriedBackground.toString())
   }
 
-  if (options.hasKey(RNSettings.mediaTypes.toString())) {
-    val typeConfig = options.getArray(RNSettings.mediaTypes.toString())?.toArrayList()?.map {
+  if (options.hasKey(RNSettings.mediaTypeConfig.toString())) {
+    val typeConfig = options.getArray(RNSettings.mediaTypeConfig.toString())?.toArrayList()?.map {
         ctype -> getContentType(ctype.toString())
     }?.toTypedArray()
+
     if (typeConfig != null) {
       settings.mediaTypeConfig = typeConfig
     }
