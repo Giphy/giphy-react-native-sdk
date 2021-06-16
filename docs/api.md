@@ -16,10 +16,9 @@ Configure basic settings of GIPHY SDK.
 
 #### Options
 
-| Option           | Description                                                                                                                        | Type      | Default | Platform                        |
-|------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------|---------|---------------------------------|
-| apiKey           | Android or iOS SDK key. Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to. | `string`  | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| verificationMode | When you're ready to get a production key from GIPHY, turn on the verification mode by setting this option to `true`.              | `boolean` | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| Option           | Description                                                                                                                   | Type      | Default | Platform                        |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------|-----------|---------|---------------------------------|
+| apiKey           | Android or iOS SDK key. Please remember, you should use a separate key for every platform (Android, iOS) you add our SDKs to. | `string`  | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 #### Example
 
@@ -29,7 +28,6 @@ import { GiphySDK } from '@giphy/react-native-sdk'
 
 GiphySDK.configure({
   apiKey: '*************', // iOS SDK key
-  verificationMode: false
 })
 ```
 
@@ -39,7 +37,6 @@ import { GiphySDK } from '@giphy/react-native-sdk'
 
 GiphySDK.configure({
   apiKey: '*************', // Android SDK key
-  verificationMode: false
 })
 ```
 
