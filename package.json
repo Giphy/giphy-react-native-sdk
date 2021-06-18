@@ -34,11 +34,12 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "giphy",
+    "sdk"
   ],
   "repository": "https://github.com/Giphy/giphy-react-native-sdk",
   "author": "Giphy Engineering <developers@giphy.com> (https://developers.giphy.com)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Giphy/giphy-react-native-sdk/issues"
   },
