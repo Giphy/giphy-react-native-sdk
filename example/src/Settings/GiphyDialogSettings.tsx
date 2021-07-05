@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import {
+  GiphyContentType,
   GiphyDialogConfig,
   GiphyFileExtension,
-  GiphyContentType,
   GiphyRating,
   GiphyRendition,
   GiphyStickersColumnCount,
@@ -20,13 +20,11 @@ export type GiphyDialogSettingsProps = {
   onSettingsChange: (settings: Required<GiphyDialogConfig>) => void
 }
 
-const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
+export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
   mediaTypeConfig: [
     GiphyContentType.Gif,
-    GiphyContentType.Emoji,
-    GiphyContentType.Text,
     GiphyContentType.Sticker,
-    GiphyContentType.Recents,
+    GiphyContentType.Clips,
   ],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
@@ -64,7 +62,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
 ) => {
   const { settings: settingsProp, onSettingsChange } = props
   const settings: Required<GiphyDialogConfig> = {
-    ...DEFAULT_SETTINGS,
+    ...DEFAULT_DIALOG_SETTINGS,
     ...settingsProp,
   }
 

@@ -18,10 +18,11 @@ import {
   GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
+  GiphyVideoView,
 } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
-import { GiphyDialogSettings } from './Settings'
+import { GiphyDialogSettings, DEFAULT_DIALOG_SETTINGS } from './Settings'
 import { Dialog } from './Dialog'
 
 const styles = StyleSheet.create({
@@ -77,7 +78,7 @@ export default function App() {
   const [media, setMedia] = useState<GiphyMedia | null>(null)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
-    useState<GiphyDialogConfig>({})
+    useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
 
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
@@ -174,11 +175,19 @@ export default function App() {
           <ScrollView
             style={[styles.preview, { aspectRatio: media.aspectRatio }]}
           >
-            <GiphyMediaView
-              media={media}
-              renditionType={giphyDialogSettings.renditionType}
-              style={{ aspectRatio: media.aspectRatio }}
-            />
+            {media.isVideo ? (
+              <GiphyVideoView
+                media={media}
+                playing={true}
+                muted={false}
+                style={{ aspectRatio: media.aspectRatio }}
+              />
+            ) : (
+              <GiphyMediaView
+                media={media}
+                style={{ aspectRatio: media.aspectRatio }}
+              />
+            )}
           </ScrollView>
         )}
       </View>

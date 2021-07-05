@@ -18,10 +18,10 @@ PODS:
     - boost-for-react-native
     - DoubleConversion
     - glog
-  - Giphy (2.1.8):
+  - Giphy (2.1.9):
     - libwebp
   - giphy-react-native-sdk (0.1.2):
-    - Giphy (~> 2.1.8)
+    - Giphy (~> 2.1.9)
     - React-Core
   - glog (0.3.5)
   - libwebp (1.2.0):
@@ -365,8 +365,8 @@ SPEC CHECKSUMS:
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
-  Giphy: ef5125f9b47c259b59244803a6ffe763f4f4a7bf
-  giphy-react-native-sdk: cb4b4bd84bd841f608fd92edf82670f30ecd11d5
+  Giphy: 4d4d928dd781108efa2d9d03fc7eccde37e82ead
+  giphy-react-native-sdk: be1492421073edf0cc52c06856b12a815faf5c84
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
@@ -392,6 +392,6 @@ SPEC CHECKSUMS:
   RNCPicker: 914b557e20b3b8317b084aca9ff4b4edb95f61e4
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: 700258c1cc32945e898022645d4f9f6aa9933930
+PODFILE CHECKSUM: 3c208830bcc1b3424e1ce5ca707e6b9f02623ee1
 
 COCOAPODS: 1.10.1
