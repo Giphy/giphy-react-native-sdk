@@ -10,6 +10,7 @@ export enum GiphyContentType {
   Recents = 'recents',
   Sticker = 'sticker',
   Text = 'text',
+  Clips = 'clips',
 }
 
 export enum GiphyMediaType {
@@ -66,6 +67,11 @@ export type GiphyMedia = {
   id: string
   url: string
   aspectRatio: number
+  isDynamic: boolean
+  isEmoji: boolean
+  isSticker: boolean
+  isText: boolean
+  isVideo: boolean
 }
 
 export enum GiphyDirection {
