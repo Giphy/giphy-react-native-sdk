@@ -15,6 +15,8 @@ public extension GPHContentType {
       return .stickers
     case "text":
       return .text
+    case "clips":
+      return .clips
     default:
       return nil
     }
@@ -157,7 +159,7 @@ public extension GPHContent {
   static func fromRNValue(value: NSDictionary) -> GPHContent {
     let requestType = value["requestType"] as? String
     let searchQuery = value["searchQuery"] as? String ?? ""
-    let mediaType = GPHMediaType.fromRNValue(value: value["searchQuery"] as? String ?? "")
+    let mediaType = GPHMediaType.fromRNValue(value: value["mediaType"] as? String ?? "")
     
     switch requestType {
     case "search":
