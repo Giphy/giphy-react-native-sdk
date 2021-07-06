@@ -190,7 +190,6 @@ GiphyMedia where the `isVideo` property is `true`.
 import React, { useEffect, useState } from 'react'
 import { Button, SafeAreaView, ScrollView } from 'react-native'
 import {
-  GiphyContentType,
   GiphyDialog,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
@@ -245,14 +244,6 @@ export default function App() {
           />
         </ScrollView>
       )}
-      <GiphyGridView
-        content={GiphyContent.trendingGifs()}
-        cellPadding={3}
-        style={{ height: 400 }}
-        onMediaSelect={(e) => {
-          console.log(e.nativeEvent.media)
-        }}
-      />
     </SafeAreaView>
   )
 }
