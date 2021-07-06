@@ -70,8 +70,7 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
   
   func didSelectMedia(media: GPHMedia, cell: UICollectionViewCell) {
     if self.onMediaSelect != nil {
-      let rendition = media.isVideo ? self.gridController.clipsPreviewRenditionType : self.gridController.renditionType
-      self.onMediaSelect!(["media": media.toRNValue(rendition: rendition)])
+      self.onMediaSelect!(["media": media.toRNValue(rendition: self.gridController.renditionType)])
     }
   }
   
