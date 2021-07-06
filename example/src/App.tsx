@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native'
 import {
+  GiphyClipsRendition,
   GiphyContent,
   GiphyDialog,
   GiphyDialogConfig,
@@ -18,11 +19,12 @@ import {
   GiphyGridView,
   GiphyMedia,
   GiphyMediaView,
+  GiphyRendition,
   GiphyVideoView,
 } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
-import { GiphyDialogSettings, DEFAULT_DIALOG_SETTINGS } from './Settings'
+import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
 
 const styles = StyleSheet.create({
@@ -147,8 +149,10 @@ export default function App() {
             <GiphyGridView
               content={GiphyContent.search({ searchQuery: searchQuery })}
               cellPadding={3}
+              clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
               fixedSizeCells={false}
               orientation={GiphyDirection.Vertical}
+              renditionType={GiphyRendition.FixedWidth}
               spanCount={1}
               style={styles.giphyGridView}
               onContentUpdate={(e) =>

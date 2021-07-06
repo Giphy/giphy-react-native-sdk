@@ -10,21 +10,21 @@ extension GPHMedia {
       completion(nil)
       return
     }
-    
+
     GiphyCore.shared.gifByID(mediaId) { (response, error) in
       completion(response?.data)
     }
   }
-  
+
   func toRNValue(rendition: GPHRenditionType? = nil, fileType: GPHFileExtension? = nil) -> NSDictionary {
     var url: String? = self.url
     if rendition != nil || fileType != nil {
       url = self.url(rendition: rendition ?? .fixedWidth, fileType: fileType ?? .gif)
     }
-    
+
     return [
       "id": self.id,
-      "url": url ?? "",
+      "url": url as Any,
       "aspectRatio": self.aspectRatio,
       "isVideo": self.isVideo,
       "isText": self.isText,

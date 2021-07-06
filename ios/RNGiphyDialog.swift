@@ -22,6 +22,11 @@ public extension GiphyViewController {
     if let renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType) {
       self.renditionType = renditionType
     }
+    
+    let rawClipsPreviewRenditionType = options["clipsPreviewRenditionType"] as? String
+    if let clipsPreviewRenditionType = GPHRenditionType.fromRNValue(value: rawClipsPreviewRenditionType) {
+      self.clipsPreviewRenditionType = clipsPreviewRenditionType
+    }
 
     let showConfirmationScreen = options["showConfirmationScreen"] as? Bool
     if showConfirmationScreen != nil {

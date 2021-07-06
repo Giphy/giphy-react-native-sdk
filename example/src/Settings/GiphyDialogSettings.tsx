@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import {
+  GiphyClipsRendition,
   GiphyContentType,
   GiphyDialogConfig,
   GiphyFileExtension,
@@ -28,6 +29,7 @@ export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
   ],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
+  clipsPreviewRenditionType: GiphyClipsRendition.FixedWidth,
   fileType: GiphyFileExtension.GIF,
   showConfirmationScreen: false,
   stickerColumnCount: GiphyStickersColumnCount.Three,
@@ -108,6 +110,14 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         items={enumToPickerItems(GiphyRendition)}
         value={settings.renditionType}
         onValueChange={(renditionType) => updateSettings({ renditionType })}
+      />
+      <PickerSelectCard
+        title="Clips Preview Rendition Type"
+        items={enumToPickerItems(GiphyClipsRendition)}
+        value={settings.clipsPreviewRenditionType}
+        onValueChange={(clipsPreviewRenditionType) =>
+          updateSettings({ clipsPreviewRenditionType })
+        }
       />
       <PickerSelectCard
         title="File Type"
