@@ -180,7 +180,6 @@ GiphyMedia where the `isVideo` property is `true`.
 | media   | Pass a GiphyMedia object to display content.       | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | muted   | Set to true or false to mute or unmute the player. | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | playing | Set to true or false to pause or play the media.   | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| volume  | Set the volume of the player, between 0 and 1.     | `number`                                                                                                                                  | `None`  | ✅&nbsp;Android <br/> ❌&nbsp;iOS |
 
 #### Example
 
