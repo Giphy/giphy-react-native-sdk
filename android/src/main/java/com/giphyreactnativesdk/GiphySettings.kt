@@ -38,7 +38,7 @@ fun snakeToCamel(value: String?): String? {
   }
 }
 
-private fun getConfirmationRendition(renditionName: String?): RenditionType? {
+fun renditionByName(renditionName: String?): RenditionType? {
   return when(renditionName) {
     null -> null
     else -> RenditionType.values().firstOrNull { it.name == snakeToCamel(renditionName) }
@@ -67,7 +67,7 @@ fun giphySettingsFromReadableMap(
   }
 
   if (options.hasKey(RNSettings.confirmationRenditionType.toString())) {
-    settings.confirmationRenditionType = getConfirmationRendition(
+    settings.confirmationRenditionType = renditionByName(
       options.getString(RNSettings.confirmationRenditionType.toString())
     )
   }

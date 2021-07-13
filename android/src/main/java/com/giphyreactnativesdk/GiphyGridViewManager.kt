@@ -23,6 +23,8 @@ import com.giphy.sdk.ui.views.GiphyGridView
 
 class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
   val REACT_CLASS = "GiphyReactNativeGridView"
+  private var _renditionType = RenditionType.downsized
+  private var _clipsPreviewRenditionType = RenditionType.downsized
 
   override fun getName(): String {
     return REACT_CLASS
@@ -62,10 +64,14 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
       }
 
       override fun didSelectMedia(media: Media) {
+        val isVideo = media.type == MediaType.video
         val mediaMap = Arguments.createMap()
         mediaMap.putString("id", media.id)
-        mediaMap.putString("url", getGifURL(media, RenditionType.downsized))
+        mediaMap.putString(
+          "url", getGifURL(media, if (isVideo) _clipsPreviewRenditionType else _renditionType)
+        )
         mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
+        mediaMap.putBoolean("isVideo", isVideo)
 
         val params = Arguments.createMap()
         params.putMap("media", mediaMap)
@@ -142,6 +148,15 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
     view.spanCount = value
   }
 
+  @ReactProp(name="renditionType")
+  fun setRenditionType(view: GiphyGridView, value: String) {
+    _renditionType = renditionByName(value) ?: RenditionType.downsized
+  }
+
+  @ReactProp(name="clipsPreviewRenditionType")
+  fun setClipsPreviewRenditionType(view: GiphyGridView, value: String) {
+    _clipsPreviewRenditionType = renditionByName(value) ?: RenditionType.downsized
+  }
 
   override fun createViewInstance(reactContext: ThemedReactContext): GiphyGridView {
     val view = GiphyGridView(reactContext)
