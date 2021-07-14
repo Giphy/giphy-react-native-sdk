@@ -27,10 +27,6 @@ extension GPHMedia {
       "url": url as Any,
       "aspectRatio": self.aspectRatio,
       "isVideo": self.isVideo,
-      "isText": self.isText,
-      "isEmoji": self.isEmoji,
-      "isSticker": self.isSticker,
-      "isDynamic": self.isDynamic,
     ]
   }
 }

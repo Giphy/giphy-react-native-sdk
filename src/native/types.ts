@@ -98,10 +98,6 @@ export type GiphyMedia = {
   id: string
   url: string
   aspectRatio: number
-  isDynamic: boolean
-  isEmoji: boolean
-  isSticker: boolean
-  isText: boolean
   isVideo: boolean
 }
 
