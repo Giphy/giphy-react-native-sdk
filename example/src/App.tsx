@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 import {
   ScrollView,
@@ -65,11 +65,19 @@ const styles = StyleSheet.create({
     height: 400,
     marginHorizontal: 8,
   },
-  preview: {
-    alignSelf: 'center',
+  previewContainer: {
     backgroundColor: '#fff',
-    maxHeight: 400,
-    padding: 4,
+    maxHeight: 450,
+    paddingHorizontal: 10,
+  },
+  previewCell: {
+    alignSelf: 'center',
+    margin: 10,
+    maxHeight: 300,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
     width: '100%',
   },
 })
@@ -77,10 +85,17 @@ const styles = StyleSheet.create({
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
-  const [media, setMedia] = useState<GiphyMedia | null>(null)
+  const [medias, setMedias] = useState<GiphyMedia[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
     useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
+
+  const mediasRef = useRef(medias)
+  mediasRef.current = medias
+
+  const addMedia = useCallback((media: GiphyMedia) => {
+    setMedias([media, ...mediasRef.current])
+  }, [])
 
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
@@ -88,7 +103,7 @@ export default function App() {
 
   useEffect(() => {
     const handler: GiphyDialogMediaSelectEventHandler = (e) => {
-      setMedia(e.media)
+      addMedia(e.media)
       GiphyDialog.hide()
     }
     const listener = GiphyDialog.addListener(
@@ -98,7 +113,7 @@ export default function App() {
     return () => {
       listener.remove()
     }
-  }, [])
+  }, [addMedia])
 
   return (
     <View style={styles.container}>
@@ -166,7 +181,7 @@ export default function App() {
               }
               onMediaSelect={(e) => {
                 setSearchVisible(false)
-                setMedia(e.nativeEvent.media)
+                addMedia(e.nativeEvent.media)
               }}
             />
           )}
@@ -175,25 +190,28 @@ export default function App() {
 
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
-        {media && (
-          <ScrollView
-            style={[styles.preview, { aspectRatio: media.aspectRatio }]}
-          >
-            {media.isVideo ? (
-              <GiphyVideoView
-                media={media}
-                playing={true}
-                muted={false}
-                style={{ aspectRatio: media.aspectRatio }}
-              />
-            ) : (
-              <GiphyMediaView
-                media={media}
-                style={{ aspectRatio: media.aspectRatio }}
-              />
-            )}
-          </ScrollView>
-        )}
+        <ScrollView style={styles.previewContainer}>
+          {medias.map((media, idx) => (
+            <View
+              key={`${media.id}-${idx}`}
+              style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
+            >
+              {media.isVideo ? (
+                <GiphyVideoView
+                  media={media}
+                  playing={true}
+                  muted={false}
+                  style={{ aspectRatio: media.aspectRatio }}
+                />
+              ) : (
+                <GiphyMediaView
+                  media={media}
+                  style={{ aspectRatio: media.aspectRatio }}
+                />
+              )}
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   )
