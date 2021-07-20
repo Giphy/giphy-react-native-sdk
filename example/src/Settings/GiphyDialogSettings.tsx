@@ -40,7 +40,6 @@ export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
   selectedContentType: GiphyContentType.Gif,
   showCheckeredBackground: false,
   showSuggestionsBar: true,
-  useBlurredBackground: false,
 }
 
 const styles = StyleSheet.create({
@@ -182,13 +181,6 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         value={settings.showSuggestionsBar}
         onValueChange={(showSuggestionsBar) =>
           updateSettings({ showSuggestionsBar })
-        }
-      />
-      <SwitchCard
-        title="Use Blurred Background (*Android)"
-        value={settings.useBlurredBackground}
-        onValueChange={(useBlurredBackground) =>
-          updateSettings({ useBlurredBackground })
         }
       />
     </View>
