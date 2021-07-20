@@ -15,7 +15,6 @@ private enum class RNSettings {
   showConfirmationScreen,
   showSuggestionsBar,
   selectedContentType,
-  useBlurredBackground,
   mediaTypeConfig,
   showCheckeredBackground,
   stickerColumnCount,
@@ -95,10 +94,6 @@ fun giphySettingsFromReadableMap(
     settings.selectedContentType = getContentType(
       options.getString(RNSettings.selectedContentType.toString())
     )
-  }
-
-  if (options.hasKey(RNSettings.useBlurredBackground.toString())) {
-//    settings.useBlurredBackground = options.getBoolean(RNSettings.useBlurredBackground.toString())
   }
 
   if (options.hasKey(RNSettings.mediaTypeConfig.toString())) {

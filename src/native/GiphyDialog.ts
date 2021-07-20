@@ -32,7 +32,6 @@ export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
   selectedContentType?: GiphyContentType
   showCheckeredBackground?: boolean
   showSuggestionsBar?: boolean
-  useBlurredBackground?: boolean
 }
 
 export type NativeGiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
