@@ -1,6 +1,6 @@
 {
   "name": "@giphy/react-native-sdk",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Giphy React Native SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
