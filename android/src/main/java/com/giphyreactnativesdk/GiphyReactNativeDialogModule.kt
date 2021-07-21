@@ -3,6 +3,7 @@ package com.giphyreactnativesdk
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.react.bridge.*
 import com.giphy.sdk.core.models.Media
+import com.giphy.sdk.core.models.enums.MediaType
 import com.giphy.sdk.ui.GPHContentType
 import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.utils.aspectRatio
@@ -28,6 +29,7 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
       mediaMap.putString("id", media.id)
       mediaMap.putString("url", getGifURL(media, settings.renditionType))
       mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
+      mediaMap.putBoolean("isVideo", media.type == MediaType.video)
 
       val params = Arguments.createMap()
       params.putMap("media", mediaMap)

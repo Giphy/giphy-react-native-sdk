@@ -15,11 +15,11 @@ private enum class RNSettings {
   showConfirmationScreen,
   showSuggestionsBar,
   selectedContentType,
-  useBlurriedBackground,
   mediaTypeConfig,
   showCheckeredBackground,
   stickerColumnCount,
-  theme
+  theme,
+  clipsPreviewRenditionType
 }
 
 
@@ -38,7 +38,7 @@ fun snakeToCamel(value: String?): String? {
   }
 }
 
-private fun getConfirmationRendition(renditionName: String?): RenditionType? {
+fun renditionByName(renditionName: String?): RenditionType? {
   return when(renditionName) {
     null -> null
     else -> RenditionType.values().firstOrNull { it.name == snakeToCamel(renditionName) }
@@ -61,13 +61,13 @@ fun giphySettingsFromReadableMap(
   val settings = initialSettings?.copy() ?: GPHSettings()
 
   if (options.hasKey(RNSettings.renditionType.toString())) {
-    settings.renditionType = RenditionType.values().firstOrNull {
-      it.name == snakeToCamel(options.getString(RNSettings.renditionType.toString()))
-    } ?: RenditionType.downsized
+    settings.renditionType = renditionByName(
+      options.getString(RNSettings.renditionType.toString())
+    )
   }
 
   if (options.hasKey(RNSettings.confirmationRenditionType.toString())) {
-    settings.confirmationRenditionType = getConfirmationRendition(
+    settings.confirmationRenditionType = renditionByName(
       options.getString(RNSettings.confirmationRenditionType.toString())
     )
   }
@@ -81,7 +81,9 @@ fun giphySettingsFromReadableMap(
   }
 
   if (options.hasKey(RNSettings.showConfirmationScreen.toString())) {
-    settings.showConfirmationScreen = options.getBoolean(RNSettings.showConfirmationScreen.toString())
+    settings.showConfirmationScreen = options.getBoolean(
+      RNSettings.showConfirmationScreen.toString()
+    )
   }
 
   if (options.hasKey(RNSettings.showSuggestionsBar.toString())) {
@@ -92,10 +94,6 @@ fun giphySettingsFromReadableMap(
     settings.selectedContentType = getContentType(
       options.getString(RNSettings.selectedContentType.toString())
     )
-  }
-
-  if (options.hasKey(RNSettings.useBlurriedBackground.toString())) {
-    settings.useBlurredBackground = options.getBoolean(RNSettings.useBlurriedBackground.toString())
   }
 
   if (options.hasKey(RNSettings.mediaTypeConfig.toString())) {
@@ -122,6 +120,12 @@ fun giphySettingsFromReadableMap(
     settings.theme = GPHTheme.values().firstOrNull {
       it.name == capitalize(options.getString(RNSettings.theme.toString()) ?: "")
     } ?: GPHTheme.Automatic
+  }
+
+  if (options.hasKey(RNSettings.clipsPreviewRenditionType.toString())) {
+    settings.clipsPreviewRenditionType = renditionByName(
+      options.getString(RNSettings.clipsPreviewRenditionType.toString())
+    )
   }
 
   return settings

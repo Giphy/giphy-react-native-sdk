@@ -1,10 +1,6 @@
 package com.giphyreactnativesdk
 
-import android.util.Log
-import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.ReadableNativeMap
-import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
@@ -13,7 +9,6 @@ import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.views.GPHMediaView
 import timber.log.Timber
-
 
 
 class GiphyMediaViewManager(): SimpleViewManager<GPHMediaView>() {
@@ -28,7 +23,7 @@ class GiphyMediaViewManager(): SimpleViewManager<GPHMediaView>() {
     val TAG = GiphyMediaViewManager::class.java.simpleName
   }
 
-  private fun setMedia(view: GPHMediaView) {
+  private fun _setMedia(view: GPHMediaView) {
     if (media != null) {
       view.setMedia(media, renditionType)
     }
@@ -47,7 +42,7 @@ class GiphyMediaViewManager(): SimpleViewManager<GPHMediaView>() {
       GPHCore.gifById(mediaId) { result, e ->
         media = result?.data
         if (media != null) {
-          setMedia(gifView)
+          _setMedia(gifView)
         }
         e?.let {
           Timber.d("Error while fetching GIF: %s", e.localizedMessage)
@@ -61,7 +56,7 @@ class GiphyMediaViewManager(): SimpleViewManager<GPHMediaView>() {
     renditionType = RenditionType.values().firstOrNull {
       it.name == snakeToCamel(renditionName)
     } ?: DEFAULT_RENDITION_TYPE
-    setMedia(gifView)
+    _setMedia(gifView)
   }
 
   override fun getName(): String {
