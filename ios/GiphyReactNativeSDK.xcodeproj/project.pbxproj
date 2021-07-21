@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */; };
+		D7CBE3FB269321D600A00F75 /* GPHMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBE3FA269321D600A00F75 /* GPHMedia.swift */; };
+		D7CBE3FD2693220300A00F75 /* RNGiphyTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */; };
 		D7F008472667CBB700D31762 /* RNGiphyMediaViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */; };
 		D7F008482667CBBC00D31762 /* RNGiphyMediaViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */; };
 		D7F008492667CBC000D31762 /* RNGiphyMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */; };
@@ -44,6 +46,8 @@
 		D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridViewManager.swift; sourceTree = "<group>"; };
 		D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGiphyGridViewManager.m; sourceTree = "<group>"; };
 		D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridView.swift; sourceTree = "<group>"; };
+		D7CBE3FA269321D600A00F75 /* GPHMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPHMedia.swift; sourceTree = "<group>"; };
+		D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyTypeExtensions.swift; sourceTree = "<group>"; };
 		D7F008502667D6E700D31762 /* GiphyReactNativeSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GiphyReactNativeSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* RNGiphySDK.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RNGiphySDK.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
@@ -71,6 +75,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				D7CBE3F9269321B400A00F75 /* Utils */,
 				D7F008502667D6E700D31762 /* GiphyReactNativeSDK-Bridging-Header.h */,
 				D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */,
 				D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */,
@@ -85,6 +90,15 @@
 				134814211AA4EA7D00B7C361 /* Products */,
 				E675D1333EAD4E1C97D6EC73 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		D7CBE3F9269321B400A00F75 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D7CBE3FA269321D600A00F75 /* GPHMedia.swift */,
+				D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		E675D1333EAD4E1C97D6EC73 /* Frameworks */ = {
@@ -183,11 +197,13 @@
 				D7F0084C2667CBD900D31762 /* RNGiphyGridView.swift in Sources */,
 				D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */,
 				D7F008482667CBBC00D31762 /* RNGiphyMediaViewManager.swift in Sources */,
+				D7CBE3FD2693220300A00F75 /* RNGiphyTypeExtensions.swift in Sources */,
 				D7F008492667CBC000D31762 /* RNGiphyMediaView.swift in Sources */,
 				D7F0084A2667CBD000D31762 /* RNGiphyGridViewManager.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* RNGiphySDK.swift in Sources */,
 				D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */,
 				D7F008472667CBB700D31762 /* RNGiphyMediaViewManager.m in Sources */,
+				D7CBE3FB269321D600A00F75 /* GPHMedia.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

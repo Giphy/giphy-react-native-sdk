@@ -39,6 +39,16 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     self.gridController.cellPadding = value
   }
   
+  @objc func setClipsPreviewRenditionType(_ value: NSString) -> Void {
+    let renditionType = GPHRenditionType.fromRNValue(value: value as String)
+    self.gridController.clipsPreviewRenditionType = renditionType ?? .fixedWidth
+  }
+  
+  @objc func setRenditionType(_ value: NSString) -> Void {
+    let renditionType = GPHRenditionType.fromRNValue(value: value as String)
+    self.gridController.renditionType = renditionType ?? .fixedWidth
+  }
+  
   @objc func setOrientation(_ value: NSString) -> Void {
     self.gridController.direction = UICollectionView.ScrollDirection.fromRNValue(value: value as String)
   }
@@ -60,11 +70,7 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
   
   func didSelectMedia(media: GPHMedia, cell: UICollectionViewCell) {
     if self.onMediaSelect != nil {
-      self.onMediaSelect!(["media": [
-        "id": media.id,
-        "url": media.url,
-        "aspectRatio": media.aspectRatio,
-      ]])
+      self.onMediaSelect!(["media": media.toRNValue(rendition: self.gridController.renditionType)])
     }
   }
   

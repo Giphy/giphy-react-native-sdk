@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import {
+  GiphyClipsRendition,
+  GiphyContentType,
   GiphyDialogConfig,
   GiphyFileExtension,
-  GiphyContentType,
   GiphyRating,
   GiphyRendition,
   GiphyStickersColumnCount,
@@ -20,16 +21,15 @@ export type GiphyDialogSettingsProps = {
   onSettingsChange: (settings: Required<GiphyDialogConfig>) => void
 }
 
-const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
+export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
   mediaTypeConfig: [
     GiphyContentType.Gif,
-    GiphyContentType.Emoji,
-    GiphyContentType.Text,
     GiphyContentType.Sticker,
-    GiphyContentType.Recents,
+    GiphyContentType.Clips,
   ],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
+  clipsPreviewRenditionType: GiphyClipsRendition.FixedWidth,
   fileType: GiphyFileExtension.GIF,
   showConfirmationScreen: false,
   stickerColumnCount: GiphyStickersColumnCount.Three,
@@ -40,7 +40,6 @@ const DEFAULT_SETTINGS: Required<GiphyDialogConfig> = {
   selectedContentType: GiphyContentType.Gif,
   showCheckeredBackground: false,
   showSuggestionsBar: true,
-  useBlurredBackground: false,
 }
 
 const styles = StyleSheet.create({
@@ -64,7 +63,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
 ) => {
   const { settings: settingsProp, onSettingsChange } = props
   const settings: Required<GiphyDialogConfig> = {
-    ...DEFAULT_SETTINGS,
+    ...DEFAULT_DIALOG_SETTINGS,
     ...settingsProp,
   }
 
@@ -110,6 +109,14 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         items={enumToPickerItems(GiphyRendition)}
         value={settings.renditionType}
         onValueChange={(renditionType) => updateSettings({ renditionType })}
+      />
+      <PickerSelectCard
+        title="Clips Preview Rendition Type"
+        items={enumToPickerItems(GiphyClipsRendition)}
+        value={settings.clipsPreviewRenditionType}
+        onValueChange={(clipsPreviewRenditionType) =>
+          updateSettings({ clipsPreviewRenditionType })
+        }
       />
       <PickerSelectCard
         title="File Type"
@@ -174,13 +181,6 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         value={settings.showSuggestionsBar}
         onValueChange={(showSuggestionsBar) =>
           updateSettings({ showSuggestionsBar })
-        }
-      />
-      <SwitchCard
-        title="Use Blurred Background (*Android)"
-        value={settings.useBlurredBackground}
-        onValueChange={(useBlurredBackground) =>
-          updateSettings({ useBlurredBackground })
         }
       />
     </View>

@@ -1,3 +1,5 @@
+import type { ConditionalKeys } from 'type-fest'
+
 export enum GiphyThemePreset {
   Automatic = 'automatic',
   Dark = 'dark',
@@ -10,6 +12,7 @@ export enum GiphyContentType {
   Recents = 'recents',
   Sticker = 'sticker',
   Text = 'text',
+  Clips = 'clips',
 }
 
 export enum GiphyMediaType {
@@ -50,6 +53,35 @@ export enum GiphyRendition {
   DownsizedStill = 'downsized_still',
 }
 
+export type GiphyClipsRendition = Exclude<
+  GiphyRendition,
+  | GiphyRendition.Preview
+  | GiphyRendition.Looping
+  | GiphyRendition.FixedWidthSmall
+  | GiphyRendition.FixedWidthSmallStill
+  | GiphyRendition.FixedHeightSmall
+  | GiphyRendition.FixedHeightSmallStill
+  | GiphyRendition.DownsizedSmall
+  | GiphyRendition.DownsizedStill
+  | GiphyRendition.Downsized
+>
+
+export const GiphyClipsRendition: Record<
+  ConditionalKeys<typeof GiphyRendition, GiphyClipsRendition>,
+  GiphyClipsRendition
+> = {
+  Original: GiphyRendition.Original,
+  OriginalStill: GiphyRendition.OriginalStill,
+  FixedHeight: GiphyRendition.FixedHeight,
+  FixedHeightStill: GiphyRendition.FixedHeightStill,
+  FixedHeightDownsampled: GiphyRendition.FixedHeightDownsampled,
+  FixedWidth: GiphyRendition.FixedWidth,
+  FixedWidthStill: GiphyRendition.FixedWidthStill,
+  FixedWidthDownsampled: GiphyRendition.FixedWidthDownsampled,
+  DownsizedMedium: GiphyRendition.DownsizedMedium,
+  DownsizedLarge: GiphyRendition.DownsizedLarge,
+}
+
 export enum GiphyStickersColumnCount {
   Two = 2,
   Three,
@@ -66,6 +98,7 @@ export type GiphyMedia = {
   id: string
   url: string
   aspectRatio: number
+  isVideo: boolean
 }
 
 export enum GiphyDirection {

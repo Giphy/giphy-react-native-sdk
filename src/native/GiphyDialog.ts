@@ -1,16 +1,18 @@
 import { NativeModules, EventSubscriptionVendor } from 'react-native'
 
 import type {
+  GiphyClipsRendition,
   GiphyContentType,
-  GiphyThemePreset,
-  GiphyStickersColumnCount,
+  GiphyFileExtension,
+  GiphyMedia,
   GiphyRating,
   GiphyRendition,
-  GiphyMedia,
-  GiphyFileExtension,
+  GiphyStickersColumnCount,
+  GiphyThemePreset,
 } from './types'
 
 export type BaseNativeGiphyDialogConfig = {
+  clipsPreviewRenditionType?: GiphyClipsRendition
   mediaTypeConfig?: GiphyContentType[]
   rating?: GiphyRating
   renditionType?: GiphyRendition
@@ -30,7 +32,6 @@ export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
   selectedContentType?: GiphyContentType
   showCheckeredBackground?: boolean
   showSuggestionsBar?: boolean
-  useBlurredBackground?: boolean
 }
 
 export type NativeGiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig

@@ -29,5 +29,6 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 - [GiphySDK](docs/api.md#giphysdk)
 - [GiphyDialog](docs/api.md#giphydialog)
 - [GiphyMediaView](docs/api.md#giphymediaview)
+- [GiphyVideoView](docs/api.md#giphyvideoview)
 - [GiphyGridView](docs/api.md#giphygridview)
 - [GiphyContent](docs/api.md#giphycontent)

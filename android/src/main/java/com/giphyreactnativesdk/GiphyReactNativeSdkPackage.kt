@@ -20,7 +20,8 @@ class GiphyReactNativeSdkPackage : ReactPackage {
     List<ViewManager<out View, out ReactShadowNode<*>>> {
     return listOf(
       GiphyMediaViewManager(),
-      GiphyGridViewManager()
+      GiphyGridViewManager(),
+      GiphyVideoViewManager()
     )
   }
 }
