@@ -193,14 +193,13 @@ export default function App() {
         <ScrollView style={styles.previewContainer}>
           {medias.map((media, idx) => (
             <View
-              key={`${media.id}-${idx}`}
+              key={media.id}
               style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
             >
               {media.isVideo ? (
                 <GiphyVideoView
                   media={media}
-                  playing={true}
-                  muted={false}
+                  playing={idx === 0}
                   style={{ aspectRatio: media.aspectRatio }}
                 />
               ) : (
