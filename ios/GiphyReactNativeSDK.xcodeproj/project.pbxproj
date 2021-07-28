@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */; };
+		D75465C626B1AA170003EC5B /* RNSDKInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75465C526B1AA170003EC5B /* RNSDKInfo.swift */; };
 		D7CBE3FB269321D600A00F75 /* GPHMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBE3FA269321D600A00F75 /* GPHMedia.swift */; };
 		D7CBE3FD2693220300A00F75 /* RNGiphyTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */; };
 		D7F008472667CBB700D31762 /* RNGiphyMediaViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */; };
@@ -43,6 +44,7 @@
 		D73C64EC2653E3BA0057D899 /* RNGiphyMediaViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyMediaViewManager.swift; sourceTree = "<group>"; };
 		D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = RNGiphyMediaViewManager.m; sourceTree = "<group>"; tabWidth = 2; };
 		D73C64EF2653EECD0057D899 /* RNGiphyMediaView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RNGiphyMediaView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		D75465C526B1AA170003EC5B /* RNSDKInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNSDKInfo.swift; sourceTree = "<group>"; };
 		D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridViewManager.swift; sourceTree = "<group>"; };
 		D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGiphyGridViewManager.m; sourceTree = "<group>"; };
 		D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				D7CBE3FA269321D600A00F75 /* GPHMedia.swift */,
 				D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */,
+				D75465C526B1AA170003EC5B /* RNSDKInfo.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				D7F0084E2667CBEA00D31762 /* RNGiphyDialog.m in Sources */,
 				D7F0084D2667CBE500D31762 /* RNGiphySDK.m in Sources */,
 				D7F0084C2667CBD900D31762 /* RNGiphyGridView.swift in Sources */,
+				D75465C626B1AA170003EC5B /* RNSDKInfo.swift in Sources */,
 				D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */,
 				D7F008482667CBBC00D31762 /* RNGiphyMediaViewManager.swift in Sources */,
 				D7CBE3FD2693220300A00F75 /* RNGiphyTypeExtensions.swift in Sources */,
@@ -256,6 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_FILE[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -297,12 +302,14 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
