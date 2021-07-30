@@ -10,6 +10,7 @@ import com.giphy.sdk.ui.Giphy
 import com.giphy.sdk.ui.themes.GPHTheme
 import com.giphy.sdk.ui.themes.GridType
 import com.giphy.sdk.ui.views.GiphyDialogFragment
+import com.giphyreactnativesdk.utils.RNSDKInfo
 
 class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext) {
   val VERIFICATION_MODE_KEY = "verificationMode"
@@ -26,8 +27,17 @@ class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJav
     if (settings.hasKey(VERIFICATION_MODE_KEY)) {
       verificationMode = settings.getBoolean(VERIFICATION_MODE_KEY)
     }
+
     if (apiKey != null) {
-      Giphy.configure(reactApplicationContext, apiKey, verificationMode)
+      val appInfo = RNSDKInfo(reactApplicationContext)
+      Giphy.configure(
+        reactApplicationContext,
+        apiKey,
+        verificationMode,
+        metadata = hashMapOf(
+          appInfo.name to appInfo.version
+        )
+      )
     }
   }
 
