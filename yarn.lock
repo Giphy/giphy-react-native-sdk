@@ -8974,17 +8974,9 @@ spdx-compare@^1.0.0:
     spdx-expression-parse "^3.0.0"
     spdx-ranges "^2.0.0"
 
-spdx-correct@^3.0.0:
+spdx-correct@^3.0.0, spdx-correct@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/spdx-correct/-/spdx-correct-3.1.1.tgz"
-  integrity sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==
-  dependencies:
-    spdx-expression-parse "^3.0.0"
-    spdx-license-ids "^3.0.0"
-
-spdx-correct@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-3.1.1.tgz#dece81ac9c1e6713e5f7d1b6f17d468fa53d89a9"
   integrity sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==
   dependencies:
     spdx-expression-parse "^3.0.0"

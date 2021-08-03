@@ -46,9 +46,7 @@ async function fetchLicenseCategories(categories) {
   const data = {}
   const uniqueCategories = [...new Set([...categories])]
   for (const category of uniqueCategories) {
-    data[category] = await fetchJSON(
-      `${LICENSE_CATEGORIES_LOCATION}/${category}.json`
-    )
+    data[category] = await fetchJSON(`${LICENSE_CATEGORIES_LOCATION}/${category}.json`)
   }
   return data
 }
@@ -120,7 +118,7 @@ function checkModules(modules, options = {}) {
   modules.forEach((m) => {
     assert(
       isModuleIgnored(m.moduleName) || isLicenseAllowed(m.moduleLicense),
-      `Module "${m.moduleName}" with "${m.moduleLicense.originalTitle}" license is not allowed. Allowed licenses: ${allowedLicensesRepr}`
+      `Module "${m.moduleName}" with "${m.moduleLicense}" license is not allowed. Allowed licenses: ${allowedLicensesRepr}`
     )
   })
 }
@@ -129,6 +127,7 @@ async function main() {
   const projCfg = await fetchJSON(LICENSE_PROJECT_LOCATION)
   const categories = await fetchLicenseCategories(projCfg.license_categories)
   const allowedLicenses = pickLicensesForCategories(categories, projCfg.license_categories)
+  const allowedLicensesStr = toSemicolonList(allowedLicenses).replace(/,/g, '')
   const giphySDKPkg = require(path.posix.resolve(DEPENDENCIES.rootJS, 'package.json'))
   const exampleAppPkg = require(path.posix.resolve(DEPENDENCIES.exampleAppJS, 'package.json'))
   const giphySDKName = `${giphySDKPkg.name}@${giphySDKPkg.version}`
@@ -140,13 +139,13 @@ async function main() {
     execSync(`npx license-checker \
             --start '${DEPENDENCIES.rootJS}' \
             --excludePackages='${toSemicolonList(titleExceptions)}' \
-            --onlyAllow="${toSemicolonList(allowedLicenses)}"`)
+            --onlyAllow="${allowedLicensesStr}"`)
 
     console.log(`\x1b[33mChecking JS dependencies in ${DEPENDENCIES.exampleAppJS}\x1b[0m`)
     execSync(`npx license-checker \
             --start '${DEPENDENCIES.exampleAppJS}' \
             --excludePackages='${toSemicolonList(titleExceptions)}' \
-            --onlyAllow="${toSemicolonList(allowedLicenses)}"`)
+            --onlyAllow="${allowedLicensesStr}"`)
   } catch (e) {
     throw new Error(e.message)
   }
