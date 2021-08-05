@@ -63,21 +63,15 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
   
   //MARK: GPHGridDelegate stubs
   func contentDidUpdate(resultCount: Int, error: Error?) {
-    if self.onContentUpdate != nil {
-      self.onContentUpdate!(["resultCount": resultCount])
-    }
+    self.onContentUpdate?(["resultCount": resultCount])
   }
   
   func didSelectMedia(media: GPHMedia, cell: UICollectionViewCell) {
-    if self.onMediaSelect != nil {
-      self.onMediaSelect!(["media": media.toRNValue(rendition: self.gridController.renditionType)])
-    }
+    self.onMediaSelect?(["media": media.toRNValue(rendition: self.gridController.renditionType)])
   }
   
   func didScroll(offset: CGFloat) {
-    if self.onScroll != nil {
-      self.onScroll!(["offset": offset])
-    }
+    self.onScroll?(["offset": offset])
   }
   
   func didSelectMoreByYou(query: String) {}

@@ -2,7 +2,15 @@ import UIKit
 import GiphyUISDK
 
 
-class RNGiphyVideoView: UIView {
+class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
+  //MARK: RN callbacks
+  @objc var onError: RCTDirectEventBlock?
+  @objc var onMute: RCTDirectEventBlock?
+  @objc var onPause: RCTDirectEventBlock?
+  @objc var onPlay: RCTDirectEventBlock?
+  @objc var onPlaybackStateChanged: RCTDirectEventBlock?
+  @objc var onUnmute: RCTDirectEventBlock?
+  
   private var media: GPHMedia? {
     didSet { self.updateMedia() }
   }
@@ -17,6 +25,7 @@ class RNGiphyVideoView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    self.videoView.delegate = self
     self.setupView()
     self.updateMedia()
   }
@@ -81,5 +90,28 @@ class RNGiphyVideoView: UIView {
   
   @objc func setMuted(_ value: Bool) -> Void {
     self.muted = value
+  }
+  
+  //MARK: GPHVideoViewDelegate stubs
+  func playerDidFail(_ description: String?) {
+    self.onError?(["description": description ?? ""])
+  }
+  
+  func playerStateDidChange(_ state: GPHVideoPlayerState) {
+    self.onPlaybackStateChanged?(["state": state.rawValue])
+    if state == .paused {
+      self.onPause?([:])
+    }
+    if state == .playing {
+      self.onPlay?([:])
+    }
+  }
+  
+  func muteDidChange(muted: Bool) {
+    if muted {
+      self.onMute?([:])
+    } else {
+      self.onUnmute?([:])
+    }
   }
 }

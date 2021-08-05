@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 import {
   ScrollView,
@@ -14,7 +14,6 @@ import {
   GiphyDialog,
   GiphyDialogConfig,
   GiphyDialogEvent,
-  GiphyDialogMediaSelectEventHandler,
   GiphyDirection,
   GiphyGridView,
   GiphyMedia,
@@ -82,41 +81,80 @@ const styles = StyleSheet.create({
   },
 })
 
+type PlayerState = {
+  playing: boolean
+  muted: boolean
+}
+
+const INITIAL_PLAYER_STATE: PlayerState = {
+  playing: true,
+  muted: true,
+}
+
+function useLatest<V>(value: V) {
+  const ref = useRef<V>(value)
+  ref.current = value
+  return ref
+}
+
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
   const [medias, setMedias] = useState<GiphyMedia[]>([])
+  const [players, setPlayers] = useState<Record<string, PlayerState>>({})
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
     useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
 
-  const mediasRef = useRef(medias)
-  mediasRef.current = medias
+  const addMedia = (media: GiphyMedia) => {
+    if (media.isVideo) {
+      setPlayers({ ...players, [media.id]: INITIAL_PLAYER_STATE })
+    }
+    setMedias([media, ...medias])
+  }
 
-  const addMedia = useCallback((media: GiphyMedia) => {
-    setMedias([media, ...mediasRef.current])
-  }, [])
+  const togglePlayerPlaying = (id: string, to?: boolean) => {
+    setPlayers({
+      ...players,
+      [id]: {
+        ...players[id],
+        playing: to ?? !players[id]?.playing,
+      },
+    })
+  }
 
+  const togglePlayerMuted = (id: string, to?: boolean) => {
+    setPlayers({
+      ...players,
+      [id]: {
+        ...players[id],
+        muted: to ?? !players[id]?.muted,
+      },
+    })
+  }
+
+  // Apply Giphy Dialog settings
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
 
+  const addMediaRef = useLatest(addMedia)
   useEffect(() => {
-    const handler: GiphyDialogMediaSelectEventHandler = (e) => {
-      addMedia(e.media)
-      GiphyDialog.hide()
-    }
     const listener = GiphyDialog.addListener(
       GiphyDialogEvent.MediaSelected,
-      handler
+      (e) => {
+        addMediaRef.current(e.media)
+        GiphyDialog.hide()
+      }
     )
     return () => {
       listener.remove()
     }
-  }, [addMedia])
+  }, [addMediaRef])
 
   return (
     <View style={styles.container}>
+      {/* Displaying Giphy Dialog & settings for it  */}
       <View style={styles.card}>
         <TouchableOpacity
           style={styles.cardButton}
@@ -141,6 +179,7 @@ export default function App() {
         />
       </Dialog>
 
+      {/* Displaying Giphy Grid View with the custom search bar */}
       <View style={styles.card}>
         <TextInput
           autoFocus={false}
@@ -188,10 +227,11 @@ export default function App() {
         </Dialog>
       </View>
 
+      {/* Displaying selected media */}
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         <ScrollView style={styles.previewContainer}>
-          {medias.map((media, idx) => (
+          {medias.map((media) => (
             <View
               key={media.id}
               style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
@@ -199,8 +239,14 @@ export default function App() {
               {media.isVideo ? (
                 <GiphyVideoView
                   media={media}
-                  playing={idx === 0}
+                  muted={players[media.id]?.muted}
+                  playing={players[media.id]?.playing}
                   style={{ aspectRatio: media.aspectRatio }}
+                  onError={(e) => console.error(e.nativeEvent.description)}
+                  onMute={() => togglePlayerMuted(media.id, true)}
+                  onPause={() => togglePlayerPlaying(media.id, false)}
+                  onPlay={() => togglePlayerPlaying(media.id, true)}
+                  onUnmute={() => togglePlayerMuted(media.id, false)}
                 />
               ) : (
                 <GiphyMediaView

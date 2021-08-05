@@ -366,7 +366,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   Giphy: 2a43fc639f7fe3df3aaad4c8b3ffbfbbc8c6f0a9
-  giphy-react-native-sdk: c1e188aecd55327a92e8095d4c2364b44e7b8ab2
+  giphy-react-native-sdk: 581242942e7f49daf0c13a3d8cc13a0770988c88
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e

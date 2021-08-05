@@ -6,4 +6,16 @@
   RCT_EXPORT_VIEW_PROPERTY(playing, BOOL)
 
   RCT_EXPORT_VIEW_PROPERTY(muted, BOOL)
+
+  RCT_EXPORT_VIEW_PROPERTY(onError, RCTDirectEventBlock)
+
+  RCT_EXPORT_VIEW_PROPERTY(onMute, RCTDirectEventBlock)
+
+  RCT_EXPORT_VIEW_PROPERTY(onPause, RCTDirectEventBlock)
+
+  RCT_EXPORT_VIEW_PROPERTY(onPlay, RCTDirectEventBlock)
+
+  RCT_EXPORT_VIEW_PROPERTY(onPlaybackStateChanged, RCTDirectEventBlock)
+
+  RCT_EXPORT_VIEW_PROPERTY(onUnmute, RCTDirectEventBlock)
 @end
