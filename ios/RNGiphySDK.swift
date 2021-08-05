@@ -11,7 +11,10 @@ class RNGiphySDK: NSObject {
   func configure(config: NSDictionary) -> Void {
     if let apiKey = config["apiKey"] as? String {
       let verificationMode = config["verificationMode"] as? Bool ?? false
-      Giphy.configure(apiKey: apiKey, verificationMode: verificationMode)
+      let metadata = [RNSDKInfo.shared.name: RNSDKInfo.shared.version ?? ""]
+      Giphy.configure(apiKey: apiKey,
+                      verificationMode: verificationMode,
+                      metadata: metadata)
     }
   }
 }
