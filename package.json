@@ -99,7 +99,9 @@
       "publish": false
     },
     "github": {
-      "release": true
+      "release": true,
+      "draft": true,
+      "web": true
     },
     "plugins": {
       "@release-it/conventional-changelog": {
