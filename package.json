@@ -1,6 +1,6 @@
 {
   "name": "@giphy/react-native-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Giphy React Native SDK",
   "license": "Apache-2.0",
   "main": "lib/commonjs/index",
@@ -99,7 +99,9 @@
       "publish": false
     },
     "github": {
-      "release": true
+      "release": true,
+      "draft": true,
+      "web": true
     },
     "plugins": {
       "@release-it/conventional-changelog": {
