@@ -6,8 +6,6 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   //MARK: RN callbacks
   @objc var onError: RCTDirectEventBlock?
   @objc var onMute: RCTDirectEventBlock?
-  @objc var onPause: RCTDirectEventBlock?
-  @objc var onPlay: RCTDirectEventBlock?
   @objc var onPlaybackStateChanged: RCTDirectEventBlock?
   @objc var onUnmute: RCTDirectEventBlock?
   
@@ -61,6 +59,10 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   
   private func updateVolume() -> Void {
     DispatchQueue.main.async {
+      if self.videoView.media == nil {
+        return
+      }
+
       if (self.muted) {
         self.videoView.mute()
       } else {
@@ -68,9 +70,13 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
       }
     }
   }
-  
+
   private func updatePlaying() -> Void {
     DispatchQueue.main.async {
+      if self.videoView.media == nil {
+        return
+      }
+      
       if (self.playing) {
         self.videoView.play()
       } else {
@@ -78,17 +84,23 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
       }
     }
   }
-  
+
   //MARK: RN Properties
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
     GPHMedia.fromRNValue(rnValue) { self.media = $0 }
   }
   
   @objc func setPlaying(_ value: Bool) -> Void {
+    if self.playing == value {
+      return
+    }
     self.playing = value
   }
   
   @objc func setMuted(_ value: Bool) -> Void {
+    if self.muted == value {
+      return
+    }
     self.muted = value
   }
   
@@ -98,13 +110,7 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   }
   
   func playerStateDidChange(_ state: GPHVideoPlayerState) {
-    self.onPlaybackStateChanged?(["state": state.rawValue])
-    if state == .paused {
-      self.onPause?([:])
-    }
-    if state == .playing {
-      self.onPlay?([:])
-    }
+    self.onPlaybackStateChanged?(["state": state.toRNValue()])
   }
   
   func muteDidChange(muted: Bool) {

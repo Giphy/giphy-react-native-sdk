@@ -81,16 +81,6 @@ const styles = StyleSheet.create({
   },
 })
 
-type PlayerState = {
-  playing: boolean
-  muted: boolean
-}
-
-const INITIAL_PLAYER_STATE: PlayerState = {
-  playing: true,
-  muted: true,
-}
-
 function useLatest<V>(value: V) {
   const ref = useRef<V>(value)
   ref.current = value
@@ -101,36 +91,12 @@ export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
   const [medias, setMedias] = useState<GiphyMedia[]>([])
-  const [players, setPlayers] = useState<Record<string, PlayerState>>({})
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
     useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
 
   const addMedia = (media: GiphyMedia) => {
-    if (media.isVideo) {
-      setPlayers({ ...players, [media.id]: INITIAL_PLAYER_STATE })
-    }
     setMedias([media, ...medias])
-  }
-
-  const togglePlayerPlaying = (id: string, to?: boolean) => {
-    setPlayers({
-      ...players,
-      [id]: {
-        ...players[id],
-        playing: to ?? !players[id]?.playing,
-      },
-    })
-  }
-
-  const togglePlayerMuted = (id: string, to?: boolean) => {
-    setPlayers({
-      ...players,
-      [id]: {
-        ...players[id],
-        muted: to ?? !players[id]?.muted,
-      },
-    })
   }
 
   // Apply Giphy Dialog settings
@@ -231,7 +197,7 @@ export default function App() {
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         <ScrollView style={styles.previewContainer}>
-          {medias.map((media) => (
+          {medias.map((media, idx) => (
             <View
               key={media.id}
               style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
@@ -239,14 +205,15 @@ export default function App() {
               {media.isVideo ? (
                 <GiphyVideoView
                   media={media}
-                  muted={players[media.id]?.muted}
-                  playing={players[media.id]?.playing}
+                  playing={idx === 0}
                   style={{ aspectRatio: media.aspectRatio }}
                   onError={(e) => console.error(e.nativeEvent.description)}
-                  onMute={() => togglePlayerMuted(media.id, true)}
-                  onPause={() => togglePlayerPlaying(media.id, false)}
-                  onPlay={() => togglePlayerPlaying(media.id, true)}
-                  onUnmute={() => togglePlayerMuted(media.id, false)}
+                  onPlaybackStateChanged={(e) =>
+                    console.log(
+                      'onPlaybackStateChanged',
+                      JSON.stringify(e.nativeEvent, null, 2)
+                    )
+                  }
                 />
               ) : (
                 <GiphyMediaView

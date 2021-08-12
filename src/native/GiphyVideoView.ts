@@ -2,11 +2,11 @@ import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-n
 
 import type { GiphyMedia } from './types'
 
-export enum GiphyPlaybackState {
-  Unknown,
-  ReadyToPlay,
-  Playing,
-  Paused,
+export enum GiphyVideoViewPlaybackState {
+  Unknown = 0,
+  ReadyToPlay = 3,
+  Playing = 4,
+  Paused = 5,
 }
 
 export type NativeGiphyVideoViewProps = ViewProps & {
@@ -15,9 +15,7 @@ export type NativeGiphyVideoViewProps = ViewProps & {
   playing?: boolean
   onError?: (e: NativeSyntheticEvent<{ description: string }>) => void
   onMute?: (e: NativeSyntheticEvent<{}>) => void
-  onPause?: (e: NativeSyntheticEvent<{}>) => void
-  onPlay?: (e: NativeSyntheticEvent<{}>) => void
-  onPlaybackStateChanged?: (e: NativeSyntheticEvent<{ state: GiphyPlaybackState }>) => void
+  onPlaybackStateChanged?: (e: NativeSyntheticEvent<{ state: GiphyVideoViewPlaybackState }>) => void
   onUnmute?: (e: NativeSyntheticEvent<{}>) => void
 }
 
