@@ -9,6 +9,9 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   @objc var onPlaybackStateChanged: RCTDirectEventBlock?
   @objc var onUnmute: RCTDirectEventBlock?
   
+  //MARK: RN Properties
+  @objc var autoPlay: Bool = false
+  
   private var media: GPHMedia? {
     didSet { self.updateMedia() }
   }
@@ -17,7 +20,8 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
     didSet { self.updateVolume() }
   }
   
-  private var playing: Bool = false {
+  //TODO: v2 remove
+  private var playing: Bool? = nil {
     didSet { self.updatePlaying() }
   }
   
@@ -51,7 +55,14 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   
   private func updateMedia() -> Void {
     DispatchQueue.main.async {
+      if (self.videoView.media == self.media) {
+        return
+      }
+      
       self.videoView.media = self.media
+      if self.autoPlay {
+        self.playOnlyCurrentMedia()
+      }
       self.updatePlaying()
       self.updateVolume()
     }
@@ -62,7 +73,7 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
       if self.videoView.media == nil {
         return
       }
-
+      
       if (self.muted) {
         self.videoView.mute()
       } else {
@@ -70,26 +81,36 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
       }
     }
   }
+  
+  private func playOnlyCurrentMedia() {
+    GPHVideoView.pauseAll()
+    DispatchQueue.main.async {
+      self.videoView.play()
+    }
+  }
 
+  //TODO: v2 remove
   private func updatePlaying() -> Void {
     DispatchQueue.main.async {
-      if self.videoView.media == nil {
+      guard let playing = self.playing,
+            self.videoView.media != nil else {
         return
       }
       
-      if (self.playing) {
+      if (playing) {
         self.videoView.play()
       } else {
         self.videoView.pause()
       }
     }
   }
-
-  //MARK: RN Properties
+  
+  //MARK: RN Setters
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
     GPHMedia.fromRNValue(rnValue) { self.media = $0 }
   }
   
+  //TODO: v2 remove
   @objc func setPlaying(_ value: Bool) -> Void {
     if self.playing == value {
       return

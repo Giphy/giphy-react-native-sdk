@@ -1,9 +1,9 @@
 import { NativeEventEmitter } from 'react-native'
+
 import { NativeGiphyDialog, IOSGiphyDialogConfig, AndroidGiphyDialogConfig } from './native/GiphyDialog'
+import { noop } from './utils/noop'
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
-
-function noop() {}
 
 export const GiphyDialog = new (class extends NativeEventEmitter {
   constructor() {

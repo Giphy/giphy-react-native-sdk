@@ -197,15 +197,15 @@ export default function App() {
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         <ScrollView style={styles.previewContainer}>
-          {medias.map((media, idx) => (
+          {medias.map((media) => (
             <View
               key={media.id}
               style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
             >
               {media.isVideo ? (
                 <GiphyVideoView
+                  autoPlay={true}
                   media={media}
-                  playing={idx === 0}
                   style={{ aspectRatio: media.aspectRatio }}
                   onError={(e) => console.error(e.nativeEvent.description)}
                   onPlaybackStateChanged={(e) =>
