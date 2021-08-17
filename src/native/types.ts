@@ -94,13 +94,6 @@ export enum GiphyFileExtension {
   WebP = 'webp',
 }
 
-export type GiphyMedia = {
-  id: string
-  url: string
-  aspectRatio: number
-  isVideo: boolean
-}
-
 export enum GiphyDirection {
   Horizontal = 'horizontal',
   Vertical = 'vertical',
