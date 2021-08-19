@@ -172,6 +172,10 @@ Similar to the [GiphyMediaView](#giphymediaview) which works for GIFs, Stickers,
 component that makes it easy to play back GiphyMedia clips video assets. The GiphyVideoView will only work for
 GiphyMedia where the `isVideo` property is `true`.
 
+**Note**: `GiphyVideoView` has no advanced features for playback, volume, and buffering control.
+If you need some advanced features, you can easily integrate clips with other more advanced video players.
+For example, we described [how to use clips with React-Native-Video](using-clips-with-react-native-video.md).
+
 #### Props
 
 | Prop                   | Description                                                                                   | Type                                                                                                                                      | Default | Platform                        |
@@ -192,6 +196,7 @@ GiphyMedia where the `isVideo` property is `true`.
 import React, { useEffect, useState } from 'react'
 import { Button, SafeAreaView, ScrollView } from 'react-native'
 import {
+  GiphyContentType,
   GiphyDialog,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,

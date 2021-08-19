@@ -1,8 +1,8 @@
 <p align="center">
-<img width="750" height="150" src="docs/assets/sdk_logo.gif">
+<img width="750" height="150" src="https://github.com/Giphy/giphy-react-native-sdk/blob/main/docs/assets/sdk_logo.gif">
 </p>
 
-<img align="right" width="300" height="483" src="docs/assets/example_app.gif">
+<img align="right" width="300" height="483" src="https://github.com/Giphy/giphy-react-native-sdk/blob/main/docs/assets/example_app.gif">
 
 # GIPHY SDK for React Native
 
@@ -32,3 +32,7 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 - [GiphyVideoView](docs/api.md#giphyvideoview)
 - [GiphyGridView](docs/api.md#giphygridview)
 - [GiphyContent](docs/api.md#giphycontent)
+
+### Guides
+
+- [Using clips with React-Native-Video](docs/using-clips-with-react-native-video.md)
