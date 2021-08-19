@@ -92,8 +92,8 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
       let rootViewController = UIApplication.shared.windows.first?.rootViewController
       giphy.applyRNConfig(self.config)
       giphy.delegate = self
-      rootViewController?.present(giphy, animated: true, completion: {
-        self.giphyViewController = giphy
+      rootViewController?.present(giphy, animated: true, completion: { [weak self] in
+        self?.giphyViewController = giphy
       })
     }
   }
