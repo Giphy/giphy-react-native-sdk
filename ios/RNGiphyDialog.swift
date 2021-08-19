@@ -57,7 +57,6 @@ public extension GiphyViewController {
 
 @objc(RNGiphyDialog)
 open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
-  let rootViewController = UIApplication.shared.keyWindow!.rootViewController!
   var giphyViewController: GiphyViewController?
   var config: NSMutableDictionary
 
@@ -90,9 +89,10 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   open func show() -> Void {
     DispatchQueue.main.async {
       let giphy = GiphyViewController()
+      let rootViewController = UIApplication.shared.windows.first?.rootViewController
       giphy.applyRNConfig(self.config)
       giphy.delegate = self
-      self.rootViewController.present(giphy, animated: true, completion: {
+      rootViewController?.present(giphy, animated: true, completion: {
         self.giphyViewController = giphy
       })
     }
