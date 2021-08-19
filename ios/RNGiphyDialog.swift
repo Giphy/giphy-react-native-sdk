@@ -101,8 +101,8 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   @objc
   open func hide() -> Void {
     DispatchQueue.main.async {
-      self.giphyViewController?.dismiss(animated: true, completion: {
-        self.giphyViewController = nil
+      self.giphyViewController?.dismiss(animated: true, completion: { [weak self] in
+        self?.giphyViewController = nil
       })
     }
   }
