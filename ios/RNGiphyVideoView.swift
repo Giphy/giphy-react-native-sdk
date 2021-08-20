@@ -94,7 +94,7 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
             let playing = self.playing,
             let _ = self.videoView.media else { return }
 
-      if (self.playing) {
+      if (playing) {
         self.videoView.play()
       } else {
         self.videoView.pause()
