@@ -10,7 +10,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		76793AEA6CC11267E0389B64 /* Pods_GiphyReactNativeSdkExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A14C1065FD58D5C5D6FBCF3 /* Pods_GiphyReactNativeSdkExample.framework */; };
+		1FA03709E22CA47D610915EA /* Pods_GiphyReactNativeSdkExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2383AA2EDAEA830C64904AB5 /* Pods_GiphyReactNativeSdkExample.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D7585A6826B8175B000B2F22 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7585A6726B8175B000B2F22 /* Settings.bundle */; };
 		D7585A6926B8175B000B2F22 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7585A6726B8175B000B2F22 /* Settings.bundle */; };
@@ -34,10 +34,9 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GiphyReactNativeSdkExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GiphyReactNativeSdkExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GiphyReactNativeSdkExample/main.m; sourceTree = "<group>"; };
+		2383AA2EDAEA830C64904AB5 /* Pods_GiphyReactNativeSdkExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyReactNativeSdkExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F7ED3B7971BE374F7B8635 /* Pods-GiphyReactNativeSdkExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyReactNativeSdkExample.debug.xcconfig"; path = "Target Support Files/Pods-GiphyReactNativeSdkExample/Pods-GiphyReactNativeSdkExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GiphyReactNativeSdkExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9A14C1065FD58D5C5D6FBCF3 /* Pods_GiphyReactNativeSdkExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyReactNativeSdkExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7585A6726B8175B000B2F22 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E00ACF0FDA8BF921659E2F9A /* Pods-GiphyReactNativeSdkExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyReactNativeSdkExample.release.xcconfig"; path = "Target Support Files/Pods-GiphyReactNativeSdkExample/Pods-GiphyReactNativeSdkExample.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -55,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76793AEA6CC11267E0389B64 /* Pods_GiphyReactNativeSdkExample.framework in Frameworks */,
+				1FA03709E22CA47D610915EA /* Pods_GiphyReactNativeSdkExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +79,7 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				9A14C1065FD58D5C5D6FBCF3 /* Pods_GiphyReactNativeSdkExample.framework */,
+				2383AA2EDAEA830C64904AB5 /* Pods_GiphyReactNativeSdkExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
