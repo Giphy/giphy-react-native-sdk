@@ -1,15 +1,22 @@
 language: node_js
+jdk: oraclejdk8
 node_js:
-  - "12"
+  - "14"
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   yarn: true
   directories:
     - "node_modules"
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 install:
   - yarn install
 script:
   - yarn lint
   - yarn test
+  - yarn generate-licenses && yarn check-licenses
 deploy:
   provider: npm
   api_key: $NPM_TOKEN
