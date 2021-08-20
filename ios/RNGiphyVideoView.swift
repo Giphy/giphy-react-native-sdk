@@ -59,10 +59,10 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   
   private func updateVolume() -> Void {
     DispatchQueue.main.async {
-      if self.videoView.media == nil {
+      guard self.videoView.media != nil else {
         return
       }
-
+      
       if (self.muted) {
         self.videoView.mute()
       } else {
@@ -70,10 +70,10 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
       }
     }
   }
-
+  
   private func updatePlaying() -> Void {
     DispatchQueue.main.async {
-      if self.videoView.media == nil {
+      guard self.videoView.media != nil else {
         return
       }
       
@@ -84,21 +84,21 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
       }
     }
   }
-
+  
   //MARK: RN Properties
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
     GPHMedia.fromRNValue(rnValue) { self.media = $0 }
   }
   
   @objc func setPlaying(_ value: Bool) -> Void {
-    if self.playing == value {
+    guard self.playing != value else {
       return
     }
     self.playing = value
   }
   
   @objc func setMuted(_ value: Bool) -> Void {
-    if self.muted == value {
+    guard self.muted != value else {
       return
     }
     self.muted = value
