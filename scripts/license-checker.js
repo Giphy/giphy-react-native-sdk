@@ -132,19 +132,19 @@ async function main() {
   const exampleAppPkg = require(path.posix.resolve(DEPENDENCIES.exampleAppJS, 'package.json'))
   const giphySDKName = `${giphySDKPkg.name}@${giphySDKPkg.version}`
   const exampleAppName = `${exampleAppPkg.name}@${exampleAppPkg.version}`
-  const titleExceptions = [giphySDKName, exampleAppName, ...projCfg.title_exceptions]
+  const excludedPackages = [giphySDKName, exampleAppName, ...projCfg.package_ignore]
 
   try {
     console.log(`\x1b[33mChecking JS dependencies in ${DEPENDENCIES.rootJS}\x1b[0m`)
     execSync(`npx license-checker \
             --start '${DEPENDENCIES.rootJS}' \
-            --excludePackages='${toSemicolonList(titleExceptions)}' \
+            --excludePackages='${toSemicolonList(excludedPackages)}' \
             --onlyAllow="${allowedLicensesStr}"`)
 
     console.log(`\x1b[33mChecking JS dependencies in ${DEPENDENCIES.exampleAppJS}\x1b[0m`)
     execSync(`npx license-checker \
             --start '${DEPENDENCIES.exampleAppJS}' \
-            --excludePackages='${toSemicolonList(titleExceptions)}' \
+            --excludePackages='${toSemicolonList(excludedPackages)}' \
             --onlyAllow="${allowedLicensesStr}"`)
   } catch (e) {
     throw new Error(e.message)
@@ -154,14 +154,14 @@ async function main() {
   const exampleAppAndroidDeps = await getExampleAppAndroidDeps(DEPENDENCIES.exampleAppAndroid)
   checkModules(exampleAppAndroidDeps, {
     allowedLicenses,
-    ignoredModules: titleExceptions,
+    ignoredModules: excludedPackages,
   })
 
   console.log(`\x1b[33mChecking iOS dependencies in ${DEPENDENCIES.exampleAppIOS}\x1b[0m`)
   const exampleAppIOSDeps = await getExampleAppIOSDeps(DEPENDENCIES.exampleAppIOS)
   checkModules(exampleAppIOSDeps, {
     allowedLicenses,
-    ignoredModules: titleExceptions,
+    ignoredModules: excludedPackages,
   })
 
   console.log('\x1b[32mAll licenses are valid.\x1b[0m')
