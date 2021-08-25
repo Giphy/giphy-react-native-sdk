@@ -26,11 +26,12 @@ class GiphyVideoViewManager(): SimpleViewManager<GPHVideoPlayerView>() {
     if (mediaId != null) {
       GPHCore.gifById(mediaId) { result, e ->
         media = result?.data
-        if (media != null) {
-          player?.onDestroy()
+        if (media != null) {               
           videoView.preloadFirstFrame(media!!)
-          player = GPHVideoPlayer(videoView, repeatable = true)
-          player?.loadMedia(media!!)
+          if (player == null) {
+            player = GPHVideoPlayer(null, repeatable = true)
+          }
+          player?.loadMedia(media!!, view = videoView)
           playing = true
         }
       }
