@@ -32,7 +32,10 @@
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
     "generate-licenses": "./scripts/generate-licenses.sh",
-    "check-licenses": "./scripts/license-checker.js"
+    "check-licenses": "./scripts/license-checker.js",
+    "bump-android-sdk-version": "./scripts/bump-android-sdk-version.sh",
+    "bump-ios-sdk-version": "./scripts/bump-ios-sdk-version.sh",
+    "bump-sdk-versions": "yarn bump-android-sdk-version & yarn bump-ios-sdk-version"
   },
   "keywords": [
     "react-native",
@@ -106,6 +109,7 @@
     },
     "github": {
       "release": true,
+      "releaseName": "${version}",
       "draft": true,
       "web": true
     },
