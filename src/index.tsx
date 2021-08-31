@@ -28,6 +28,8 @@ export { GiphyMediaView } from './GiphyMediaView'
 export type { GiphyVideoViewProps } from './GiphyVideoView'
 export { GiphyVideoView } from './GiphyVideoView'
 
+export { GiphyVideoManager } from './GiphyVideoManager'
+
 export type { GiphyContentSearchOptions, GiphyContentTrendingOptions } from './GiphyContent'
 export { GiphyContent } from './GiphyContent'
 
