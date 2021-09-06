@@ -12,7 +12,8 @@ class GiphyReactNativeSdkPackage : ReactPackage {
   override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
     return listOf<NativeModule>(
       GiphySDKModule(reactContext),
-      GiphyReactNativeDialogModule(reactContext)
+      GiphyReactNativeDialogModule(reactContext),
+      GiphyVideoManagerModule(reactContext),
     )
   }
 
