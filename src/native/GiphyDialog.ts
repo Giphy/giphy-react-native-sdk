@@ -1,10 +1,10 @@
 import { NativeModules, EventSubscriptionVendor } from 'react-native'
 
+import type { GiphyMedia } from '../giphyMedia'
 import type {
   GiphyClipsRendition,
   GiphyContentType,
   GiphyFileExtension,
-  GiphyMedia,
   GiphyRating,
   GiphyRendition,
   GiphyStickersColumnCount,

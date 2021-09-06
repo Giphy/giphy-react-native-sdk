@@ -17,7 +17,6 @@ import {
   GiphyDirection,
   GiphyGridView,
   GiphyMedia,
-  GiphyMediaType,
   GiphyMediaView,
   GiphyRendition,
   GiphyVideoManager,
@@ -178,10 +177,7 @@ export default function App() {
           />
           {searchVisible && (
             <GiphyGridView
-              content={GiphyContent.search({
-                searchQuery: searchQuery,
-                mediaType: GiphyMediaType.Video,
-              })}
+              content={GiphyContent.search({ searchQuery: searchQuery })}
               cellPadding={3}
               clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
               fixedSizeCells={false}
@@ -211,16 +207,16 @@ export default function App() {
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         <ScrollView style={styles.previewContainer}>
-          {medias.map((media, idx) => (
+          {medias.map((media) => (
             <View
               key={media.id}
               style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
             >
               {media.isVideo ? (
                 <GiphyVideoView
+                  autoPlay={true}
                   media={media}
                   muted={true}
-                  playing={idx === 0}
                   style={{ aspectRatio: media.aspectRatio }}
                   onError={(e) => console.error(e.nativeEvent.description)}
                   onPlaybackStateChanged={(e) =>

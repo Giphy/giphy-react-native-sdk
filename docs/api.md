@@ -173,17 +173,21 @@ Similar to the [GiphyMediaView](#giphymediaview) which works for GIFs, Stickers,
 component that makes it easy to play back GiphyMedia clips video assets. The GiphyVideoView will only work for
 GiphyMedia where the `isVideo` property is `true`.
 
+**Note**: `GiphyVideoView` has no advanced features for playback, volume, and buffering control. If you need some
+advanced features, you can easily integrate clips with other more advanced video players. For example, we
+described [how to use clips with React-Native-Video](using-clips-with-react-native-video.md).
+
 #### Props
 
 | Prop                   | Description                                                                                   | Type                                                                                                                                      | Default | Platform                        |
 |------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
+| autoPlay               | Set it to true to start the video automatically.                                              | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | media                  | Pass a GiphyMedia object to display content.                                                  | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | muted                  | Set to true or false to mute or unmute the player.                                            | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | onError                | A callback function that will be called when an error occurs whilst attempting to play media. | `(e: NativeSyntheticEvent<{ description: string }>) => void`                                                                              | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | onMute                 | A callback function that will be called when media is muted.                                  | `(e: NativeSyntheticEvent<{}>) => void`                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | onPlaybackStateChanged | A callback function that will be called when playback state changes.                          | `(e: NativeSyntheticEvent<{ state: GiphyVideoViewPlaybackState }>) => void`                                                               | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | onUnmute               | A callback function that will be called when media is unmuted.                                | `(e: NativeSyntheticEvent<{}>) => void`                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| playing                | Set to true or false to pause or play the media.                                              | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 #### Example
 
@@ -193,6 +197,7 @@ GiphyMedia where the `isVideo` property is `true`.
 import React, { useEffect, useState } from 'react'
 import { Button, SafeAreaView, ScrollView } from 'react-native'
 import {
+  GiphyContentType,
   GiphyDialog,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
@@ -242,7 +247,7 @@ export default function App() {
           <GiphyVideoView
             media={media}
             muted={true}
-            playing={true}
+            autoPlay={true}
             style={{ aspectRatio: media.aspectRatio }}
           />
         </ScrollView>
@@ -301,7 +306,7 @@ export default function App() {
         >
           <GiphyVideoView
             media={media}
-            playing={true}
+            autoPlay={true}
             style={{ aspectRatio: media.aspectRatio }}
           />
         </ScrollView>
@@ -404,7 +409,7 @@ export default function App() {
           <GiphyVideoView
             media={media}
             muted={false}
-            playing={true}
+            autoPlay={true}
             style={{ aspectRatio: media.aspectRatio }}
           />
         </ScrollView>

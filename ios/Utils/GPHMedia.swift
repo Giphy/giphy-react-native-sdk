@@ -10,12 +10,12 @@ extension GPHMedia {
       completion(nil)
       return
     }
-
+    
     GiphyCore.shared.gifByID(mediaId) { (response, error) in
       completion(response?.data)
     }
   }
-
+  
   func toRNValue(rendition: GPHRenditionType? = nil, fileType: GPHFileExtension? = nil) -> NSDictionary {
     var url: String? = self.url
     if rendition != nil || fileType != nil {
@@ -27,6 +27,13 @@ extension GPHMedia {
       "url": url as Any,
       "aspectRatio": self.aspectRatio,
       "isVideo": self.isVideo,
+      "source": self.toGPHJSON(),
     ]
+  }
+
+  private func toGPHJSON() -> GPHJSONObject {
+    guard let data = try? JSONEncoder().encode(self),
+          let rep = try? JSONSerialization.jsonObject(with: data) as? GPHJSONObject else { return [:] }
+    return rep
   }
 }
