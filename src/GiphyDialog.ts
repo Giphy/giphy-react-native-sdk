@@ -1,4 +1,6 @@
 import { NativeEventEmitter } from 'react-native'
+
+import { GiphyVideoManager } from './GiphyVideoManager'
 import { NativeGiphyDialog, IOSGiphyDialogConfig, AndroidGiphyDialogConfig } from './native/GiphyDialog'
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
@@ -18,6 +20,7 @@ export const GiphyDialog = new (class extends NativeEventEmitter {
   }
 
   show() {
+    GiphyVideoManager.pauseAll()
     NativeGiphyDialog.show()
   }
 
