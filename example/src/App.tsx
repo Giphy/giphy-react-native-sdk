@@ -18,6 +18,7 @@ import {
   GiphyDirection,
   GiphyGridView,
   GiphyMedia,
+  GiphyMediaType,
   GiphyMediaView,
   GiphyRendition,
   GiphyVideoView,
@@ -26,6 +27,7 @@ import {
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
+import { GIPHY_MEDIA_FIXTURE } from './fixtures'
 
 const styles = StyleSheet.create({
   container: {
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
   previewContainer: {
     backgroundColor: '#fff',
     maxHeight: 450,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
   },
   previewCell: {
     alignSelf: 'center',
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
-  const [medias, setMedias] = useState<GiphyMedia[]>([])
+  const [medias, setMedias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
     useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
@@ -145,6 +147,7 @@ export default function App() {
         <TextInput
           autoFocus={false}
           onFocus={() => setSearchVisible(true)}
+          onTouchEnd={() => setSearchVisible(true)}
           placeholder="Search..."
           style={styles.textInput}
           value={searchQuery}
@@ -162,7 +165,10 @@ export default function App() {
           />
           {searchVisible && (
             <GiphyGridView
-              content={GiphyContent.search({ searchQuery: searchQuery })}
+              content={GiphyContent.search({
+                searchQuery: searchQuery,
+                mediaType: GiphyMediaType.Video,
+              })}
               cellPadding={3}
               clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
               fixedSizeCells={false}
@@ -199,6 +205,7 @@ export default function App() {
               {media.isVideo ? (
                 <GiphyVideoView
                   media={media}
+                  muted={true}
                   playing={idx === 0}
                   style={{ aspectRatio: media.aspectRatio }}
                 />
