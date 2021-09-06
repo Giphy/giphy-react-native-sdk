@@ -177,3 +177,34 @@ public extension GPHContent {
     }
   }
 }
+
+public enum RNGPHVideoPlayerState: Int {
+  case unknown = 0
+  case readyToPlay = 3
+  case playing = 4
+  case paused = 5
+  
+  func toRNValue() -> Int {
+    return self.rawValue
+  }
+}
+
+public extension GPHVideoPlayerState {
+  func toRNValue() -> Int {
+    var rnState: RNGPHVideoPlayerState {
+      switch self {
+      case .readyToPlay:
+        return RNGPHVideoPlayerState.readyToPlay
+      case .playing:
+        return RNGPHVideoPlayerState.playing
+      case .paused:
+        return RNGPHVideoPlayerState.paused
+      case .unknown:
+        return RNGPHVideoPlayerState.unknown
+      default:
+        return RNGPHVideoPlayerState.unknown
+      }
+    }
+    return rnState.toRNValue()
+  }
+}

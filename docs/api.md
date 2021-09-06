@@ -174,11 +174,15 @@ GiphyMedia where the `isVideo` property is `true`.
 
 #### Props
 
-| Prop    | Description                                        | Type                                                                                                                                      | Default | Platform                        |
-|---------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
-| media   | Pass a GiphyMedia object to display content.       | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| muted   | Set to true or false to mute or unmute the player. | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| playing | Set to true or false to pause or play the media.   | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| Prop                   | Description                                                                                   | Type                                                                                                                                      | Default | Platform                        |
+|------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
+| media                  | Pass a GiphyMedia object to display content.                                                  | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| muted                  | Set to true or false to mute or unmute the player.                                            | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onError                | A callback function that will be called when an error occurs whilst attempting to play media. | `(e: NativeSyntheticEvent<{ description: string }>) => void`                                                                              | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onMute                 | A callback function that will be called when media is muted.                                  | `(e: NativeSyntheticEvent<{}>) => void`                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onPlaybackStateChanged | A callback function that will be called when playback state changes.                          | `(e: NativeSyntheticEvent<{ state: GiphyVideoViewPlaybackState }>) => void`                                                               | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onUnmute               | A callback function that will be called when media is unmuted.                                | `(e: NativeSyntheticEvent<{}>) => void`                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| playing                | Set to true or false to pause or play the media.                                              | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 #### Example
 
