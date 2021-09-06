@@ -18,7 +18,6 @@ class GiphyRNVideoView @JvmOverloads constructor(
 ) : GPHVideoPlayerView(context, attrs, defStyleAttr) {
   private var playing: Boolean? = null
   private var muted = false
-  private var playerListenerAdded = false
   private var rnStateSynchronized = false
 
   init {
@@ -81,10 +80,7 @@ class GiphyRNVideoView @JvmOverloads constructor(
 
   override fun prepare(media: Media, player: GPHVideoPlayer) {
     super.prepare(media, player)
-    if (!playerListenerAdded) {
-      videoPlayer?.addListener(playerListener)
-      playerListenerAdded = true
-    }
+    videoPlayer?.addListener(playerListener)
   }
 
   fun setMedia(rnMedia: ReadableMap?) {
@@ -114,9 +110,6 @@ class GiphyRNVideoView @JvmOverloads constructor(
 
   override fun onDestroy() {
     super.onDestroy()
-    if (playerListenerAdded) {
-      videoPlayer?.removeListener(playerListener)
-      playerListenerAdded = false
-    }
+    videoPlayer?.removeListener(playerListener)
   }
 }
