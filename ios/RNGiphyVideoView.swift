@@ -2,7 +2,13 @@ import UIKit
 import GiphyUISDK
 
 
-class RNGiphyVideoView: UIView {
+class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
+  //MARK: RN callbacks
+  @objc var onError: RCTDirectEventBlock?
+  @objc var onMute: RCTDirectEventBlock?
+  @objc var onPlaybackStateChanged: RCTDirectEventBlock?
+  @objc var onUnmute: RCTDirectEventBlock?
+  
   private var media: GPHMedia? {
     didSet { self.updateMedia() }
   }
@@ -17,6 +23,7 @@ class RNGiphyVideoView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    self.videoView.delegate = self
     self.setupView()
     self.updateMedia()
   }
@@ -43,7 +50,9 @@ class RNGiphyVideoView: UIView {
   }
   
   private func updateMedia() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async {[weak self] in
+      guard let self = self else { return }
+
       self.videoView.media = self.media
       self.updatePlaying()
       self.updateVolume()
@@ -51,7 +60,10 @@ class RNGiphyVideoView: UIView {
   }
   
   private func updateVolume() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self,
+            let _ = self.videoView.media else { return }
+      
       if (self.muted) {
         self.videoView.mute()
       } else {
@@ -61,7 +73,10 @@ class RNGiphyVideoView: UIView {
   }
   
   private func updatePlaying() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self,
+            let _ = self.videoView.media else { return }
+
       if (self.playing) {
         self.videoView.play()
       } else {
@@ -76,10 +91,29 @@ class RNGiphyVideoView: UIView {
   }
   
   @objc func setPlaying(_ value: Bool) -> Void {
+    guard self.playing != value else { return }
     self.playing = value
   }
   
   @objc func setMuted(_ value: Bool) -> Void {
+    guard self.muted != value else { return }
     self.muted = value
+  }
+  
+  //MARK: GPHVideoViewDelegate stubs
+  func playerDidFail(_ description: String?) {
+    self.onError?(["description": description ?? ""])
+  }
+  
+  func playerStateDidChange(_ state: GPHVideoPlayerState) {
+    self.onPlaybackStateChanged?(["state": state.toRNValue()])
+  }
+  
+  func muteDidChange(muted: Bool) {
+    if muted {
+      self.onMute?([:])
+    } else {
+      self.onUnmute?([:])
+    }
   }
 }

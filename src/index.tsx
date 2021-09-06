@@ -26,6 +26,7 @@ export type { GiphyMediaViewProps } from './GiphyMediaView'
 export { GiphyMediaView } from './GiphyMediaView'
 
 export type { GiphyVideoViewProps } from './GiphyVideoView'
+export { GiphyVideoViewPlaybackState } from './native/GiphyVideoView'
 export { GiphyVideoView } from './GiphyVideoView'
 
 export { GiphyVideoManager } from './GiphyVideoManager'
