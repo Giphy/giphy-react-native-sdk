@@ -2,6 +2,7 @@ import { EmitterSubscription, NativeEventEmitter } from 'react-native'
 
 import { makeGiphyMedia } from './giphyMedia'
 import { noop } from './utils/noop'
+import { GiphyVideoManager } from './GiphyVideoManager'
 import {
   AndroidGiphyDialogConfig,
   GiphyDialogEvent,
@@ -40,6 +41,7 @@ export const GiphyDialog = new (class extends NativeEventEmitter {
   }
 
   show() {
+    GiphyVideoManager.pauseAll()
     NativeGiphyDialog.show()
   }
 

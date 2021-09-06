@@ -30,6 +30,7 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 - [GiphyDialog](docs/api.md#giphydialog)
 - [GiphyMediaView](docs/api.md#giphymediaview)
 - [GiphyVideoView](docs/api.md#giphyvideoview)
+- [GiphyVideoManager](docs/api.md#giphyvideomanager)
 - [GiphyGridView](docs/api.md#giphygridview)
 - [GiphyContent](docs/api.md#giphycontent)
 

@@ -17,6 +17,7 @@ fun <R> readInstanceProperty(instance: Any, propertyName: String): R {
 
 fun getGifURL(media: Media, renditionType: RenditionType?): String? {
   val rendition = renditionType ?: RenditionType.downsized
-  val image = readInstanceProperty<Image>(media.images, rendition.name)
-  return image.gifUrl
+  val image = readInstanceProperty<Image>(media.images, rendition.name) ?: 
+                readInstanceProperty<Image>(media.images, RenditionType.original.name)
+  return image?.gifUrl
 }

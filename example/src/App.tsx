@@ -19,12 +19,14 @@ import {
   GiphyMedia,
   GiphyMediaView,
   GiphyRendition,
+  GiphyVideoManager,
   GiphyVideoView,
 } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
+import { GIPHY_MEDIA_FIXTURE } from './fixtures'
 
 const styles = StyleSheet.create({
   container: {
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
   previewContainer: {
     backgroundColor: '#fff',
     maxHeight: 450,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
   },
   previewCell: {
     alignSelf: 'center',
@@ -90,7 +92,7 @@ function useLatest<V>(value: V) {
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
-  const [medias, setMedias] = useState<GiphyMedia[]>([])
+  const [medias, setMedias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
     useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
@@ -103,6 +105,13 @@ export default function App() {
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
+
+  // Mute all clips when a user opens the settings dialog
+  useEffect(() => {
+    if (dialogSettingsVisible) {
+      GiphyVideoManager.muteAll()
+    }
+  }, [dialogSettingsVisible])
 
   const addMediaRef = useLatest(addMedia)
   useEffect(() => {
@@ -150,6 +159,7 @@ export default function App() {
         <TextInput
           autoFocus={false}
           onFocus={() => setSearchVisible(true)}
+          onTouchEnd={() => setSearchVisible(true)}
           placeholder="Search..."
           style={styles.textInput}
           value={searchQuery}
@@ -206,6 +216,7 @@ export default function App() {
                 <GiphyVideoView
                   autoPlay={true}
                   media={media}
+                  muted={true}
                   style={{ aspectRatio: media.aspectRatio }}
                   onError={(e) => console.error(e.nativeEvent.description)}
                   onPlaybackStateChanged={(e) =>
