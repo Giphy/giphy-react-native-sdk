@@ -4,12 +4,8 @@ import android.os.Handler
 import com.giphy.sdk.ui.views.GPHVideoPlayer
 
 object SharedVideoPlayer {
-  val gphPlayer: GPHVideoPlayer by lazy {
-    initialized = true
-    GPHVideoPlayer(null, repeatable = true)
-  }
-
-  private var initialized: Boolean = false
+  private val gphPlayerDelegate = lazy { GPHVideoPlayer(null, repeatable = true) }
+  val gphPlayer by gphPlayerDelegate
 
   private fun runInPlayerApplicationLooper(runnable: Runnable) {
     val applicationLooper = gphPlayer.player?.applicationLooper
@@ -19,7 +15,7 @@ object SharedVideoPlayer {
   }
 
   fun mute() {
-    if (initialized && gphPlayer.playerView != null) {
+    if (gphPlayerDelegate.isInitialized() && gphPlayer.playerView != null) {
       runInPlayerApplicationLooper {
         gphPlayer.setVolume(0f)
       }
@@ -27,7 +23,7 @@ object SharedVideoPlayer {
   }
 
   fun pause() {
-    if (initialized && gphPlayer.playerView != null) {
+    if (gphPlayerDelegate.isInitialized() && gphPlayer.playerView != null) {
       runInPlayerApplicationLooper {
         gphPlayer.onPause()
       }
