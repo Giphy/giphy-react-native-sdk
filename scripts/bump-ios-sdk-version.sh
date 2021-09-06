@@ -7,3 +7,5 @@ sed \
   -i '' \
   -E "s/(dependency[[:space:]]+\"Giphy\"[[:space:]]*,[[:space:]]*\"~>[[:space:]]*)([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+)(\")/\1$SDK_VERSION\3/" \
   ${SCRIPT_DIR}/../giphy-react-native-sdk.podspec
+
+yarn --cwd "$SCRIPT_DIR"/.. bootstrap
