@@ -21,7 +21,7 @@ class GiphyRNVideoView @JvmOverloads constructor(
   private var rnStateSynchronized = false
 
   init {
-    videoPlayer = SharedVideoPlayer.player
+    videoPlayer = SharedVideoPlayer.gphPlayer
   }
 
   private val playerListener: GPHPlayerStateListener = {
@@ -88,7 +88,7 @@ class GiphyRNVideoView @JvmOverloads constructor(
     GPHCore.gifById(mediaId) { result, _ ->
       val media = result?.data ?: return@gifById
       preloadFirstFrame(media)
-      SharedVideoPlayer.player.loadMedia(media, view = this)
+      SharedVideoPlayer.gphPlayer.loadMedia(media, view = this)
     }
   }
 

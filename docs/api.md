@@ -4,6 +4,7 @@
 - [GiphyDialog](#giphydialog)
 - [GiphyMediaView](#giphymediaview)
 - [GiphyVideoView](#giphyvideoview)
+- [GiphyVideoManager](#giphyvideomanager)
 - [GiphyGridView](#giphygridview)
 - [GiphyContent](#giphycontent)
 
@@ -300,6 +301,109 @@ export default function App() {
         >
           <GiphyVideoView
             media={media}
+            playing={true}
+            style={{ aspectRatio: media.aspectRatio }}
+          />
+        </ScrollView>
+      )}
+    </SafeAreaView>
+  )
+}
+```
+
+## GiphyVideoManager
+
+The module that allows you to control GiphyVideoView players.
+
+### </> muteAll: `muteAll() => void`
+
+Mute all GiphyVideoView players.
+
+### </> pauseAll: `pauseAll() => void`
+
+Pause all GiphyVideoView players.
+
+#### Example
+
+- **Mute all clips when a user opens a custom dialog**
+
+```typescript jsx
+import React, { useEffect, useState } from 'react'
+import { Button, SafeAreaView, ScrollView, Modal, Text } from 'react-native'
+import {
+  GiphyContentType,
+  GiphyDialog,
+  GiphyDialogEvent,
+  GiphyDialogMediaSelectEventHandler,
+  GiphyMedia,
+  GiphySDK,
+  GiphyVideoManager,
+  GiphyVideoView,
+} from '@giphy/react-native-sdk'
+
+// Configure API keys
+GiphySDK.configure({ apiKey: '*************' })
+
+GiphyDialog.configure({
+  mediaTypeConfig: [GiphyContentType.Clips],
+  showConfirmationScreen: true,
+})
+
+export default function App() {
+  const [media, setMedia] = useState<GiphyMedia | null>(null)
+  const [customDialogVisible, setCustomDialogVisible] = useState(false)
+
+  // Handling GIFs selection in GiphyDialog
+  useEffect(() => {
+    const handler: GiphyDialogMediaSelectEventHandler = (e) => {
+      setMedia(e.media)
+      GiphyDialog.hide()
+    }
+    const listener = GiphyDialog.addListener(
+      GiphyDialogEvent.MediaSelected,
+      handler
+    )
+    return () => {
+      listener.remove()
+    }
+  }, [])
+
+  const openCustomDialog = () => {
+    setCustomDialogVisible(true)
+    // Mute all clips when a user opens the custom dialog
+    GiphyVideoManager.muteAll()
+  }
+
+  return (
+    <SafeAreaView>
+      <Button title="Show Giphy Dialog" onPress={() => GiphyDialog.show()} />
+      <Button title="Show Custom Dialog" onPress={openCustomDialog} />
+      <Modal
+        visible={customDialogVisible}
+        onRequestClose={() => setCustomDialogVisible(false)}
+      >
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          mattis est eget malesuada malesuada. Cras ullamcorper sem ut erat
+          tempor, sed eleifend nisl lacinia. Etiam a eleifend tortor. Donec
+          iaculis tincidunt risus eget porttitor. Nullam sed mauris felis. Nam
+          ullamcorper purus a tellus blandit dictum. Praesent gravida purus ut
+          nisl consectetur, a fermentum leo sagittis.
+        </Text>
+        <Button title="Close" onPress={() => setCustomDialogVisible(false)} />
+      </Modal>
+      {media && (
+        <ScrollView
+          style={{
+            aspectRatio: media.aspectRatio,
+            maxHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <GiphyVideoView
+            media={media}
+            muted={false}
             playing={true}
             style={{ aspectRatio: media.aspectRatio }}
           />

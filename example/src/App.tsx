@@ -20,6 +20,7 @@ import {
   GiphyMediaType,
   GiphyMediaView,
   GiphyRendition,
+  GiphyVideoManager,
   GiphyVideoView,
 } from '@giphy/react-native-sdk'
 
@@ -105,6 +106,13 @@ export default function App() {
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
+
+  // Mute all clips when a user opens the settings dialog
+  useEffect(() => {
+    if (dialogSettingsVisible) {
+      GiphyVideoManager.muteAll()
+    }
+  }, [dialogSettingsVisible])
 
   const addMediaRef = useLatest(addMedia)
   useEffect(() => {
