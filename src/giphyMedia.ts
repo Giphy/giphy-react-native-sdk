@@ -118,11 +118,11 @@ function normalizeVideo(video?: RawVideo): GiphyVideo | undefined {
 function normalizeMediaSource(data: RawGiphyMediaSource): GiphyMediaSource {
   const newData = {
     ...data,
-    id: String(data.id),
-    images: normalizeAssets(data.images),
-    tags: (data.tags || []).map(normalizeTag),
-    user: normalizeUser(data.user),
-    video: normalizeVideo(data.video),
+    id: String(data?.id),
+    images: normalizeAssets(data?.images),
+    tags: (data?.tags || []).map(normalizeTag),
+    user: normalizeUser(data?.user),
+    video: normalizeVideo(data?.video),
   } as GiphyMediaSource
 
   BOOL_PROPS.forEach(propToBool(newData))
