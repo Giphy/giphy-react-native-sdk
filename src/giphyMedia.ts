@@ -1,10 +1,13 @@
 import type { Merge } from 'type-fest'
 import type { IGif, IImages, IUser } from '@giphy/js-types'
 
-export type GiphyMediaSource = IGif
-
-export type GiphyMedia = {
+export type GiphyMediaID = {
   id: string
+}
+
+export type GiphyMediaSource = GiphyMediaID & IGif
+
+export type GiphyMedia = GiphyMediaID & {
   url: string
   aspectRatio: number
   isVideo: boolean
@@ -126,6 +129,7 @@ function normalizeMediaSource(data: RawGiphyMediaSource): GiphyMediaSource {
   } as GiphyMediaSource
 
   BOOL_PROPS.forEach(propToBool(newData))
+  delete (newData.images as any)?.mediaId
 
   return newData
 }

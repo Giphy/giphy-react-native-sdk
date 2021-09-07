@@ -3,14 +3,13 @@ package com.giphyreactnativesdk
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.react.bridge.*
 import com.giphy.sdk.core.models.Media
-import com.giphy.sdk.core.models.enums.MediaType
 import com.giphy.sdk.ui.GPHContentType
 import com.giphy.sdk.ui.GPHSettings
-import com.giphy.sdk.ui.utils.aspectRatio
 import com.giphy.sdk.ui.views.GiphyDialogFragment
 
 
-class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext) {
+class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
 
   companion object {
     val TAG = GiphyReactNativeDialogModule::class.java.simpleName
@@ -24,18 +23,14 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
   }
 
   private fun getGifSelectionListener() = object : GiphyDialogFragment.GifSelectionListener {
-    override fun onGifSelected(media: Media, searchTerm: String?, selectedContentType: GPHContentType) {
-      val mediaMap = Arguments.createMap()
-      mediaMap.putString("id", media.id)
-      mediaMap.putString("url", getGifURL(media, settings.renditionType))
-      mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
-      mediaMap.putBoolean("isVideo", media.type == MediaType.video)
-
+    override fun onGifSelected(
+      media: Media,
+      searchTerm: String?,
+      selectedContentType: GPHContentType
+    ) {
       val params = Arguments.createMap()
-      params.putMap("media", mediaMap)
-
+      params.putMap("media", mediaToRNMap(media, settings.renditionType))
       emitModuleEvent(reactApplicationContext, GiphyDialogEvents.MediaSelected.rnEvent, params)
-
     }
 
     override fun onDismissed(selectedContentType: GPHContentType) {
@@ -55,7 +50,7 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
   }
 
   @ReactMethod
-  fun show(){
+  fun show() {
     initializeDialog()
 
     val compatActivity: AppCompatActivity = currentActivity as AppCompatActivity
@@ -66,7 +61,7 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext): React
   }
 
   @ReactMethod
-  fun hide(){
+  fun hide() {
     gifsDialog!!.dismiss()
   }
 }
