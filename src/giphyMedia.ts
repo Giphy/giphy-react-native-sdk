@@ -5,13 +5,13 @@ export type GiphyMediaID = {
   id: string
 }
 
-export type GiphyMediaSource = GiphyMediaID & IGif
+export type GiphyMediaData = GiphyMediaID & IGif
 
 export type GiphyMedia = GiphyMediaID & {
   url: string
   aspectRatio: number
   isVideo: boolean
-  source: GiphyMediaSource
+  data: GiphyMediaData
 }
 
 type GiphyVideo = Exclude<IGif['video'], undefined>
@@ -38,8 +38,8 @@ type RawUser = Merge<
 
 type RawVideo = Merge<GiphyVideo, { assets?: RawAssets }>
 
-export type RawGiphyMediaSource = Merge<
-  GiphyMediaSource,
+export type RawGiphyMediaData = Merge<
+  GiphyMediaData,
   {
     images?: RawAssets
     is_anonymous?: any
@@ -58,7 +58,7 @@ export type RawGiphyMediaSource = Merge<
   }
 >
 
-export type RawGiphyMedia = Merge<GiphyMedia, { source: RawGiphyMediaSource }>
+export type RawGiphyMedia = Merge<GiphyMedia, { data: RawGiphyMediaData }>
 
 const BOOL_PROPS = [
   'is_anonymous',
@@ -118,7 +118,7 @@ function normalizeVideo(video?: RawVideo): GiphyVideo | undefined {
   } as GiphyVideo
 }
 
-function normalizeMediaSource(data: RawGiphyMediaSource): GiphyMediaSource {
+function normalizeMediaData(data: RawGiphyMediaData): GiphyMediaData {
   const newData = {
     ...data,
     id: String(data?.id),
@@ -126,7 +126,7 @@ function normalizeMediaSource(data: RawGiphyMediaSource): GiphyMediaSource {
     tags: (data?.tags || []).map(normalizeTag),
     user: normalizeUser(data?.user),
     video: normalizeVideo(data?.video),
-  } as GiphyMediaSource
+  } as GiphyMediaData
 
   BOOL_PROPS.forEach(propToBool(newData))
   delete (newData.images as any)?.mediaId
@@ -137,6 +137,6 @@ function normalizeMediaSource(data: RawGiphyMediaSource): GiphyMediaSource {
 export function makeGiphyMedia(rawMedia: RawGiphyMedia): GiphyMedia {
   return {
     ...rawMedia,
-    source: normalizeMediaSource(rawMedia.source),
+    data: normalizeMediaData(rawMedia.data),
   }
 }

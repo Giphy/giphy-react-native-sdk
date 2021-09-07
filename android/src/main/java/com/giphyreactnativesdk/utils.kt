@@ -30,13 +30,13 @@ fun getGifURL(media: Media, renditionType: RenditionType?): String? {
 fun mediaToRNMap(media: Media, renditionType: RenditionType?): WritableMap {
   val gson = Gson()
   val mediaJson = gson.toJsonTree(media)
-  val mediaMap = Arguments.createMap()
+  val output = Arguments.createMap()
 
-  mediaMap.putString("id", media.id)
-  mediaMap.putString("url", getGifURL(media, renditionType))
-  mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
-  mediaMap.putBoolean("isVideo", media.type == MediaType.video)
-  mediaMap.putMap("source", jsonObjectToRNMap(mediaJson))
+  output.putString("id", media.id)
+  output.putString("url", getGifURL(media, renditionType))
+  output.putDouble("aspectRatio", media.aspectRatio.toDouble())
+  output.putBoolean("isVideo", media.type == MediaType.video)
+  output.putMap("data", jsonObjectToRNMap(mediaJson))
 
-  return mediaMap
+  return output
 }
