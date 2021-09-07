@@ -16,6 +16,9 @@ class GiphyRNVideoView @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
 ) : GPHVideoPlayerView(context, attrs, defStyleAttr) {
+  private var autoPlay: Boolean = false
+
+  // TODO v2 remove
   private var playing: Boolean? = null
   private var muted = false
   private var rnStateSynchronized = false
@@ -52,6 +55,7 @@ class GiphyRNVideoView @JvmOverloads constructor(
     rnStateSynchronized = true
   }
 
+  // TODO v2 remove
   private fun updatePlaying() {
     if (playing == null) {
       return
@@ -60,9 +64,11 @@ class GiphyRNVideoView @JvmOverloads constructor(
     if (playing == true) {
       if (videoPlayer?.isPlaying == false) {
         onResume()
+        videoPlayer?.onResume()
       }
     } else if (isViewPlayerActive() && videoPlayer?.isPlaying == true) {
       onPause()
+      videoPlayer?.onPause()
     }
   }
 
@@ -75,7 +81,9 @@ class GiphyRNVideoView @JvmOverloads constructor(
   override fun didBecomeActiveByClick() {
     super.didBecomeActiveByClick()
     muted = false
-    playing = true
+    if (playing != null) {
+      playing = true
+    }
   }
 
   override fun prepare(media: Media, player: GPHVideoPlayer) {
@@ -88,7 +96,7 @@ class GiphyRNVideoView @JvmOverloads constructor(
     GPHCore.gifById(mediaId) { result, _ ->
       val media = result?.data ?: return@gifById
       preloadFirstFrame(media)
-      SharedVideoPlayer.gphPlayer.loadMedia(media, view = this)
+      SharedVideoPlayer.gphPlayer.loadMedia(media, view = this, autoPlay = this.autoPlay)
     }
   }
 
@@ -100,12 +108,20 @@ class GiphyRNVideoView @JvmOverloads constructor(
     updateVolume()
   }
 
+  // TODO v2 remove
   fun setPlaying(rnPlaying: Boolean?) {
     if (rnPlaying == playing) {
       return
     }
     playing = rnPlaying ?: false
     updatePlaying()
+  }
+
+  fun setAutoPlay(value: Boolean?) {
+    if (value == autoPlay) {
+      return
+    }
+    autoPlay = value ?: false
   }
 
   override fun onDestroy() {

@@ -21,9 +21,15 @@ class GiphyVideoViewManager(): SimpleViewManager<GiphyRNVideoView>() {
     videoView.setMuted(rnMuted)
   }
 
+  // TODO v2 remove
   @ReactProp(name="playing")
   fun setPlaying(videoView: GiphyRNVideoView, rnPlaying: Boolean?) {
     videoView.setPlaying(rnPlaying)
+  }
+
+  @ReactProp(name="autoPlay")
+  fun setAutoPlay(videoView: GiphyRNVideoView, autoPlay: Boolean?) {
+    videoView.setAutoPlay(autoPlay)
   }
 
   override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNVideoView {
