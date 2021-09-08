@@ -1,38 +1,107 @@
 package com.giphyreactnativesdk
 
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
+import com.facebook.react.uimanager.events.RCTEventEmitter
 
 
-class GiphyVideoViewManager(): SimpleViewManager<GiphyRNVideoView>() {
+class GiphyVideoViewManager() : SimpleViewManager<GiphyRNVideoView>() {
   override fun getName(): String {
     return "GiphyReactNativeVideoView"
   }
 
-  @ReactProp(name="media")
+  override fun getExportedCustomDirectEventTypeConstants(): Map<String, Any>? {
+    return MapBuilder.builder<String, Any>()
+      .put(
+        "onError",
+        MapBuilder.of("registrationName", "onError")
+      )
+      .put(
+        "onMute",
+        MapBuilder.of("registrationName", "onMute")
+      )
+      .put(
+        "onPlaybackStateChanged",
+        MapBuilder.of("registrationName", "onPlaybackStateChanged")
+      ).put(
+        "onUnmute",
+        MapBuilder.of("registrationName", "onUnmute")
+      )
+      .build()
+  }
+
+  private fun getListener(
+    view: GiphyRNVideoView,
+    reactContext: ThemedReactContext
+  ): GiphyRNVideoViewListener {
+    return object : GiphyRNVideoViewListener {
+      override fun onError(details: String) {
+        val params = Arguments.createMap()
+        params.putString("description", details)
+        emitEvent(reactContext, view, "onError", params)
+      }
+
+      override fun onMute() {
+        emitEvent(reactContext, view, "onMute", null)
+      }
+
+      override fun onPlaybackStateChanged(state: GiphyRNVideoPlaybackState) {
+        val params = Arguments.createMap()
+        params.putInt("state", state.code)
+        emitEvent(reactContext, view, "onPlaybackStateChanged", params)
+      }
+
+      override fun onUnmute() {
+        emitEvent(reactContext, view, "onUnmute", null)
+      }
+    }
+  }
+
+  fun emitEvent(context: ReactContext, view: GiphyRNVideoView, name: String, params: WritableMap?) {
+    context.getJSModule(RCTEventEmitter::class.java).receiveEvent(
+      view.id,
+      name,
+      params
+    )
+  }
+
+  @ReactProp(name = "media")
   fun setMedia(videoView: GiphyRNVideoView, rnMedia: ReadableMap?) {
     videoView.setMedia(rnMedia)
   }
 
-  @ReactProp(name="muted")
-  fun setMuted(videoView: GiphyRNVideoView, rnMuted: Boolean?){
+  @ReactProp(name = "muted")
+  fun setMuted(videoView: GiphyRNVideoView, rnMuted: Boolean?) {
     videoView.setMuted(rnMuted)
   }
 
   // TODO v2 remove
-  @ReactProp(name="playing")
+  @ReactProp(name = "playing")
   fun setPlaying(videoView: GiphyRNVideoView, rnPlaying: Boolean?) {
     videoView.setPlaying(rnPlaying)
   }
 
-  @ReactProp(name="autoPlay")
+  @ReactProp(name = "autoPlay")
   fun setAutoPlay(videoView: GiphyRNVideoView, autoPlay: Boolean?) {
     videoView.setAutoPlay(autoPlay)
   }
 
+  override fun onDropViewInstance(view: GiphyRNVideoView) {
+    super.onDropViewInstance(view)
+    view.onDestroy()
+  }
+
   override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNVideoView {
-    return GiphyRNVideoView(reactContext)
+    val view = GiphyRNVideoView(reactContext)
+
+    view.listener = getListener(view, reactContext)
+
+    return view
   }
 }

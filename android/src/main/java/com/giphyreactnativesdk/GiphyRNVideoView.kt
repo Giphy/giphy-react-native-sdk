@@ -11,15 +11,29 @@ import com.giphy.sdk.ui.views.GPHVideoPlayerState
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
 import timber.log.Timber
 
+enum class GiphyRNVideoPlaybackState(val code: Int) {
+  Unknown(0),
+  ReadyToPlay(3),
+  Playing(4),
+  Paused(5),
+}
+
+interface GiphyRNVideoViewListener {
+  fun onError(details: String)
+  fun onMute()
+  fun onPlaybackStateChanged(state: GiphyRNVideoPlaybackState)
+  fun onUnmute()
+}
 
 class GiphyRNVideoView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
 ) : GPHVideoPlayerView(context, attrs, defStyleAttr) {
+  var listener: GiphyRNVideoViewListener? = null
   private var autoPlay: Boolean = false
 
-  // TODO v2 remove
+  // TODO v2 remove playing
   private var playing: Boolean? = null
   private var muted = false
   private var rnStateSynchronized = false
@@ -33,9 +47,28 @@ class GiphyRNVideoView @JvmOverloads constructor(
       when (it) {
         is GPHVideoPlayerState.Ready -> {
           syncRNState()
+          listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.ReadyToPlay)
         }
+        is GPHVideoPlayerState.Playing -> {
+          listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.Playing)
+        }
+        is GPHVideoPlayerState.Error -> {
+          listener?.onError(it.details)
+        }
+        is GPHVideoPlayerState.MuteChanged -> {
+          if (it.muted) {
+            listener?.onUnmute()
+          } else {
+            listener?.onMute()
+          }
+        }
+        is GPHVideoPlayerState.Unknown -> listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.Unknown)
         else -> {
         }
+      }
+
+      if (videoPlayer?.paused == true) {
+        listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.Paused)
       }
     } else {
       rnStateSynchronized = false
@@ -74,8 +107,14 @@ class GiphyRNVideoView @JvmOverloads constructor(
   }
 
   private fun updateVolume() {
-    if (isViewPlayerActive()) {
-      videoPlayer?.setVolume(if (muted) 0f else 1f)
+    if (!isViewPlayerActive()) {
+      return
+    }
+
+    if (muted) {
+      if (videoPlayer?.getVolume() != 0f) videoPlayer?.setVolume(0f)
+    } else {
+      if (videoPlayer?.getVolume() != 1f) videoPlayer?.setVolume(1f)
     }
   }
 
@@ -130,6 +169,9 @@ class GiphyRNVideoView @JvmOverloads constructor(
 
   override fun onDestroy() {
     super.onDestroy()
+    if (isViewPlayerActive()) {
+      videoPlayer?.onPause()
+    }
     videoPlayer?.removeListener(playerListener)
   }
 }
