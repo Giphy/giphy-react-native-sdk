@@ -12,7 +12,6 @@ import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.core.models.enums.MediaType
 import com.giphy.sdk.core.models.enums.RenditionType
-import com.giphy.sdk.ui.utils.aspectRatio
 import com.giphy.sdk.ui.views.GPHGridCallback
 import com.giphy.sdk.ui.views.GPHSearchGridCallback
 import com.giphy.sdk.ui.views.GifView
@@ -64,16 +63,10 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
       }
 
       override fun didSelectMedia(media: Media) {
-        val isVideo = media.type == MediaType.video
-        val mediaMap = Arguments.createMap()
-        mediaMap.putString("id", media.id)
-        mediaMap.putString(
-          "url", getGifURL(media, if (isVideo) _clipsPreviewRenditionType else _renditionType)
-        )
-        mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
-        mediaMap.putBoolean("isVideo", isVideo)
-
         val params = Arguments.createMap()
+        val isVideo = media.type == MediaType.video
+        val mediaRenditionType = if (isVideo) _clipsPreviewRenditionType else _renditionType
+        val mediaMap = mediaToRNMap(media, mediaRenditionType)
         params.putMap("media", mediaMap)
 
         emitEvent(reactContext, view, "onMediaSelect", params)

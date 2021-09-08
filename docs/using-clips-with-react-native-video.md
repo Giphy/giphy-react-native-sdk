@@ -35,8 +35,8 @@ const MAX_VIDEO_HEIGHT = 400
 
 // Get the URL of the best video for a specific height
 function getBestVideoUrl(media: GiphyMedia) {
-  const width = getGifWidth(media.source, MAX_VIDEO_HEIGHT)
-  const bestVideo = getBestVideo(media.source.video, width, MAX_VIDEO_HEIGHT)
+  const width = getGifWidth(media.data, MAX_VIDEO_HEIGHT)
+  const bestVideo = getBestVideo(media.data.video, width, MAX_VIDEO_HEIGHT)
   return bestVideo?.url
 }
 
@@ -107,8 +107,8 @@ const MAX_VIDEO_HEIGHT = 400
 
 // Get the URL of the best video for a specific height
 function getBestVideoUrl(media: GiphyMedia) {
-  const width = getGifWidth(media.source, MAX_VIDEO_HEIGHT)
-  const bestVideo = getBestVideo(media.source.video, width, MAX_VIDEO_HEIGHT)
+  const width = getGifWidth(media.data, MAX_VIDEO_HEIGHT)
+  const bestVideo = getBestVideo(media.data.video, width, MAX_VIDEO_HEIGHT)
   return bestVideo?.url
 }
 

@@ -36,4 +36,4 @@ export { GiphyContent } from './GiphyContent'
 export type { GiphyGridViewProps } from './GiphyGridView'
 export { GiphyGridView } from './GiphyGridView'
 
-export type { GiphyMedia, GiphyMediaSource } from './giphyMedia'
+export type { GiphyMedia, GiphyMediaID, GiphyMediaData } from './giphyMedia'

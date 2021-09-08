@@ -1,6 +1,6 @@
 import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
 
-import type { GiphyMedia } from '../giphyMedia'
+import type { GiphyMediaID } from '../giphyMedia'
 
 export enum GiphyVideoViewPlaybackState {
   Unknown = 0,
@@ -12,7 +12,7 @@ export enum GiphyVideoViewPlaybackState {
 // TODO v2 remove `playing`
 export type NativeGiphyVideoViewProps = ViewProps & {
   autoPlay?: boolean
-  media?: GiphyMedia
+  media?: GiphyMediaID
   muted?: boolean
   /**
    * @deprecated will be removed in v2, please use autoPlay instead
