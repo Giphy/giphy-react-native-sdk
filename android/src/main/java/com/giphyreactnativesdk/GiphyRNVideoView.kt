@@ -9,6 +9,7 @@ import com.giphy.sdk.ui.views.GPHPlayerStateListener
 import com.giphy.sdk.ui.views.GPHVideoPlayer
 import com.giphy.sdk.ui.views.GPHVideoPlayerState
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
+import timber.log.Timber
 
 
 class GiphyRNVideoView @JvmOverloads constructor(
@@ -93,10 +94,13 @@ class GiphyRNVideoView @JvmOverloads constructor(
 
   fun setMedia(rnMedia: ReadableMap?) {
     val mediaId = rnMedia?.getString("id") ?: return
-    GPHCore.gifById(mediaId) { result, _ ->
+    GPHCore.gifById(mediaId) { result, e ->
       val media = result?.data ?: return@gifById
       preloadFirstFrame(media)
       SharedVideoPlayer.gphPlayer.loadMedia(media, view = this, autoPlay = this.autoPlay)
+      e?.let {
+        Timber.d("Error while fetching GIF: %s", e.localizedMessage)
+      }
     }
   }
 
