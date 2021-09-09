@@ -17,6 +17,7 @@ import {
   GiphyDirection,
   GiphyGridView,
   GiphyMedia,
+  GiphyMediaType,
   GiphyMediaView,
   GiphyRendition,
   GiphyVideoManager,
@@ -177,13 +178,14 @@ export default function App() {
           />
           {searchVisible && (
             <GiphyGridView
-              content={GiphyContent.search({ searchQuery: searchQuery })}
+              content={GiphyContent.search({ searchQuery: searchQuery, mediaType: GiphyMediaType.Sticker })}
               cellPadding={3}
               clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
               fixedSizeCells={false}
               orientation={GiphyDirection.Vertical}
               renditionType={GiphyRendition.FixedWidth}
               spanCount={1}
+              showCheckeredBackground={false}
               style={styles.giphyGridView}
               onContentUpdate={(e) =>
                 console.log(

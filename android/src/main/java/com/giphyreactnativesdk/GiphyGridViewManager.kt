@@ -130,6 +130,11 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
     view.setClipsPreviewRenditionType(value)
   }
 
+  @ReactProp(name = "showCheckeredBackground")
+  fun setShowCheckeredBackground(view: GiphyRNGridView, value: Boolean?) {
+    view.setShowCheckeredBackground(value)
+  }
+
   override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNGridView {
     val view = GiphyRNGridView(reactContext)
 

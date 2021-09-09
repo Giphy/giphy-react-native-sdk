@@ -14,6 +14,7 @@ export type NativeGiphyGridViewProps = ViewProps & {
   orientation?: GiphyDirection
   renditionType?: GiphyRendition
   spanCount?: number
+  showCheckeredBackground?: boolean
 }
 
 export const NativeGiphyGridView = requireNativeComponent<NativeGiphyGridViewProps>('GiphyReactNativeGridView')
