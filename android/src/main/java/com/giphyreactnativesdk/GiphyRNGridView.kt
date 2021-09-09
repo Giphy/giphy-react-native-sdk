@@ -100,4 +100,8 @@ class GiphyRNGridView @JvmOverloads constructor(
   fun setClipsPreviewRenditionType(value: String?) {
     clipsPreviewRenditionType = renditionByName(value) ?: DEFAULT_RENDITION_TYPE
   }
+
+  fun setShowCheckeredBackground(value: Boolean?){
+    gridView.showCheckeredBackground = value ?: false
+  }
 }
