@@ -178,7 +178,10 @@ export default function App() {
           />
           {searchVisible && (
             <GiphyGridView
-              content={GiphyContent.search({ searchQuery: searchQuery, mediaType: GiphyMediaType.Sticker })}
+              content={GiphyContent.search({
+                searchQuery: searchQuery,
+                mediaType: GiphyMediaType.Sticker,
+              })}
               cellPadding={3}
               clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
               fixedSizeCells={false}
