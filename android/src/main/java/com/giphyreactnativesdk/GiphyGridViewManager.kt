@@ -12,16 +12,12 @@ import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.core.models.enums.MediaType
 import com.giphy.sdk.core.models.enums.RenditionType
-import com.giphy.sdk.ui.GPHRequestType
-import com.giphy.sdk.ui.pagination.GPHContent
-import com.giphy.sdk.ui.utils.aspectRatio
 import com.giphy.sdk.ui.views.GPHGridCallback
 import com.giphy.sdk.ui.views.GPHSearchGridCallback
 import com.giphy.sdk.ui.views.GifView
-import com.giphy.sdk.ui.views.GiphyGridView
 
 
-class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
+class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
   val REACT_CLASS = "GiphyReactNativeGridView"
   private var _renditionType = RenditionType.downsized
   private var _clipsPreviewRenditionType = RenditionType.downsized
@@ -47,7 +43,7 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
       .build()
   }
 
-  fun emitEvent(context: ReactContext, view: GiphyGridView, name: String, params: WritableMap) {
+  fun emitEvent(context: ReactContext, view: GiphyRNGridView, name: String, params: WritableMap) {
     context.getJSModule(RCTEventEmitter::class.java).receiveEvent(
       view.id,
       name,
@@ -55,8 +51,11 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
     )
   }
 
-  private fun getGridCallback(view: GiphyGridView, reactContext: ThemedReactContext): GPHGridCallback? {
-    return object: GPHGridCallback {
+  private fun getGridCallback(
+    view: GiphyRNGridView,
+    reactContext: ThemedReactContext
+  ): GPHGridCallback? {
+    return object : GPHGridCallback {
       override fun contentDidUpdate(resultCount: Int) {
         val params = Arguments.createMap()
         params.putInt("resultCount", resultCount)
@@ -64,16 +63,10 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
       }
 
       override fun didSelectMedia(media: Media) {
-        val isVideo = media.type == MediaType.video
-        val mediaMap = Arguments.createMap()
-        mediaMap.putString("id", media.id)
-        mediaMap.putString(
-          "url", getGifURL(media, if (isVideo) _clipsPreviewRenditionType else _renditionType)
-        )
-        mediaMap.putDouble("aspectRatio", media.aspectRatio.toDouble())
-        mediaMap.putBoolean("isVideo", isVideo)
-
         val params = Arguments.createMap()
+        val isVideo = media.type == MediaType.video
+        val mediaRenditionType = if (isVideo) _clipsPreviewRenditionType else _renditionType
+        val mediaMap = mediaToRNMap(media, mediaRenditionType)
         params.putMap("media", mediaMap)
 
         emitEvent(reactContext, view, "onMediaSelect", params)
@@ -81,8 +74,11 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
     }
   }
 
-  fun getSearchGridCallback(view: GiphyGridView, reactContext: ThemedReactContext): GPHSearchGridCallback? {
-    return object: GPHSearchGridCallback {
+  fun getSearchGridCallback(
+    view: GiphyRNGridView,
+    reactContext: ThemedReactContext
+  ): GPHSearchGridCallback? {
+    return object : GPHSearchGridCallback {
       override fun didTapUsername(username: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
       }
@@ -99,70 +95,51 @@ class GiphyGridViewManager(): SimpleViewManager<GiphyGridView>() {
     }
   }
 
-  @ReactProp(name="content")
-  fun setContent(view: GiphyGridView, value: ReadableMap) {
-    val content = GPHContent()
-    val query = value.getString("searchQuery")
-    val requestType = value.getString("requestType")
-    val mediaType = value.getString("mediaType")
-
-    if (query != null) {
-      content.searchQuery = query
-    }
-
-    if (requestType != null) {
-      content.requestType = GPHRequestType.values().firstOrNull {it.name == requestType}
-        ?: GPHRequestType.search
-    }
-
-    if (mediaType != null){
-      content.mediaType = MediaType.values().firstOrNull {it.name == mediaType} ?: MediaType.gif
-    }
-
-    view.content = content
+  @ReactProp(name = "content")
+  fun setContent(view: GiphyRNGridView, value: ReadableMap?) {
+    view.setContent(value)
   }
 
-  @ReactProp(name="cellPadding")
-  fun setCellPadding(view: GiphyGridView, value: Int?) {
-    if (value != null) {
-      view.cellPadding
-    }
+  @ReactProp(name = "cellPadding")
+  fun setCellPadding(view: GiphyRNGridView, value: Int?) {
+    view.setCellPadding(value)
   }
 
-  @ReactProp(name="fixedSizeCells")
-  fun setFixedSizeCells(view: GiphyGridView, value: Boolean){
-    view.fixedSizeCells = value
+  @ReactProp(name = "fixedSizeCells")
+  fun setFixedSizeCells(view: GiphyRNGridView, value: Boolean?) {
+    view.setFixedSizeCells(value)
   }
 
-  @ReactProp(name="orientation")
-  fun setOrientation(view: GiphyGridView, value: String){
-    view.direction = when(value) {
-      "horizontal" -> GiphyGridView.HORIZONTAL
-      "vertical" -> GiphyGridView.VERTICAL
-      else -> GiphyGridView.VERTICAL
-    }
+  @ReactProp(name = "orientation")
+  fun setOrientation(view: GiphyRNGridView, value: String?) {
+    view.setOrientation(value)
   }
 
-  @ReactProp(name="spanCount")
-  fun setSpanCount(view: GiphyGridView, value: Int) {
-    view.spanCount = value
+  @ReactProp(name = "spanCount")
+  fun setSpanCount(view: GiphyRNGridView, value: Int?) {
+    view.setSpanCount(value)
   }
 
-  @ReactProp(name="renditionType")
-  fun setRenditionType(view: GiphyGridView, value: String) {
-    _renditionType = renditionByName(value) ?: RenditionType.downsized
+  @ReactProp(name = "renditionType")
+  fun setRenditionType(view: GiphyRNGridView, value: String?) {
+    view.setRenditionType(value)
   }
 
-  @ReactProp(name="clipsPreviewRenditionType")
-  fun setClipsPreviewRenditionType(view: GiphyGridView, value: String) {
-    _clipsPreviewRenditionType = renditionByName(value) ?: RenditionType.downsized
+  @ReactProp(name = "clipsPreviewRenditionType")
+  fun setClipsPreviewRenditionType(view: GiphyRNGridView, value: String?) {
+    view.setClipsPreviewRenditionType(value)
   }
 
-  override fun createViewInstance(reactContext: ThemedReactContext): GiphyGridView {
-    val view = GiphyGridView(reactContext)
+  @ReactProp(name = "showCheckeredBackground")
+  fun setShowCheckeredBackground(view: GiphyRNGridView, value: Boolean?) {
+    view.setShowCheckeredBackground(value)
+  }
 
-    view.callback = getGridCallback(view, reactContext)
-    view.searchCallback = getSearchGridCallback(view, reactContext)
+  override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNGridView {
+    val view = GiphyRNGridView(reactContext)
+
+    view.gridView.callback = getGridCallback(view, reactContext)
+    view.gridView.searchCallback = getSearchGridCallback(view, reactContext)
 
     return view
   }

@@ -1,58 +1,107 @@
 package com.giphyreactnativesdk
 
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
-import com.giphy.sdk.core.GPHCore
-import com.giphy.sdk.core.models.Media
-import com.giphy.sdk.ui.views.GPHVideoPlayer
-import com.giphy.sdk.ui.views.GPHVideoPlayerView
+import com.facebook.react.uimanager.events.RCTEventEmitter
 
-class GiphyVideoViewManager(): SimpleViewManager<GPHVideoPlayerView>() {
+
+class GiphyVideoViewManager() : SimpleViewManager<GiphyRNVideoView>() {
   override fun getName(): String {
     return "GiphyReactNativeVideoView"
   }
 
-  private var media: Media? = null
-  private var player: GPHVideoPlayer? = null
-  private var playing = false
+  override fun getExportedCustomDirectEventTypeConstants(): Map<String, Any>? {
+    return MapBuilder.builder<String, Any>()
+      .put(
+        "onError",
+        MapBuilder.of("registrationName", "onError")
+      )
+      .put(
+        "onMute",
+        MapBuilder.of("registrationName", "onMute")
+      )
+      .put(
+        "onPlaybackStateChanged",
+        MapBuilder.of("registrationName", "onPlaybackStateChanged")
+      ).put(
+        "onUnmute",
+        MapBuilder.of("registrationName", "onUnmute")
+      )
+      .build()
+  }
 
-  @ReactProp(name="media")
-  fun setMedia(videoView: GPHVideoPlayerView, rnMedia: ReadableMap) {
-    val mediaId = rnMedia.getString("id")
-    val aspectRatio = rnMedia.getDouble("aspectRatio")
+  private fun getListener(
+    view: GiphyRNVideoView,
+    reactContext: ThemedReactContext
+  ): GiphyRNVideoViewListener {
+    return object : GiphyRNVideoViewListener {
+      override fun onError(details: String) {
+        val params = Arguments.createMap()
+        params.putString("description", details)
+        emitEvent(reactContext, view, "onError", params)
+      }
 
-    if (mediaId != null) {
-      GPHCore.gifById(mediaId) { result, e ->
-        media = result?.data
-        if (media != null) {               
-          videoView.preloadFirstFrame(media!!)
-          if (player == null) {
-            player = GPHVideoPlayer(null, repeatable = true)
-          }
-          player?.loadMedia(media!!, view = videoView)
-          playing = true
-        }
+      override fun onMute() {
+        emitEvent(reactContext, view, "onMute", null)
+      }
+
+      override fun onPlaybackStateChanged(state: GiphyRNVideoPlaybackState) {
+        val params = Arguments.createMap()
+        params.putInt("state", state.code)
+        emitEvent(reactContext, view, "onPlaybackStateChanged", params)
+      }
+
+      override fun onUnmute() {
+        emitEvent(reactContext, view, "onUnmute", null)
       }
     }
-
   }
 
-  @ReactProp(name="muted")
-  fun setMuted(videoView: GPHVideoPlayerView, rnMuted: Boolean){
-    player?.setVolume(if (rnMuted) 0f else 1f)
+  fun emitEvent(context: ReactContext, view: GiphyRNVideoView, name: String, params: WritableMap?) {
+    context.getJSModule(RCTEventEmitter::class.java).receiveEvent(
+      view.id,
+      name,
+      params
+    )
   }
 
-  @ReactProp(name="playing")
-  fun setPlaying(videoView: GPHVideoPlayerView, rnPlaying: Boolean) {
-    if (rnPlaying != playing) {
-      playing = rnPlaying
-      if (playing) videoView.onResume() else videoView.onPause()
-    }
+  @ReactProp(name = "media")
+  fun setMedia(videoView: GiphyRNVideoView, rnMedia: ReadableMap?) {
+    videoView.setMedia(rnMedia)
   }
 
-  override fun createViewInstance(reactContext: ThemedReactContext): GPHVideoPlayerView {
-    return GPHVideoPlayerView(reactContext)
+  @ReactProp(name = "muted")
+  fun setMuted(videoView: GiphyRNVideoView, rnMuted: Boolean?) {
+    videoView.setMuted(rnMuted)
+  }
+
+  // TODO v2 remove
+  @ReactProp(name = "playing")
+  fun setPlaying(videoView: GiphyRNVideoView, rnPlaying: Boolean?) {
+    videoView.setPlaying(rnPlaying)
+  }
+
+  @ReactProp(name = "autoPlay")
+  fun setAutoPlay(videoView: GiphyRNVideoView, autoPlay: Boolean?) {
+    videoView.setAutoPlay(autoPlay)
+  }
+
+  override fun onDropViewInstance(view: GiphyRNVideoView) {
+    super.onDropViewInstance(view)
+    view.onDestroy()
+  }
+
+  override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNVideoView {
+    val view = GiphyRNVideoView(reactContext)
+
+    view.listener = getListener(view, reactContext)
+
+    return view
   }
 }

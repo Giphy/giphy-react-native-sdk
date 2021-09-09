@@ -4,6 +4,7 @@
 - [GiphyDialog](#giphydialog)
 - [GiphyMediaView](#giphymediaview)
 - [GiphyVideoView](#giphyvideoview)
+- [GiphyVideoManager](#giphyvideomanager)
 - [GiphyGridView](#giphygridview)
 - [GiphyContent](#giphycontent)
 
@@ -172,13 +173,21 @@ Similar to the [GiphyMediaView](#giphymediaview) which works for GIFs, Stickers,
 component that makes it easy to play back GiphyMedia clips video assets. The GiphyVideoView will only work for
 GiphyMedia where the `isVideo` property is `true`.
 
+**Note**: `GiphyVideoView` has no advanced features for playback, volume, and buffering control. If you need some
+advanced features, you can easily integrate clips with other more advanced video players. For example, we
+described [how to use clips with React-Native-Video](using-clips-with-react-native-video.md).
+
 #### Props
 
-| Prop    | Description                                        | Type                                                                                                                                      | Default | Platform                        |
-|---------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
-| media   | Pass a GiphyMedia object to display content.       | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| muted   | Set to true or false to mute or unmute the player. | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| playing | Set to true or false to pause or play the media.   | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| Prop                   | Description                                                                                   | Type                                                                                                                                      | Default | Platform                        |
+|------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
+| autoPlay               | Set it to true to start the video automatically.                                              | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| media                  | Pass a GiphyMedia object to display content.                                                  | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| muted                  | Set to true or false to mute or unmute the player.                                            | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onError                | A callback function that will be called when an error occurs whilst attempting to play media. | `(e: NativeSyntheticEvent<{ description: string }>) => void`                                                                              | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onMute                 | A callback function that will be called when media is muted.                                  | `(e: NativeSyntheticEvent<{}>) => void`                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onPlaybackStateChanged | A callback function that will be called when playback state changes.                          | `(e: NativeSyntheticEvent<{ state: GiphyVideoViewPlaybackState }>) => void`                                                               | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| onUnmute               | A callback function that will be called when media is unmuted.                                | `(e: NativeSyntheticEvent<{}>) => void`                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 #### Example
 
@@ -188,6 +197,7 @@ GiphyMedia where the `isVideo` property is `true`.
 import React, { useEffect, useState } from 'react'
 import { Button, SafeAreaView, ScrollView } from 'react-native'
 import {
+  GiphyContentType,
   GiphyDialog,
   GiphyDialogEvent,
   GiphyDialogMediaSelectEventHandler,
@@ -237,7 +247,7 @@ export default function App() {
           <GiphyVideoView
             media={media}
             muted={true}
-            playing={true}
+            autoPlay={true}
             style={{ aspectRatio: media.aspectRatio }}
           />
         </ScrollView>
@@ -296,7 +306,110 @@ export default function App() {
         >
           <GiphyVideoView
             media={media}
-            playing={true}
+            autoPlay={true}
+            style={{ aspectRatio: media.aspectRatio }}
+          />
+        </ScrollView>
+      )}
+    </SafeAreaView>
+  )
+}
+```
+
+## GiphyVideoManager
+
+The module that allows you to control GiphyVideoView players.
+
+### </> muteAll: `muteAll() => void`
+
+Mute all GiphyVideoView players.
+
+### </> pauseAll: `pauseAll() => void`
+
+Pause all GiphyVideoView players.
+
+#### Example
+
+- **Mute all clips when a user opens a custom dialog**
+
+```typescript jsx
+import React, { useEffect, useState } from 'react'
+import { Button, SafeAreaView, ScrollView, Modal, Text } from 'react-native'
+import {
+  GiphyContentType,
+  GiphyDialog,
+  GiphyDialogEvent,
+  GiphyDialogMediaSelectEventHandler,
+  GiphyMedia,
+  GiphySDK,
+  GiphyVideoManager,
+  GiphyVideoView,
+} from '@giphy/react-native-sdk'
+
+// Configure API keys
+GiphySDK.configure({ apiKey: '*************' })
+
+GiphyDialog.configure({
+  mediaTypeConfig: [GiphyContentType.Clips],
+  showConfirmationScreen: true,
+})
+
+export default function App() {
+  const [media, setMedia] = useState<GiphyMedia | null>(null)
+  const [customDialogVisible, setCustomDialogVisible] = useState(false)
+
+  // Handling GIFs selection in GiphyDialog
+  useEffect(() => {
+    const handler: GiphyDialogMediaSelectEventHandler = (e) => {
+      setMedia(e.media)
+      GiphyDialog.hide()
+    }
+    const listener = GiphyDialog.addListener(
+      GiphyDialogEvent.MediaSelected,
+      handler
+    )
+    return () => {
+      listener.remove()
+    }
+  }, [])
+
+  const openCustomDialog = () => {
+    setCustomDialogVisible(true)
+    // Mute all clips when a user opens the custom dialog
+    GiphyVideoManager.muteAll()
+  }
+
+  return (
+    <SafeAreaView>
+      <Button title="Show Giphy Dialog" onPress={() => GiphyDialog.show()} />
+      <Button title="Show Custom Dialog" onPress={openCustomDialog} />
+      <Modal
+        visible={customDialogVisible}
+        onRequestClose={() => setCustomDialogVisible(false)}
+      >
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          mattis est eget malesuada malesuada. Cras ullamcorper sem ut erat
+          tempor, sed eleifend nisl lacinia. Etiam a eleifend tortor. Donec
+          iaculis tincidunt risus eget porttitor. Nullam sed mauris felis. Nam
+          ullamcorper purus a tellus blandit dictum. Praesent gravida purus ut
+          nisl consectetur, a fermentum leo sagittis.
+        </Text>
+        <Button title="Close" onPress={() => setCustomDialogVisible(false)} />
+      </Modal>
+      {media && (
+        <ScrollView
+          style={{
+            aspectRatio: media.aspectRatio,
+            maxHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <GiphyVideoView
+            media={media}
+            muted={false}
+            autoPlay={true}
             style={{ aspectRatio: media.aspectRatio }}
           />
         </ScrollView>
@@ -324,6 +437,7 @@ Customizable implementation of a Giphy Grid only.
 | orientation               | Tells the scroll direction of the grid. (e.g. `GiphyDirection.Horizontal`, `GiphyDirection.Vertical`)                                                                                                                                                                                                                                                                                                                                                                                           | [`GiphyDirection`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L71-L74)      | `.Vertical`                             | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | renditionType             | A rendition type for the grid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51)      | `.FixedWidth`                           | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | spanCount                 | Number of lanes in the grid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `number`                                                                                                                                           | Depends on orientation and content type | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| showCheckeredBackground                 | Show/Hide checkered background for stickers in the grid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `boolean`                                                                                                                                           | `false` | ✅&nbsp;Android <br/> ❌&nbsp;iOS |
 
 #### Example
 

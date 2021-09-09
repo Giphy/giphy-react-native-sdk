@@ -5,7 +5,6 @@ export {
   GiphyContentType,
   GiphyDirection,
   GiphyFileExtension,
-  GiphyMedia,
   GiphyMediaType,
   GiphyRating,
   GiphyRendition,
@@ -26,10 +25,15 @@ export type { GiphyMediaViewProps } from './GiphyMediaView'
 export { GiphyMediaView } from './GiphyMediaView'
 
 export type { GiphyVideoViewProps } from './GiphyVideoView'
+export { GiphyVideoViewPlaybackState } from './native/GiphyVideoView'
 export { GiphyVideoView } from './GiphyVideoView'
+
+export { GiphyVideoManager } from './GiphyVideoManager'
 
 export type { GiphyContentSearchOptions, GiphyContentTrendingOptions } from './GiphyContent'
 export { GiphyContent } from './GiphyContent'
 
 export type { GiphyGridViewProps } from './GiphyGridView'
 export { GiphyGridView } from './GiphyGridView'
+
+export type { GiphyMedia, GiphyMediaID, GiphyMediaData } from './giphyMedia'

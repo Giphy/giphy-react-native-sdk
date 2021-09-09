@@ -27,6 +27,13 @@ extension GPHMedia {
       "url": url as Any,
       "aspectRatio": self.aspectRatio,
       "isVideo": self.isVideo,
+      "data": self.toGPHJSON(),
     ]
+  }
+
+  private func toGPHJSON() -> GPHJSONObject {
+    guard let data = try? JSONEncoder().encode(self),
+          let rep = try? JSONSerialization.jsonObject(with: data) as? GPHJSONObject else { return [:] }
+    return rep
   }
 }

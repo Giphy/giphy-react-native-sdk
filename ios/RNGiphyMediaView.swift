@@ -49,7 +49,9 @@ class RNGiphyMediaView: UIView {
   }
 
   private func updateMediaViewSource() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+
       if self.media == nil {
         self.mediaView.media = self.media
       } else {

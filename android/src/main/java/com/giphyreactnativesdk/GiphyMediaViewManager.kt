@@ -4,66 +4,30 @@ import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
-import com.giphy.sdk.core.GPHCore
-import com.giphy.sdk.core.models.Media
-import com.giphy.sdk.core.models.enums.RenditionType
-import com.giphy.sdk.ui.views.GPHMediaView
-import timber.log.Timber
 
 
-class GiphyMediaViewManager(): SimpleViewManager<GPHMediaView>() {
+class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
   val REACT_CLASS = "GiphyReactNativeMediaView"
-  val DEFAULT_RENDITION_TYPE = RenditionType.fixedWidth
-
-  private var media: Media? = null
-  private var renditionType = DEFAULT_RENDITION_TYPE
-  private var aspectRatio: Float? = null
 
   companion object {
     val TAG = GiphyMediaViewManager::class.java.simpleName
   }
 
-  private fun _setMedia(view: GPHMediaView) {
-    if (media != null) {
-      view.setMedia(media, renditionType)
-    }
-    if (aspectRatio != null) {
-      view.aspectRatio = aspectRatio as Float
-    }
-
+  @ReactProp(name = "media")
+  fun setMedia(gifView: GiphyRNMediaView, rnMedia: ReadableMap?) {
+    gifView.setMedia(rnMedia)
   }
 
-  @ReactProp(name="media")
-  fun setMedia(gifView: GPHMediaView, rnMedia: ReadableMap){
-    val mediaId = rnMedia.getString("id")
-    aspectRatio = rnMedia.getDouble("aspectRatio").toFloat()
-
-    if (mediaId != null) {
-      GPHCore.gifById(mediaId) { result, e ->
-        media = result?.data
-        if (media != null) {
-          _setMedia(gifView)
-        }
-        e?.let {
-          Timber.d("Error while fetching GIF: %s", e.localizedMessage)
-        }
-      }
-    }
-  }
-
-  @ReactProp(name="renditionType")
-  fun setRenditionType(gifView: GPHMediaView, renditionName: String) {
-    renditionType = RenditionType.values().firstOrNull {
-      it.name == snakeToCamel(renditionName)
-    } ?: DEFAULT_RENDITION_TYPE
-    _setMedia(gifView)
+  @ReactProp(name = "renditionType")
+  fun setRenditionType(gifView: GiphyRNMediaView, renditionName: String?) {
+    gifView.setRenditionType(renditionName)
   }
 
   override fun getName(): String {
     return "GiphyReactNativeMediaView"
   }
 
-  override fun createViewInstance(reactContext: ThemedReactContext): GPHMediaView {
-    return GPHMediaView(reactContext)
+  override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNMediaView {
+    return GiphyRNMediaView(reactContext)
   }
 }

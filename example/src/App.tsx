@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 import {
   ScrollView,
@@ -14,18 +14,20 @@ import {
   GiphyDialog,
   GiphyDialogConfig,
   GiphyDialogEvent,
-  GiphyDialogMediaSelectEventHandler,
   GiphyDirection,
   GiphyGridView,
   GiphyMedia,
+  GiphyMediaType,
   GiphyMediaView,
   GiphyRendition,
+  GiphyVideoManager,
   GiphyVideoView,
 } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
+import { GIPHY_MEDIA_FIXTURE } from './fixtures'
 
 const styles = StyleSheet.create({
   container: {
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
   previewContainer: {
     backgroundColor: '#fff',
     maxHeight: 450,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
   },
   previewCell: {
     alignSelf: 'center',
@@ -82,41 +84,53 @@ const styles = StyleSheet.create({
   },
 })
 
+function useLatest<V>(value: V) {
+  const ref = useRef<V>(value)
+  ref.current = value
+  return ref
+}
+
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
-  const [medias, setMedias] = useState<GiphyMedia[]>([])
+  const [medias, setMedias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] =
     useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
 
-  const mediasRef = useRef(medias)
-  mediasRef.current = medias
+  const addMedia = (media: GiphyMedia) => {
+    setMedias([media, ...medias])
+  }
 
-  const addMedia = useCallback((media: GiphyMedia) => {
-    setMedias([media, ...mediasRef.current])
-  }, [])
-
+  // Apply Giphy Dialog settings
   useEffect(() => {
     GiphyDialog.configure(giphyDialogSettings)
   }, [giphyDialogSettings])
 
+  // Mute all clips when a user opens the settings dialog
   useEffect(() => {
-    const handler: GiphyDialogMediaSelectEventHandler = (e) => {
-      addMedia(e.media)
-      GiphyDialog.hide()
+    if (dialogSettingsVisible) {
+      GiphyVideoManager.muteAll()
     }
+  }, [dialogSettingsVisible])
+
+  const addMediaRef = useLatest(addMedia)
+  useEffect(() => {
     const listener = GiphyDialog.addListener(
       GiphyDialogEvent.MediaSelected,
-      handler
+      (e) => {
+        addMediaRef.current(e.media)
+        GiphyDialog.hide()
+      }
     )
     return () => {
       listener.remove()
     }
-  }, [addMedia])
+  }, [addMediaRef])
 
   return (
     <View style={styles.container}>
+      {/* Displaying Giphy Dialog & settings for it  */}
       <View style={styles.card}>
         <TouchableOpacity
           style={styles.cardButton}
@@ -141,10 +155,12 @@ export default function App() {
         />
       </Dialog>
 
+      {/* Displaying Giphy Grid View with the custom search bar */}
       <View style={styles.card}>
         <TextInput
           autoFocus={false}
           onFocus={() => setSearchVisible(true)}
+          onTouchEnd={() => setSearchVisible(true)}
           placeholder="Search..."
           style={styles.textInput}
           value={searchQuery}
@@ -162,13 +178,14 @@ export default function App() {
           />
           {searchVisible && (
             <GiphyGridView
-              content={GiphyContent.search({ searchQuery: searchQuery })}
+              content={GiphyContent.search({ searchQuery: searchQuery, mediaType: GiphyMediaType.Sticker })}
               cellPadding={3}
               clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
               fixedSizeCells={false}
               orientation={GiphyDirection.Vertical}
               renditionType={GiphyRendition.FixedWidth}
               spanCount={1}
+              showCheckeredBackground={false}
               style={styles.giphyGridView}
               onContentUpdate={(e) =>
                 console.log(
@@ -188,19 +205,28 @@ export default function App() {
         </Dialog>
       </View>
 
+      {/* Displaying selected media */}
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         <ScrollView style={styles.previewContainer}>
-          {medias.map((media, idx) => (
+          {medias.map((media) => (
             <View
               key={media.id}
               style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}
             >
               {media.isVideo ? (
                 <GiphyVideoView
+                  autoPlay={true}
                   media={media}
-                  playing={idx === 0}
+                  muted={true}
                   style={{ aspectRatio: media.aspectRatio }}
+                  onError={(e) => console.error(e.nativeEvent.description)}
+                  onPlaybackStateChanged={(e) =>
+                    console.log(
+                      'onPlaybackStateChanged',
+                      JSON.stringify(e.nativeEvent, null, 2)
+                    )
+                  }
                 />
               ) : (
                 <GiphyMediaView
