@@ -16,7 +16,8 @@ install:
 script:
   - yarn lint
   - yarn test
-  - yarn generate-licenses && yarn check-licenses
+  # run license-checker only when the environment variables are available
+  - 'if [ "$LICENSE_PROJECT_LOCATION" != "false" ]; then yarn generate-licenses && yarn check-licenses; fi'
 deploy:
   provider: npm
   api_key: $NPM_TOKEN
