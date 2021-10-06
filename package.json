@@ -120,6 +120,9 @@
       "@release-it/conventional-changelog": {
         "preset": "angular"
       }
+    },
+    "hooks": {
+      "after:bump": "yarn bootstrap"
     }
   },
   "eslintConfig": {
