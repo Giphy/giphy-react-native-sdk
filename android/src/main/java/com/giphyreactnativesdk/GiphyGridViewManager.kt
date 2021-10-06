@@ -80,11 +80,11 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
   ): GPHSearchGridCallback? {
     return object : GPHSearchGridCallback {
       override fun didTapUsername(username: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
       }
 
       override fun didLongPressCell(cell: GifView) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
       }
 
       override fun didScroll(dx: Int, dy: Int) {
