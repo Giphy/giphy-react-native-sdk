@@ -219,9 +219,9 @@ export default function App() {
             >
               {media.isVideo ? (
                 <GiphyVideoView
-                  autoPlay={true}
+                  autoPlay={false}
                   media={media}
-                  muted={true}
+                  muted={false}
                   style={{ aspectRatio: media.aspectRatio }}
                   onError={(e) => console.error(e.nativeEvent.description)}
                   onPlaybackStateChanged={(e) =>
