@@ -160,7 +160,7 @@ public extension GPHContent {
     let requestType = value["requestType"] as? String
     let searchQuery = value["searchQuery"] as? String ?? ""
     let mediaType = GPHMediaType.fromRNValue(value: value["mediaType"] as? String ?? "")
-    
+
     switch requestType {
     case "search":
       return GPHContent.search(withQuery: searchQuery, mediaType: mediaType, language: .english)
@@ -183,7 +183,7 @@ public enum RNGPHVideoPlayerState: Int {
   case readyToPlay = 3
   case playing = 4
   case paused = 5
-  
+
   func toRNValue() -> Int {
     return self.rawValue
   }

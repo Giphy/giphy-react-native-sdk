@@ -6,7 +6,7 @@ extension GPHMedia {
     guard
       let options = rnValue,
       let mediaId = options["id"] as? String
-    else {
+      else {
       completion(nil)
       return
     }
@@ -23,17 +23,19 @@ extension GPHMedia {
     }
 
     return [
-      "id": self.id,
+      "id": id,
       "url": url as Any,
-      "aspectRatio": self.aspectRatio,
-      "isVideo": self.isVideo,
-      "data": self.toGPHJSON(),
+      "aspectRatio": aspectRatio,
+      "isVideo": isVideo,
+      "data": toGPHJSON(),
     ]
   }
 
   private func toGPHJSON() -> GPHJSONObject {
     guard let data = try? JSONEncoder().encode(self),
-          let rep = try? JSONSerialization.jsonObject(with: data) as? GPHJSONObject else { return [:] }
+          let rep = try? JSONSerialization.jsonObject(with: data) as? GPHJSONObject else {
+      return [:]
+    }
     return rep
   }
 }

@@ -9,8 +9,8 @@ public extension GiphyViewController {
   func applyRNConfig(_ options: NSDictionary) -> Void {
     if let rawMediaTypeConfig = options["mediaTypeConfig"] as? [String] {
       self.mediaTypeConfig = (rawMediaTypeConfig
-                                .map { GPHContentType.fromRNValue(value: $0) }
-                                .filter { $0 != nil } as! [GPHContentType])
+        .map { GPHContentType.fromRNValue(value: $0) }
+        .filter { $0 != nil } as! [GPHContentType])
     }
 
     let rawRating = options["rating"] as? String
@@ -22,7 +22,7 @@ public extension GiphyViewController {
     if let renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType) {
       self.renditionType = renditionType
     }
-    
+
     let rawClipsPreviewRenditionType = options["clipsPreviewRenditionType"] as? String
     if let clipsPreviewRenditionType = GPHRenditionType.fromRNValue(value: rawClipsPreviewRenditionType) {
       self.clipsPreviewRenditionType = clipsPreviewRenditionType
@@ -61,7 +61,7 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   var config: NSMutableDictionary
 
   override init() {
-    self.config = NSMutableDictionary(dictionary: [:])
+    config = NSMutableDictionary(dictionary: [:])
     super.init()
   }
 
@@ -82,14 +82,12 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
 
   @objc(configure:)
   open func configure(options: NSDictionary) -> Void {
-    self.config.addEntries(from: options as? Dictionary<String,Any> ?? [:])
+    config.addEntries(from: options as? Dictionary<String, Any> ?? [:])
   }
 
   @objc
   open func show() -> Void {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self else { return }
-
+    DispatchQueue.main.async {
       let giphy = GiphyViewController()
       let rootViewController = UIApplication.shared.windows.first?.rootViewController
       giphy.applyRNConfig(self.config)
@@ -102,9 +100,7 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
 
   @objc
   open func hide() -> Void {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self else { return }
-
+    DispatchQueue.main.async {
       self.giphyViewController?.dismiss(animated: true, completion: { [weak self] in
         self?.giphyViewController = nil
       })
@@ -112,14 +108,14 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
   }
 
   open func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
-    let rawFileType = self.config["fileType"] as? String
+    let rawFileType = config["fileType"] as? String
     var fileType: GPHFileExtension = .gif
     if rawFileType != nil {
       fileType = GPHFileExtension.fromRNValue(value: rawFileType!) ?? .gif
     }
 
     sendEvent(withName: RNGiphyDialogEvents.onMediaSelect, body: [
-      "media": media.toRNValue(rendition:self.giphyViewController?.renditionType, fileType:fileType),
+      "media": media.toRNValue(rendition: self.giphyViewController?.renditionType, fileType: fileType),
     ])
   }
 
