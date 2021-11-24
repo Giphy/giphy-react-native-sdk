@@ -62,9 +62,8 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   private func syncMedia() -> Void {
     DispatchQueue.main.async {
       self.videoView.media = self.media
-      self.syncAutoPlay()
       self.syncPlaying()
-      self.syncVolume()
+      self.syncAutoPlay()
     }
   }
 
@@ -83,12 +82,13 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   }
 
   private func syncAutoPlay() {
-    guard autoPlay else {
-      return
-    }
-
-    GPHVideoView.pauseAll()
     DispatchQueue.main.async {
+      guard self.autoPlay,
+            let _ = self.videoView.media else {
+        return
+      }
+
+      GPHVideoView.pauseAll()
       self.videoView.play()
     }
   }
@@ -138,6 +138,9 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
 
   func playerStateDidChange(_ state: GPHVideoPlayerState) {
     onPlaybackStateChanged?(["state": state.toRNValue()])
+    if state == GPHVideoPlayerState.readyToPlay {
+      syncVolume()
+    }
   }
 
   func muteDidChange(muted: Bool) {
