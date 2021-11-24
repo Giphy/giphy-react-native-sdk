@@ -8,9 +8,9 @@ struct RNGiphyDialogEvents {
 public extension GiphyViewController {
   func applyRNConfig(_ options: NSDictionary) -> Void {
     if let rawMediaTypeConfig = options["mediaTypeConfig"] as? [String] {
-      self.mediaTypeConfig = (rawMediaTypeConfig
-        .map { GPHContentType.fromRNValue(value: $0) }
-        .filter { $0 != nil } as! [GPHContentType])
+      mediaTypeConfig = rawMediaTypeConfig.compactMap {
+        GPHContentType.fromRNValue(value: $0)
+      }
     }
 
     let rawRating = options["rating"] as? String
