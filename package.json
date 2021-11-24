@@ -70,6 +70,7 @@
     "husky": "^6.0.0",
     "jest": "^26.0.1",
     "license-checker": "^25.0.1",
+    "metro-react-native-babel-preset": "^0.66.2",
     "plist": "^3.0.2",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
