@@ -18,21 +18,21 @@ PODS:
     - boost-for-react-native
     - DoubleConversion
     - glog
-  - Giphy (2.1.12):
+  - Giphy (2.1.16):
     - libwebp
   - giphy-react-native-sdk (1.1.1):
-    - Giphy (~> 2.1.12)
+    - Giphy (= 2.1.16)
     - React-Core
   - glog (0.3.5)
-  - libwebp (1.2.0):
-    - libwebp/demux (= 1.2.0)
-    - libwebp/mux (= 1.2.0)
-    - libwebp/webp (= 1.2.0)
-  - libwebp/demux (1.2.0):
+  - libwebp (1.2.1):
+    - libwebp/demux (= 1.2.1)
+    - libwebp/mux (= 1.2.1)
+    - libwebp/webp (= 1.2.1)
+  - libwebp/demux (1.2.1):
     - libwebp/webp
-  - libwebp/mux (1.2.0):
+  - libwebp/mux (1.2.1):
     - libwebp/demux
-  - libwebp/webp (1.2.0)
+  - libwebp/webp (1.2.1)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
     - FBLazyVector (= 0.63.4)
@@ -365,10 +365,10 @@ SPEC CHECKSUMS:
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
-  Giphy: 10a33b884d02b32f19e6350431bd51faa074629d
-  giphy-react-native-sdk: 141466600b2b2dc6cbcbbf050c5db53e219a04e0
+  Giphy: 1272a1f1505c208b2070df8c93f0de56513e0fae
+  giphy-react-native-sdk: 92bbd0e095bfe1b7ea17071a02d76e348b5f78c6
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
+  libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
@@ -394,4 +394,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 156168452ded765a602d9967b65675ea64fb329a
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

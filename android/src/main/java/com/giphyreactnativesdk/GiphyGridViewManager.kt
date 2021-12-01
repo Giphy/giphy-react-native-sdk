@@ -15,6 +15,7 @@ import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.views.GPHGridCallback
 import com.giphy.sdk.ui.views.GPHSearchGridCallback
 import com.giphy.sdk.ui.views.GifView
+import com.facebook.react.bridge.ReactMethod
 
 
 class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
@@ -133,6 +134,16 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
   @ReactProp(name = "showCheckeredBackground")
   fun setShowCheckeredBackground(view: GiphyRNGridView, value: Boolean?) {
     view.setShowCheckeredBackground(value)
+  }
+
+  @ReactMethod
+  fun addListener(eventName: String?) {
+    // Keep: Required for RN built in Event Emitter Calls.
+  }
+
+  @ReactMethod
+  fun removeListeners(count: Int?) {
+    // Keep: Required for RN built in Event Emitter Calls.
   }
 
   override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNGridView {

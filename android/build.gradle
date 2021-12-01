@@ -126,6 +126,6 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
-  implementation 'com.giphy.sdk:ui:2.1.7'
+  implementation 'com.giphy.sdk:ui:2.1.12'
   implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.0"
 }

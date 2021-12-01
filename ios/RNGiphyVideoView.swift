@@ -13,23 +13,29 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   @objc var autoPlay: Bool = false
 
   private var media: GPHMedia? {
-    didSet { self.updateMedia() }
+    didSet {
+      syncMedia()
+    }
   }
 
   private var muted: Bool = false {
-    didSet { self.updateVolume() }
+    didSet {
+      syncVolume()
+    }
   }
 
   //TODO: v2 remove
   private var playing: Bool? = nil {
-    didSet { self.updatePlaying() }
+    didSet {
+      syncPlaying()
+    }
   }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.videoView.delegate = self
-    self.setupView()
-    self.updateMedia()
+    videoView.delegate = self
+    setupView()
+    syncMedia()
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -37,39 +43,35 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   }
 
   lazy var videoView: GPHVideoView = {
-    return GPHVideoView()
+    GPHVideoView()
   }()
 
   private func setupView() -> Void {
-    self.addSubview(self.videoView)
+    addSubview(videoView)
 
-    self.videoView.translatesAutoresizingMaskIntoConstraints = false
-    self.videoView.leftAnchor.constraint(equalTo: self.safeLeftAnchor).isActive = true
-    self.videoView.rightAnchor.constraint(equalTo: self.safeRightAnchor).isActive = true
-    self.videoView.topAnchor.constraint(equalTo: self.safeTopAnchor).isActive = true
-    self.videoView.bottomAnchor.constraint(equalTo: self.safeBottomAnchor).isActive = true
-    self.videoView.contentMode = .scaleAspectFit
-    self.videoView.layer.masksToBounds = true
-    self.videoView.backgroundColor = .clear
+    videoView.translatesAutoresizingMaskIntoConstraints = false
+    videoView.leftAnchor.constraint(equalTo: safeLeftAnchor).isActive = true
+    videoView.rightAnchor.constraint(equalTo: safeRightAnchor).isActive = true
+    videoView.topAnchor.constraint(equalTo: safeTopAnchor).isActive = true
+    videoView.bottomAnchor.constraint(equalTo: safeBottomAnchor).isActive = true
+    videoView.contentMode = .scaleAspectFit
+    videoView.layer.masksToBounds = true
+    videoView.backgroundColor = .clear
   }
 
-  private func updateMedia() -> Void {
-    DispatchQueue.main.async {[weak self] in
-      guard let self = self else { return }
-
+  private func syncMedia() -> Void {
+    DispatchQueue.main.async {
       self.videoView.media = self.media
-      if self.autoPlay {
-        self.playOnlyCurrentMedia()
-      }
-      self.updatePlaying()
-      self.updateVolume()
+      self.syncPlaying()
+      self.syncAutoPlay()
     }
   }
 
-  private func updateVolume() -> Void {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self,
-            let _ = self.videoView.media else { return }
+  private func syncVolume() -> Void {
+    DispatchQueue.main.async {
+      guard let _ = self.videoView.media else {
+        return
+      }
 
       if (self.muted) {
         self.videoView.mute()
@@ -79,20 +81,25 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
     }
   }
 
-
-  private func playOnlyCurrentMedia() {
-    GPHVideoView.pauseAll()
+  private func syncAutoPlay() {
     DispatchQueue.main.async {
+      guard self.autoPlay,
+            let _ = self.videoView.media else {
+        return
+      }
+
+      GPHVideoView.pauseAll()
       self.videoView.play()
     }
   }
 
   //TODO: v2 remove
-  private func updatePlaying() -> Void {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self,
-            let playing = self.playing,
-            let _ = self.videoView.media else { return }
+  private func syncPlaying() -> Void {
+    DispatchQueue.main.async {
+      guard let playing = self.playing,
+            let _ = self.videoView.media else {
+        return
+      }
 
       if (playing) {
         self.videoView.play()
@@ -104,34 +111,43 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
 
   //MARK: RN Setters
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
-    GPHMedia.fromRNValue(rnValue) { self.media = $0 }
+    GPHMedia.fromRNValue(rnValue) {
+      self.media = $0
+    }
   }
 
   //TODO: v2 remove
   @objc func setPlaying(_ value: Bool) -> Void {
-    guard self.playing != value else { return }
-    self.playing = value
+    guard playing != value else {
+      return
+    }
+    playing = value
   }
 
   @objc func setMuted(_ value: Bool) -> Void {
-    guard self.muted != value else { return }
-    self.muted = value
+    guard muted != value else {
+      return
+    }
+    muted = value
   }
 
   //MARK: GPHVideoViewDelegate stubs
   func playerDidFail(_ description: String?) {
-    self.onError?(["description": description ?? ""])
+    onError?(["description": description ?? ""])
   }
 
   func playerStateDidChange(_ state: GPHVideoPlayerState) {
-    self.onPlaybackStateChanged?(["state": state.toRNValue()])
+    onPlaybackStateChanged?(["state": state.toRNValue()])
+    if state == GPHVideoPlayerState.readyToPlay {
+      syncVolume()
+    }
   }
 
   func muteDidChange(muted: Bool) {
     if muted {
-      self.onMute?([:])
+      onMute?([:])
     } else {
-      self.onUnmute?([:])
+      onUnmute?([:])
     }
   }
 }
