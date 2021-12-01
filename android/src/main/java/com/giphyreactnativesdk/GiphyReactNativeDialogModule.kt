@@ -64,4 +64,14 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
   fun hide() {
     gifsDialog!!.dismiss()
   }
+
+  @ReactMethod
+  fun addListener(eventName: String?) {
+    // Keep: Required for RN built in Event Emitter Calls.
+  }
+
+  @ReactMethod
+  fun removeListeners(count: Int?) {
+    // Keep: Required for RN built in Event Emitter Calls.
+  }
 }

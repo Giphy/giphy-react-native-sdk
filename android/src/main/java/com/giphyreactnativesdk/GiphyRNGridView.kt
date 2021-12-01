@@ -51,13 +51,18 @@ class GiphyRNGridView @JvmOverloads constructor(
     val requestType = value?.getString("requestType")
     val mediaType = value?.getString("mediaType")
 
-    if (query != null) {
-      content.searchQuery = query
-    }
-
     if (requestType != null) {
       content.requestType = GPHRequestType.values().firstOrNull { it.name == requestType }
         ?: GPHRequestType.search
+
+      if (content.requestType == GPHRequestType.recents) {
+        gridView.content = GPHContent.recents
+        return
+      }
+    }
+
+    if (query != null) {
+      content.searchQuery = query
     }
 
     if (mediaType != null) {

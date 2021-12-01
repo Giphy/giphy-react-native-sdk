@@ -1,9 +1,6 @@
 package com.giphyreactnativesdk
 
-import com.facebook.react.bridge.Arguments
-import com.facebook.react.bridge.ReactContext
-import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.*
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -90,6 +87,16 @@ class GiphyVideoViewManager() : SimpleViewManager<GiphyRNVideoView>() {
   @ReactProp(name = "autoPlay")
   fun setAutoPlay(videoView: GiphyRNVideoView, autoPlay: Boolean?) {
     videoView.setAutoPlay(autoPlay)
+  }
+
+  @ReactMethod
+  fun addListener(eventName: String?) {
+    // Keep: Required for RN built in Event Emitter Calls.
+  }
+
+  @ReactMethod
+  fun removeListeners(count: Int?) {
+    // Keep: Required for RN built in Event Emitter Calls.
   }
 
   override fun onDropViewInstance(view: GiphyRNVideoView) {
