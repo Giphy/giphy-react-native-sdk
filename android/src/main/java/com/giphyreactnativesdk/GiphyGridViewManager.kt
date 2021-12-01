@@ -18,9 +18,6 @@ import com.giphy.sdk.ui.views.GifView
 import com.facebook.react.bridge.ReactMethod
 
 
-
-
-
 class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
   val REACT_CLASS = "GiphyReactNativeGridView"
   private var _renditionType = RenditionType.downsized
