@@ -22,12 +22,22 @@ class GiphyRNMediaView @JvmOverloads constructor(
 
   private var renditionType = DEFAULT_RENDITION_TYPE
   private var loadedMedia: Media? = null
+  private var autoPlay: Boolean = true
 
   private fun updateMedia() {
     if (loadedMedia != null) {
       setMedia(loadedMedia, renditionType)
     }
     aspectRatio = loadedMedia?.aspectRatio ?: aspectRatio
+    if (autoPlay == false) {
+      pause()
+    }
+  }
+
+  fun setAutoPlay(rnValue: Boolean?) {
+    if (rnValue != null) {
+      autoPlay = rnValue
+    }
   }
 
   fun setMedia(rnMedia: ReadableMap?) {

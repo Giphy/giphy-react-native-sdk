@@ -29,10 +29,25 @@ class RNGiphyMediaView: UIView {
     return GPHMediaView()
   }()
 
+  func pause() {
+    mediaView.stopAnimating()
+  }
+
+  func resume() {
+    mediaView.startAnimating()
+  }
+
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
-    GPHMedia.fromRNValue(rnValue) {
+    GPHMedia.fromRNValue(rnValue) { [weak self] in
+      guard let self = self else {
+        return
+      }
       self.media = $0
     }
+  }
+
+  @objc func setAutoPlay(_ rnValue: Bool) -> Void {
+    mediaView.autoPlayAnimatedImage = rnValue
   }
 
   @objc func setRenditionType(_ rnValue: NSString) -> Void {
@@ -55,7 +70,11 @@ class RNGiphyMediaView: UIView {
   }
 
   private func syncMediaViewSource() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else {
+        return
+      }
+
       if self.media == nil {
         self.mediaView.media = self.media
       } else {
