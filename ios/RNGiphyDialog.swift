@@ -87,7 +87,11 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
 
   @objc
   open func show() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else {
+        return
+      }
+
       let giphy = GiphyViewController()
       let rootViewController = UIApplication.shared.windows.first?.rootViewController
       giphy.applyRNConfig(self.config)
@@ -100,7 +104,11 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
 
   @objc
   open func hide() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else {
+        return
+      }
+
       self.giphyViewController?.dismiss(animated: true, completion: { [weak self] in
         self?.giphyViewController = nil
       })

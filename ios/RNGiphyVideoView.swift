@@ -42,7 +42,7 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
     fatalError("init(coder:) has not been implemented")
   }
 
-  lazy var videoView: GPHVideoView = {
+  let videoView: GPHVideoView = {
     GPHVideoView()
   }()
 
@@ -60,7 +60,11 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   }
 
   private func syncMedia() -> Void {
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else {
+        return
+      }
+
       self.videoView.media = self.media
       self.syncPlaying()
       self.syncAutoPlay()
@@ -68,8 +72,9 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   }
 
   private func syncVolume() -> Void {
-    DispatchQueue.main.async {
-      guard let _ = self.videoView.media else {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self,
+            let _ = self.videoView.media else {
         return
       }
 
@@ -82,9 +87,10 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   }
 
   private func syncAutoPlay() {
-    DispatchQueue.main.async {
-      guard self.autoPlay,
-            let _ = self.videoView.media else {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self,
+            let _ = self.videoView.media,
+            self.autoPlay else {
         return
       }
 
@@ -95,8 +101,9 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
 
   //TODO: v2 remove
   private func syncPlaying() -> Void {
-    DispatchQueue.main.async {
-      guard let playing = self.playing,
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self,
+            let playing = self.playing,
             let _ = self.videoView.media else {
         return
       }
@@ -111,7 +118,10 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
 
   //MARK: RN Setters
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
-    GPHMedia.fromRNValue(rnValue) {
+    GPHMedia.fromRNValue(rnValue) { [weak self] in
+      guard let self = self else {
+        return
+      }
       self.media = $0
     }
   }

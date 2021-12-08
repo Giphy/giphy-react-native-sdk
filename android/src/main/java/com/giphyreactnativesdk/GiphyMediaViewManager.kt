@@ -4,13 +4,21 @@ import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
-
+import com.facebook.react.common.MapBuilder
+import com.facebook.react.bridge.ReadableArray
 
 class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
   val REACT_CLASS = "GiphyReactNativeMediaView"
+  private val COMMAND_PAUSE = "pause"
+  private val COMMAND_RESUME = "resume"
 
   companion object {
     val TAG = GiphyMediaViewManager::class.java.simpleName
+  }
+
+  @ReactProp(name = "autoPlay")
+  fun autoPlay(gifView: GiphyRNMediaView, rnValue: Boolean?) {
+    gifView.setAutoPlay(rnValue)
   }
 
   @ReactProp(name = "media")
@@ -24,7 +32,32 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
   }
 
   override fun getName(): String {
-    return "GiphyReactNativeMediaView"
+    return REACT_CLASS
+  }
+
+  override fun getCommandsMap(): Map<String, Int>? {
+    return MapBuilder.of(
+      COMMAND_PAUSE, 1,
+      COMMAND_RESUME, 2,
+    )
+  }
+
+  override fun receiveCommand(
+    root: GiphyRNMediaView,
+    commandId: String?,
+    args: ReadableArray?
+  ) {
+    when (commandId) {
+      COMMAND_PAUSE -> root.pause()
+      COMMAND_RESUME -> root.play()
+    }
+  }
+
+  override fun receiveCommand(root: GiphyRNMediaView, commandId: Int, args: ReadableArray?) {
+    val command = commandsMap?.keys?.first { commandId == commandsMap?.get(it) };
+    if (command != null) {
+      receiveCommand(root, command, args)
+    }
   }
 
   override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNMediaView {
