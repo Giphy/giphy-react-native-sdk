@@ -25,7 +25,7 @@ class RNGiphyMediaView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  lazy var mediaView: GPHMediaView = {
+  let mediaView: GPHMediaView = {
     return GPHMediaView()
   }()
 
