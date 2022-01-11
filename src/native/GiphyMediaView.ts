@@ -9,6 +9,7 @@ export type NativeGiphyMediaViewProps = ViewProps & {
   autoPlay?: boolean
   media?: GiphyMediaID
   renditionType?: GiphyRendition
+  showCheckeredBackground?: boolean
 }
 
 export enum NativeGiphyMediaViewCommands {

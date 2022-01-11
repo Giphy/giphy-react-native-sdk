@@ -31,6 +31,11 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
     gifView.setRenditionType(renditionName)
   }
 
+  @ReactProp(name = "showCheckeredBackground")
+  fun setShowCheckeredBackground(gifView: GiphyRNMediaView, rnValue: Boolean?) {
+    gifView.setShowCheckeredBackground(rnValue)
+  }
+
   override fun getName(): String {
     return REACT_CLASS
   }
