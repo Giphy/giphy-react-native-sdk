@@ -4,10 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import com.facebook.react.bridge.ReadableMap
 import com.giphy.sdk.core.GPHCore
-import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.views.GPHPlayerStateListener
-import com.giphy.sdk.ui.views.GPHVideoPlayer
-import com.giphy.sdk.ui.views.GPHVideoPlayerState
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
 import timber.log.Timber
 
@@ -38,45 +35,11 @@ class GiphyRNVideoView @JvmOverloads constructor(
   private var muted = false
   private var rnStateSynchronized = false
 
-  init {
-    videoPlayer = SharedVideoPlayer.gphPlayer
-  }
-
   private val playerListener: GPHPlayerStateListener = {
-    if (isViewPlayerActive()) {
-      when (it) {
-        is GPHVideoPlayerState.Ready -> {
-          syncRNState()
-          listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.ReadyToPlay)
-        }
-        is GPHVideoPlayerState.Playing -> {
-          listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.Playing)
-        }
-        is GPHVideoPlayerState.Error -> {
-          listener?.onError(it.details)
-        }
-        is GPHVideoPlayerState.MuteChanged -> {
-          if (it.muted) {
-            listener?.onUnmute()
-          } else {
-            listener?.onMute()
-          }
-        }
-        is GPHVideoPlayerState.Unknown -> listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.Unknown)
-        else -> {
-        }
-      }
-
-      if (videoPlayer?.paused == true) {
-        listener?.onPlaybackStateChanged(GiphyRNVideoPlaybackState.Paused)
-      }
-    } else {
-      rnStateSynchronized = false
-    }
   }
 
   private fun isViewPlayerActive(): Boolean {
-    return videoPlayer?.playerView == this
+    return false
   }
 
   private fun syncRNState() {
@@ -90,33 +53,9 @@ class GiphyRNVideoView @JvmOverloads constructor(
   }
 
   // TODO v2 remove
-  private fun updatePlaying() {
-    if (playing == null) {
-      return
-    }
+  private fun updatePlaying() {}
 
-    if (playing == true) {
-      if (videoPlayer?.isPlaying == false) {
-        onResume()
-        videoPlayer?.onResume()
-      }
-    } else if (isViewPlayerActive() && videoPlayer?.isPlaying == true) {
-      onPause()
-      videoPlayer?.onPause()
-    }
-  }
-
-  private fun updateVolume() {
-    if (!isViewPlayerActive()) {
-      return
-    }
-
-    if (muted) {
-      if (videoPlayer?.getVolume() != 0f) videoPlayer?.setVolume(0f)
-    } else {
-      if (videoPlayer?.getVolume() != 1f) videoPlayer?.setVolume(1f)
-    }
-  }
+  private fun updateVolume() {}
 
   override fun didBecomeActiveByClick() {
     super.didBecomeActiveByClick()
@@ -126,17 +65,11 @@ class GiphyRNVideoView @JvmOverloads constructor(
     }
   }
 
-  override fun prepare(media: Media, player: GPHVideoPlayer) {
-    super.prepare(media, player)
-    videoPlayer?.addListener(playerListener)
-  }
-
   fun setMedia(rnMedia: ReadableMap?) {
     val mediaId = rnMedia?.getString("id") ?: return
     GPHCore.gifById(mediaId) { result, e ->
       val media = result?.data ?: return@gifById
       preloadFirstFrame(media)
-      SharedVideoPlayer.gphPlayer.loadMedia(media, view = this, autoPlay = this.autoPlay)
       e?.let {
         Timber.d("Error while fetching GIF: %s", e.localizedMessage)
       }
@@ -165,13 +98,5 @@ class GiphyRNVideoView @JvmOverloads constructor(
       return
     }
     autoPlay = value ?: false
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    if (isViewPlayerActive()) {
-      videoPlayer?.onPause()
-    }
-    videoPlayer?.removeListener(playerListener)
   }
 }

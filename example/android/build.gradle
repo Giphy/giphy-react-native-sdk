@@ -45,4 +45,10 @@ allprojects {
         jcenter()
         maven { url 'https://www.jitpack.io' }
     }
+
+    configurations.all {
+      resolutionStrategy {
+        forcedModules = ['com.google.android.exoplayer:exoplayer-core:2.11.4', 'com.google.android.exoplayer:exoplayer-ui:2.11.4']
+      }
+    }
 }
