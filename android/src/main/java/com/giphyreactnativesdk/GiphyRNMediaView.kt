@@ -57,4 +57,9 @@ class GiphyRNMediaView @JvmOverloads constructor(
     } ?: DEFAULT_RENDITION_TYPE
     updateMedia()
   }
+
+  fun setShowCheckeredBackground(rnValue: Boolean?) {
+      isBackgroundVisible = rnValue ?: true
+      updateMedia()
+  }
 }

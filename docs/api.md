@@ -18,9 +18,10 @@ Configure basic settings of GIPHY SDK.
 
 #### Options
 
-| Option | Description                                                                                                                   | Type     | Default | Platform                          |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | --------------------------------- |
-| apiKey | Android or iOS SDK key. Please remember, you should use a separate key for every platform (Android, iOS) you add our SDKs to. | `string` | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| Option             | Description                                                                                                                                                                                                                                                                                                                                                                                                      | Type     | Default             | Platform                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------- | --------------------------------- |
+| apiKey             | Android or iOS SDK key. Please remember, you should use a separate key for every platform (Android, iOS) you add our SDKs to.                                                                                                                                                                                                                                                                                    | `string` | `None`              | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| videoCacheMaxBytes | A number that defines the video cache size for ExoPlayer on the Android platform. <br/> `Note`: If `videoCacheMaxBytes` is 0, the cache initialization will be skipped, and [Giphy Clips](https://developers.giphy.com/docs/clips) will not work. You may want to skip this setting if you use another version of ExoPlayer that is not compatible with the Giphy SDK but still wish to receive gifs from Giphy. | `number` | `100 * 1024 * 1024` | ✅&nbsp;Android <br/> ❌&nbsp;iOS |
 
 #### Example
 
@@ -111,11 +112,12 @@ objects.
 
 #### Props
 
-| Prop          | Description                                                                                     | Type                                                                                                                                          | Default       | Platform                          |
-| ------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------- |
-| autoPlay      | A boolean flag indicating whether or not the animation should start automatically when mounted. | `boolean`                                                                                                                                     | `true`        | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| media         | Pass a GiphyMedia object to display content.                                                    | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69)     | `None`        | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
-| renditionType | A rendition type for the view.                                                                  | [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51) | `.FixedWidth` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| Prop                    | Description                                                                                     | Type                                                                                                                                          | Default       | Platform                          |
+| ----------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------- |
+| autoPlay                | A boolean flag indicating whether or not the animation should start automatically when mounted. | `boolean`                                                                                                                                     | `true`        | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| media                   | Pass a GiphyMedia object to display content.                                                    | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69)     | `None`        | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| renditionType           | A rendition type for the view.                                                                  | [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51) | `.FixedWidth` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| showCheckeredBackground | Enable/disable the checkered background for stickers and text media type.                       | `boolean`                                                                                                                                     | `true`        | ✅&nbsp;Android <br/> ❌&nbsp;iOS |
 
 #### Methods (Imperative API)
 

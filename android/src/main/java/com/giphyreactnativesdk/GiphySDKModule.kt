@@ -12,8 +12,14 @@ import com.giphy.sdk.ui.themes.GridType
 import com.giphy.sdk.ui.views.GiphyDialogFragment
 import com.giphyreactnativesdk.utils.RNSDKInfo
 
+object GiphySDKConstants {
+  const val VERIFICATION_MODE_KEY = "verificationMode"
+  const val VIDEO_CACHE_MAX_BYTES_KEY = "videoCacheMaxBytes"
+  const val DEFAULT_VIDEO_CACHE_MAX_BYTES: Long = 100 * 1024 * 1024
+}
+
 class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext) {
-  val VERIFICATION_MODE_KEY = "verificationMode"
+
 
   override fun getName(): String {
     return "GiphyReactNativeSDK"
@@ -22,11 +28,17 @@ class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJav
   @ReactMethod
   fun configure(settings: ReadableMap) {
     val apiKey = settings.getString("apiKey")
-    var verificationMode = false
 
-    if (settings.hasKey(VERIFICATION_MODE_KEY)) {
-      verificationMode = settings.getBoolean(VERIFICATION_MODE_KEY)
+    var verificationMode = false
+    if (settings.hasKey(GiphySDKConstants.VERIFICATION_MODE_KEY)) {
+      verificationMode = settings.getBoolean(GiphySDKConstants.VERIFICATION_MODE_KEY)
     }
+
+    var videoCacheMaxBytes: Long = GiphySDKConstants.DEFAULT_VIDEO_CACHE_MAX_BYTES
+    if (settings.hasKey(GiphySDKConstants.VIDEO_CACHE_MAX_BYTES_KEY)) {
+      videoCacheMaxBytes = settings.getInt(GiphySDKConstants.VIDEO_CACHE_MAX_BYTES_KEY).toLong()
+    }
+
 
     if (apiKey != null) {
       val appInfo = RNSDKInfo(reactApplicationContext)
@@ -34,6 +46,7 @@ class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJav
         reactApplicationContext,
         apiKey,
         verificationMode,
+        videoCacheMaxBytes,
         metadata = hashMapOf(
           appInfo.name to appInfo.version
         )
