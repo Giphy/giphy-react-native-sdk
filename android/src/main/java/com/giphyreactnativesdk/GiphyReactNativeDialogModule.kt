@@ -6,6 +6,9 @@ import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.GPHContentType
 import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.views.GiphyDialogFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
@@ -51,18 +54,22 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun show() {
-    initializeDialog()
+    GlobalScope.launch(Dispatchers.Main) {
+      initializeDialog()
 
-    val compatActivity: AppCompatActivity = currentActivity as AppCompatActivity
-    val fragmentManager = compatActivity.supportFragmentManager
+      val compatActivity: AppCompatActivity = currentActivity as AppCompatActivity
+      val fragmentManager = compatActivity.supportFragmentManager
 
-    gifsDialog!!.gifSelectionListener = getGifSelectionListener()
-    gifsDialog!!.show(fragmentManager, "giphy_view")
+      gifsDialog!!.gifSelectionListener = getGifSelectionListener()
+      gifsDialog!!.show(fragmentManager, "giphy_view")
+    }
   }
 
   @ReactMethod
   fun hide() {
-    gifsDialog!!.dismiss()
+    GlobalScope.launch(Dispatchers.Main) {
+      gifsDialog!!.dismiss()
+    }
   }
 
   @ReactMethod
