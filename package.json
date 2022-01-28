@@ -69,6 +69,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "handlebars": "^4.7.7",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "license-checker": "^25.0.1",
@@ -103,30 +104,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}",
-      "requireBranch": "main"
-    },
-    "npm": {
-      "publish": false
-    },
-    "github": {
-      "release": true,
-      "releaseName": "${version}",
-      "draft": true,
-      "web": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    },
-    "hooks": {
-      "after:bump": "yarn bootstrap"
-    }
   },
   "eslintConfig": {
     "root": true,
