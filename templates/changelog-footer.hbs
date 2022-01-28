@@ -1,8 +1,8 @@
 {{#if noteGroups}}
   {{#each noteGroups~}}
-    ### {{~title}}
+    ### {{title}}
     {{#each notes~}}
-      * {{#if commit.scope}}&#91;{{commit.scope}}:&#93; {{/if}}{{text~}}
+      * {{#if commit.scope}}({{commit.scope}}) {{/if}}{{text~}}
     {{/each}}
   {{/each}}
 {{/if}}
