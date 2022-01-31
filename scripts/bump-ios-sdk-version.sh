@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 SDK_CURRENT_VERSION="$("${SCRIPT_DIR}"/ios-sdk-version-by-hash.sh HEAD)"
