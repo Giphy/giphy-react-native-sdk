@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 SDK_CURRENT_VERSION="$("${SCRIPT_DIR}"/android-sdk-version-by-hash.sh HEAD)"
@@ -8,7 +9,7 @@ SDK_LATEST_VERSION="$("${SCRIPT_DIR}"/android-sdk-latest-version.sh)"
 
 sed \
   -i '' \
-  -E "s/$GRADLE_FILE_SDK_LATEST_VERSION_REGEX/\1$SDK_LATEST_VERSION\3/" \
+  -E "s/$GRADLE_FILE_SDK_VERSION_REGEX/\1$SDK_LATEST_VERSION\3/" \
   "$PROJECT_ROOT/$GRADLE_FILE"
 
 yarn --cwd "$PROJECT_ROOT". bootstrap
