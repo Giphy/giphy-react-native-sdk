@@ -1,6 +1,6 @@
 {
   "name": "@giphy/react-native-sdk",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Giphy React Native SDK",
   "license": "Apache-2.0",
   "main": "lib/commonjs/index",
@@ -124,7 +124,9 @@
         }
       ],
       "no-shadow": "off",
-      "@typescript-eslint/no-shadow": ["error"]
+      "@typescript-eslint/no-shadow": [
+        "error"
+      ]
     }
   },
   "eslintIgnore": [
