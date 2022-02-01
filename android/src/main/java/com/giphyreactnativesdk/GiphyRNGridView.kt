@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.uimanager.ThemedReactContext
 import com.giphy.sdk.core.models.enums.MediaType
 import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.GPHRequestType
@@ -28,7 +29,8 @@ class GiphyRNGridView @JvmOverloads constructor(
   }
 
   private fun prepareLayout() {
-    gridView = GiphyGridView(context)
+    val activity = (context as? ThemedReactContext)?.currentActivity
+    gridView = GiphyGridView(activity ?: context)
     addView(gridView)
   }
 
