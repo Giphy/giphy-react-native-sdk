@@ -30,7 +30,16 @@ export { GiphyVideoView } from './GiphyVideoView'
 
 export { GiphyVideoManager } from './GiphyVideoManager'
 
-export type { GiphyContentSearchOptions, GiphyContentTrendingOptions } from './GiphyContent'
+export type {
+  GiphyContentAnimateOptions,
+  GiphyContentEmojiOptions,
+  GiphyContentRecentsOptions,
+  GiphyContentSearchOptions,
+  GiphyContentTrendingGIFsOptions,
+  GiphyContentTrendingOptions,
+  GiphyContentTrendingStickersOptions,
+  GiphyContentTrendingTextOptions,
+} from './GiphyContent'
 export { GiphyContent } from './GiphyContent'
 
 export type { GiphyGridViewProps } from './GiphyGridView'

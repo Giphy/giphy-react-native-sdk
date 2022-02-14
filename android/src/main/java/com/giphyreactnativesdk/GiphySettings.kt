@@ -45,6 +45,17 @@ fun renditionByName(renditionName: String?): RenditionType? {
   }
 }
 
+fun gphRatingByName(ratingName: String?): RatingType? {
+  return when (ratingName) {
+    null -> null
+    else -> RatingType.values().firstOrNull {
+      it.name == ratingName
+        .replace("-", "")
+        .lowercase()
+    }
+  }
+}
+
 fun getContentType(contentType: String?): GPHContentType {
   return when(contentType) {
     null -> GPHContentType.gif
@@ -73,11 +84,7 @@ fun giphySettingsFromReadableMap(
   }
 
   if (options.hasKey(RNSettings.rating.toString())) {
-    settings.rating = RatingType.values().firstOrNull {
-      it.name == options.getString(RNSettings.rating.toString())
-        ?.replace("-", "")
-        ?.lowercase()
-    } ?: RatingType.unrated
+    settings.rating = gphRatingByName(RNSettings.rating.toString()) ?: RatingType.pg13
   }
 
   if (options.hasKey(RNSettings.showConfirmationScreen.toString())) {

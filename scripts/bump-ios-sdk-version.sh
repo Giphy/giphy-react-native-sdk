@@ -15,7 +15,7 @@ sed \
 cd "$PROJECT_ROOT"/example/ios && pod update
 yarn --cwd "$PROJECT_ROOT" bootstrap
 
-COMMIT_MSG="build(deps): bump iOS sdk version from $SDK_CURRENT_VERSION to $SDK_LATEST_VERSION"
+COMMIT_MSG="build(deps): bump iOS SDK version from $SDK_CURRENT_VERSION to $SDK_LATEST_VERSION"
 
 while true; do
   read -rp "Commit \"$COMMIT_MSG\"? " yn

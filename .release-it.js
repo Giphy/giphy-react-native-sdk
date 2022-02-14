@@ -142,7 +142,7 @@ module.exports = {
   },
   github: {
     release: true,
-    releaseName: '${version}',
+    releaseName: 'v${version}',
     draft: true,
     web: true,
   },

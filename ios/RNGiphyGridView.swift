@@ -31,6 +31,8 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
 
   //MARK: RN Properties
   @objc func setContent(_ value: NSDictionary) -> Void {
+    let rating = GPHRatingType.fromRNValue(value: value["rating"] as? String)
+    gridController.rating = rating ?? GPHRatingType.ratedPG13
     gridController.content = GPHContent.fromRNValue(value: value)
     gridController.update()
   }

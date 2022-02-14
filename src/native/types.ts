@@ -108,7 +108,8 @@ export enum GiphyContentRequestType {
 }
 
 export type GiphyContentRequest = {
-  searchQuery: string
-  requestType: GiphyContentRequestType
   mediaType: GiphyMediaType
+  rating?: GiphyRating
+  requestType: GiphyContentRequestType
+  searchQuery: string
 }
