@@ -1,3 +1,13 @@
+# 1.6.0 (2022-02-15)
+
+### Native SDKs
+* Giphy Android SDK [v2.1.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.16)
+* Giphy iOS SDK [v2.1.17](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.17)
+
+
+### Features
+* [GiphyContent] Add the prop to specify content rating for the search results ([#58](https://github.com/Giphy/giphy-react-native-sdk/issues/58)) ([fe22af7](https://github.com/Giphy/giphy-react-native-sdk/commit/fe22af73b67a3b61ce9eeb9d2cd3b3aa58d5e174))
+
 # 1.5.0 (2022-02-01)
 
 ### Native SDKs
