@@ -6,6 +6,7 @@ import android.widget.FrameLayout
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.uimanager.ThemedReactContext
 import com.giphy.sdk.core.models.enums.MediaType
+import com.giphy.sdk.core.models.enums.RatingType
 import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.GPHRequestType
 import com.giphy.sdk.ui.pagination.GPHContent
@@ -63,6 +64,8 @@ class GiphyRNGridView @JvmOverloads constructor(
       }
     }
 
+    content.rating = gphRatingByName(value?.getString("rating")) ?: RatingType.pg13;
+
     if (query != null) {
       content.searchQuery = query
     }
@@ -108,7 +111,7 @@ class GiphyRNGridView @JvmOverloads constructor(
     clipsPreviewRenditionType = renditionByName(value) ?: DEFAULT_RENDITION_TYPE
   }
 
-  fun setShowCheckeredBackground(value: Boolean?){
+  fun setShowCheckeredBackground(value: Boolean?) {
     gridView.showCheckeredBackground = value ?: false
   }
 }

@@ -1,15 +1,29 @@
-import { GiphyContentRequest, GiphyContentRequestType, GiphyMediaType } from './native/types'
+import { GiphyContentRequest, GiphyContentRequestType, GiphyMediaType, GiphyRating } from './native/types'
 
-export type GiphyContentSearchOptions = {
+type GiphyContentRating = {
+  rating?: GiphyRating
+}
+
+export type GiphyContentSearchOptions = GiphyContentRating & {
   searchQuery: string
   mediaType?: GiphyMediaType
 }
 
-export type GiphyContentTrendingOptions = {
+export type GiphyContentTrendingOptions = GiphyContentRating & {
   mediaType?: GiphyMediaType
 }
 
-export type GiphyContentAnimateOptions = {
+export type GiphyContentTrendingGIFsOptions = GiphyContentRating
+
+export type GiphyContentTrendingStickersOptions = GiphyContentRating
+
+export type GiphyContentTrendingTextOptions = GiphyContentRating
+
+export type GiphyContentRecentsOptions = GiphyContentRating
+
+export type GiphyContentEmojiOptions = GiphyContentRating
+
+export type GiphyContentAnimateOptions = GiphyContentRating & {
   searchQuery: string
 }
 
@@ -38,36 +52,41 @@ export class GiphyContent {
     })
   }
 
-  static trendingGifs(): GiphyContentRequest {
+  static trendingGifs(options?: GiphyContentTrendingGIFsOptions): GiphyContentRequest {
     return makeGiphyContentRequest({
+      ...options,
       mediaType: GiphyMediaType.Gif,
       requestType: GiphyContentRequestType.Trending,
     })
   }
 
-  static trendingStickers(): GiphyContentRequest {
+  static trendingStickers(options?: GiphyContentTrendingStickersOptions): GiphyContentRequest {
     return makeGiphyContentRequest({
+      ...options,
       mediaType: GiphyMediaType.Sticker,
       requestType: GiphyContentRequestType.Trending,
     })
   }
 
-  static trendingText(): GiphyContentRequest {
+  static trendingText(options?: GiphyContentTrendingTextOptions): GiphyContentRequest {
     return makeGiphyContentRequest({
+      ...options,
       mediaType: GiphyMediaType.Text,
       requestType: GiphyContentRequestType.Trending,
     })
   }
 
-  static recents(): GiphyContentRequest {
+  static recents(options?: GiphyContentRecentsOptions): GiphyContentRequest {
     return makeGiphyContentRequest({
+      ...options,
       mediaType: GiphyMediaType.Gif,
       requestType: GiphyContentRequestType.Recents,
     })
   }
 
-  static emoji(): GiphyContentRequest {
+  static emoji(options?: GiphyContentEmojiOptions): GiphyContentRequest {
     return makeGiphyContentRequest({
+      ...options,
       mediaType: GiphyMediaType.Sticker,
       requestType: GiphyContentRequestType.Emoji,
     })

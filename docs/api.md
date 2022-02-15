@@ -589,6 +589,7 @@ Provides methods to describe a content request to the Giphy API.
 | Option      | Description                                                    | Type                                                                                                                                          | Default | Platform                          |
 | ----------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------- |
 | mediaType   | A media type that should be loaded (e.g. `GiphyMediaType.Gif`) | [`GiphyMediaType`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L15-L20) | `.Gif`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| rating      | Filter query results by specific content rating                | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29)    | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | searchQuery | A custom search input (e.g. cats)                              | `string`                                                                                                                                      | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> trending: `(options: GiphyContentTrendingOptions) => GiphyContentRequest`
@@ -598,24 +599,56 @@ Provides methods to describe a content request to the Giphy API.
 | Option    | Description                                                    | Type                                                                                                                                          | Default | Platform                          |
 | --------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------- |
 | mediaType | A media type that should be loaded (e.g. `GiphyMediaType.Gif`) | [`GiphyMediaType`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L15-L20) | `.Gif`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| rating    | Filter query results by specific content rating                | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29)    | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
-### </> trendingGifs: `() => GiphyContentRequest`
+### </> trendingGifs: `(options?: GiphyContentTrendingGIFsOptions) => GiphyContentRequest`
 
-### </> trendingStickers: `() => GiphyContentRequest`
+#### Options
 
-### </> trendingText: `() => GiphyContentRequest`
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
-### </> recents: `() => GiphyContentRequest`
+### </> trendingStickers: `(options?: GiphyContentTrendingStickersOptions) => GiphyContentRequest`
 
-### </> emoji: `() => GiphyContentRequest`
+#### Options
+
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+### </> trendingText: `(options?: GiphyContentTrendingTextOptions) => GiphyContentRequest`
+
+#### Options
+
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+### </> recents: `(options?: GiphyContentRecentsOptions) => GiphyContentRequest`
+
+#### Options
+
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+### </> emoji: `(options?: GiphyContentEmojiOptions) => GiphyContentRequest`
+
+#### Options
+
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> animate: `(options: GiphyContentAnimateOptions) => GiphyContentRequest`
 
 #### Options
 
-| Option      | Description                       | Type     | Default | Platform                          |
-| ----------- | --------------------------------- | -------- | ------- | --------------------------------- |
-| searchQuery | A custom search input (e.g. cats) | `string` | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| Option      | Description                                     | Type                                                                                                                                       | Default | Platform                          |
+| ----------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| rating      | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+| searchQuery | A custom search input (e.g. cats)               | `string`                                                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### Example
 
