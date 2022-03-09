@@ -10,14 +10,18 @@ class RNGiphyVideoManager: NSObject {
   @objc
   func muteAll() -> Void {
     DispatchQueue.main.async {
-      GPHVideoView.muteAll()
+      if SharedGPHVideoPlayer.initialized {
+        SharedGPHVideoPlayer.shared.mute(true)
+      }
     }
   }
 
   @objc
   func pauseAll() -> Void {
     DispatchQueue.main.async {
-      GPHVideoView.pauseAll()
+      if SharedGPHVideoPlayer.initialized {
+        SharedGPHVideoPlayer.shared.pause()
+      }
     }
   }
 }

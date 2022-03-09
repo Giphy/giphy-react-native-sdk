@@ -1,8 +1,32 @@
 import UIKit
 import GiphyUISDK
 
+private class ViewsRegister {
+  static let shared = ViewsRegister()
 
-class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
+  private var views: [RNGiphyVideoView] = []
+
+  private init() {
+  }
+
+  func registerView(view: RNGiphyVideoView) {
+    views.append(view)
+  }
+
+  func unregisterView(view: RNGiphyVideoView) {
+    views.removeAll {
+      $0 == view
+    }
+  }
+
+  func getLatestViewWithAutoPlayback() -> RNGiphyVideoView? {
+    return views.last {
+      $0.autoPlay && $0.media != nil
+    }
+  }
+}
+
+class RNGiphyVideoView: UIView, GPHVideoPlayerStateListener {
   //MARK: RN callbacks
   @objc var onError: RCTDirectEventBlock?
   @objc var onMute: RCTDirectEventBlock?
@@ -12,7 +36,7 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
   //MARK: RN Properties
   @objc var autoPlay: Bool = false
 
-  private var media: GPHMedia? {
+  var media: GPHMedia? {
     didSet {
       syncMedia()
     }
@@ -33,69 +57,72 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    videoView.delegate = self
     setupView()
-    syncMedia()
+    SharedGPHVideoPlayer.shared.add(listener: self)
+    ViewsRegister.shared.registerView(view: self)
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  let videoView: GPHVideoView = {
-    GPHVideoView()
+  deinit {
+    ViewsRegister.shared.unregisterView(view: self)
+    if (SharedGPHVideoPlayer.initialized) {
+      SharedGPHVideoPlayer.shared.remove(listener: self)
+    }
+  }
+
+  let playerView: GPHVideoPlayerView = {
+    GPHVideoPlayerView()
   }()
 
   private func setupView() -> Void {
-    addSubview(videoView)
+    addSubview(playerView)
 
-    videoView.translatesAutoresizingMaskIntoConstraints = false
-    videoView.leftAnchor.constraint(equalTo: safeLeftAnchor).isActive = true
-    videoView.rightAnchor.constraint(equalTo: safeRightAnchor).isActive = true
-    videoView.topAnchor.constraint(equalTo: safeTopAnchor).isActive = true
-    videoView.bottomAnchor.constraint(equalTo: safeBottomAnchor).isActive = true
-    videoView.contentMode = .scaleAspectFit
-    videoView.layer.masksToBounds = true
-    videoView.backgroundColor = .clear
+    playerView.translatesAutoresizingMaskIntoConstraints = false
+    playerView.leftAnchor.constraint(equalTo: safeLeftAnchor).isActive = true
+    playerView.rightAnchor.constraint(equalTo: safeRightAnchor).isActive = true
+    playerView.topAnchor.constraint(equalTo: safeTopAnchor).isActive = true
+    playerView.bottomAnchor.constraint(equalTo: safeBottomAnchor).isActive = true
+    playerView.contentMode = .scaleAspectFit
+    playerView.layer.masksToBounds = true
+    playerView.backgroundColor = .clear
+  }
+
+  private func isViewPlayerActive() -> Bool {
+    return SharedGPHVideoPlayer.initialized && SharedGPHVideoPlayer.shared.playerView == playerView
   }
 
   private func syncMedia() -> Void {
     DispatchQueue.main.async { [weak self] in
-      guard let self = self else {
+      guard let self = self,
+            let media = self.media else {
         return
       }
 
-      self.videoView.media = self.media
-      self.syncPlaying()
-      self.syncAutoPlay()
+      SharedGPHVideoPlayer.shared.prepareMedia(media: media, view: self.playerView)
+      if self.playing == true || (self.autoPlay == true && ViewsRegister.shared.getLatestViewWithAutoPlayback() == self) {
+        SharedGPHVideoPlayer.shared.loadMedia(
+          media: media,
+          autoPlay: true,
+          muteOnPlay: self.muted == true,
+          view: self.playerView
+        )
+      }
     }
   }
 
   private func syncVolume() -> Void {
     DispatchQueue.main.async { [weak self] in
       guard let self = self,
-            let _ = self.videoView.media else {
+            let _ = self.playerView.media else {
         return
       }
 
-      if (self.muted) {
-        self.videoView.mute()
-      } else {
-        self.videoView.unmute()
+      if self.isViewPlayerActive() {
+        SharedGPHVideoPlayer.shared.mute(self.muted)
       }
-    }
-  }
-
-  private func syncAutoPlay() {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self,
-            let _ = self.videoView.media,
-            self.autoPlay else {
-        return
-      }
-
-      GPHVideoView.pauseAll()
-      self.videoView.play()
     }
   }
 
@@ -104,14 +131,20 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
     DispatchQueue.main.async { [weak self] in
       guard let self = self,
             let playing = self.playing,
-            let _ = self.videoView.media else {
+            let _ = self.playerView.media else {
         return
       }
 
-      if (playing) {
-        self.videoView.play()
+      if playing {
+        if self.isViewPlayerActive() {
+          SharedGPHVideoPlayer.shared.resume()
+        } else {
+          self.syncMedia()
+        }
       } else {
-        self.videoView.pause()
+        if self.isViewPlayerActive() {
+          SharedGPHVideoPlayer.shared.pause()
+        }
       }
     }
   }
@@ -143,18 +176,27 @@ class RNGiphyVideoView: UIView, GPHVideoViewDelegate {
 
   //MARK: GPHVideoViewDelegate stubs
   func playerDidFail(_ description: String?) {
+    guard isViewPlayerActive() else {
+      return
+    }
+
     onError?(["description": description ?? ""])
   }
 
   func playerStateDidChange(_ state: GPHVideoPlayerState) {
-    onPlaybackStateChanged?(["state": state.toRNValue()])
-    if state == GPHVideoPlayerState.readyToPlay {
-      syncVolume()
+    guard isViewPlayerActive() else {
+      return
     }
+
+    onPlaybackStateChanged?(["state": state.toRNValue()])
   }
 
-  func muteDidChange(muted: Bool) {
-    if muted {
+  func muteDidChange(isMuted: Bool) {
+    guard isViewPlayerActive() else {
+      return
+    }
+
+    if isMuted {
       onMute?([:])
     } else {
       onUnmute?([:])
