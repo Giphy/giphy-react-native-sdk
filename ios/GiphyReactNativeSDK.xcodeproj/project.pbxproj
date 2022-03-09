@@ -14,6 +14,7 @@
 		BFC4FEEFC5624121D7DB8417 /* RNGiphyVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4FA2EF2849FEF944FE9FC /* RNGiphyVideoManager.m */; };
 		D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */; };
 		D75465C626B1AA170003EC5B /* RNSDKInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75465C526B1AA170003EC5B /* RNSDKInfo.swift */; };
+		D7C1A5FE27D0A1D200EF6E93 /* SharedVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1A5FD27D0A1D200EF6E93 /* SharedVideoPlayer.swift */; };
 		D7CBE3FB269321D600A00F75 /* GPHMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBE3FA269321D600A00F75 /* GPHMedia.swift */; };
 		D7CBE3FD2693220300A00F75 /* RNGiphyTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */; };
 		D7F008472667CBB700D31762 /* RNGiphyMediaViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EE2653E4F30057D899 /* RNGiphyMediaViewManager.m */; };
@@ -58,6 +59,7 @@
 		D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridViewManager.swift; sourceTree = "<group>"; };
 		D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGiphyGridViewManager.m; sourceTree = "<group>"; };
 		D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridView.swift; sourceTree = "<group>"; };
+		D7C1A5FD27D0A1D200EF6E93 /* SharedVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedVideoPlayer.swift; sourceTree = "<group>"; };
 		D7CBE3FA269321D600A00F75 /* GPHMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPHMedia.swift; sourceTree = "<group>"; };
 		D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyTypeExtensions.swift; sourceTree = "<group>"; };
 		D7F008502667D6E700D31762 /* GiphyReactNativeSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GiphyReactNativeSDK-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -99,13 +101,14 @@
 				D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */,
 				B3E7B5891CC2AC0600A0062D /* RNGiphySDK.m */,
 				D71E9BEF264D7FEC00AF36FA /* RNGiphyDialog.m */,
-				134814211AA4EA7D00B7C361 /* Products */,
-				E675D1333EAD4E1C97D6EC73 /* Frameworks */,
 				BFC4F02D9E9155C72E2C6813 /* RNGiphyVideoManager.swift */,
 				BFC4FA2EF2849FEF944FE9FC /* RNGiphyVideoManager.m */,
 				BFC4FB0A7EDF1B61F68C89DB /* RNGiphyVideoView.swift */,
 				BFC4F728A1AC2EDEA4C24C25 /* RNGiphyVideoViewManager.m */,
 				BFC4FDB7888D6C06431E277B /* RNGiphyVideoViewManager.swift */,
+				D7C1A5FD27D0A1D200EF6E93 /* SharedVideoPlayer.swift */,
+				134814211AA4EA7D00B7C361 /* Products */,
+				E675D1333EAD4E1C97D6EC73 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +219,7 @@
 				D75465C626B1AA170003EC5B /* RNSDKInfo.swift in Sources */,
 				D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */,
 				D7F008482667CBBC00D31762 /* RNGiphyMediaViewManager.swift in Sources */,
+				D7C1A5FE27D0A1D200EF6E93 /* SharedVideoPlayer.swift in Sources */,
 				D7CBE3FD2693220300A00F75 /* RNGiphyTypeExtensions.swift in Sources */,
 				D7F008492667CBC000D31762 /* RNGiphyMediaView.swift in Sources */,
 				D7F0084A2667CBD000D31762 /* RNGiphyGridViewManager.swift in Sources */,
