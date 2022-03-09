@@ -1,3 +1,16 @@
+# 1.7.0 (2022-03-09)
+
+### Native SDKs
+* Giphy Android SDK [v2.1.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.16)
+* Giphy iOS SDK [v2.1.20](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.20)
+
+
+### Performance Improvements
+* [ios:giphy-video-view] Reuse a single video player across multiple clips ([8c4ea74](https://github.com/Giphy/giphy-react-native-sdk/commit/8c4ea747156e52e70347586c7068e1fb6791c1aa))
+
+### Build System
+* [deps] Bump iOS SDK version from 2.1.17 to 2.1.20 ([73807b0](https://github.com/Giphy/giphy-react-native-sdk/commit/73807b0e425c7f10fb2c22be9989dd4ad1396e82))
+
 # 1.6.0 (2022-02-15)
 
 ### Native SDKs
