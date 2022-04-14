@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.dependency "Giphy", "2.1.20"
+  s.dependency "Giphy", "2.1.21"
 end
