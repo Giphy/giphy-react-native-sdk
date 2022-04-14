@@ -9,7 +9,7 @@
   - A Giphy Android SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
     Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
 - iOS:
-  - iOS 10.2 or later
+  - iOS 13.0 or later
   - Xcode 12 and later
   - A Giphy iOS SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
     Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
