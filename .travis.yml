@@ -20,7 +20,7 @@ script:
   - 'if [ -n "$LICENSE_PROJECT_LOCATION" ]; then yarn generate-licenses && yarn check-licenses; fi'
 deploy:
   provider: npm
-  api_key: $NPM_TOKEN
+  api_token: $NPM_TOKEN
   email: $NPM_USER
   skip_cleanup: true
   on:
