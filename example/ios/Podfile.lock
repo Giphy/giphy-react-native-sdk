@@ -20,7 +20,7 @@ PODS:
     - glog
   - Giphy (2.1.22):
     - libwebp
-  - giphy-react-native-sdk (1.7.2):
+  - giphy-react-native-sdk (1.8.0-rc.0):
     - Giphy (= 2.1.22)
     - React-Core
   - glog (0.3.5)
@@ -366,7 +366,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   Giphy: 6757d929878ef45f70ed62a02a2c9a03994e7b6c
-  giphy-react-native-sdk: f4a43fe037f42131ed564ab98c3ae94e807e8f9d
+  giphy-react-native-sdk: f9e56fc50a330b7096415964b6e7da46a9e12b87
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e

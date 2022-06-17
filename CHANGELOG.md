@@ -1,3 +1,13 @@
+# 1.8.0-rc.0 (2022-06-17)
+
+### Native SDKs
+* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Features
+* [iOS:GPHMediaView] Scale the content to fill the view bounds and maintain the aspect ratio ([8cf112c](https://github.com/Giphy/giphy-react-native-sdk/commit/8cf112c7efe142c76682ff461110272dcc7d00b9))
+
 # 1.7.2 (2022-06-15)
 
 ### Native SDKs
