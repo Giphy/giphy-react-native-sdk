@@ -63,6 +63,8 @@ class RNGiphyMediaView: UIView {
     addSubview(mediaView)
 
     mediaView.translatesAutoresizingMaskIntoConstraints = false
+    mediaView.contentMode = .scaleAspectFill
+    mediaView.clipsToBounds = true
     mediaView.leftAnchor.constraint(equalTo: safeLeftAnchor).isActive = true
     mediaView.rightAnchor.constraint(equalTo: safeRightAnchor).isActive = true
     mediaView.topAnchor.constraint(equalTo: safeTopAnchor).isActive = true
