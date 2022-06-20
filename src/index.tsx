@@ -10,6 +10,7 @@ export {
   GiphyRendition,
   GiphyStickersColumnCount,
   GiphyThemePreset,
+  ResizeMode,
 } from './native/types'
 
 export type { GiphyDialogMediaSelectEventHandler, GiphyDialogDismissEventHandler } from './native/GiphyDialog'

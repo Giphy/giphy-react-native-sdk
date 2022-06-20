@@ -2,6 +2,7 @@ package com.giphyreactnativesdk
 
 import android.content.Context
 import android.util.AttributeSet
+import com.facebook.drawee.drawable.ScalingUtils
 import com.facebook.react.bridge.ReadableMap
 import com.giphy.sdk.core.GPHCore
 import com.giphy.sdk.core.models.Media
@@ -21,17 +22,12 @@ class GiphyRNMediaView @JvmOverloads constructor(
   }
 
   private var renditionType = DEFAULT_RENDITION_TYPE
+  private var resizeMode = ResizeMode.DEFAULT_MODE
   private var loadedMedia: Media? = null
   private var autoPlay: Boolean = true
 
-  private fun updateMedia() {
-    if (loadedMedia != null) {
-      setMedia(loadedMedia, renditionType)
-    }
-    aspectRatio = loadedMedia?.aspectRatio ?: aspectRatio
-    if (autoPlay == false) {
-      pause()
-    }
+  init {
+    adjustResizeMode()
   }
 
   fun setAutoPlay(rnValue: Boolean?) {
@@ -44,7 +40,7 @@ class GiphyRNMediaView @JvmOverloads constructor(
     val mediaId = rnMedia?.getString("id") ?: return
     GPHCore.gifById(mediaId) { result, e ->
       loadedMedia = result?.data
-      updateMedia()
+      syncMedia()
       e?.let {
         Timber.d("Error while fetching GIF: %s", e.localizedMessage)
       }
@@ -55,11 +51,44 @@ class GiphyRNMediaView @JvmOverloads constructor(
     renditionType = RenditionType.values().firstOrNull {
       it.name == snakeToCamel(renditionName)
     } ?: DEFAULT_RENDITION_TYPE
-    updateMedia()
+    syncMedia()
+  }
+
+  fun setResizeMode(rnValue: String?) {
+    resizeMode = ResizeMode.fromRNValue(rnValue) ?: ResizeMode.DEFAULT_MODE
+    adjustResizeMode()
+    syncMedia()
   }
 
   fun setShowCheckeredBackground(rnValue: Boolean?) {
-      isBackgroundVisible = rnValue ?: true
-      updateMedia()
+    isBackgroundVisible = rnValue ?: true
+    syncMedia()
+  }
+
+  private fun syncMedia() {
+    if (loadedMedia != null) {
+      setMedia(loadedMedia, renditionType)
+    }
+    aspectRatio = loadedMedia?.aspectRatio ?: aspectRatio
+    if (autoPlay == false) {
+      pause()
+    }
+  }
+
+  private fun adjustResizeMode() {
+    when (resizeMode) {
+      ResizeMode.CENTER -> {
+        scaleType = ScalingUtils.ScaleType.CENTER_INSIDE
+      }
+      ResizeMode.CONTAIN -> {
+        scaleType = ScalingUtils.ScaleType.FIT_CENTER
+      }
+      ResizeMode.COVER -> {
+        scaleType = ScalingUtils.ScaleType.CENTER_CROP
+      }
+      ResizeMode.STRETCH -> {
+        scaleType = ScalingUtils.ScaleType.FIT_XY
+      }
+    }
   }
 }

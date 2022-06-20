@@ -16,9 +16,16 @@ class RNGiphyMediaView: UIView {
     }
   }
 
+  private var resizeMode: ResizeMode = ResizeMode.defaultMode {
+    didSet {
+      adjustResizeMode()
+    }
+  }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()
+    adjustResizeMode()
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -59,16 +66,32 @@ class RNGiphyMediaView: UIView {
     }
   }
 
+  @objc func setResizeMode(_ rnValue: NSString) -> Void {
+    resizeMode = ResizeMode.fromRNValue(value: rnValue as String?) ?? ResizeMode.defaultMode
+  }
+
   private func setupView() -> Void {
     addSubview(mediaView)
 
-    mediaView.translatesAutoresizingMaskIntoConstraints = false
-    mediaView.contentMode = .scaleAspectFill
     mediaView.clipsToBounds = true
+    mediaView.translatesAutoresizingMaskIntoConstraints = false
     mediaView.leftAnchor.constraint(equalTo: safeLeftAnchor).isActive = true
     mediaView.rightAnchor.constraint(equalTo: safeRightAnchor).isActive = true
     mediaView.topAnchor.constraint(equalTo: safeTopAnchor).isActive = true
     mediaView.bottomAnchor.constraint(equalTo: safeBottomAnchor).isActive = true
+  }
+
+  private func adjustResizeMode() -> Void {
+    switch resizeMode {
+    case .center:
+      mediaView.contentMode = .center
+    case .contain:
+      mediaView.contentMode = .scaleAspectFit
+    case .cover:
+      mediaView.contentMode = .scaleAspectFill
+    case .stretch:
+      mediaView.contentMode = .scaleToFill
+    }
   }
 
   private func syncMediaViewSource() -> Void {
