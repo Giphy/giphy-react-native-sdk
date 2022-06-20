@@ -1,3 +1,13 @@
+# 1.8.0-rc.1 (2022-06-20)
+
+### Native SDKs
+* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Features
+* [GPHMediaView] Add the resizeMode property ([6ff254a](https://github.com/Giphy/giphy-react-native-sdk/commit/6ff254aa680837dd52d66535d6b5a813930a7235))
+
 # 1.8.0-rc.0 (2022-06-17)
 
 ### Native SDKs
