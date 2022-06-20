@@ -31,6 +31,11 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
     gifView.setRenditionType(renditionName)
   }
 
+  @ReactProp(name = "resizeMode")
+  fun setResizeMode(gifView: GiphyRNMediaView, resizeMode: String?) {
+    gifView.setResizeMode(resizeMode)
+  }
+
   @ReactProp(name = "showCheckeredBackground")
   fun setShowCheckeredBackground(gifView: GiphyRNMediaView, rnValue: Boolean?) {
     gifView.setShowCheckeredBackground(rnValue)

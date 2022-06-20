@@ -10,6 +10,7 @@
 		BFC4F2FFD0D9C7481116086B /* RNGiphyVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4F02D9E9155C72E2C6813 /* RNGiphyVideoManager.swift */; };
 		BFC4F52186CD24AE149FE10C /* RNGiphyVideoViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4FDB7888D6C06431E277B /* RNGiphyVideoViewManager.swift */; };
 		BFC4F75222740EF60EF0F8EB /* RNGiphyVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4FB0A7EDF1B61F68C89DB /* RNGiphyVideoView.swift */; };
+		BFC4FAB5E21994F378B9177C /* ResizeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4F160020716974F4FCE5C /* ResizeMode.swift */; };
 		BFC4FD17C16D42845655F9D2 /* RNGiphyVideoViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4F728A1AC2EDEA4C24C25 /* RNGiphyVideoViewManager.m */; };
 		BFC4FEEFC5624121D7DB8417 /* RNGiphyVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4FA2EF2849FEF944FE9FC /* RNGiphyVideoManager.m */; };
 		D71E9BEA264D778500AF36FA /* RNGiphyDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BE9264D778500AF36FA /* RNGiphyDialog.swift */; };
@@ -46,6 +47,7 @@
 		5A70D494DD5AC43DFB0586E2 /* Pods_GiphyReactNativeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyReactNativeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5891CC2AC0600A0062D /* RNGiphySDK.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = RNGiphySDK.m; sourceTree = "<group>"; tabWidth = 2; };
 		BFC4F02D9E9155C72E2C6813 /* RNGiphyVideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGiphyVideoManager.swift; sourceTree = "<group>"; };
+		BFC4F160020716974F4FCE5C /* ResizeMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeMode.swift; sourceTree = "<group>"; };
 		BFC4F728A1AC2EDEA4C24C25 /* RNGiphyVideoViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGiphyVideoViewManager.m; sourceTree = "<group>"; };
 		BFC4FA2EF2849FEF944FE9FC /* RNGiphyVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGiphyVideoManager.m; sourceTree = "<group>"; };
 		BFC4FB0A7EDF1B61F68C89DB /* RNGiphyVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGiphyVideoView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				D7CBE3FA269321D600A00F75 /* GPHMedia.swift */,
 				D7CBE3FC2693220300A00F75 /* RNGiphyTypeExtensions.swift */,
 				D75465C526B1AA170003EC5B /* RNSDKInfo.swift */,
+				BFC4F160020716974F4FCE5C /* ResizeMode.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				BFC4F75222740EF60EF0F8EB /* RNGiphyVideoView.swift in Sources */,
 				BFC4FD17C16D42845655F9D2 /* RNGiphyVideoViewManager.m in Sources */,
 				BFC4F52186CD24AE149FE10C /* RNGiphyVideoViewManager.swift in Sources */,
+				BFC4FAB5E21994F378B9177C /* ResizeMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

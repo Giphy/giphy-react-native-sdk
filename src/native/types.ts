@@ -113,3 +113,10 @@ export type GiphyContentRequest = {
   requestType: GiphyContentRequestType
   searchQuery: string
 }
+
+export enum ResizeMode {
+  Center = 'center',
+  Contain = 'contain',
+  Cover = 'cover',
+  Stretch = 'stretch',
+}
