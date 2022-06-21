@@ -1,75 +1,95 @@
+# 1.8.0 (2022-06-21)
+
+### Native SDKs
+
+- Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+- Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+### Features
+
+- [GPHMediaView] Add the resizeMode property. This property determines how to resize the image when the frame doesn't match the raw image dimensions. ([6ff254a](https://github.com/Giphy/giphy-react-native-sdk/commit/6ff254aa680837dd52d66535d6b5a813930a7235))
+
 # 1.8.0-rc.1 (2022-06-20)
 
 ### Native SDKs
-* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
-* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
+- Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+- Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
 ### Features
-* [GPHMediaView] Add the resizeMode property ([6ff254a](https://github.com/Giphy/giphy-react-native-sdk/commit/6ff254aa680837dd52d66535d6b5a813930a7235))
+
+- [GPHMediaView] Add the resizeMode property ([6ff254a](https://github.com/Giphy/giphy-react-native-sdk/commit/6ff254aa680837dd52d66535d6b5a813930a7235))
 
 # 1.8.0-rc.0 (2022-06-17)
 
 ### Native SDKs
-* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
-* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
+- Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+- Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
 ### Features
-* [iOS:GPHMediaView] Scale the content to fill the view bounds and maintain the aspect ratio ([8cf112c](https://github.com/Giphy/giphy-react-native-sdk/commit/8cf112c7efe142c76682ff461110272dcc7d00b9))
+
+- [iOS:GPHMediaView] Scale the content to fill the view bounds and maintain the aspect ratio ([8cf112c](https://github.com/Giphy/giphy-react-native-sdk/commit/8cf112c7efe142c76682ff461110272dcc7d00b9))
 
 # 1.7.2 (2022-06-15)
 
 ### Native SDKs
-* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
-* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
+- Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+- Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
 ### Build System
-* [deps] Bump @giphy/js-types to 4.2.1 and type-fest to 2.13.1 ([db8d8a8](https://github.com/Giphy/giphy-react-native-sdk/commit/db8d8a8548b8db914ab277cdace8836bd455c203))
-* [deps] Bump Android SDK version from 2.1.17 to 2.1.18 ([d538105](https://github.com/Giphy/giphy-react-native-sdk/commit/d53810566e928e26a548e01f493159f393b3b968))
-* [deps] Bump iOS SDK version from 2.1.21 to 2.1.22 ([63fed92](https://github.com/Giphy/giphy-react-native-sdk/commit/63fed9250156070bdcdb2ccb75c4388b5519bd5a))
+
+- [deps] Bump @giphy/js-types to 4.2.1 and type-fest to 2.13.1 ([db8d8a8](https://github.com/Giphy/giphy-react-native-sdk/commit/db8d8a8548b8db914ab277cdace8836bd455c203))
+- [deps] Bump Android SDK version from 2.1.17 to 2.1.18 ([d538105](https://github.com/Giphy/giphy-react-native-sdk/commit/d53810566e928e26a548e01f493159f393b3b968))
+- [deps] Bump iOS SDK version from 2.1.21 to 2.1.22 ([63fed92](https://github.com/Giphy/giphy-react-native-sdk/commit/63fed9250156070bdcdb2ccb75c4388b5519bd5a))
 
 # 1.7.1 (2022-04-26)
 
 ### Native SDKs
-* Giphy Android SDK [v2.1.17](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.17)
-* Giphy iOS SDK [v2.1.21](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.21)
 
+- Giphy Android SDK [v2.1.17](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.17)
+- Giphy iOS SDK [v2.1.21](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.21)
 
 ### Documentation
-* Update the requirements section ([b615d31](https://github.com/Giphy/giphy-react-native-sdk/commit/b615d31483eae8d363dd79311863385ba99772a7))
+
+- Update the requirements section ([b615d31](https://github.com/Giphy/giphy-react-native-sdk/commit/b615d31483eae8d363dd79311863385ba99772a7))
 
 ### Build System
-* [android] Update gradle and target SDK ([17dc5b6](https://github.com/Giphy/giphy-react-native-sdk/commit/17dc5b6bf29406136841ea7d1180608e959945d1))
-* [deps] Bump Android SDK version from 2.1.16 to 2.1.17 ([efe7d11](https://github.com/Giphy/giphy-react-native-sdk/commit/efe7d112827887d3bc31097d3266fd50dee5b745))
-* [deps] Bump iOS SDK version from 2.1.20 to 2.1.21 ([e362e28](https://github.com/Giphy/giphy-react-native-sdk/commit/e362e2805b738861d07aaae07d5f54345a582d5a))
+
+- [android] Update gradle and target SDK ([17dc5b6](https://github.com/Giphy/giphy-react-native-sdk/commit/17dc5b6bf29406136841ea7d1180608e959945d1))
+- [deps] Bump Android SDK version from 2.1.16 to 2.1.17 ([efe7d11](https://github.com/Giphy/giphy-react-native-sdk/commit/efe7d112827887d3bc31097d3266fd50dee5b745))
+- [deps] Bump iOS SDK version from 2.1.20 to 2.1.21 ([e362e28](https://github.com/Giphy/giphy-react-native-sdk/commit/e362e2805b738861d07aaae07d5f54345a582d5a))
 
 ### Continuous Integration
-* Update jdk version ([175f95f](https://github.com/Giphy/giphy-react-native-sdk/commit/175f95f0cddcb58605c4de26e4047a413e50246b))
+
+- Update jdk version ([175f95f](https://github.com/Giphy/giphy-react-native-sdk/commit/175f95f0cddcb58605c4de26e4047a413e50246b))
 
 # 1.7.0 (2022-03-09)
 
 ### Native SDKs
-* Giphy Android SDK [v2.1.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.16)
-* Giphy iOS SDK [v2.1.20](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.20)
 
+- Giphy Android SDK [v2.1.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.16)
+- Giphy iOS SDK [v2.1.20](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.20)
 
 ### Performance Improvements
-* [ios:giphy-video-view] Reuse a single video player across multiple clips ([8c4ea74](https://github.com/Giphy/giphy-react-native-sdk/commit/8c4ea747156e52e70347586c7068e1fb6791c1aa))
+
+- [ios:giphy-video-view] Reuse a single video player across multiple clips ([8c4ea74](https://github.com/Giphy/giphy-react-native-sdk/commit/8c4ea747156e52e70347586c7068e1fb6791c1aa))
 
 ### Build System
-* [deps] Bump iOS SDK version from 2.1.17 to 2.1.20 ([73807b0](https://github.com/Giphy/giphy-react-native-sdk/commit/73807b0e425c7f10fb2c22be9989dd4ad1396e82))
+
+- [deps] Bump iOS SDK version from 2.1.17 to 2.1.20 ([73807b0](https://github.com/Giphy/giphy-react-native-sdk/commit/73807b0e425c7f10fb2c22be9989dd4ad1396e82))
 
 # 1.6.0 (2022-02-15)
 
 ### Native SDKs
-* Giphy Android SDK [v2.1.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.16)
-* Giphy iOS SDK [v2.1.17](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.17)
 
+- Giphy Android SDK [v2.1.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.16)
+- Giphy iOS SDK [v2.1.17](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.17)
 
 ### Features
-* [GiphyContent] Add the prop to specify content rating for the search results ([#58](https://github.com/Giphy/giphy-react-native-sdk/issues/58)) ([fe22af7](https://github.com/Giphy/giphy-react-native-sdk/commit/fe22af73b67a3b61ce9eeb9d2cd3b3aa58d5e174))
+
+- [GiphyContent] Add the prop to specify content rating for the search results ([#58](https://github.com/Giphy/giphy-react-native-sdk/issues/58)) ([fe22af7](https://github.com/Giphy/giphy-react-native-sdk/commit/fe22af73b67a3b61ce9eeb9d2cd3b3aa58d5e174))
 
 # 1.5.0 (2022-02-01)
 
