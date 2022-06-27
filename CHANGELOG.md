@@ -1,3 +1,16 @@
+# 1.9.0 (2022-06-27)
+
+### Native SDKs
+* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Features
+* [GiphyVideoManager] Add the resume method to continue paused playback ([c2d6d1b](https://github.com/Giphy/giphy-react-native-sdk/commit/c2d6d1b03bab65896417f4893542bc2739eb0f0b))
+
+### Bug Fixes
+* [GiphyVideoView] Sound suddenly starts playing out of nowhere ([#69](https://github.com/Giphy/giphy-react-native-sdk/issues/69)) ([a7c2a03](https://github.com/Giphy/giphy-react-native-sdk/commit/a7c2a0337d29b212ee3f7ae4839376caf013ce8a))
+
 # 1.8.0 (2022-06-21)
 
 ### Native SDKs
