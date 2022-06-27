@@ -7,4 +7,6 @@ RCT_EXTERN_METHOD(muteAll)
 
 RCT_EXTERN_METHOD(pauseAll)
 
+RCT_EXTERN_METHOD(resume)
+
 @end

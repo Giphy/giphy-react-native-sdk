@@ -408,11 +408,15 @@ The module that allows you to control GiphyVideoView players.
 
 ### </> muteAll: `muteAll() => void`
 
-Mute all GiphyVideoView players.
+Mute active GiphyVideoView player.
 
 ### </> pauseAll: `pauseAll() => void`
 
-Pause all GiphyVideoView players.
+Pause active GiphyVideoView player.
+
+### </> resume: `resume() => void`
+
+Resume the playback.
 
 #### Example
 

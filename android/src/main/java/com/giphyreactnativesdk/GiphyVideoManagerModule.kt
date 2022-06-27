@@ -19,4 +19,9 @@ class GiphyVideoManagerModule(reactContext: ReactApplicationContext) :
   fun pauseAll() {
     SharedVideoPlayer.pause()
   }
+
+  @ReactMethod
+  fun resume() {
+    SharedVideoPlayer.resume()
+  }
 }
