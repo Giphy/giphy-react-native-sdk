@@ -8,4 +8,8 @@ export class GiphyVideoManager {
   static pauseAll() {
     NativeGiphyVideoManager.pauseAll()
   }
+
+  static resume() {
+    NativeGiphyVideoManager.resume()
+  }
 }

@@ -24,4 +24,13 @@ class RNGiphyVideoManager: NSObject {
       }
     }
   }
+
+  @objc
+  func resume() -> Void {
+    DispatchQueue.main.async {
+      if SharedGPHVideoPlayer.initialized {
+        SharedGPHVideoPlayer.shared.resume()
+      }
+    }
+  }
 }
