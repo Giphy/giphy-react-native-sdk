@@ -7,12 +7,17 @@ import deprecatedPropType from './utils/deprecatedPropType'
 
 export type GiphyVideoViewProps = NativeGiphyVideoViewProps
 
+const BACKGROUND_STATE_REGEX = /inactive|background/
+
 let mountedComponentsCount = 0
 let appStateListenerAdded = false
 let latestAppState: AppStateStatus = AppState.currentState
 
 function appStateListener(appState: AppStateStatus) {
-  if (latestAppState === 'active' && appState.match(/inactive|background/)) {
+  if (latestAppState === 'active' && appState.match(BACKGROUND_STATE_REGEX)) {
+    GiphyVideoManager.pauseAll()
+  } else if (appState === 'active' && latestAppState.match(BACKGROUND_STATE_REGEX)) {
+    GiphyVideoManager.resume()
     GiphyVideoManager.muteAll()
   }
   latestAppState = appState
