@@ -23,7 +23,6 @@
     "!**/__mocks__"
   ],
   "scripts": {
-    "test": "jest",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --fix ",
     "prepare": "husky install && bob build",
@@ -35,7 +34,11 @@
     "check-licenses": "./scripts/license-checker.js",
     "bump-android-sdk-version": "./scripts/bump-android-sdk-version.sh",
     "bump-ios-sdk-version": "./scripts/bump-ios-sdk-version.sh",
-    "bump-sdk-versions": "yarn bump-ios-sdk-version && yarn bump-android-sdk-version"
+    "bump-sdk-versions": "yarn bump-ios-sdk-version && yarn bump-android-sdk-version",
+    "detox:build-ios": "detox build --configuration ios",
+    "detox:test-ios": "detox test --configuration ios",
+    "detox:build": "yarn detox:build-ios",
+    "detox:test": "yarn detox:test-ios"
   },
   "keywords": [
     "react-native",
@@ -67,10 +70,10 @@
     "commitlint": "^17.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "detox": "^19.9.0",
-    "detox-cli": "^19.0.0",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ft-flow": "^2.0.1",
+    "eslint-plugin-jest": "^26.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "handlebars": "^4.7.7",
     "husky": "^8.0.1",
@@ -86,6 +89,7 @@
     "release-it": "^15.2.0",
     "spdx-correct": "^3.1.1",
     "spdx-satisfies": "^5.0.1",
+    "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
   },
   "dependencies": {
@@ -95,13 +99,6 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
-  },
-  "jest": {
-    "preset": "react-native",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
-    ]
   },
   "commitlint": {
     "extends": [
@@ -119,42 +116,6 @@
         "pascal-case"
       ]
     }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native-community",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false,
-          "semi": false
-        }
-      ],
-      "no-shadow": "off",
-      "@typescript-eslint/no-shadow": [
-        "error"
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false,
-    "semi": false
   },
   "react-native-builder-bob": {
     "source": "src",

@@ -15,7 +15,6 @@ install:
   - yarn install
 script:
   - yarn lint
-  - yarn test
   # run license-checker only when the environment variables are available
   - 'if [ -n "$LICENSE_PROJECT_LOCATION" ]; then yarn generate-licenses && yarn check-licenses; fi'
 deploy:
