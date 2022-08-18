@@ -3,17 +3,18 @@ import com.github.jk1.license.render.*
 
 buildscript {
     ext {
+        kotlinVersion = "1.5.31"
         buildToolsVersion = "30.0.2"
-        minSdkVersion = 21
+        minSdkVersion = 24
         compileSdkVersion = 31
         targetSdkVersion = 31
     }
     repositories {
         google()
-        jcenter()
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:4.2.0')
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath('com.android.tools.build:gradle:4.2.2')
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -30,6 +31,16 @@ licenseReport {
 }
 
 allprojects {
+    afterEvaluate {
+        if (it.hasProperty('android')){
+            android {
+                defaultConfig {
+                    minSdkVersion 24
+                }
+            }
+        }
+    }
+
     repositories {
         mavenLocal()
         maven {
@@ -40,9 +51,14 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
+        maven {
+            // All of Detox' artifacts are provided via the npm module
+            url "$rootDir/../../node_modules/detox/Detox-android"
+        }
 
         google()
-        jcenter()
+        mavenCentral()
+
         maven { url 'https://www.jitpack.io' }
     }
 }
