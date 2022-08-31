@@ -30,16 +30,16 @@ private fun capitalize(word: String): String {
 }
 
 fun snakeToCamel(value: String?): String? {
-  return when(value) {
+  return when (value) {
     null -> null
-    else -> value.split("_").mapIndexed {
-        idx, word -> if(idx == 0) word.lowercase() else capitalize(word)
+    else -> value.split("_").mapIndexed { idx, word ->
+      if (idx == 0) word.lowercase() else capitalize(word)
     }.joinToString("")
   }
 }
 
 fun renditionByName(renditionName: String?): RenditionType? {
-  return when(renditionName) {
+  return when (renditionName) {
     null -> null
     else -> RenditionType.values().firstOrNull { it.name == snakeToCamel(renditionName) }
   }
@@ -57,7 +57,7 @@ fun gphRatingByName(ratingName: String?): RatingType? {
 }
 
 fun getContentType(contentType: String?): GPHContentType {
-  return when(contentType) {
+  return when (contentType) {
     null -> GPHContentType.gif
     else -> GPHContentType.values().firstOrNull { it.name == contentType.lowercase() }
       ?: GPHContentType.gif
@@ -84,7 +84,8 @@ fun giphySettingsFromReadableMap(
   }
 
   if (options.hasKey(RNSettings.rating.toString())) {
-    settings.rating = gphRatingByName(RNSettings.rating.toString()) ?: RatingType.pg13
+    val rawRating = options.getString(RNSettings.rating.toString())
+    settings.rating = gphRatingByName(rawRating) ?: RatingType.pg13
   }
 
   if (options.hasKey(RNSettings.showConfirmationScreen.toString())) {
@@ -104,9 +105,10 @@ fun giphySettingsFromReadableMap(
   }
 
   if (options.hasKey(RNSettings.mediaTypeConfig.toString())) {
-    val typeConfig = options.getArray(RNSettings.mediaTypeConfig.toString())?.toArrayList()?.map {
-        ctype -> getContentType(ctype.toString())
-    }?.toTypedArray()
+    val typeConfig =
+      options.getArray(RNSettings.mediaTypeConfig.toString())?.toArrayList()?.map { ctype ->
+        getContentType(ctype.toString())
+      }?.toTypedArray()
 
     if (typeConfig != null) {
       settings.mediaTypeConfig = typeConfig
