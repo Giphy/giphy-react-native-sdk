@@ -5,21 +5,23 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "build:android": "scripts/build.android.sh",
+    "build:ios": "scripts/build.ios.sh",
     "ios": "react-native run-ios",
     "start": "react-native start"
   },
   "dependencies": {
     "@react-native-community/picker": "^1.8.1",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react": "16.14.0",
+    "react-native": "0.66.4",
     "react-native-dotenv": "^3.3.1",
     "react-native-picker-select": "^8.0.4",
     "react-native-status-bar-height": "^2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.12",
-    "@babel/runtime": "^7.16.7",
+    "@babel/core": "^7.18.10",
+    "@babel/runtime": "^7.18.9",
     "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.67.0"
+    "metro-react-native-babel-preset": "^0.72.0"
   }
 }

@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 
 export type CardProps = {
   title: React.ReactNode
+  children?: React.ReactNode
 }
 
 const styles = StyleSheet.create({

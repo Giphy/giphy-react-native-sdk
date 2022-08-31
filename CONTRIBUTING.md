@@ -45,10 +45,15 @@ To fix formatting errors, run the following:
 yarn lint --fix
 ```
 
-Remember to add tests for your change if possible. Run the unit tests by:
+Remember to add tests for your changes if possible, and don't forget to run the e2e tests before releasing the changes by:
 
 ```sh
-yarn test
+# Android
+yarn detox:build:android
+yarn detox:test:android
+# iOS
+yarn detox:build:ios
+yarn detox:test:ios
 ```
 
 To edit the Objective-C files, open `example/ios/GiphyReactNativeSdkExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > giphy-react-native-sdk`.
@@ -70,11 +75,48 @@ Our pre-commit hooks verify that your commit message matches this format when co
 
 ### Linting and tests
 
-[ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/)
+[ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/), [Detox](https://github.com/wix/Detox)
 
-We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Jest](https://jestjs.io/) for testing.
+We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Detox](https://github.com/wix/Detox) with [Jest](https://jestjs.io/) for e2e testing.
 
-Our pre-commit hooks verify that the linter and tests pass when committing.
+Our pre-commit hooks verify that the linter and type checks pass when committing.
+
+Also before doing release you should run e2e tests locally by:
+
+```sh
+# Android
+yarn detox:build:android
+yarn detox:test:android
+# iOS
+yarn detox:build:ios
+yarn detox:test:ios
+```
+
+Commands listed above expects the test environment to be configured. Here is a quick guide on how this can be done:
+
+#### Android
+
+Prerequisites:
+
+- ✅ Detox Command Line Tools. This can be done by running this command: `npm install -g detox-cli`
+- ✅ Java’s runtime
+- ✅ The Android SDK
+
+If all of the above are ready, you need to load the necessary packages and configure the AVD device for the e2e test. Fortunately, you can do this simply by running the following command:
+
+`yarn detox:bootstrap:android`
+
+#### iOS
+
+Prerequisites:
+
+- ✅ Detox Command Line Tools. This can be done by running this command: `npm install -g detox-cli`
+- ✅ MacOS Catalina or newer
+- ✅ Xcode v12.x or newer (v13 support - see [here](https://github.com/wix/Detox/issues/2895)), with Xcode command-line tools installed
+
+If all of the above is ready, you need to configure the iOS Simulator to run the e2e test. This can be done by running the following command:
+
+`yarn detox:bootstrap:ios`
 
 ### Publishing to npm
 
@@ -91,12 +133,22 @@ yarn release
 The `package.json` file contains various scripts for common tasks:
 
 - `yarn bootstrap`: setup project by installing all dependencies and pods.
-- `yarn typescript`: type-check files with TypeScript.
-- `yarn lint`: lint files with ESLint.
-- `yarn test`: run unit tests with Jest.
-- `yarn example start`: start the Metro server for the example app.
+- `yarn detox:bootstrap:android`: prepare the environment for e2e-tests on the Android platform.
+- `yarn detox:bootstrap:ios`: prepare the environment for e2e-tests on the iOS platform.
+- `yarn detox:build:android`: create a build of the example app ready for e2e-testing on the Android platform.
+- `yarn detox:build:ios`: create a build of the example app ready for e2e-testing on the iOS platform.
+- `yarn detox:test:android`: run e2e-tests on the Android platform.
+- `yarn detox:test:ios`: run e2e-tests on the iOS platform.
 - `yarn example android`: run the example app on Android.
 - `yarn example ios`: run the example app on iOS.
+- `yarn example start`: start the Metro server for the example app.
+- `yarn licenses:check`: check that all licenses of all dependencies used in the package are correct.
+- `yarn licenses:generate`: generate license lists of all dependencies used in the package.
+- `yarn lint`: lint files with ESLint.
+- `yarn release`: release the new version of the package in NPM and prepare a release on GitHub.
+- `yarn sdk:bump:android`: update the GIPHY Android SDK to the latest version.
+- `yarn sdk:bump:ios`: update the GIPHY iOS SDK to the latest version.
+- `yarn typescript`: type-check files with TypeScript.
 
 ### Sending a pull request
 

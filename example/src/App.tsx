@@ -129,7 +129,7 @@ export default function App() {
   }, [addMediaRef])
 
   return (
-    <View style={styles.container}>
+    <View testID="app" style={styles.container}>
       {/* Displaying Giphy Dialog & settings for it  */}
       <View style={styles.card}>
         <TouchableOpacity

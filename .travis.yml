@@ -1,27 +1,33 @@
 language: node_js
+os: linux
 jdk: oraclejdk11
+
 node_js:
-  - "14"
+  - '14'
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   yarn: true
   directories:
-    - "node_modules"
+    - node_modules
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
 install:
   - yarn install
+
 script:
   - yarn lint
-  - yarn test
-  # run license-checker only when the environment variables are available
-  - 'if [ -n "$LICENSE_PROJECT_LOCATION" ]; then yarn generate-licenses && yarn check-licenses; fi'
+  #  run license-checker only when the environment variables are available
+  - 'if [ -n "$LICENSE_PROJECT_LOCATION" ]; then yarn licenses:generate && yarn licenses:check; fi'
+
 deploy:
-  provider: npm
-  api_token: $NPM_TOKEN
-  email: $NPM_USER
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: npm
+    api_token: $NPM_TOKEN
+    email: $NPM_USER
+    cleanup: false
+    on:
+      tags: true
