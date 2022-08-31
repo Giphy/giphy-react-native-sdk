@@ -1,8 +1,8 @@
 const { execSync } = require('child_process')
-const { env } = require('@react-native-community/eslint-config')
+const STD_OUT_MAX_BUFFER = 1024 * 1024 * 4
 
-execSync('source ./scripts/avd.defaults.sh')
-execSync('source ./scripts/sim.defaults.sh')
+execSync('source ./scripts/avd.defaults.sh', { maxBuffer: STD_OUT_MAX_BUFFER })
+execSync('source ./scripts/sim.defaults.sh', { maxBuffer: STD_OUT_MAX_BUFFER })
 
 module.exports = {
   testRunner: 'jest',
