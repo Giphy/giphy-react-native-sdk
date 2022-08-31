@@ -3,7 +3,7 @@ set -e
 
 AVD_CONFIG="${HOME}/.android/avd/${AVD_NAME}.avd/config.ini"
 ANDROID_CMD_TOOLS="${ANDROID_HOME}/cmdline-tools/latest/bin"
-ANDROID_SYSTEM_IMAGE="system-images;android-${ANDROID_API};default;x86_64"
+ANDROID_SYSTEM_IMAGE="system-images;android-${ANDROID_API};default;${ANDROID_ABI}"
 
 # Install the emulator tool
 yes Y | "$ANDROID_CMD_TOOLS"/sdkmanager --install \
@@ -21,7 +21,7 @@ yes | "$ANDROID_CMD_TOOLS"/sdkmanager --licenses
 echo "no" | "$ANDROID_CMD_TOOLS"/avdmanager --verbose create avd \
   --force \
   --name "${AVD_NAME}" \
-  --abi 'x86_64' \
+  --abi "${ANDROID_ABI}" \
   --device 'pixel' \
   --package "${ANDROID_SYSTEM_IMAGE}" \
 
