@@ -1,3 +1,13 @@
+# 1.9.1 (2022-08-31)
+
+### Native SDKs
+* Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Bug Fixes
+* [Android:GiphyDialog] GIPHY rating does not work when using GiphyDialog.configure to specify it ([#74](https://github.com/Giphy/giphy-react-native-sdk/issues/74)) ([cf2b55e](https://github.com/Giphy/giphy-react-native-sdk/commit/cf2b55e3a195aa9ac1255d15ee8da42fc6aa0a39))
+
 # 1.9.0 (2022-06-27)
 
 ### Native SDKs

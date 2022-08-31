@@ -1,6 +1,6 @@
 {
   "name": "@giphy/react-native-sdk",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Giphy React Native SDK",
   "license": "Apache-2.0",
   "main": "lib/commonjs/index",
@@ -105,8 +105,16 @@
       "@commitlint/config-conventional"
     ],
     "rules": {
-      "header-max-length": [1, "always", 100],
-      "subject-case": [0, "always", "pascal-case"]
+      "header-max-length": [
+        1,
+        "always",
+        100
+      ],
+      "subject-case": [
+        0,
+        "always",
+        "pascal-case"
+      ]
     }
   },
   "eslintConfig": {
