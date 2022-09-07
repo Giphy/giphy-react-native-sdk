@@ -3,7 +3,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
-. "$SCRIPT_DIR/android-sdk-conf.sh"
+. "$SCRIPT_DIR/sdk.conf.android.sh"
 
 while read -r line; do
   if [[ "$line" =~ $GRADLE_FILE_SDK_VERSION_REGEX ]]; then

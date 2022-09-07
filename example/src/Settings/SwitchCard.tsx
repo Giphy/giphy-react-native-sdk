@@ -26,15 +26,22 @@ export const SwitchCardField: React.FC<SwitchCardFieldProps> = (props) => {
   const {
     value,
     selectedLabel = 'Enabled',
+    testID,
     unselectedLabel = 'Disabled',
     ...other
   } = props
 
   return (
     <View style={switchCardFieldStyles.switchContainer}>
-      <Switch value={value} {...other} />
+      <Switch testID={testID} value={value} {...other} />
       <Text style={switchCardFieldStyles.switchText}>
         {value ? selectedLabel : unselectedLabel}
+      </Text>
+      <Text
+        testID={testID ? `${testID}-value` : undefined}
+        style={{ display: 'none' }}
+      >
+        {Boolean(value).toString()}
       </Text>
     </View>
   )

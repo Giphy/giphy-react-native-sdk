@@ -1,12 +1,11 @@
 const { execSync } = require('child_process')
-const STD_OUT_MAX_BUFFER = 1024 * 1024 * 4
 
-execSync('source ./scripts/avd.defaults.sh', { maxBuffer: STD_OUT_MAX_BUFFER })
-execSync('source ./scripts/sim.defaults.sh', { maxBuffer: STD_OUT_MAX_BUFFER })
+execSync('source ./scripts/avd.defaults.sh')
+execSync('source ./scripts/sim.defaults.sh')
 
 module.exports = {
   testRunner: 'jest',
-  runnerConfig: 'e2e/config.json',
+  runnerConfig: 'e2e/config/runnerConfig.json',
   skipLegacyWorkersInjection: true,
   apps: {
     ios: {
@@ -35,6 +34,7 @@ module.exports = {
       device: {
         avdName: process.env.AVD_NAME,
       },
+      utilBinaryPaths: ['./.temp/test-butler-app-2.2.1.apk'],
     },
   },
   configurations: {

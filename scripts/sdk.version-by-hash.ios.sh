@@ -3,7 +3,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
-. "$SCRIPT_DIR/ios-sdk-conf.sh"
+. "$SCRIPT_DIR/sdk.conf.ios.sh"
 
 while read -r line; do
   if [[ "$line" =~ $PODSPEC_SDK_VERSION_REGEX ]]; then

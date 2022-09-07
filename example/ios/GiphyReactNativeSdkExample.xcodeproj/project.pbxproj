@@ -12,8 +12,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1FA03709E22CA47D610915EA /* Pods_GiphyReactNativeSdkExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2383AA2EDAEA830C64904AB5 /* Pods_GiphyReactNativeSdkExample.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D7585A6826B8175B000B2F22 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
-		D7585A6926B8175B000B2F22 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		D7585A6826B8175B000B2F22 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D7585A6926B8175B000B2F22 /* (null) in Resources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,7 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7585A6926B8175B000B2F22 /* BuildFile in Resources */,
+				D7585A6926B8175B000B2F22 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				D7585A6826B8175B000B2F22 /* BuildFile in Resources */,
+				D7585A6826B8175B000B2F22 /* (null) in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,7 +246,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\nexport ENTRY_FILE='index.tsx'\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		4F0A6FC082772762E3E4C96C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

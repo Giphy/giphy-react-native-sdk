@@ -9,7 +9,7 @@ xcodebuild \
   -workspace 'ios/GiphyReactNativeSdkExample.xcworkspace' \
   -configuration 'Release' \
   -scheme 'GiphyReactNativeSdkExample' \
-  -sdk 'iphonesimulator15.5' \
+  -sdk "${SIM_SDK}" \
   -derivedDataPath 'ios/build'
 
 if ps -p $RN_SERVER_PID >/dev/null; then

@@ -40,14 +40,18 @@ export const Dialog: React.FC<ModalProps> = (props) => {
   const { children, onRequestClose, ...other } = props
 
   return (
-    <Modal animated={true} onRequestClose={onRequestClose} {...other}>
+    <Modal onRequestClose={onRequestClose} {...other}>
       <View style={styles.container}>
-        <ScrollView style={styles.content}>{children}</ScrollView>
+        <ScrollView style={styles.content} testID="gph-dialog-content">
+          {children}
+        </ScrollView>
         <TouchableOpacity
           style={styles.buttonClose}
           onPress={() => (onRequestClose ? onRequestClose() : undefined)}
         >
-          <Text style={styles.buttonTextClose}>Close</Text>
+          <Text style={styles.buttonTextClose} testID="gph-close-dialog">
+            Close
+          </Text>
         </TouchableOpacity>
       </View>
     </Modal>

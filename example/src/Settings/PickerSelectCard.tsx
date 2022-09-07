@@ -30,11 +30,16 @@ const pickerSelectStyles = StyleSheet.create({
 export const PickerSelectCard: React.FC<CardProps & PickerSelectProps> = (
   props
 ) => {
-  const { title, ...other } = props
+  const { pickerProps, textInputProps, testID, title, ...other } = props
 
   return (
-    <Card title={title}>
-      <PickerSelect style={pickerSelectStyles} {...other} />
+    <Card testID={testID} title={title}>
+      <PickerSelect
+        pickerProps={{ testID: 'gph-card_picker', ...pickerProps }}
+        style={pickerSelectStyles}
+        textInputProps={{ testID: 'gph-card_text-input', ...textInputProps }}
+        {...other}
+      />
     </Card>
   )
 }

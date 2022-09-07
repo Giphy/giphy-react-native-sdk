@@ -64,3 +64,10 @@ lib/
 # env files
 .env
 .env.*
+
+# Detox
+artifacts/
+e2e/**/__diff_output__/
+
+# Temp Files
+.temp/
