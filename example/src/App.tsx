@@ -134,12 +134,14 @@ export default function App() {
       <View style={styles.card}>
         <TouchableOpacity
           style={styles.cardButton}
+          testID="show-gph-dialog-settings"
           onPress={() => setDialogSettingsVisible(true)}
         >
           <Text style={styles.cardButtonText}>Dialog Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.cardButton}
+          testID="show-gph-dialog"
           onPress={() => GiphyDialog.show()}
         >
           <Text style={styles.cardButtonText}>Show Dialog</Text>
@@ -163,6 +165,7 @@ export default function App() {
           onTouchEnd={() => setSearchVisible(true)}
           placeholder="Search..."
           style={styles.textInput}
+          testID="gph-grid_search-stub"
           value={searchQuery}
         />
         <Dialog
@@ -174,6 +177,7 @@ export default function App() {
             onChangeText={setSearchQuery}
             placeholder="Search..."
             style={styles.textInput}
+            testID="gph-grid_search-input"
             value={searchQuery}
           />
           {searchVisible && (
@@ -190,6 +194,7 @@ export default function App() {
               spanCount={1}
               showCheckeredBackground={false}
               style={styles.giphyGridView}
+              testID="gph-grid-view"
               onContentUpdate={(e) =>
                 console.log(
                   'onContentUpdate',
@@ -219,10 +224,11 @@ export default function App() {
             >
               {media.isVideo ? (
                 <GiphyVideoView
-                  autoPlay={true}
+                  autoPlay={false}
                   media={media}
                   muted={true}
                   style={{ aspectRatio: media.aspectRatio }}
+                  testID={`gph-video-view-${media.id}`}
                   onError={(e) => console.error(e.nativeEvent.description)}
                   onPlaybackStateChanged={(e) =>
                     console.log(
@@ -235,6 +241,7 @@ export default function App() {
                 <GiphyMediaView
                   media={media}
                   style={{ aspectRatio: media.aspectRatio }}
+                  testID={`gph-media-view-${media.id}`}
                 />
               )}
             </View>

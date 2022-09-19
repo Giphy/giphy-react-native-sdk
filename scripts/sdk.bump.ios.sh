@@ -2,10 +2,10 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-SDK_CURRENT_VERSION="$("${SCRIPT_DIR}"/ios-sdk-version-by-hash.sh HEAD)"
-SDK_LATEST_VERSION="$("${SCRIPT_DIR}"/ios-sdk-latest-version.sh)"
+SDK_CURRENT_VERSION="$("${SCRIPT_DIR}"/sdk.version-by-hash.ios.sh HEAD)"
+SDK_LATEST_VERSION="$("${SCRIPT_DIR}"/sdk.latest-version.ios.sh)"
 
-. "$SCRIPT_DIR/ios-sdk-conf.sh"
+. "$SCRIPT_DIR/sdk.conf.ios.sh"
 
 sed \
   -i '' \

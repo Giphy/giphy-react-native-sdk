@@ -35,13 +35,9 @@ export const NumberInputCard: React.FC<NumberFieldCardProps> = (props) => {
   const { title, value: valueProp, onNumberChange, ...other } = props
   const [value, setValue] = useState<string>(`${valueProp}`)
 
-  useEffect(() => {
-    setValue(`${valueProp}`)
-  }, [valueProp])
-
   useEffect(
     () => {
-      if (Number.isSafeInteger(+value)) {
+      if (Number.isFinite(+value)) {
         onNumberChange(+value)
       }
     },

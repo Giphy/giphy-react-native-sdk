@@ -6,7 +6,7 @@
   "scripts": {
     "android": "react-native run-android",
     "build:android": "scripts/build.android.sh",
-    "build:ios": "scripts/build.ios.sh",
+    "build:ios": ". ../scripts/sim.defaults.sh && scripts/build.ios.sh",
     "ios": "react-native run-ios",
     "start": "react-native start"
   },

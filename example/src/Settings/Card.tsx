@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 
 export type CardProps = {
   title: React.ReactNode
+  testID?: string
   children?: React.ReactNode
 }
 
@@ -20,10 +21,10 @@ const styles = StyleSheet.create({
 })
 
 export const Card: React.FC<CardProps> = (props) => {
-  const { title, children } = props
+  const { title, testID, children } = props
 
   return (
-    <View>
+    <View testID={testID}>
       <Text style={styles.header}>{title}</Text>
       <View style={styles.card}>{children}</View>
     </View>
