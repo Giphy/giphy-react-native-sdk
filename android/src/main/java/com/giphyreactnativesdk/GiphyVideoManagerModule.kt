@@ -10,16 +10,19 @@ class GiphyVideoManagerModule(reactContext: ReactApplicationContext) :
     return "GiphyReactNativeVideoManager"
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun muteAll() {
     SharedVideoPlayer.mute()
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun pauseAll() {
     SharedVideoPlayer.pause()
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun resume() {
     SharedVideoPlayer.resume()

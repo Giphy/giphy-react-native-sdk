@@ -6,6 +6,7 @@ import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.GPHContentType
 import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.views.GiphyDialogFragment
+import com.giphyreactnativesdk.exoplayeradapter.ExoPlayerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -43,15 +44,21 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
     override fun didSearchTerm(term: String) {}
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun configure(options: ReadableMap) {
     settings = giphySettingsFromReadableMap(options, settings)
   }
 
   private fun initializeDialog() {
-    gifsDialog = GiphyDialogFragment.newInstance(settings)
+    gifsDialog = GiphyDialogFragment.newInstance(
+      settings,
+      videoPlayer = { playerView, repeatable, showCaptions ->
+        ExoPlayerAdapter(playerView, repeatable, showCaptions)
+      })
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun show() {
     GlobalScope.launch(Dispatchers.Main) {
@@ -65,6 +72,7 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
     }
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun hide() {
     GlobalScope.launch(Dispatchers.Main) {
@@ -72,11 +80,13 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
     }
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun addListener(eventName: String?) {
     // Keep: Required for RN built in Event Emitter Calls.
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun removeListeners(count: Int?) {
     // Keep: Required for RN built in Event Emitter Calls.

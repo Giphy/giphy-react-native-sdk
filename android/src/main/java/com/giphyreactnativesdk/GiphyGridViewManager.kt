@@ -55,7 +55,7 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
   private fun getGridCallback(
     view: GiphyRNGridView,
     reactContext: ThemedReactContext
-  ): GPHGridCallback? {
+  ): GPHGridCallback {
     return object : GPHGridCallback {
       override fun contentDidUpdate(resultCount: Int) {
         val params = Arguments.createMap()
@@ -78,7 +78,7 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
   fun getSearchGridCallback(
     view: GiphyRNGridView,
     reactContext: ThemedReactContext
-  ): GPHSearchGridCallback? {
+  ): GPHSearchGridCallback {
     return object : GPHSearchGridCallback {
       override fun didTapUsername(username: String) {
         // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -96,51 +96,61 @@ class GiphyGridViewManager() : SimpleViewManager<GiphyRNGridView>() {
     }
   }
 
+  @Suppress("unused")
   @ReactProp(name = "content")
   fun setContent(view: GiphyRNGridView, value: ReadableMap?) {
     view.setContent(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "cellPadding")
   fun setCellPadding(view: GiphyRNGridView, value: Int?) {
     view.setCellPadding(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "fixedSizeCells")
   fun setFixedSizeCells(view: GiphyRNGridView, value: Boolean?) {
     view.setFixedSizeCells(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "orientation")
   fun setOrientation(view: GiphyRNGridView, value: String?) {
     view.setOrientation(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "spanCount")
   fun setSpanCount(view: GiphyRNGridView, value: Int?) {
     view.setSpanCount(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "renditionType")
   fun setRenditionType(view: GiphyRNGridView, value: String?) {
     view.setRenditionType(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "clipsPreviewRenditionType")
   fun setClipsPreviewRenditionType(view: GiphyRNGridView, value: String?) {
     view.setClipsPreviewRenditionType(value)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "showCheckeredBackground")
   fun setShowCheckeredBackground(view: GiphyRNGridView, value: Boolean?) {
     view.setShowCheckeredBackground(value)
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun addListener(eventName: String?) {
     // Keep: Required for RN built in Event Emitter Calls.
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun removeListeners(count: Int?) {
     // Keep: Required for RN built in Event Emitter Calls.

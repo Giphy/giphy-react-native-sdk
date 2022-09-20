@@ -1,32 +1,16 @@
 package com.giphyreactnativesdk
 
-import android.os.Handler
-import android.os.Looper
-import com.giphy.sdk.ui.views.GPHVideoPlayer
+import com.giphyreactnativesdk.exoplayeradapter.ExoPlayerAdapter
 
 object SharedVideoPlayer {
-  private val gphPlayerDelegate = lazy { GPHVideoPlayer(null, repeatable = true) }
-  val gphPlayer by gphPlayerDelegate
-  var looper: Looper? = null
-
-  private fun runInPlayerApplicationLooper(runnable: Runnable) {
-
-    // Android SDK kills the player on every pause event and creates it when needed later on.
-    // We keep a looper to make a possibility to resume.
-    // It is the easiest way for now.
-    gphPlayer.player?.let {
-      looper = it.applicationLooper
-    }
-
-    val applicationLooper = gphPlayer.player?.applicationLooper ?: looper
-    if (applicationLooper != null) {
-      Handler(applicationLooper).post(runnable)
-    }
+  private val gphPlayerDelegate = lazy {
+    ExoPlayerAdapter(null, repeatable = true)
   }
+  val gphPlayer by gphPlayerDelegate
 
   fun mute() {
     if (gphPlayerDelegate.isInitialized() && gphPlayer.playerView != null) {
-      runInPlayerApplicationLooper {
+      gphPlayer.runInPlayerApplicationLooper {
         gphPlayer.setVolume(0f)
       }
     }
@@ -34,7 +18,7 @@ object SharedVideoPlayer {
 
   fun pause() {
     if (gphPlayerDelegate.isInitialized() && gphPlayer.playerView != null) {
-      runInPlayerApplicationLooper {
+      gphPlayer.runInPlayerApplicationLooper {
         gphPlayer.onPause()
       }
     }
@@ -42,7 +26,7 @@ object SharedVideoPlayer {
 
   fun resume() {
     if (gphPlayerDelegate.isInitialized() && gphPlayer.playerView != null) {
-      runInPlayerApplicationLooper {
+      gphPlayer.runInPlayerApplicationLooper {
         gphPlayer.onResume()
       }
     }

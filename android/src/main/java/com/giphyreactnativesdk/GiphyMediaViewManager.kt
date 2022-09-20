@@ -16,26 +16,31 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
     val TAG = GiphyMediaViewManager::class.java.simpleName
   }
 
+  @Suppress("unused")
   @ReactProp(name = "autoPlay")
   fun autoPlay(gifView: GiphyRNMediaView, rnValue: Boolean?) {
     gifView.setAutoPlay(rnValue)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "media")
   fun setMedia(gifView: GiphyRNMediaView, rnMedia: ReadableMap?) {
     gifView.setMedia(rnMedia)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "renditionType")
   fun setRenditionType(gifView: GiphyRNMediaView, renditionName: String?) {
     gifView.setRenditionType(renditionName)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "resizeMode")
   fun setResizeMode(gifView: GiphyRNMediaView, resizeMode: String?) {
     gifView.setResizeMode(resizeMode)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "showCheckeredBackground")
   fun setShowCheckeredBackground(gifView: GiphyRNMediaView, rnValue: Boolean?) {
     gifView.setShowCheckeredBackground(rnValue)
@@ -64,7 +69,7 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
   }
 
   override fun receiveCommand(root: GiphyRNMediaView, commandId: Int, args: ReadableArray?) {
-    val command = commandsMap?.keys?.first { commandId == commandsMap?.get(it) };
+    val command = commandsMap?.keys?.first { commandId == commandsMap?.get(it) }
     if (command != null) {
       receiveCommand(root, command, args)
     }

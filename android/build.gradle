@@ -125,6 +125,8 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
+  implementation 'com.google.android.exoplayer:exoplayer-core:2.18.1'
+  implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.1'
   implementation 'com.giphy.sdk:ui:2.2.0'
   implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.31"
 }

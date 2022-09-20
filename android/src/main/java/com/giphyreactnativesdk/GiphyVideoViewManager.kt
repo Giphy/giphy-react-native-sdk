@@ -68,32 +68,43 @@ class GiphyVideoViewManager() : SimpleViewManager<GiphyRNVideoView>() {
     )
   }
 
+  @Suppress("unused")
   @ReactProp(name = "media")
   fun setMedia(videoView: GiphyRNVideoView, rnMedia: ReadableMap?) {
     videoView.setMedia(rnMedia)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "muted")
   fun setMuted(videoView: GiphyRNVideoView, rnMuted: Boolean?) {
     videoView.setMuted(rnMuted)
   }
 
   // TODO v2 remove
+  @Deprecated(
+    "Will be removed in v2, please use autoPlay instead",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith("videoView.autoPlay")
+  )
+  @Suppress("unused")
   @ReactProp(name = "playing")
   fun setPlaying(videoView: GiphyRNVideoView, rnPlaying: Boolean?) {
     videoView.setPlaying(rnPlaying)
   }
 
+  @Suppress("unused")
   @ReactProp(name = "autoPlay")
   fun setAutoPlay(videoView: GiphyRNVideoView, autoPlay: Boolean?) {
     videoView.setAutoPlay(autoPlay)
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun addListener(eventName: String?) {
     // Keep: Required for RN built in Event Emitter Calls.
   }
 
+  @Suppress("unused")
   @ReactMethod
   fun removeListeners(count: Int?) {
     // Keep: Required for RN built in Event Emitter Calls.
