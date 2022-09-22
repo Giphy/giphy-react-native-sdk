@@ -3,7 +3,7 @@ import com.github.jk1.license.render.*
 
 buildscript {
     ext {
-        kotlinVersion = "1.5.31"
+        kotlinVersion = "1.6.0"
         buildToolsVersion = "30.0.2"
         minSdkVersion = 24
         compileSdkVersion = 31
