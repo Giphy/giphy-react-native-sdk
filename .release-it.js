@@ -119,13 +119,13 @@ handlebars.registerHelper('capitalize', (v) =>
 )
 
 handlebars.registerHelper('androidSDKVersionByHash', (hash = 'HEAD') => {
-  return execSync(`${SCRIPTS_DIR}/android-sdk-version-by-hash.sh ${hash}`)
+  return execSync(`${SCRIPTS_DIR}/sdk.version-by-hash.android.sh ${hash}`)
     .toString('utf-8')
     .trim()
 })
 
 handlebars.registerHelper('iOSSDKVersionByHash', (hash = 'HEAD') => {
-  return execSync(`${SCRIPTS_DIR}/ios-sdk-version-by-hash.sh ${hash}`)
+  return execSync(`${SCRIPTS_DIR}/sdk.version-by-hash.ios.sh ${hash}`)
     .toString('utf-8')
     .trim()
 })

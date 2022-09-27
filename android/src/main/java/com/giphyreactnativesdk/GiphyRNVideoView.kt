@@ -5,10 +5,10 @@ import android.util.AttributeSet
 import com.facebook.react.bridge.ReadableMap
 import com.giphy.sdk.core.GPHCore
 import com.giphy.sdk.core.models.Media
-import com.giphy.sdk.ui.views.GPHPlayerStateListener
-import com.giphy.sdk.ui.views.GPHVideoPlayer
-import com.giphy.sdk.ui.views.GPHVideoPlayerState
+import com.giphy.sdk.ui.utils.GPHPlayerStateListener
+import com.giphy.sdk.ui.utils.GPHVideoPlayerState
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
+import com.giphy.sdk.ui.utils.GPHAbstractVideoPlayer
 import timber.log.Timber
 
 enum class GiphyRNVideoPlaybackState(val code: Int) {
@@ -126,7 +126,7 @@ class GiphyRNVideoView @JvmOverloads constructor(
     }
   }
 
-  override fun prepare(media: Media, player: GPHVideoPlayer) {
+  override fun prepare(media: Media, player: GPHAbstractVideoPlayer) {
     super.prepare(media, player)
     videoPlayer?.addListener(playerListener)
   }

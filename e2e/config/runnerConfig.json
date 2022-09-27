@@ -1,6 +1,5 @@
 {
   "globalSetup": "./runnerSetup.ts",
-  "globalTeardown": "./runnerTeardown.ts",
   "maxWorkers": 1,
   "preset": "ts-jest",
   "roots": ["../"],

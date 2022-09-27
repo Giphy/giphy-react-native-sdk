@@ -42,3 +42,7 @@ staying in the experience in your app.
 ### Guides
 
 - [Using clips with React-Native-Video](docs/using-clips-with-react-native-video.md)
+
+### Troubleshooting
+
+- [Dealing with ExoPlayer issues](docs/dealing-with-exo-player-issues.md)
