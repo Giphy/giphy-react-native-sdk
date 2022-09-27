@@ -1,5 +1,24 @@
 
 
+# 1.10.0 (2022-09-27)
+
+### Native SDKs
+* Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Documentation
+* Add the ExoPlayer troubleshooting page ([00dfa75](https://github.com/Giphy/giphy-react-native-sdk/commit/00dfa75eb9bb38f6e50f0f6f56a701a19055f5a9))
+* Update contribution guide ([f3ef81b](https://github.com/Giphy/giphy-react-native-sdk/commit/f3ef81bc1789da2ff41d90adaa9b7863be4952bd))
+
+### Build System
+* Update dependencies ([3813062](https://github.com/Giphy/giphy-react-native-sdk/commit/381306255bf96689f6ca026c5a80435dc8d76de7))
+* [deps] Bump Android SDK version from 2.1.18 to 2.2.0 ([4934f9f](https://github.com/Giphy/giphy-react-native-sdk/commit/4934f9fbb16566db5280ba80d859efc226b34935))
+
+### Continuous Integration
+* Setup detox for Android platform ([d793b18](https://github.com/Giphy/giphy-react-native-sdk/commit/d793b18e9cb1c4e7b21f491457177db01dcdd25a))
+* Setup detox for iOS platform ([a2465ea](https://github.com/Giphy/giphy-react-native-sdk/commit/a2465ea4fc078fe5fde790bd1631041490a84016))
+
 # 1.10.0-beta.0 (2022-09-22)
 
 ### Native SDKs

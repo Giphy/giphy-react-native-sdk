@@ -12,7 +12,7 @@ PODS:
   - fmt (6.2.1)
   - Giphy (2.1.22):
     - libwebp
-  - giphy-react-native-sdk (1.10.0-beta.0):
+  - giphy-react-native-sdk (1.10.0):
     - Giphy (= 2.1.22)
     - React-Core
   - glog (0.3.5)
@@ -407,7 +407,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: fe08c1cd7e2e205718d77ad14b34957cce949b58
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   Giphy: 6757d929878ef45f70ed62a02a2c9a03994e7b6c
-  giphy-react-native-sdk: aa7bb71bf5dbdef9009e43ca5faca3be04be9a5c
+  giphy-react-native-sdk: febed46488cd2ca3af45df610a5c2b69239ac5c4
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   libwebp: 60305b2e989864154bd9be3d772730f08fc6a59c
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
