@@ -1,5 +1,16 @@
 
 
+# 1.11.0 (2022-09-28)
+
+### Native SDKs
+* Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Build System
+* [deps] Bump Gradle to 7.3.3 ([2ffb2e5](https://github.com/Giphy/giphy-react-native-sdk/commit/2ffb2e52c534f8aa36f43ee761745b006d838f81))
+* [deps] Bump Kotlin to 1.6.0 ([81b11ed](https://github.com/Giphy/giphy-react-native-sdk/commit/81b11edf4ae55ee409432717d54d3843e3ace92f))
+
 # 1.10.0 (2022-09-27)
 
 ### Native SDKs
