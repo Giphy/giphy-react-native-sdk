@@ -29,5 +29,6 @@ deploy:
     api_token: $NPM_TOKEN
     email: $NPM_USER
     cleanup: false
+    skip_cleanup: true
     on:
       tags: true
