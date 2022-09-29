@@ -12,16 +12,16 @@
   },
   "dependencies": {
     "@react-native-community/picker": "^1.8.1",
-    "react": "16.14.0",
+    "react": "18.2.0",
     "react-native": "0.66.4",
     "react-native-dotenv": "^3.3.1",
     "react-native-picker-select": "^8.0.4",
     "react-native-status-bar-height": "^2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@babel/runtime": "^7.18.9",
+    "@babel/core": "^7.19.3",
+    "@babel/runtime": "^7.19.0",
     "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.72.0"
+    "metro-react-native-babel-preset": "^0.72.3"
   }
 }
