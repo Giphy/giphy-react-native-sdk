@@ -9,15 +9,10 @@ export enum GiphyVideoViewPlaybackState {
   Paused = 5,
 }
 
-// TODO v2 remove `playing`
 export type NativeGiphyVideoViewProps = ViewProps & {
   autoPlay?: boolean
   media?: GiphyMediaID
   muted?: boolean
-  /**
-   * @deprecated will be removed in v2, please use autoPlay instead
-   */
-  playing?: boolean
   onError?: (e: NativeSyntheticEvent<{ description: string }>) => void
   onMute?: (e: NativeSyntheticEvent<{}>) => void
   onPlaybackStateChanged?: (e: NativeSyntheticEvent<{ state: GiphyVideoViewPlaybackState }>) => void

@@ -224,7 +224,7 @@ export default function App() {
             >
               {media.isVideo ? (
                 <GiphyVideoView
-                  autoPlay={false}
+                  autoPlay={true}
                   media={media}
                   muted={true}
                   style={{ aspectRatio: media.aspectRatio }}
