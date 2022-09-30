@@ -1,9 +1,4 @@
-import {
-  expectToMatchImageSnapshot,
-  getGPHDialogSearchField,
-  showGPHDialog,
-  STABLE_SEARCH_TERMS,
-} from './utils'
+import { expectToMatchImageSnapshot, getGPHDialogSearchField, showGPHDialog, STABLE_SEARCH_TERMS } from './utils'
 
 describe('Giphy Dialog', () => {
   beforeEach(async () => {

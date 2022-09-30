@@ -16,10 +16,7 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
   dumpInlineDiffToConsole: false,
   failureThreshold: 0.01,
   failureThresholdType: 'percent',
-  customSnapshotIdentifier: ({
-    currentTestName,
-    counter,
-  }: Record<string, any>) =>
+  customSnapshotIdentifier: ({ currentTestName, counter }: Record<string, any>) =>
     // prettier-ignore
     `${kebabCase(`${currentTestName}-${counter}`)}.${detox.device.getPlatform()}`,
 })

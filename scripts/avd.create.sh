@@ -32,6 +32,7 @@ hw.lcd.height=2280
 hw.lcd.width=1080
 vm.heapSize=576
 hw.ramSize=2048
+disk.dataPartition.size=4G
 EOM
 
 # Verify installation

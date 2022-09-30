@@ -5,17 +5,18 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableMap
 import com.giphy.sdk.ui.Giphy
-import com.giphyreactnativesdk.exoplayeradapter.ExoPlayerAdapter
-import com.giphyreactnativesdk.exoplayeradapter.VideoCache
 import com.giphyreactnativesdk.utils.RNSDKInfo
+import com.giphyreactnativesdk.utils.getVideoPlayerFactory
+import com.giphyreactnativesdk.utils.initializeVideoCache
 
 object GiphySDKConstants {
   const val VERIFICATION_MODE_KEY = "verificationMode"
   const val VIDEO_CACHE_MAX_BYTES_KEY = "videoCacheMaxBytes"
-  const val DEFAULT_VIDEO_CACHE_MAX_BYTES: Long = 100 * 1024 * 1024
+  const val DEFAULT_VIDEO_CACHE_MAX_BYTES: Long = (100 * 1024 * 1024).toLong()
 }
 
-class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext) {
+class GiphySDKModule(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
   override fun getName(): String {
     return "GiphyReactNativeSDK"
   }
@@ -34,13 +35,8 @@ class GiphySDKModule(reactContext: ReactApplicationContext): ReactContextBaseJav
     if (settings.hasKey(GiphySDKConstants.VIDEO_CACHE_MAX_BYTES_KEY)) {
       videoCacheMaxBytes = settings.getInt(GiphySDKConstants.VIDEO_CACHE_MAX_BYTES_KEY).toLong()
     }
-    if (videoCacheMaxBytes > 0) {
-      VideoCache.initialize(reactApplicationContext, videoCacheMaxBytes)
-    }
-
-    Giphy.videoPlayer = { playerView, repeatable, showCaptions ->
-      ExoPlayerAdapter(playerView, repeatable, showCaptions)
-    }
+    initializeVideoCache(reactApplicationContext, videoCacheMaxBytes)
+    Giphy.videoPlayer = getVideoPlayerFactory()
 
     if (apiKey != null) {
       val appInfo = RNSDKInfo(reactApplicationContext)
