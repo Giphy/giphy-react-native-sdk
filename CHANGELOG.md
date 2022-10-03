@@ -1,5 +1,15 @@
 
 
+# 1.11.1 (2022-10-03)
+
+### Native SDKs
+* Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Bug Fixes
+* TypeScript definitions are placed in the wrong folder ([#80](https://github.com/Giphy/giphy-react-native-sdk/issues/80)) ([4bea260](https://github.com/Giphy/giphy-react-native-sdk/commit/4bea26087abdacd897d16e0e005b7cc84ebd4a78))
+
 # 1.11.0 (2022-09-28)
 
 ### Native SDKs
