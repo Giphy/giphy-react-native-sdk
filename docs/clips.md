@@ -19,7 +19,8 @@ staying in the experience in your app.
 
 ### GIPHY Clips setup (Android only)
 
-The GIPHY React Native SDK under the hood uses ExoPlayer for clips on the Android platform. But we don't enable clips
+The GIPHY React Native SDK under the hood uses [ExoPlayer](https://github.com/google/ExoPlayer) for clips on the Android
+platform. But we don't enable clips
 functionality by default to optimize bundle size and avoid dependency resolution issues. If you use clips on Android,
 you need to tell the GIPHY SDK to use a special adapter that will add ExoPlayer to dependencies and make the clips
 available. To do this, add the following line to the `gradle.properties` file in the android folder of your project and
@@ -31,7 +32,7 @@ GiphyReactNativeSDK.videoPlayerAdapter=<VIDEO_PLAYER_ADAPTER>
 
 You can browse the available adapters at [this link](../android/resources) or select one from the following list:
 
-- `exoplayeradapter@2.18.1` - provides integration with ExoPlayer@2.18.1.
+- `exoplayeradapter@2.18.1` - provides integration with [ExoPlayer@2.18.1](https://github.com/google/ExoPlayer/releases/tag/r2.18.1).
 - `videoplayeradapter` - this adapter is used by default, is just a stub, and does not make clips available in the SDK.
 
 We recommend choosing the latest version of the adapter. Thus, your configuration might look as follows:
@@ -47,8 +48,10 @@ the version of ExoPlayer in the other library.
 
 In case you have not found an adapter that meets your requirements, you can create your own or, even better, send a PR
 with an implementation. This will require more work but will allow you to control the video player at a low level. You
-can copy [any existing adapter](../android/resources) and then modify it. Then in the `gradle.properties` file, in addition to the name of the
+can copy [any existing adapter](../android/resources) and then modify it. Then in the `gradle.properties` file, in
+addition to the name of the
 adapter, you need to specify the path to the folder where the adapter is located, for example:
+
 ```groovy
 GiphyReactNativeSDK.videoPlayerAdaptersPath=/root/custom-video-player-adapters/
 ```
