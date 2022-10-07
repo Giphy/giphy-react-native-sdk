@@ -16,7 +16,8 @@ With billions of requests a day, it’s safe to say GIPHY knows GIFs. We're exci
 you so your users can have the best GIF experience possible, with all the same features they're already enjoying on
 Facebook, Slack, Instagram, and more – with just a few lines of code.
 
-**New!**  GIPHY’s proud to introduce GIPHY Clips, aka GIFs with Sound, to the mix!  GIPHY Clips is our newest content format
+**New!**  GIPHY’s proud to introduce GIPHY Clips, aka GIFs with Sound, to the mix!  GIPHY Clips is our newest content
+format
 at the intersection of GIFs and Video. They combine the expression and entertainment of GIFs, with the added engagement
 of audio. Integrating the SDK will allow your users to seamlessly express themselves with this new format, all while
 staying in the experience in your app.
@@ -27,6 +28,7 @@ staying in the experience in your app.
 - [Installation](docs/getting-started.md#installation)
 - [Troubleshooting](docs/getting-started.md#troubleshooting)
 - [Basic Usage](docs/getting-started.md#basic-usage)
+- [GIPHY Clips: GIFs with Sound](docs/clips.md)
 - [Example App](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example)
 
 ### [API Reference](docs/api.md)
@@ -39,10 +41,3 @@ staying in the experience in your app.
 - [GiphyGridView](docs/api.md#giphygridview)
 - [GiphyContent](docs/api.md#giphycontent)
 
-### Guides
-
-- [Using clips with React-Native-Video](docs/using-clips-with-react-native-video.md)
-
-### Troubleshooting
-
-- [Dealing with ExoPlayer issues](docs/dealing-with-exo-player-issues.md)
