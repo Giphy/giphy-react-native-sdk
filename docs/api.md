@@ -256,7 +256,7 @@ export default function App() {
 ## GiphyVideoView
 
 **Note**: If you use GIPHY Clips on the Android platform, you need
-to [set up clips integration](./clips.md#giphy-clips-setup-android-only) before working with the
+to [set up clips integration](clips.md#giphy-clips-setup-android-only) before working with the
 GiphyVideoView component.
 
 Similar to the [GiphyMediaView](#giphymediaview) which works for GIFs, Stickers, and Text, the GPHVideoView is a
@@ -264,8 +264,7 @@ component that makes it easy to play back GiphyMedia clips video assets. The Gip
 GiphyMedia where the `isVideo` property is `true`.
 
 **Note**: `GiphyVideoView` has no advanced features for playback, volume, and buffering control. If you need some
-advanced features, you can easily integrate clips with other more advanced video players. For example, we
-described [how to use clips with React-Native-Video](using-clips-with-react-native-video.md).
+advanced features, you can easily integrate clips with other more advanced video players.
 
 #### Props
 

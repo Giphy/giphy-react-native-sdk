@@ -41,3 +41,6 @@ staying in the experience in your app.
 - [GiphyGridView](docs/api.md#giphygridview)
 - [GiphyContent](docs/api.md#giphycontent)
 
+### Guides
+
+- [Migrating to GIPHY React Native SDK 2](docs/migrating-to-giphy-react-native-sdk-2.md)
