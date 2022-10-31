@@ -11,7 +11,7 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@react-native-community/picker": "^1.8.1",
+    "@react-native-picker/picker": "^2.4.8",
     "react": "18.2.0",
     "react-native": "0.66.4",
     "react-native-dotenv": "^3.3.1",
