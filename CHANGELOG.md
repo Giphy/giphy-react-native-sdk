@@ -1,5 +1,30 @@
 
 
+# 2.0.0 (2022-10-31)
+
+### Native SDKs
+* Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
+* Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
+
+
+### Features
+* Update ExoPlayer configuration ([907ea53](https://github.com/Giphy/giphy-react-native-sdk/commit/907ea537fbad0945f69b987c5cf8c64714d6b6d3))
+* [GiphyVideoView] Remove the playing property ([032a67e](https://github.com/Giphy/giphy-react-native-sdk/commit/032a67eddd9cf996939cf4b19098d21a88f1bf2f))
+
+### Documentation
+* Add a v2 migration guide ([e68fd20](https://github.com/Giphy/giphy-react-native-sdk/commit/e68fd20135527b26b92d2912581d0975036b1a35))
+* Update GIPHY Clips integration guide ([21f57e8](https://github.com/Giphy/giphy-react-native-sdk/commit/21f57e840ec1238662c7af4314f3e55b42e1f6e5))
+
+### Build System
+* [deps] Bump npm packages ([f4dd163](https://github.com/Giphy/giphy-react-native-sdk/commit/f4dd163beb32d0d58b2088bb4e0f6b770970be47))
+
+### BREAKING CHANGES
+* The `playing` property has been removed from the `GiphyVideoView` component. Please replace it with [the autoPlay
+  property](docs/api.md#giphyvideoview) if you use it.
+* In v2, GIPHY Clips are disabled by default on the Android platform. If you use clips on Android,
+  follow [this guide](docs/clips.md#giphy-clips-setup-android-only) to
+  set them up.
+
 # 1.11.1 (2022-10-03)
 
 ### Native SDKs
