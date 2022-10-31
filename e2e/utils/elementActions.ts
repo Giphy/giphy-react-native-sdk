@@ -1,6 +1,4 @@
-export async function getElWidth(
-  el: Detox.NativeElement | Detox.IndexableNativeElement
-) {
+export async function getElWidth(el: Detox.NativeElement | Detox.IndexableNativeElement) {
   const attrs = await el.getAttributes()
 
   if ('elements' in attrs) {

@@ -1,12 +1,18 @@
-package com.giphyreactnativesdk.exoplayeradapter
+package com.giphyreactnativesdk.videoplayeradapter
 
 import com.giphy.sdk.ui.utils.GPHAbstractVideoPlayer
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
 
-abstract class AbstractExoPlayerAdapter(
+abstract class AbstractVideoPlayerAdapter(
   playerView: GPHVideoPlayerView?,
   repeatable: Boolean,
   showCaptions: Boolean
 ) : GPHAbstractVideoPlayer(playerView, repeatable, showCaptions) {
   abstract fun runInPlayerApplicationLooper(runnable: Runnable)
 }
+
+abstract class AbstractFakeVideoPlayerAdapter(
+  playerView: GPHVideoPlayerView?,
+  repeatable: Boolean,
+  showCaptions: Boolean
+) : AbstractVideoPlayerAdapter(playerView, repeatable, showCaptions)

@@ -23,10 +23,7 @@ async function hideGPHDialogSettings() {
 }
 
 function scrollGPHDialogSettingsTo(matcher: Detox.NativeMatcher) {
-  return waitFor(element(matcher))
-    .toBeVisible()
-    .whileElement(by.id('gph-dialog-content'))
-    .scroll(1000, 'down')
+  return waitFor(element(matcher)).toBeVisible().whileElement(by.id('gph-dialog-content')).scroll(1000, 'down')
 }
 
 async function setCardPickerValue(cardId: string, value: string) {
@@ -40,11 +37,7 @@ async function setCardPickerValue(cardId: string, value: string) {
     const picker = by.id('gph-card_picker').withAncestor(by.id(cardId))
     await scrollGPHDialogSettingsTo(picker)
     await element(picker).tap()
-    await element(
-      by
-        .text(value)
-        .withAncestor(by.type('androidx.appcompat.widget.AlertDialogLayout'))
-    ).tap()
+    await element(by.text(value).withAncestor(by.type('androidx.appcompat.widget.AlertDialogLayout'))).tap()
   }
 }
 
@@ -71,11 +64,7 @@ async function setTextFieldValue(textFieldId: string, value: string) {
 
 function getGPHDialogTouchInterceptor() {
   if (device.getPlatform() === 'ios') {
-    return element(
-      by
-        .type('UICollectionView')
-        .withDescendant(by.type('GiphyUISDK.GPHMediaCell'))
-    )
+    return element(by.type('UICollectionView').withDescendant(by.type('GiphyUISDK.GPHMediaCell')))
   }
   return element(by.type('com.giphy.sdk.ui.views.GPHTouchInterceptor'))
 }
@@ -174,9 +163,7 @@ describe('Giphy Dialog Settings', () => {
       // Check confirmation screen
       await getGPHDialogMediaCell().atIndex(0).tap({ x: 50, y: 50 })
       if (showConfirmation) {
-        await expectToMatchImageSnapshot(
-          device.takeScreenshot('Confirmation Screen')
-        )
+        await expectToMatchImageSnapshot(device.takeScreenshot('Confirmation Screen'))
         await getGPHDialogConfirmationButton().tap()
       } else {
         await expect(getGPHDialogTouchInterceptor()).not.toExist()
@@ -200,17 +187,13 @@ describe('Giphy Dialog Settings', () => {
     for (const { columnCount, columnCountLabel } of variants) {
       // Update settings
       await showGPHDialogSettings()
-      await toggleSwitches(Object.values(GiphyContentType), [
-        GiphyContentType.Sticker,
-      ])
+      await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Sticker])
       await setCardPickerValue(cardId, columnCountLabel)
       await hideGPHDialogSettings()
 
       //  Show GPH dialog and check the number of columns
       await showGPHDialog()
-      await getGPHDialogSearchField().typeText(
-        STABLE_SEARCH_TERMS.stickerCollection
-      )
+      await getGPHDialogSearchField().typeText(STABLE_SEARCH_TERMS.stickerCollection)
       const cell = getGPHDialogMediaCell().atIndex(0)
       await waitFor(cell).toBeVisible().withTimeout(5000)
       const parentWidth = await getElWidth(getGPHDialogTouchInterceptor())
@@ -234,9 +217,7 @@ describe('Giphy Dialog Settings', () => {
       for (const showCheckeredBg of [true, false]) {
         // Update settings
         await showGPHDialogSettings()
-        await toggleSwitches(Object.values(GiphyContentType), [
-          GiphyContentType.Sticker,
-        ])
+        await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Sticker])
         await toggleSwitches([cardId], showCheckeredBg ? [cardId] : [])
         await hideGPHDialogSettings()
 
@@ -262,9 +243,7 @@ describe('Giphy Dialog Settings', () => {
 
         // Show GPH Dialog
         await showGPHDialog()
-        const suggestionsBar = element(
-          by.type('com.giphy.sdk.ui.views.GPHSuggestionsView')
-        )
+        const suggestionsBar = element(by.type('com.giphy.sdk.ui.views.GPHSuggestionsView'))
         if (showSuggestionsBar) {
           await expect(suggestionsBar).toBeVisible()
         } else {
@@ -299,22 +278,16 @@ describe('Giphy Dialog Settings', () => {
 
         // Update settings
         await showGPHDialogSettings()
-        await toggleSwitches(Object.values(GiphyContentType), [
-          GiphyContentType.Text,
-        ])
+        await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Text])
         await setTextFieldValue('gph-settings_tray-height', heightMultiplier)
         await hideGPHDialogSettings()
 
         // Show GPH Dialog and check its size
         await showGPHDialog()
         const dialogEl = element(
-          by
-            .type('UIViewControllerWrapperView')
-            .withDescendant(by.type('GiphyUISDK.GPHMediaCell'))
+          by.type('UIViewControllerWrapperView').withDescendant(by.type('GiphyUISDK.GPHMediaCell'))
         )
-        const screenshot = await dialogEl.takeScreenshot(
-          `Dialog-h${heightMultiplier}`
-        )
+        const screenshot = await dialogEl.takeScreenshot(`Dialog-h${heightMultiplier}`)
         const screenshotSize = imageSize(screenshot)
         jestExpect(screenshotSize.height).toEqual(expectedHeight)
         jestExpect(screenshotSize.width).toEqual(expectedWidth)

@@ -27,9 +27,7 @@ const pickerSelectStyles = StyleSheet.create({
   },
 })
 
-export const PickerSelectCard: React.FC<CardProps & PickerSelectProps> = (
-  props
-) => {
+export const PickerSelectCard: React.FC<CardProps & PickerSelectProps> = (props) => {
   const { pickerProps, textInputProps, testID, title, ...other } = props
 
   return (

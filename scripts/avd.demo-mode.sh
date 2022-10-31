@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-ANDROID_PLATFORM_TOOLS="${ANDROID_HOME}/platform-tools"
+ANDROID_PLATFORM_TOOLS="${ANDROID_SDK_ROOT}/platform-tools"
 
 # enter demo mode
 "$ANDROID_PLATFORM_TOOLS"/adb shell settings put global sysui_demo_allowed 1

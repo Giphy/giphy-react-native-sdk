@@ -9,7 +9,5 @@ export function getGPHDialogSearchField() {
 
 export async function showGPHDialog() {
   await element(by.id('show-gph-dialog')).tap()
-  await waitFor(getGPHDialogSearchField())
-    .toBeVisible()
-    .withTimeout(DIALOG_TIMEOUT)
+  await waitFor(getGPHDialogSearchField()).toBeVisible().withTimeout(DIALOG_TIMEOUT)
 }

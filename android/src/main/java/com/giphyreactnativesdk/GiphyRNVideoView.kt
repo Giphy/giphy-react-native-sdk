@@ -32,9 +32,6 @@ class GiphyRNVideoView @JvmOverloads constructor(
 ) : GPHVideoPlayerView(context, attrs, defStyleAttr) {
   var listener: GiphyRNVideoViewListener? = null
   private var autoPlay: Boolean = false
-
-  // TODO v2 remove playing
-  private var playing: Boolean? = null
   private var muted = false
   private var rnStateSynchronized = false
 
@@ -84,26 +81,8 @@ class GiphyRNVideoView @JvmOverloads constructor(
       return
     }
 
-    updatePlaying()
     updateVolume()
     rnStateSynchronized = true
-  }
-
-  // TODO v2 remove
-  private fun updatePlaying() {
-    if (playing == null) {
-      return
-    }
-
-    if (playing == true) {
-      if (videoPlayer?.isPlaying == false) {
-        onResume()
-        videoPlayer?.onResume()
-      }
-    } else if (isViewPlayerActive() && videoPlayer?.isPlaying == true) {
-      onPause()
-      videoPlayer?.onPause()
-    }
   }
 
   private fun updateVolume() {
@@ -121,9 +100,6 @@ class GiphyRNVideoView @JvmOverloads constructor(
   override fun didBecomeActiveByClick() {
     super.didBecomeActiveByClick()
     muted = false
-    if (playing != null) {
-      playing = true
-    }
   }
 
   override fun prepare(media: Media, player: GPHAbstractVideoPlayer) {
@@ -149,15 +125,6 @@ class GiphyRNVideoView @JvmOverloads constructor(
     }
     muted = rnMuted ?: false
     updateVolume()
-  }
-
-  // TODO v2 remove
-  fun setPlaying(rnPlaying: Boolean?) {
-    if (rnPlaying == playing) {
-      return
-    }
-    playing = rnPlaying ?: false
-    updatePlaying()
   }
 
   fun setAutoPlay(value: Boolean?) {

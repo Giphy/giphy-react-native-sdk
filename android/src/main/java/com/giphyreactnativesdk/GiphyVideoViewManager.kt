@@ -80,18 +80,6 @@ class GiphyVideoViewManager() : SimpleViewManager<GiphyRNVideoView>() {
     videoView.setMuted(rnMuted)
   }
 
-  // TODO v2 remove
-  @Deprecated(
-    "Will be removed in v2, please use autoPlay instead",
-    level = DeprecationLevel.WARNING,
-    replaceWith = ReplaceWith("videoView.autoPlay")
-  )
-  @Suppress("unused")
-  @ReactProp(name = "playing")
-  fun setPlaying(videoView: GiphyRNVideoView, rnPlaying: Boolean?) {
-    videoView.setPlaying(rnPlaying)
-  }
-
   @Suppress("unused")
   @ReactProp(name = "autoPlay")
   fun setAutoPlay(videoView: GiphyRNVideoView, autoPlay: Boolean?) {

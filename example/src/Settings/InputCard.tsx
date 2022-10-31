@@ -45,13 +45,5 @@ export const NumberInputCard: React.FC<NumberFieldCardProps> = (props) => {
     [value]
   )
 
-  return (
-    <TextInputCard
-      title={title}
-      keyboardType="numeric"
-      {...other}
-      value={value}
-      onChangeText={setValue}
-    />
-  )
+  return <TextInputCard title={title} keyboardType="numeric" {...other} value={value} onChangeText={setValue} />
 }

@@ -1,4 +1,4 @@
-package com.giphyreactnativesdk.exoplayeradapter
+package com.giphyreactnativesdk.videoplayeradapter
 
 import android.content.Context
 import com.google.android.exoplayer2.database.ExoDatabaseProvider
@@ -10,12 +10,12 @@ import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Util
 import java.io.File
 
-object VideoCache {
+object VideoCacheImpl : VideoCache {
   private lateinit var cache: Cache
   private lateinit var cacheDataSource: CacheDataSource
   lateinit var cacheDataSourceFactory: CacheDataSource.Factory
 
-  fun initialize(context: Context, maxBytes: Long = (100 * 1024 * 1024).toLong()) {
+  override fun initialize(context: Context, maxBytes: Long) {
     if (this::cache.isInitialized) {
       return
     }
@@ -24,7 +24,7 @@ object VideoCache {
     cache = SimpleCache(cacheFolder, cacheEvictor, ExoDatabaseProvider(context))
 
     cacheDataSourceFactory = CacheDataSource.Factory().apply {
-      setCache(this@VideoCache.cache)
+      setCache(this@VideoCacheImpl.cache)
       setUpstreamDataSourceFactory(
         DefaultDataSourceFactory(
           context, Util.getUserAgent(

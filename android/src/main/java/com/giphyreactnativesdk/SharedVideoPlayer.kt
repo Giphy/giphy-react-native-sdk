@@ -1,10 +1,10 @@
 package com.giphyreactnativesdk
 
-import com.giphyreactnativesdk.exoplayeradapter.ExoPlayerAdapter
+import com.giphyreactnativesdk.videoplayeradapter.VideoPlayerAdapterImpl
 
 object SharedVideoPlayer {
   private val gphPlayerDelegate = lazy {
-    ExoPlayerAdapter(null, repeatable = true)
+    VideoPlayerAdapterImpl(null, repeatable = true)
   }
   val gphPlayer by gphPlayerDelegate
 

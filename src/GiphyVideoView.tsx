@@ -3,7 +3,6 @@ import { AppState, AppStateStatus } from 'react-native'
 
 import { NativeGiphyVideoView, NativeGiphyVideoViewProps } from './native/GiphyVideoView'
 import { GiphyVideoManager } from './GiphyVideoManager'
-import deprecatedPropType from './utils/deprecatedPropType'
 
 export type GiphyVideoViewProps = NativeGiphyVideoViewProps
 
@@ -49,12 +48,6 @@ function unregisterComponent() {
 }
 
 export class GiphyVideoView extends React.Component<GiphyVideoViewProps, {}> {
-  static propTypes = {
-    playing: deprecatedPropType({
-      explanation: 'This property will be removed in v2, please use autoPlay instead',
-    }),
-  }
-
   componentDidMount() {
     registerComponent()
   }

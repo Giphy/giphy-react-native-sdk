@@ -1,0 +1,16 @@
+dependencies {
+  implementation('com.google.android.exoplayer:exoplayer-core') {
+    transitive true
+    version {
+      strictly '2.18.1+'
+      prefer '2.18.1'
+    }
+  }
+  implementation('com.google.android.exoplayer:exoplayer-ui') {
+    transitive true
+    version {
+      strictly '2.18.1+'
+      prefer '2.18.1'
+    }
+  }
+}

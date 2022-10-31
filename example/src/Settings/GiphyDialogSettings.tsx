@@ -22,11 +22,7 @@ export type GiphyDialogSettingsProps = {
 }
 
 export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
-  mediaTypeConfig: [
-    GiphyContentType.Gif,
-    GiphyContentType.Sticker,
-    GiphyContentType.Clips,
-  ],
+  mediaTypeConfig: [GiphyContentType.Gif, GiphyContentType.Sticker, GiphyContentType.Clips],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
   clipsPreviewRenditionType: GiphyClipsRendition.FixedWidth,
@@ -49,9 +45,7 @@ const styles = StyleSheet.create({
   },
 })
 
-function enumToPickerItems<K extends string, V>(
-  obj: Record<K, V>
-): { label: K; value: V }[] {
+function enumToPickerItems<K extends string, V>(obj: Record<K, V>): { label: K; value: V }[] {
   return Object.entries(obj)
     .filter(([label]) => !Number.isSafeInteger(+label))
     .map(([label, value]) => ({
@@ -60,17 +54,14 @@ function enumToPickerItems<K extends string, V>(
     }))
 }
 
-export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
-  props
-) => {
+export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (props) => {
   const { settings: settingsProp, onSettingsChange } = props
   const settings: Required<GiphyDialogConfig> = {
     ...DEFAULT_DIALOG_SETTINGS,
     ...settingsProp,
   }
 
-  const updateSettings = (updates: Partial<GiphyDialogConfig>) =>
-    onSettingsChange({ ...settings, ...updates })
+  const updateSettings = (updates: Partial<GiphyDialogConfig>) => onSettingsChange({ ...settings, ...updates })
 
   return (
     <View testID="gph-settings" style={styles.container}>
@@ -121,9 +112,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         testID="gph-settings_clips-preview-rendition-type"
         items={enumToPickerItems(GiphyClipsRendition)}
         value={settings.clipsPreviewRenditionType}
-        onValueChange={(clipsPreviewRenditionType) =>
-          updateSettings({ clipsPreviewRenditionType })
-        }
+        onValueChange={(clipsPreviewRenditionType) => updateSettings({ clipsPreviewRenditionType })}
       />
       <PickerSelectCard
         title="File Type"
@@ -136,68 +125,52 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (
         title="Show Confirmation Screen"
         testID="gph-settings_confirmation-screen"
         value={settings.showConfirmationScreen}
-        onValueChange={(showConfirmationScreen) =>
-          updateSettings({ showConfirmationScreen })
-        }
+        onValueChange={(showConfirmationScreen) => updateSettings({ showConfirmationScreen })}
       />
       <PickerSelectCard
         title="Sticker Column Count"
         testID="gph-settings_sticker-column-count"
         items={enumToPickerItems(GiphyStickersColumnCount)}
         value={settings.stickerColumnCount}
-        onValueChange={(stickerColumnCount) =>
-          updateSettings({ stickerColumnCount })
-        }
+        onValueChange={(stickerColumnCount) => updateSettings({ stickerColumnCount })}
       />
       <SwitchCard
         title="Should Localize Search (*iOS)"
         testID="gph-settings_localize-search"
         value={settings.shouldLocalizeSearch}
-        onValueChange={(shouldLocalizeSearch) =>
-          updateSettings({ shouldLocalizeSearch })
-        }
+        onValueChange={(shouldLocalizeSearch) => updateSettings({ shouldLocalizeSearch })}
       />
       <NumberInputCard
         title="Tray Height Multiplier (*iOS)"
         testID="gph-settings_tray-height"
         value={settings.trayHeightMultiplier}
-        onNumberChange={(trayHeightMultiplier) =>
-          updateSettings({ trayHeightMultiplier })
-        }
+        onNumberChange={(trayHeightMultiplier) => updateSettings({ trayHeightMultiplier })}
       />
       <PickerSelectCard
         title="Confirmation Rendition Type (*Android)"
         testID="gph-settings_confirmation-rendition-type"
         items={enumToPickerItems(GiphyRendition)}
         value={settings.confirmationRenditionType}
-        onValueChange={(confirmationRenditionType) =>
-          updateSettings({ confirmationRenditionType })
-        }
+        onValueChange={(confirmationRenditionType) => updateSettings({ confirmationRenditionType })}
       />
       <PickerSelectCard
         title="Selected Content Type (*Android)"
         testID="gph-settings_selected-content-type"
         items={enumToPickerItems(GiphyContentType)}
         value={settings.selectedContentType}
-        onValueChange={(selectedContentType) =>
-          updateSettings({ selectedContentType })
-        }
+        onValueChange={(selectedContentType) => updateSettings({ selectedContentType })}
       />
       <SwitchCard
         title="Show Checkered Background (*Android)"
         testID="gph-settings_checkered-background"
         value={settings.showCheckeredBackground}
-        onValueChange={(showCheckeredBackground) =>
-          updateSettings({ showCheckeredBackground })
-        }
+        onValueChange={(showCheckeredBackground) => updateSettings({ showCheckeredBackground })}
       />
       <SwitchCard
         title="Show Suggestions Bar (*Android)"
         testID="gph-settings_suggestions-bar"
         value={settings.showSuggestionsBar}
-        onValueChange={(showSuggestionsBar) =>
-          updateSettings({ showSuggestionsBar })
-        }
+        onValueChange={(showSuggestionsBar) => updateSettings({ showSuggestionsBar })}
       />
     </View>
   )

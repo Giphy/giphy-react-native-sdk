@@ -1,4 +1,4 @@
-package com.giphyreactnativesdk.exoplayeradapter
+package com.giphyreactnativesdk.videoplayeradapter
 
 import android.net.Uri
 import android.os.Handler
@@ -16,12 +16,11 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import timber.log.Timber
 import java.io.IOException
 
-class ExoPlayerAdapter(
+class VideoPlayerAdapterImpl(
   playerView: GPHVideoPlayerView?,
   repeatable: Boolean = false,
   showCaptions: Boolean = true
-) : AbstractExoPlayerAdapter(playerView, repeatable, showCaptions), Player.Listener {
-
+) : AbstractVideoPlayerAdapter(playerView, repeatable, showCaptions), Player.Listener {
   // region Exoplayer stuff
   private var player: ExoPlayer? = null
   private var looper: Looper? = null
@@ -88,12 +87,12 @@ class ExoPlayerAdapter(
       .setLoadControl(loadControl)
       .build()
       .apply {
-        addListener(this@ExoPlayerAdapter)
+        addListener(this@VideoPlayerAdapterImpl)
         playWhenReady = autoPlay
       }
 
     playerView.preloadFirstFrame(media)
-    playerView.prepare(media, this@ExoPlayerAdapter)
+    playerView.prepare(media, this@VideoPlayerAdapterImpl)
 
     player?.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
 
@@ -111,7 +110,7 @@ class ExoPlayerAdapter(
     val mediaItem = mediaItemBuilder
       .build()
     val mediaSource = DefaultMediaSourceFactory(
-      VideoCache.cacheDataSourceFactory,
+      VideoCacheImpl.cacheDataSourceFactory,
       extractoryFactory
     ).createMediaSource(mediaItem)
 

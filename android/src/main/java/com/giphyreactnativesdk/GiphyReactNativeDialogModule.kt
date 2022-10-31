@@ -6,7 +6,7 @@ import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.GPHContentType
 import com.giphy.sdk.ui.GPHSettings
 import com.giphy.sdk.ui.views.GiphyDialogFragment
-import com.giphyreactnativesdk.exoplayeradapter.ExoPlayerAdapter
+import com.giphyreactnativesdk.utils.getVideoPlayerFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -53,9 +53,8 @@ class GiphyReactNativeDialogModule(reactContext: ReactApplicationContext) :
   private fun initializeDialog() {
     gifsDialog = GiphyDialogFragment.newInstance(
       settings,
-      videoPlayer = { playerView, repeatable, showCaptions ->
-        ExoPlayerAdapter(playerView, repeatable, showCaptions)
-      })
+      videoPlayer = getVideoPlayerFactory()
+    )
   }
 
   @Suppress("unused")

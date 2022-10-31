@@ -48,13 +48,6 @@ class RNGiphyVideoView: UIView, GPHVideoPlayerStateListener {
     }
   }
 
-  //TODO: v2 remove
-  private var playing: Bool? = nil {
-    didSet {
-      syncPlaying()
-    }
-  }
-
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()
@@ -102,7 +95,7 @@ class RNGiphyVideoView: UIView, GPHVideoPlayerStateListener {
       }
 
       SharedGPHVideoPlayer.shared.prepareMedia(media: media, view: self.playerView)
-      if self.playing == true || (self.autoPlay == true && ViewsRegister.shared.getLatestViewWithAutoPlayback() == self) {
+      if self.autoPlay == true && ViewsRegister.shared.getLatestViewWithAutoPlayback() == self {
         SharedGPHVideoPlayer.shared.loadMedia(
           media: media,
           autoPlay: true,
@@ -126,29 +119,6 @@ class RNGiphyVideoView: UIView, GPHVideoPlayerStateListener {
     }
   }
 
-  //TODO: v2 remove
-  private func syncPlaying() -> Void {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self,
-            let playing = self.playing,
-            let _ = self.playerView.media else {
-        return
-      }
-
-      if playing {
-        if self.isViewPlayerActive() {
-          SharedGPHVideoPlayer.shared.resume()
-        } else {
-          self.syncMedia()
-        }
-      } else {
-        if self.isViewPlayerActive() {
-          SharedGPHVideoPlayer.shared.pause()
-        }
-      }
-    }
-  }
-
   //MARK: RN Setters
   @objc func setMedia(_ rnValue: NSDictionary) -> Void {
     GPHMedia.fromRNValue(rnValue) { [weak self] in
@@ -157,14 +127,6 @@ class RNGiphyVideoView: UIView, GPHVideoPlayerStateListener {
       }
       self.media = $0
     }
-  }
-
-  //TODO: v2 remove
-  @objc func setPlaying(_ value: Bool) -> Void {
-    guard playing != value else {
-      return
-    }
-    playing = value
   }
 
   @objc func setMuted(_ value: Bool) -> Void {
