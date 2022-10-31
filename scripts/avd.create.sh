@@ -2,7 +2,7 @@
 set -e
 
 AVD_CONFIG="${HOME}/.android/avd/${AVD_NAME}.avd/config.ini"
-ANDROID_CMD_TOOLS="${ANDROID_HOME}/cmdline-tools/latest/bin"
+ANDROID_CMD_TOOLS="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin"
 ANDROID_SYSTEM_IMAGE="system-images;android-${ANDROID_API};default;${ANDROID_ABI}"
 
 # Install the emulator tool

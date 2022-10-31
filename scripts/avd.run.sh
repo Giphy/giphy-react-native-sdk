@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-ANDROID_PLATFORM_TOOLS="${ANDROID_HOME}/platform-tools"
+ANDROID_PLATFORM_TOOLS="${ANDROID_SDK_ROOT}/platform-tools"
 
 # Launch the emulator
-nohup "$ANDROID_HOME"/emulator/emulator -verbose -no-boot-anim -avd "${AVD_NAME}" &
+nohup "$ANDROID_SDK_ROOT"/emulator/emulator -verbose -no-boot-anim -avd "${AVD_NAME}" &
 
 echo "Wait for the emulator to boot up completely..."
 # shellcheck disable=SC2016
