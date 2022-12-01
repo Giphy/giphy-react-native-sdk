@@ -1,5 +1,22 @@
 
 
+# 2.1.0 (2022-12-01)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.0)
+* Giphy iOS SDK [v2.2.1](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.1)
+
+
+### Build System
+* [deps] Bump Android SDK version from 2.2.0 to 2.3.0 ([682bfa5](https://github.com/Giphy/giphy-react-native-sdk/commit/682bfa5943006140eec8469f9e9a0cc92c44995e))
+* [deps] Bump iOS SDK version from 2.1.22 to 2.2.1 ([461e857](https://github.com/Giphy/giphy-react-native-sdk/commit/461e85778ff0a66f95d7455c70be6cd2d99c67ba))
+
+### Emoji Drawer
+
+This release improves the experience for the GIPHY emoji tab by enabling users to browse and select variations for a given emoji, such as alternative skin tones. This is a feature standardized by a number of popular platforms and is now possible in the GIPHY SDK.
+
+If you already have the emoji content type included in your integration, no additional code is necessary on your end to adopt this new feature.
+
 # 2.0.0 (2022-10-31)
 
 ### Native SDKs
