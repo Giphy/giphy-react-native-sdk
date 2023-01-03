@@ -3,7 +3,7 @@ os: linux
 jdk: oraclejdk11
 
 node_js:
-  - '14'
+  - '18'
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
