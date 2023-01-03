@@ -9,6 +9,7 @@ function downloadTestButler() {
 }
 
 module.exports = async function () {
+  await require('detox/runners/jest/index').globalSetup()
   switch (process.env.DETOX_CONFIGURATION) {
     case 'android': {
       downloadTestButler()

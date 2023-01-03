@@ -1,5 +1,6 @@
-import { wait } from '../utils'
 import { execSync } from 'child_process'
+
+import { wait } from '../utils'
 
 function patchDeviceScreenshot() {
   const takeScreenshot = device.takeScreenshot
