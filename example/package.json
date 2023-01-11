@@ -4,24 +4,24 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "build:android": "scripts/build.android.sh",
+    "android": "NODE_OPTIONS=--openssl-legacy-provider react-native run-android",
+    "build:android": "NODE_OPTIONS=--openssl-legacy-provider scripts/build.android.sh",
     "build:ios": ". ../scripts/sim.defaults.sh && scripts/build.ios.sh",
-    "ios": "react-native run-ios",
-    "start": "react-native start"
+    "ios": "NODE_OPTIONS=--openssl-legacy-provider react-native run-ios",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-native start"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.4.8",
     "react": "18.2.0",
     "react-native": "0.66.4",
-    "react-native-dotenv": "^3.3.1",
+    "react-native-dotenv": "^3.4.6",
     "react-native-picker-select": "^8.0.4",
     "react-native-status-bar-height": "^2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@babel/runtime": "^7.19.0",
+    "@babel/core": "^7.20.7",
+    "@babel/runtime": "^7.20.7",
     "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.72.3"
+    "metro-react-native-babel-preset": "^0.73.6"
   }
 }

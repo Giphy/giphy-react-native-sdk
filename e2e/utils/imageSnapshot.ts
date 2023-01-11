@@ -1,5 +1,4 @@
 import fs from 'fs'
-import detox from 'detox'
 import kebabCase from 'lodash.kebabcase'
 import { jestExpect } from '@jest/expect'
 import { configureToMatchImageSnapshot } from 'jest-image-snapshot'
@@ -18,7 +17,7 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
   failureThresholdType: 'percent',
   customSnapshotIdentifier: ({ currentTestName, counter }: Record<string, any>) =>
     // prettier-ignore
-    `${kebabCase(`${currentTestName}-${counter}`)}.${detox.device.getPlatform()}`,
+    `${kebabCase(`${currentTestName}-${counter}`)}.${require('detox').device.getPlatform()}`,
 })
 jestExpect.extend({ toMatchImageSnapshot })
 

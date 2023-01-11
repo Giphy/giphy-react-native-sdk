@@ -18,3 +18,4 @@ export SIM_RUNTIME="iOS${IOS_SDK_VERSION}"
 export SIM_SDK="iphonesimulator${IOS_SDK_VERSION}"
 export SIM_DEVICE_NAME='GiphyRNSDK iPhone 12 Pro'
 export SIM_DEVICE_ID='iPhone 12 Pro'
+export NODE_OPTIONS=--openssl-legacy-provider
