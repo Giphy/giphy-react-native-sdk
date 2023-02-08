@@ -1,5 +1,18 @@
 
 
+# 2.1.2 (2023-02-08)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.1)
+* Giphy iOS SDK [v2.2.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.2)
+
+
+### Bug Fixes
+* [android] Project-wide requests headers rewritten by GIPHY ([#92](https://github.com/Giphy/giphy-react-native-sdk/issues/92)) ([b0ce09c](https://github.com/Giphy/giphy-react-native-sdk/commit/b0ce09c893a20cd2522c1597c7ded8a34536bd76))
+
+### Build System
+* [deps] Bump Android SDK version from 2.3.0 to 2.3.1 ([03e2a89](https://github.com/Giphy/giphy-react-native-sdk/commit/03e2a8945cb6a2eb79c2bf65c70f7a0f5acaf939))
+
 # 2.1.1 (2023-01-11)
 
 ### Native SDKs
