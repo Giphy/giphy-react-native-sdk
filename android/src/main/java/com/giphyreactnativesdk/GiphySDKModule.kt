@@ -1,9 +1,6 @@
 package com.giphyreactnativesdk
 
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.*
 import com.giphy.sdk.ui.Giphy
 import com.giphyreactnativesdk.utils.RNSDKInfo
 import com.giphyreactnativesdk.utils.getVideoPlayerFactory
@@ -40,13 +37,12 @@ class GiphySDKModule(reactContext: ReactApplicationContext) :
 
     if (apiKey != null) {
       val appInfo = RNSDKInfo(reactApplicationContext)
-      Giphy.configure(
+      Giphy.configureRNSDK(
         reactApplicationContext,
         apiKey,
         verificationMode,
-        metadata = hashMapOf(
-          appInfo.name to appInfo.version
-        )
+        metadata = hashMapOf(appInfo.name to appInfo.version),
+        frescoImageRequestHandler = GiphyRNFrescoImageRequestHandler()
       )
     }
   }
