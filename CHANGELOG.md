@@ -8,7 +8,7 @@
 
 
 ### Bug Fixes
-* [android] App crashing on a selection of Gif ([#90](https://github.com/Giphy/giphy-react-native-sdk/issues/90)) ([8a18094](https://github.com/Giphy/giphy-react-native-sdk/commit/8a18094e19e152d53e0a7c4427f48646724ac927))
+* [Android] App crashes when selecting a Gif ([#90](https://github.com/Giphy/giphy-react-native-sdk/issues/90)) ([8a18094](https://github.com/Giphy/giphy-react-native-sdk/commit/8a18094e19e152d53e0a7c4427f48646724ac927))
 
 # 2.1.2 (2023-02-08)
 
