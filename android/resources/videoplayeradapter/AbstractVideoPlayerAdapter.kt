@@ -11,8 +11,3 @@ abstract class AbstractVideoPlayerAdapter(
   abstract fun runInPlayerApplicationLooper(runnable: Runnable)
 }
 
-abstract class AbstractFakeVideoPlayerAdapter(
-  playerView: GPHVideoPlayerView?,
-  repeatable: Boolean,
-  showCaptions: Boolean
-) : AbstractVideoPlayerAdapter(playerView, repeatable, showCaptions)

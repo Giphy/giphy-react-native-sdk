@@ -3,11 +3,13 @@ package com.giphyreactnativesdk.videoplayeradapter
 import android.view.SurfaceView
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
 
+const val VIDEO_PLAYER_ADAPTER_STUB_IMPL = true
+
 class VideoPlayerAdapterImpl(
   playerView: GPHVideoPlayerView?,
   repeatable: Boolean = false,
   showCaptions: Boolean = true
-) : AbstractFakeVideoPlayerAdapter(playerView, repeatable, showCaptions) {
+) : AbstractVideoPlayerAdapter(playerView, repeatable, showCaptions) {
   override fun runInPlayerApplicationLooper(runnable: Runnable) {
   }
 
