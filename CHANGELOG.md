@@ -1,5 +1,15 @@
 
 
+# 2.1.3 (2023-03-02)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.1)
+* Giphy iOS SDK [v2.2.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.2)
+
+
+### Bug Fixes
+* [android] App crashing on a selection of Gif ([#90](https://github.com/Giphy/giphy-react-native-sdk/issues/90)) ([8a18094](https://github.com/Giphy/giphy-react-native-sdk/commit/8a18094e19e152d53e0a7c4427f48646724ac927))
+
 # 2.1.2 (2023-02-08)
 
 ### Native SDKs
