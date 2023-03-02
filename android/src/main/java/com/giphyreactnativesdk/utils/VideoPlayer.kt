@@ -1,12 +1,11 @@
 package com.giphyreactnativesdk.utils
 
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
-import com.giphyreactnativesdk.videoplayeradapter.AbstractFakeVideoPlayerAdapter
+import com.giphyreactnativesdk.videoplayeradapter.VIDEO_PLAYER_ADAPTER_STUB_IMPL
 import com.giphyreactnativesdk.videoplayeradapter.VideoPlayerAdapterImpl
-import kotlin.reflect.full.isSubclassOf
 
 fun getVideoPlayerFactory(): ((GPHVideoPlayerView?, Boolean, Boolean) -> VideoPlayerAdapterImpl)? {
-  if (VideoPlayerAdapterImpl::class.isSubclassOf(AbstractFakeVideoPlayerAdapter::class)) {
+  if (VIDEO_PLAYER_ADAPTER_STUB_IMPL) {
     return null
   }
 

@@ -16,6 +16,8 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import timber.log.Timber
 import java.io.IOException
 
+const val VIDEO_PLAYER_ADAPTER_STUB_IMPL = false
+
 class VideoPlayerAdapterImpl(
   playerView: GPHVideoPlayerView?,
   repeatable: Boolean = false,
