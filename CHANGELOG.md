@@ -1,5 +1,18 @@
 
 
+# 2.2.0 (2023-04-25)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.1)
+* Giphy iOS SDK [v2.2.4](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.4)
+
+
+### Features
+* [iOS:GiphyDialog] Add selectedContentType property ([#99](https://github.com/Giphy/giphy-react-native-sdk/issues/99)) ([e21a85a](https://github.com/Giphy/giphy-react-native-sdk/commit/e21a85a63d498f11638423a041011e8520bae14f))
+
+### Build System
+* [deps] Bump iOS SDK version from 2.2.2 to 2.2.4 ([31e6a52](https://github.com/Giphy/giphy-react-native-sdk/commit/31e6a524b54b76b802c8ed4c35fcd9c020b9096b))
+
 # 2.1.3 (2023-03-02)
 
 ### Native SDKs
