@@ -72,7 +72,7 @@
     "@types/react-native": "0.62.13",
     "commitlint": "^17.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "detox": "^20.1.1",
+    "detox": "^20.7.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-ft-flow": "^2.0.3",

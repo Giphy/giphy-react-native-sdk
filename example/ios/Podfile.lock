@@ -10,10 +10,10 @@ PODS:
     - React-jsi (= 0.66.4)
     - ReactCommon/turbomodule/core (= 0.66.4)
   - fmt (6.2.1)
-  - Giphy (2.2.2):
+  - Giphy (2.2.4):
     - libwebp
   - giphy-react-native-sdk (2.1.3):
-    - Giphy (= 2.2.2)
+    - Giphy (= 2.2.4)
     - React-Core
   - glog (0.3.5)
   - libwebp (1.2.4):
@@ -406,8 +406,8 @@ SPEC CHECKSUMS:
   FBLazyVector: e5569e42a1c79ca00521846c223173a57aca1fe1
   FBReactNativeSpec: fe08c1cd7e2e205718d77ad14b34957cce949b58
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  Giphy: 18fd77d3a0fe8584bf32d80e59df8e5c0e4215ba
-  giphy-react-native-sdk: 0249c4872954ae09a423d02c9b0ce0ffaa72aef4
+  Giphy: 6b5f6986c8df4f71e01a8ef86595f426b3439fb5
+  giphy-react-native-sdk: ef9ff10e5a798a2aeb2ccc525130e0223cc566c2
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
@@ -439,4 +439,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 113b401ed56c27385e4e1f7e90d7bb9e356e084a
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0
