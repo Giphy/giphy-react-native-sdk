@@ -154,7 +154,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (props) =
         onValueChange={(confirmationRenditionType) => updateSettings({ confirmationRenditionType })}
       />
       <PickerSelectCard
-        title="Selected Content Type (*Android)"
+        title="Selected Content Type"
         testID="gph-settings_selected-content-type"
         items={enumToPickerItems(GiphyContentType)}
         value={settings.selectedContentType}

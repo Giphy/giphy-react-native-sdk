@@ -13,13 +13,14 @@ import type {
 
 export type BaseNativeGiphyDialogConfig = {
   clipsPreviewRenditionType?: GiphyClipsRendition
+  fileType?: GiphyFileExtension
   mediaTypeConfig?: GiphyContentType[]
   rating?: GiphyRating
   renditionType?: GiphyRendition
+  selectedContentType?: GiphyContentType
   showConfirmationScreen?: boolean
   stickerColumnCount?: GiphyStickersColumnCount
   theme?: GiphyThemePreset
-  fileType?: GiphyFileExtension
 }
 
 export type IOSGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
@@ -29,7 +30,6 @@ export type IOSGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
 
 export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
   confirmationRenditionType?: GiphyRendition
-  selectedContentType?: GiphyContentType
   showCheckeredBackground?: boolean
   showSuggestionsBar?: boolean
 }

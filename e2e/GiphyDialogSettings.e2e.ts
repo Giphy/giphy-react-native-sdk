@@ -83,6 +83,13 @@ function getGPHDialogConfirmationButton() {
   return element(by.type('androidx.appcompat.widget.AppCompatButton'))
 }
 
+function getGPHTabBar() {
+  if (device.getPlatform() === 'ios') {
+    return element(by.type('GiphyUISDK.GPHTabBar'))
+  }
+  return element(by.type('com.giphy.sdk.ui.views.GPHMediaTypeView'))
+}
+
 describe('Giphy Dialog Settings', () => {
   beforeEach(async () => {
     await device.launchApp()
@@ -139,6 +146,27 @@ describe('Giphy Dialog Settings', () => {
       await showGPHDialog()
       await getGPHDialogSearchField().typeText(searchTerm)
       await expectToMatchImageSnapshot(device.takeScreenshot('Dialog'))
+
+      // Reload App
+      await device.terminateApp()
+      await device.launchApp()
+    }
+  })
+
+  test('Selected Content Type', async () => {
+    const cardId = 'gph-settings_selected-content-type'
+    const variants = Object.keys(GiphyContentType)
+
+    for (const contentType of variants) {
+      // Update settings
+      await showGPHDialogSettings()
+      await toggleSwitches(Object.values(GiphyContentType), Object.values(GiphyContentType))
+      await setCardPickerValue(cardId, contentType)
+      await hideGPHDialogSettings()
+
+      // Show GPH Dialog
+      await showGPHDialog()
+      await expectToMatchImageSnapshot(getGPHTabBar().takeScreenshot(`dialog-tab-bar-${contentType}`))
 
       // Reload App
       await device.terminateApp()
