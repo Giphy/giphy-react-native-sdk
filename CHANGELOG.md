@@ -1,5 +1,15 @@
 
 
+# 2.2.1 (2023-04-27)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.4](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.4)
+* Giphy iOS SDK [v2.2.4](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.4)
+
+
+### Build System
+* [deps] Bump Android SDK version from 2.3.1 to 2.3.4 ([491a526](https://github.com/Giphy/giphy-react-native-sdk/commit/491a5264ce6a4f41db0ce552616a53ed8cd1adfc))
+
 # 2.2.0 (2023-04-25)
 
 ### Native SDKs
