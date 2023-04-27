@@ -66,7 +66,11 @@ function getGPHDialogTouchInterceptor() {
   if (device.getPlatform() === 'ios') {
     return element(by.type('UICollectionView').withDescendant(by.type('GiphyUISDK.GPHMediaCell')))
   }
-  return element(by.type('com.giphy.sdk.ui.views.GPHTouchInterceptor'))
+  return element(
+    by
+      .type('com.giphy.sdk.ui.views.GPHTouchInterceptor')
+      .withAncestor(by.type('com.giphy.sdk.ui.views.dialogview.GiphyDialogView'))
+  )
 }
 
 function getGPHDialogMediaCell() {
