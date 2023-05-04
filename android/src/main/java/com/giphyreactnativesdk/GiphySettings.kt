@@ -9,17 +9,18 @@ import com.giphy.sdk.ui.themes.GPHTheme
 import java.util.*
 
 private enum class RNSettings {
-  renditionType,
+  clipsPreviewRenditionType,
   confirmationRenditionType,
+  enableDynamicText,
+  mediaTypeConfig,
   rating,
+  renditionType,
+  selectedContentType,
+  showCheckeredBackground,
   showConfirmationScreen,
   showSuggestionsBar,
-  selectedContentType,
-  mediaTypeConfig,
-  showCheckeredBackground,
   stickerColumnCount,
   theme,
-  clipsPreviewRenditionType
 }
 
 
@@ -113,6 +114,12 @@ fun giphySettingsFromReadableMap(
     if (typeConfig != null) {
       settings.mediaTypeConfig = typeConfig
     }
+  }
+
+  if (options.hasKey(RNSettings.enableDynamicText.toString())) {
+    settings.enableDynamicText = options.getBoolean(
+      RNSettings.enableDynamicText.toString()
+    )
   }
 
   if (options.hasKey(RNSettings.showCheckeredBackground.toString())) {

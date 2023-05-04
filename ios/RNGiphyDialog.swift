@@ -12,7 +12,9 @@ public extension GiphyViewController {
         GPHContentType.fromRNValue(value: $0)
       }
     }
-    
+
+    self.enableDynamicText = options["enableDynamicText"] as? Bool ?? false
+
     let rawRating = options["rating"] as? String
     if let rating = GPHRatingType.fromRNValue(value: rawRating) {
       self.rating = rating
@@ -22,7 +24,7 @@ public extension GiphyViewController {
     if let renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType) {
       self.renditionType = renditionType
     }
-    
+
     let rawClipsPreviewRenditionType = options["clipsPreviewRenditionType"] as? String
     if let clipsPreviewRenditionType = GPHRenditionType.fromRNValue(value: rawClipsPreviewRenditionType) {
       self.clipsPreviewRenditionType = clipsPreviewRenditionType
@@ -96,7 +98,7 @@ open class RNGiphyDialog: RCTEventEmitter, GiphyDelegate {
       guard let self = self else {
         return
       }
-      
+
       let giphy = GiphyViewController()
       let rootViewController = UIApplication.shared.windows.first?.rootViewController
       giphy.applyRNConfig(self.config)

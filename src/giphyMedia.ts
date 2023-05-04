@@ -10,6 +10,7 @@ export type GiphyMediaData = GiphyMediaID & IGif
 export type GiphyMedia = GiphyMediaID & {
   url: string
   aspectRatio: number
+  isDynamic: boolean
   isVideo: boolean
   data: GiphyMediaData
 }

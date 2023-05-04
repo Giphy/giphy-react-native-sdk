@@ -13,6 +13,7 @@ import type {
 
 export type BaseNativeGiphyDialogConfig = {
   clipsPreviewRenditionType?: GiphyClipsRendition
+  enableDynamicText?: boolean
   fileType?: GiphyFileExtension
   mediaTypeConfig?: GiphyContentType[]
   rating?: GiphyRating

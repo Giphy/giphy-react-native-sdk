@@ -27,6 +27,7 @@ extension GPHMedia {
       "url": url as Any,
       "aspectRatio": aspectRatio,
       "isVideo": isVideo,
+      "isDynamic": isDynamic,
       "data": toGPHJSON(),
     ]
   }
