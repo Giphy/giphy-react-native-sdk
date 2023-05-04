@@ -1,26 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {
-  GiphyClipsRendition,
-  GiphyContent,
   GiphyDialog,
   GiphyDialogConfig,
   GiphyDialogEvent,
-  GiphyDirection,
-  GiphyGridView,
   GiphyMedia,
-  GiphyMediaType,
-  GiphyMediaView,
-  GiphyRendition,
   GiphyVideoManager,
-  GiphyVideoView,
 } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
 import { GIPHY_MEDIA_FIXTURE } from './fixtures'
+import { MediaGridSample } from './MediaGridSample'
+import { MediaViewSample } from './MediaViewSample'
 
 const styles = StyleSheet.create({
   container: {
@@ -45,20 +39,6 @@ const styles = StyleSheet.create({
   cardButtonText: {
     fontSize: 18,
     fontWeight: '600',
-  },
-  textInput: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 4,
-    color: 'black',
-    marginHorizontal: 8,
-  },
-  giphyGridView: {
-    height: 400,
-    marginHorizontal: 8,
   },
   previewContainer: {
     backgroundColor: '#fff',
@@ -85,9 +65,7 @@ function useLatest<V>(value: V) {
 
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
-  const [searchVisible, setSearchVisible] = useState(false)
   const [medias, setMedias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
-  const [searchQuery, setSearchQuery] = useState<string>('')
   const [giphyDialogSettings, setGiphyDialogSettings] = useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
 
   const addMedia = (media: GiphyMedia) => {
@@ -137,50 +115,7 @@ export default function App() {
       </Dialog>
 
       {/* Displaying Giphy Grid View with the custom search bar */}
-      <View style={styles.card}>
-        <TextInput
-          autoFocus={false}
-          onFocus={() => setSearchVisible(true)}
-          onTouchEnd={() => setSearchVisible(true)}
-          placeholder="Search..."
-          style={styles.textInput}
-          testID="gph-grid_search-stub"
-          value={searchQuery}
-        />
-        <Dialog visible={searchVisible} onRequestClose={() => setSearchVisible(false)}>
-          <TextInput
-            autoFocus
-            onChangeText={setSearchQuery}
-            placeholder="Search..."
-            style={styles.textInput}
-            testID="gph-grid_search-input"
-            value={searchQuery}
-          />
-          {searchVisible && (
-            <GiphyGridView
-              content={GiphyContent.search({
-                searchQuery: searchQuery,
-                mediaType: GiphyMediaType.Sticker,
-              })}
-              cellPadding={3}
-              clipsPreviewRenditionType={GiphyClipsRendition.FixedHeight}
-              fixedSizeCells={false}
-              orientation={GiphyDirection.Vertical}
-              renditionType={GiphyRendition.FixedWidth}
-              spanCount={1}
-              showCheckeredBackground={false}
-              style={styles.giphyGridView}
-              testID="gph-grid-view"
-              onContentUpdate={(e) => console.log('onContentUpdate', JSON.stringify(e.nativeEvent, null, 2))}
-              onScroll={(e) => console.log('onScroll', JSON.stringify(e.nativeEvent, null, 2))}
-              onMediaSelect={(e) => {
-                setSearchVisible(false)
-                addMedia(e.nativeEvent.media)
-              }}
-            />
-          )}
-        </Dialog>
-      </View>
+      <MediaGridSample onMediaSelect={addMedia} style={styles.card} />
 
       {/* Displaying selected media */}
       <View style={styles.card}>
@@ -188,25 +123,7 @@ export default function App() {
         <ScrollView style={styles.previewContainer}>
           {medias.map((media) => (
             <View key={media.id} style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}>
-              {media.isVideo ? (
-                <GiphyVideoView
-                  autoPlay={false}
-                  media={media}
-                  muted={true}
-                  style={{ aspectRatio: media.aspectRatio }}
-                  testID={`gph-video-view-${media.id}`}
-                  onError={(e) => console.error(e.nativeEvent.description)}
-                  onPlaybackStateChanged={(e) =>
-                    console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))
-                  }
-                />
-              ) : (
-                <GiphyMediaView
-                  media={media}
-                  style={{ aspectRatio: media.aspectRatio }}
-                  testID={`gph-media-view-${media.id}`}
-                />
-              )}
+              <MediaViewSample media={media} />
             </View>
           ))}
         </ScrollView>
