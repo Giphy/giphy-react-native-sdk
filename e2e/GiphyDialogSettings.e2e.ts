@@ -8,6 +8,7 @@ import {
   getGPHDialogSearchField,
   showGPHDialog,
   STABLE_SEARCH_TERMS,
+  wait,
 } from './utils'
 
 type AnyRecord = Record<string, any>
@@ -92,6 +93,22 @@ function getGPHTabBar() {
     return element(by.type('GiphyUISDK.GPHTabBar'))
   }
   return element(by.type('com.giphy.sdk.ui.views.GPHMediaTypeView'))
+}
+
+function getSuggestionBar() {
+  if (device.getPlatform() === 'ios') {
+    return element(by.type('UICollectionView').withDescendant(by.type('GiphyUISDK.GPHTermSuggestionCell')))
+  }
+  return element(by.type('com.giphy.sdk.ui.views.GPHSuggestionsView'))
+}
+
+function getDynamicTextLabel() {
+  if (device.getPlatform() === 'ios') {
+    return element(by.type('GiphyUISDK.GPHTextSuggestionCell'))
+  }
+  return element(
+    by.type('android.widget.LinearLayout').withAncestor(by.type('com.giphy.sdk.ui.views.GPHSuggestionsView'))
+  ).atIndex(0)
 }
 
 describe('Giphy Dialog Settings', () => {
@@ -241,6 +258,59 @@ describe('Giphy Dialog Settings', () => {
     }
   })
 
+  test('Dynamic Text Enabled', async () => {
+    const cardId = 'gph-settings_dynamic-text'
+
+    // Update settings
+    await showGPHDialogSettings()
+    await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Gif, GiphyContentType.Text])
+    await toggleSwitches([cardId], [cardId])
+    await toggleSwitches(['gph-settings_suggestions-bar'], ['gph-settings_suggestions-bar'])
+    await hideGPHDialogSettings()
+
+    // Show GPH Dialog
+    await showGPHDialog()
+    await getGPHDialogSearchField().typeText(STABLE_SEARCH_TERMS.dynamicText)
+
+    // Check dynamic text
+    await waitFor(getSuggestionBar()).toBeVisible().withTimeout(5000)
+    await expectToMatchImageSnapshot(getSuggestionBar().takeScreenshot(`Suggestion Bar`))
+    await getDynamicTextLabel().tap()
+    await waitFor(getGPHDialogMediaCell().atIndex(0)).toBeVisible()
+    await wait(1500)
+
+    const failureThreshold = device.getPlatform() === 'android' ? 0.03 : 0.05
+    await expectToMatchImageSnapshot(device.takeScreenshot('Dialog'), { failureThreshold })
+    await getGPHDialogMediaCell().atIndex(0).tap()
+    await wait(1000)
+    await expectToMatchImageSnapshot(device.takeScreenshot('Result'), { failureThreshold })
+
+    // Reload App
+    await device.terminateApp()
+    await device.launchApp()
+  })
+
+  test('Dynamic Text Disabled', async () => {
+    const cardId = 'gph-settings_dynamic-text'
+
+    // Update settings
+    await showGPHDialogSettings()
+    await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Gif, GiphyContentType.Text])
+    await toggleSwitches([cardId], [])
+    await toggleSwitches(['gph-settings_suggestions-bar'], ['gph-settings_suggestions-bar'])
+    await hideGPHDialogSettings()
+
+    // Show GPH Dialog
+    await showGPHDialog()
+    await getGPHDialogSearchField().typeText(STABLE_SEARCH_TERMS.dynamicText)
+
+    await waitFor(getSuggestionBar()).not.toBeVisible().withTimeout(5000)
+
+    // Reload App
+    await device.terminateApp()
+    await device.launchApp()
+  })
+
   /* ANDROID SPECIFIC */
   if (device.getPlatform() === 'android') {
     test('Checkered Background', async () => {
@@ -256,6 +326,7 @@ describe('Giphy Dialog Settings', () => {
         // Show GPH Dialog
         await showGPHDialog()
         await getGPHDialogSearchField().typeText(STABLE_SEARCH_TERMS.sticker)
+        await waitFor(getGPHDialogMediaCell().atIndex(0)).toBeVisible()
         await expectToMatchImageSnapshot(device.takeScreenshot('Dialog'))
 
         // Reload App
@@ -275,11 +346,10 @@ describe('Giphy Dialog Settings', () => {
 
         // Show GPH Dialog
         await showGPHDialog()
-        const suggestionsBar = element(by.type('com.giphy.sdk.ui.views.GPHSuggestionsView'))
         if (showSuggestionsBar) {
-          await expect(suggestionsBar).toBeVisible()
+          await waitFor(getSuggestionBar()).toBeVisible().withTimeout(5000)
         } else {
-          await expect(suggestionsBar).not.toBeVisible()
+          await waitFor(getSuggestionBar()).not.toBeVisible().withTimeout(5000)
         }
 
         // Reload App
