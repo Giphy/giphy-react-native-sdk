@@ -18,8 +18,8 @@ Configure basic settings of GIPHY SDK.
 
 #### Options
 
-| Option             | Description                                                                                                                                                                                                                                                                                                                                                                                                      | Type     | Default             | Platform                          |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------- | --------------------------------- |
+| Option             | Description                                                                                                                                                                                                                                                                                                                                                                                                      | Type     | Default             | Platform                        |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------------|---------------------------------|
 | apiKey             | Android or iOS SDK key. Please remember, you should use a separate key for every platform (Android, iOS) you add our SDKs to.                                                                                                                                                                                                                                                                                    | `string` | `None`              | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | videoCacheMaxBytes | A number that defines the video cache size for ExoPlayer on the Android platform. <br/> `Note`: If `videoCacheMaxBytes` is 0, the cache initialization will be skipped, and [Giphy Clips](https://developers.giphy.com/docs/clips) will not work. You may want to skip this setting if you use another version of ExoPlayer that is not compatible with the Giphy SDK but still wish to receive gifs from Giphy. | `number` | `100 * 1024 * 1024` | ✅&nbsp;Android <br/> ❌&nbsp;iOS |
 
@@ -53,10 +53,11 @@ Configure the `GiphyDialog` view and behavior.
 
 #### Options
 
-| Option                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                    | Default                                                                                 | Platform                         |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | -------------------------------- |
+| Option                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                    | Default                                                                                 | Platform                        |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|---------------------------------|
 | clipsPreviewRenditionType | Certain renditions (cases of the [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51) enum) are not available for Clips. As a result, if you set the renditionType property of the [GiphyDialog](#giphydialog) to an unsupported rendition type, clips previews may not play back correctly in the grid. To account for this limitation, we created this property specifically to work with clips. | [`GiphyClipsRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/49b4ac5adc488133a6e84e06717f952a00d6fa3d/src/native/types.ts#L69-L83)      | `.FixedWidth`                                                                           | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | confirmationRenditionType | A rendition type for the confirmation screen.                                                                                                                                                                                                                                                                                                                                                                                                                                               | [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51)           | `.Original`                                                                             | ✅&nbsp;Android <br/> ❌&nbsp;iOS |
+| enableDynamicText         | Allows to create animated text results for search queries where there are no matching results in GIPHY's library. [Learn more](./animated.md)                                                                                                                                                                                                                                                                                                                                               | `boolean`                                                                                                                                               | `false`                                                                                 | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | fileType                  | A file type for the grid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | [`GiphyFileExtension`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L59-L63)       | `.GIF`                                                                                  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | mediaTypeConfig           | Type(s) of content to be displayed in the dialog. <br/> `Note`: Emoji only is not available for the carousel layout option.                                                                                                                                                                                                                                                                                                                                                                 | [`GiphyContentType`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L7-L13) \[\]     | <details><summary>Expand</summary>`[.Recents, .Gif, .Sticker, .Emoji, .Text]`</details> | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | rating                    | A specific content rating for the search results.                                                                                                                                                                                                                                                                                                                                                                                                                                           | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29)              | `.PG13`                                                                                 | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
@@ -112,8 +113,8 @@ objects.
 
 #### Props
 
-| Prop                    | Description                                                                                     | Type                                                                                                                                          | Default       | Platform                          |
-| ----------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------- |
+| Prop                    | Description                                                                                     | Type                                                                                                                                          | Default       | Platform                        |
+|-------------------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------------------|
 | autoPlay                | A boolean flag indicating whether or not the animation should start automatically when mounted. | `boolean`                                                                                                                                     | `true`        | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | media                   | Pass a GiphyMedia object to display content.                                                    | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69)     | `None`        | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | renditionType           | A rendition type for the view.                                                                  | [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51) | `.FixedWidth` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
@@ -122,10 +123,16 @@ objects.
 
 #### Methods (Imperative API)
 
-| Method | Description                   | Type         | Platform                          |
-| ------ | ----------------------------- | ------------ | --------------------------------- |
+| Method | Description                   | Type         | Platform                        |
+|--------|-------------------------------|--------------|---------------------------------|
 | pause  | Pauses the animation.         | `() => void` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | resume | Resumes the paused animation. | `() => void` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+#### ⚠️ GiphyMediaView and GIPHY Animated Text
+
+If you use [GIPHY Animated Text](./animated.md) in your integration (`media.isDynamic === true`), please note that
+`GiphyMediaView` does
+not support it. For more information, please refer to [this article](./animated.md#giphymedia-and-dynamic-text).
 
 #### Example
 
@@ -259,7 +266,7 @@ export default function App() {
 to [set up clips integration](clips.md#giphy-clips-setup-android-only) before working with the
 GiphyVideoView component.
 
-Similar to the [GiphyMediaView](#giphymediaview) which works for GIFs, Stickers, and Text, the GPHVideoView is a
+Similar to the [GiphyMediaView](#giphymediaview) which works for GIFs, Stickers, and Text, the GiphyVideoView is a
 component that makes it easy to play back GiphyMedia clips video assets. The GiphyVideoView will only work for
 GiphyMedia where the `isVideo` property is `true`.
 
@@ -268,8 +275,8 @@ advanced features, you can easily integrate clips with other more advanced video
 
 #### Props
 
-| Prop                   | Description                                                                                   | Type                                                                                                                                      | Default | Platform                          |
-| ---------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------- |
+| Prop                   | Description                                                                                   | Type                                                                                                                                      | Default | Platform                        |
+|------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | autoPlay               | Set it to true to start the video automatically.                                              | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | media                  | Pass a GiphyMedia object to display content.                                                  | [`GiphyMedia`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L65-L69) | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | muted                  | Set to true or false to mute or unmute the player.                                            | `boolean`                                                                                                                                 | `false` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
@@ -518,8 +525,8 @@ Customizable implementation of a Giphy Grid only.
 
 #### Props
 
-| Prop                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Type                                                                                                                                               | Default                                 | Platform                          |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | --------------------------------- |
+| Prop                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Type                                                                                                                                               | Default                                 | Platform                        |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------------|
 | cellPadding               | Spacing between rendered GIFs.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | `number`<br/><b>Note</b>: On iOS, only values between 0 and 11 inclusive are supported.                                                            | `0`                                     | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | clipsPreviewRenditionType | Certain renditions (cases of the [`GiphyRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L31-L51) enum) are not available for Clips. As a result, if you set the renditionType property of the [GiphyGridView](#giphygridview) to an unsupported rendition type, clips previews may not play back correctly in the grid. To account for this limitation, we created this property specifically to work with clips. | [`GiphyClipsRendition`](https://github.com/Giphy/giphy-react-native-sdk/blob/49b4ac5adc488133a6e84e06717f952a00d6fa3d/src/native/types.ts#L69-L83) | `.FixedWidth`                           | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | content                   | A `GiphyContentRequest` object describing a content request to the Giphy API.                                                                                                                                                                                                                                                                                                                                                                                                                   | [`GiphyContentRequest`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L84-L88) | `None`                                  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
@@ -594,8 +601,8 @@ Provides methods to describe a content request to the Giphy API.
 
 #### Options
 
-| Option      | Description                                                    | Type                                                                                                                                          | Default | Platform                          |
-| ----------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------- |
+| Option      | Description                                                    | Type                                                                                                                                          | Default | Platform                        |
+|-------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | mediaType   | A media type that should be loaded (e.g. `GiphyMediaType.Gif`) | [`GiphyMediaType`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L15-L20) | `.Gif`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | rating      | Filter query results by specific content rating                | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29)    | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | searchQuery | A custom search input (e.g. cats)                              | `string`                                                                                                                                      | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
@@ -604,8 +611,8 @@ Provides methods to describe a content request to the Giphy API.
 
 #### Options
 
-| Option    | Description                                                    | Type                                                                                                                                          | Default | Platform                          |
-| --------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------- |
+| Option    | Description                                                    | Type                                                                                                                                          | Default | Platform                        |
+|-----------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | mediaType | A media type that should be loaded (e.g. `GiphyMediaType.Gif`) | [`GiphyMediaType`](https://github.com/Giphy/giphy-react-native-sdk/blob/4b0f2d614abb9a7116bdc530e7a39bf52d5424e2/src/native/types.ts#L15-L20) | `.Gif`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | rating    | Filter query results by specific content rating                | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29)    | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
@@ -613,50 +620,52 @@ Provides methods to describe a content request to the Giphy API.
 
 #### Options
 
-| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
-| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                        |
+|--------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> trendingStickers: `(options?: GiphyContentTrendingStickersOptions) => GiphyContentRequest`
 
 #### Options
 
-| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
-| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                        |
+|--------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> trendingText: `(options?: GiphyContentTrendingTextOptions) => GiphyContentRequest`
 
 #### Options
 
-| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
-| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                        |
+|--------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> recents: `(options?: GiphyContentRecentsOptions) => GiphyContentRequest`
 
 #### Options
 
-| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
-| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                        |
+|--------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> emoji: `(options?: GiphyContentEmojiOptions) => GiphyContentRequest`
 
 #### Options
 
-| Option | Description                                     | Type                                                                                                                                       | Default | Platform                          |
-| ------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| Option | Description                                     | Type                                                                                                                                       | Default | Platform                        |
+|--------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | rating | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 
 ### </> animate: `(options: GiphyContentAnimateOptions) => GiphyContentRequest`
 
 #### Options
 
-| Option      | Description                                     | Type                                                                                                                                       | Default | Platform                          |
-| ----------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| Option      | Description                                     | Type                                                                                                                                       | Default | Platform                        |
+|-------------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
 | rating      | Filter query results by specific content rating | [`GiphyRating`](https://github.com/Giphy/giphy-react-native-sdk/blob/5c4586c09acc6ebbc760feecede4b740f55e4d9a/src/native/types.ts#L22-L29) | `.PG13` | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
 | searchQuery | A custom search input (e.g. cats)               | `string`                                                                                                                                   | `None`  | ✅&nbsp;Android <br/> ✅&nbsp;iOS |
+
+[Learn more](./animated.md)
 
 ### Example
 
