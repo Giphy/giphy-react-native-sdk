@@ -1,5 +1,18 @@
 
 
+# 2.3.0 (2023-05-08)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.4](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.4)
+* Giphy iOS SDK [v2.2.4](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.4)
+
+
+### Features
+* [GiphyDialog] Add enableDynamicText property ([281c715](https://github.com/Giphy/giphy-react-native-sdk/commit/281c715106930e7cebe632c580cb64f75f94ecf4))
+
+### Documentation
+* Add GIPHY Animated Text page ([e8f8c54](https://github.com/Giphy/giphy-react-native-sdk/commit/e8f8c54c6aeea2e4b0268b9a6418a33c071540bc))
+
 # 2.2.1 (2023-04-27)
 
 ### Native SDKs
