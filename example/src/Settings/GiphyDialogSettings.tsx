@@ -22,20 +22,21 @@ export type GiphyDialogSettingsProps = {
 }
 
 export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
+  clipsPreviewRenditionType: GiphyClipsRendition.FixedWidth,
+  confirmationRenditionType: GiphyRendition.FixedWidth,
+  enableDynamicText: false,
+  fileType: GiphyFileExtension.GIF,
   mediaTypeConfig: [GiphyContentType.Gif, GiphyContentType.Sticker, GiphyContentType.Clips],
   rating: GiphyRating.Unrated,
   renditionType: GiphyRendition.FixedWidth,
-  clipsPreviewRenditionType: GiphyClipsRendition.FixedWidth,
-  fileType: GiphyFileExtension.GIF,
+  selectedContentType: GiphyContentType.Gif,
+  shouldLocalizeSearch: false,
+  showCheckeredBackground: false,
   showConfirmationScreen: false,
+  showSuggestionsBar: true,
   stickerColumnCount: GiphyStickersColumnCount.Three,
   theme: GiphyThemePreset.Dark,
-  shouldLocalizeSearch: false,
   trayHeightMultiplier: 0.7,
-  confirmationRenditionType: GiphyRendition.FixedWidth,
-  selectedContentType: GiphyContentType.Gif,
-  showCheckeredBackground: false,
-  showSuggestionsBar: true,
 }
 
 const styles = StyleSheet.create({
@@ -93,6 +94,12 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (props) =
           )
         })}
       </Card>
+      <SwitchCard
+        title="Enable Dynamic Text"
+        testID="gph-settings_dynamic-text"
+        value={settings.enableDynamicText}
+        onValueChange={(enableDynamicText) => updateSettings({ enableDynamicText })}
+      />
       <PickerSelectCard
         title="Rating"
         testID="gph-settings_rating"

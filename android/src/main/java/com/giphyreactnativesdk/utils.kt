@@ -24,6 +24,7 @@ fun mediaToRNMap(media: Media, renditionType: RenditionType?): WritableMap {
   output.putString("url", getGifURL(media, renditionType))
   output.putDouble("aspectRatio", media.aspectRatio.toDouble())
   output.putBoolean("isVideo", media.type == MediaType.video)
+  output.putBoolean("isDynamic", media.isDynamic)
   output.putMap("data", jsonObjectToRNMap(mediaJson))
 
   return output

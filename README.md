@@ -29,6 +29,7 @@ staying in the experience in your app.
 - [Troubleshooting](docs/getting-started.md#troubleshooting)
 - [Basic Usage](docs/getting-started.md#basic-usage)
 - [GIPHY Clips: GIFs with Sound](docs/clips.md)
+- [GIPHY Animated Text Creation](docs/animated.md)
 - [Example App](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example)
 
 ### [API Reference](docs/api.md)

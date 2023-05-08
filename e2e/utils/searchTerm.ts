@@ -5,4 +5,5 @@ export const STABLE_SEARCH_TERMS = {
   sticker: '@originals love earth',
   stickerCollection: '@originals Dogs Stickers',
   text: 'GIPHY',
+  dynamicText: 'Actually, I am right on time',
 } as const
