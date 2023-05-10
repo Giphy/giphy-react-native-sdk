@@ -288,7 +288,7 @@ PODS:
     - React-jsi (= 0.66.4)
     - React-logger (= 0.66.4)
     - React-perflogger (= 0.66.4)
-  - RNCPicker (2.4.8):
+  - RNCPicker (2.4.10):
     - React-Core
   - Yoga (1.14.0)
 
@@ -434,7 +434,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: e3ffca672dd3772536cb844274094b0e2c31b187
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
-  RNCPicker: 0bf8ef8f7800524f32d2bb2a8bcadd53eda0ecd1
+  RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
 
 PODFILE CHECKSUM: 113b401ed56c27385e4e1f7e90d7bb9e356e084a
