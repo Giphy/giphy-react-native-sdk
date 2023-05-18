@@ -22,4 +22,6 @@ RCT_EXPORT_VIEW_PROPERTY(spanCount, NSInteger)
 
 RCT_EXPORT_VIEW_PROPERTY(fixedSizeCells, BOOL)
 
+RCT_EXPORT_VIEW_PROPERTY(theme, NSDictionary)
+
 @end

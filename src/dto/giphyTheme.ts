@@ -58,6 +58,8 @@ export interface NativeGiphyTheme {
   backgroundColor?: NativeColorValue
   defaultTextColor?: NativeColorValue
   dialogOverlayBackgroundColor?: NativeColorValue
+  retryButtonBackgroundColor?: NativeColorValue
+  retryButtonTextColor?: NativeColorValue
 }
 
 const THEME_COLOR_FIELDS = [
@@ -74,6 +76,8 @@ const THEME_COLOR_FIELDS = [
   'emojiDrawerGradientTopColor',
   'emojiDrawerSeparatorColor',
   'handleBarColor',
+  'retryButtonBackgroundColor',
+  'retryButtonTextColor',
   'searchBackButtonColor',
   'searchBarBackgroundColor',
   'searchPlaceholderTextColor',

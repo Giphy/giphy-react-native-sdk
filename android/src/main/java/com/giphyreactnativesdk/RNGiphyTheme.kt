@@ -8,7 +8,7 @@ import com.giphy.sdk.ui.themes.GPHTheme
 import com.giphy.sdk.ui.themes.Theme
 import com.giphyreactnativesdk.utils.CaseConverter
 
-val DEFAULT_PRESET = GPHTheme.Dark
+val DEFAULT_PRESET = GPHTheme.Light
 
 
 class RNGiphyTheme(context: Context, private var config: ReadableMap?) {
@@ -71,23 +71,32 @@ class RNGiphyTheme(context: Context, private var config: ReadableMap?) {
       // region other
 
       defaultTextColor = getIntOrPreset("defaultTextColor")
-      backgroundColor = getIntOrPreset("backgroundColor")
       dialogOverlayBackgroundColor = getIntOrPreset("dialogOverlayBackgroundColor")
+      backgroundColor = getIntOrPreset("backgroundColor")
       usernameColor = getIntOrPreset("usernameColor")
+      retryButtonBackgroundColor = getIntOrOptionalPreset("retryButtonBackgroundColor")
+      retryButtonTextColor = getIntOrOptionalPreset("retryButtonTextColor")
 
       // endregion
     }
   }
 
-  private fun getIntOrPreset(field: String): Int {
+  private fun getInt(field: String): Int? {
     if (config == null || config?.hasKey(field) == false) {
-      return getPresetField(field) as Int
+      return null
     }
     return config!!.getInt(field)
   }
 
-  @Suppress("IMPLICIT_CAST_TO_ANY")
-  private fun getPresetField(field: String): Any {
+  private fun getIntOrPreset(field: String): Int {
+    return getInt(field) ?: getPresetField(field) as Int
+  }
+
+  private fun getIntOrOptionalPreset(field: String): Int? {
+    return getInt(field) ?: getPresetField(field) as Int?
+  }
+
+  private fun getPresetField(field: String): Any? {
     return when (field) {
       "handleBarColor" -> preset.handleBarColor
       "emojiDrawerGradientTopColor" -> preset.emojiDrawerGradientTopColor
@@ -110,10 +119,12 @@ class RNGiphyTheme(context: Context, private var config: ReadableMap?) {
       "dialogOverlayBackgroundColor" -> preset.dialogOverlayBackgroundColor
       "defaultTextColor" -> preset.defaultTextColor
       "usernameColor" -> preset.usernameColor
+      "retryButtonBackgroundColor" -> preset.retryButtonBackgroundColor
+      "retryButtonTextColor" -> preset.retryButtonTextColor
       else -> {
         throw IllegalArgumentException("Unknown field: $field")
       }
-    } as Any
+    }
   }
 
   companion object {

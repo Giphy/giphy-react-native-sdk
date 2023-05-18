@@ -10,6 +10,7 @@ import com.giphy.sdk.core.models.enums.RatingType
 import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.GPHRequestType
 import com.giphy.sdk.ui.pagination.GPHContent
+import com.giphy.sdk.ui.themes.GPHTheme
 import com.giphy.sdk.ui.views.GiphyGridView
 import com.giphyreactnativesdk.dto.RNGiphyRating
 import com.giphyreactnativesdk.dto.RNGiphyRendition
@@ -115,5 +116,10 @@ class RNGiphyGridView @JvmOverloads constructor(
 
   fun setShowCheckeredBackground(value: Boolean?) {
     gridView.showCheckeredBackground = value ?: false
+  }
+
+  fun setTheme(value: ReadableMap?) {
+    RNGiphyTheme(context, value).applyToGPHCustomTheme()
+    gridView.theme = GPHTheme.Custom
   }
 }

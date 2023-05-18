@@ -146,6 +146,12 @@ class RNGiphyGridViewManager : SimpleViewManager<RNGiphyGridView>() {
   }
 
   @Suppress("unused")
+  @ReactProp(name = "theme")
+  fun setTheme(view: RNGiphyGridView, value: ReadableMap?) {
+    view.setTheme(value)
+  }
+
+  @Suppress("unused")
   @ReactMethod
   fun addListener(eventName: String?) {
     // Keep: Required for RN built in Event Emitter Calls.
