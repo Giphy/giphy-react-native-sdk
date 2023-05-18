@@ -1,49 +1,38 @@
+export { GiphyClipsRendition, GiphyRendition } from './dto/giphyRendition'
+export { GiphyContentRequestType, type GiphyContentRequest } from './dto/giphyContentRequest'
+export { GiphyContentType } from './dto/giphyContentType'
+export { GiphyFileExtension } from './dto/giphyFileExtension'
+export { GiphyMediaType } from './dto/giphyMediaType'
+export { GiphyRating } from './dto/giphyRating'
+export { GiphyThemePreset } from './dto/giphyThemePreset'
+export { type GiphyMedia, type GiphyMediaID, type GiphyMediaData } from './dto/giphyMedia'
+export { GiphyDirection, GiphyStickersColumnCount, ResizeMode, IndicatorStyle, KeyboardAppearance } from './dto/misc'
+
+export { GiphySDK, type GiphySDKConfig } from './GiphySDK'
+
 export {
-  GiphyClipsRendition,
-  GiphyContentRequest,
-  GiphyContentRequestType,
-  GiphyContentType,
-  GiphyDirection,
-  GiphyFileExtension,
-  GiphyMediaType,
-  GiphyRating,
-  GiphyRendition,
-  GiphyStickersColumnCount,
-  GiphyThemePreset,
-  ResizeMode,
-} from './native/types'
+  GiphyDialogEvent,
+  type GiphyDialogMediaSelectEventHandler,
+  type GiphyDialogDismissEventHandler,
+} from './native/GiphyDialog'
+export { GiphyDialog, type GiphyDialogConfig } from './GiphyDialog'
 
-export type { GiphyDialogMediaSelectEventHandler, GiphyDialogDismissEventHandler } from './native/GiphyDialog'
-export { GiphyDialogEvent } from './native/GiphyDialog'
-
-export type { GiphySDKConfig } from './GiphySDK'
-export { GiphySDK } from './GiphySDK'
-
-export type { GiphyDialogConfig } from './GiphyDialog'
-export { GiphyDialog } from './GiphyDialog'
-
-export type { GiphyMediaViewProps } from './GiphyMediaView'
-export { GiphyMediaView } from './GiphyMediaView'
-
-export type { GiphyVideoViewProps } from './GiphyVideoView'
-export { GiphyVideoViewPlaybackState } from './native/GiphyVideoView'
-export { GiphyVideoView } from './GiphyVideoView'
+export { GiphyMediaView, type GiphyMediaViewProps } from './GiphyMediaView'
 
 export { GiphyVideoManager } from './GiphyVideoManager'
+export { GiphyVideoView, type GiphyVideoViewProps } from './GiphyVideoView'
+export { GiphyVideoViewPlaybackState } from './native/GiphyVideoView'
 
-export type {
-  GiphyContentAnimateOptions,
-  GiphyContentEmojiOptions,
-  GiphyContentRecentsOptions,
-  GiphyContentSearchOptions,
-  GiphyContentTrendingGIFsOptions,
-  GiphyContentTrendingOptions,
-  GiphyContentTrendingStickersOptions,
-  GiphyContentTrendingTextOptions,
+export { GiphyGridView, type GiphyGridViewProps } from './GiphyGridView'
+
+export {
+  GiphyContent,
+  type GiphyContentAnimateOptions,
+  type GiphyContentEmojiOptions,
+  type GiphyContentRecentsOptions,
+  type GiphyContentSearchOptions,
+  type GiphyContentTrendingGIFsOptions,
+  type GiphyContentTrendingOptions,
+  type GiphyContentTrendingStickersOptions,
+  type GiphyContentTrendingTextOptions,
 } from './GiphyContent'
-export { GiphyContent } from './GiphyContent'
-
-export type { GiphyGridViewProps } from './GiphyGridView'
-export { GiphyGridView } from './GiphyGridView'
-
-export type { GiphyMedia, GiphyMediaID, GiphyMediaData } from './giphyMedia'

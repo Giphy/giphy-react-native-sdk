@@ -1,9 +1,8 @@
-package com.giphyreactnativesdk.utils
+package com.giphyreactnativesdk
 
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import kotlin.reflect.KProperty
 
 class RNSDKInfo (val context: Context){
   val name = "RNSDK"

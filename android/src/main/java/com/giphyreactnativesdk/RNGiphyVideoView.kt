@@ -5,10 +5,10 @@ import android.util.AttributeSet
 import com.facebook.react.bridge.ReadableMap
 import com.giphy.sdk.core.GPHCore
 import com.giphy.sdk.core.models.Media
+import com.giphy.sdk.ui.utils.GPHAbstractVideoPlayer
 import com.giphy.sdk.ui.utils.GPHPlayerStateListener
 import com.giphy.sdk.ui.utils.GPHVideoPlayerState
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
-import com.giphy.sdk.ui.utils.GPHAbstractVideoPlayer
 import timber.log.Timber
 
 enum class GiphyRNVideoPlaybackState(val code: Int) {

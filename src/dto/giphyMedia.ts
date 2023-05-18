@@ -17,18 +17,18 @@ export type GiphyMedia = GiphyMediaID & {
 
 type GiphyVideo = Exclude<IGif['video'], undefined>
 
-type RawAsset = Partial<{
+type NativeAsset = Partial<{
   height: any
   size: string
   url: string
   width: any
 }>
 
-type RawAssets = Record<keyof IImages & keyof GiphyVideo['assets'], RawAsset>
+type NativeAssets = Record<keyof IImages & keyof GiphyVideo['assets'], NativeAsset>
 
-type RawTag = string | { text: string }
+type NativeTag = string | { text: string }
 
-type RawUser = Merge<
+type NativeUser = Merge<
   IUser,
   Partial<{
     is_public: any
@@ -37,12 +37,12 @@ type RawUser = Merge<
   }>
 >
 
-type RawVideo = Merge<GiphyVideo, { assets?: RawAssets }>
+type NativeVideo = Merge<GiphyVideo, { assets?: NativeAssets }>
 
-export type RawGiphyMediaData = Merge<
+export type NativeGiphyMediaData = Merge<
   GiphyMediaData,
   {
-    images?: RawAssets
+    images?: NativeAssets
     is_anonymous?: any
     is_community?: any
     is_dynamic?: any
@@ -53,13 +53,13 @@ export type RawGiphyMediaData = Merge<
     is_realtime?: any
     is_removed?: any
     is_sticker?: any
-    tags?: RawTag[]
-    user?: RawUser
-    video?: RawVideo
+    tags?: NativeTag[]
+    user?: NativeUser
+    video?: NativeVideo
   }
 >
 
-export type RawGiphyMedia = Merge<GiphyMedia, { data: RawGiphyMediaData }>
+export type NativeGiphyMedia = Merge<GiphyMedia, { data: NativeGiphyMediaData }>
 
 const BOOL_PROPS = [
   'is_anonymous',
@@ -80,11 +80,11 @@ const propToBool = (obj: Record<string, any>) => (prop: string) => {
   obj[prop] = Boolean(obj[prop])
 }
 
-function normalizeTag(tag: RawTag | string): string {
+function deserializeTag(tag: NativeTag | string): string {
   return typeof tag === 'string' ? tag : tag.text
 }
 
-function normalizeAssets(assets?: RawAssets): Partial<IImages> | Partial<GiphyVideo['assets']> {
+function deserializeAssets(assets?: NativeAssets): Partial<IImages> | Partial<GiphyVideo['assets']> {
   const newAssets: Record<string, any> = { ...assets }
 
   Object.entries(newAssets).forEach(([key, asset]) => {
@@ -98,7 +98,7 @@ function normalizeAssets(assets?: RawAssets): Partial<IImages> | Partial<GiphyVi
   return newAssets
 }
 
-function normalizeUser(user?: RawUser): IUser | undefined {
+function deserializeUser(user?: NativeUser): IUser | undefined {
   if (!user) {
     return user
   }
@@ -108,25 +108,25 @@ function normalizeUser(user?: RawUser): IUser | undefined {
   return newUser as IUser
 }
 
-function normalizeVideo(video?: RawVideo): GiphyVideo | undefined {
+function deserializeVideo(video?: NativeVideo): GiphyVideo | undefined {
   if (!video) {
     return video
   }
 
   return {
     ...video,
-    assets: normalizeAssets(video.assets),
+    assets: deserializeAssets(video.assets),
   } as GiphyVideo
 }
 
-function normalizeMediaData(data: RawGiphyMediaData): GiphyMediaData {
+function deserializeMediaData(data: NativeGiphyMediaData): GiphyMediaData {
   const newData = {
     ...data,
     id: String(data?.id),
-    images: normalizeAssets(data?.images),
-    tags: (data?.tags || []).map(normalizeTag),
-    user: normalizeUser(data?.user),
-    video: normalizeVideo(data?.video),
+    images: deserializeAssets(data?.images),
+    tags: (data?.tags || []).map(deserializeTag),
+    user: deserializeUser(data?.user),
+    video: deserializeVideo(data?.video),
   } as GiphyMediaData
 
   BOOL_PROPS.forEach(propToBool(newData))
@@ -135,9 +135,9 @@ function normalizeMediaData(data: RawGiphyMediaData): GiphyMediaData {
   return newData
 }
 
-export function makeGiphyMedia(rawMedia: RawGiphyMedia): GiphyMedia {
+export function deserializeGiphyMedia(rawMedia: NativeGiphyMedia): GiphyMedia {
   return {
     ...rawMedia,
-    data: normalizeMediaData(rawMedia.data),
+    data: deserializeMediaData(rawMedia.data),
   }
 }

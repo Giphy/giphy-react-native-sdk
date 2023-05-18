@@ -1,15 +1,12 @@
-import { NativeModules, EventSubscriptionVendor } from 'react-native'
+import { EventSubscriptionVendor, NativeModules } from 'react-native'
 
-import type { GiphyMedia } from '../giphyMedia'
-import type {
-  GiphyClipsRendition,
-  GiphyContentType,
-  GiphyFileExtension,
-  GiphyRating,
-  GiphyRendition,
-  GiphyStickersColumnCount,
-  GiphyThemePreset,
-} from './types'
+import type { GiphyClipsRendition, GiphyRendition } from '../dto/giphyRendition'
+import type { GiphyContentType } from '../dto/giphyContentType'
+import type { GiphyFileExtension } from '../dto/giphyFileExtension'
+import type { GiphyMedia } from '../dto/giphyMedia'
+import type { GiphyRating } from '../dto/giphyRating'
+import type { GiphyStickersColumnCount } from '../dto/misc'
+import type { GiphyThemePreset } from '../dto/giphyThemePreset'
 
 export type BaseNativeGiphyDialogConfig = {
   clipsPreviewRenditionType?: GiphyClipsRendition

@@ -14,7 +14,7 @@ private fun headersToRNMap(headers: Map<String, String>): ReadableMap {
   return rv
 }
 
-class GiphyRNFrescoImageRequestHandler : GiphyFrescoImageRequestHandler {
+class RNGiphyFrescoImageRequestHandler : GiphyFrescoImageRequestHandler {
   override fun getRequest(
     source: Uri,
     headers: Map<String, String>,

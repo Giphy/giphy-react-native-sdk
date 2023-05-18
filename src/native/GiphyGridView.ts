@@ -1,7 +1,9 @@
 import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
 
-import type { GiphyMedia } from '../giphyMedia'
-import type { GiphyContentRequest, GiphyDirection, GiphyClipsRendition, GiphyRendition } from './types'
+import type { GiphyClipsRendition, GiphyRendition } from '../dto/giphyRendition'
+import type { GiphyContentRequest } from '../dto/giphyContentRequest'
+import type { GiphyDirection } from '../dto/misc'
+import type { GiphyMedia } from '../dto/giphyMedia'
 
 export type NativeGiphyGridViewProps = ViewProps & {
   cellPadding?: number

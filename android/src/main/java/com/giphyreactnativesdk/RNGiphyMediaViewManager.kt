@@ -1,48 +1,48 @@
 package com.giphyreactnativesdk
 
+import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
-import com.facebook.react.common.MapBuilder
-import com.facebook.react.bridge.ReadableArray
 
-class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
+class RNGiphyMediaViewManager : SimpleViewManager<RNGiphyMediaView>() {
   val REACT_CLASS = "GiphyReactNativeMediaView"
   private val COMMAND_PAUSE = "pause"
   private val COMMAND_RESUME = "resume"
 
   companion object {
-    val TAG = GiphyMediaViewManager::class.java.simpleName
+    val TAG = RNGiphyMediaViewManager::class.java.simpleName
   }
 
   @Suppress("unused")
   @ReactProp(name = "autoPlay")
-  fun autoPlay(gifView: GiphyRNMediaView, rnValue: Boolean?) {
+  fun autoPlay(gifView: RNGiphyMediaView, rnValue: Boolean?) {
     gifView.setAutoPlay(rnValue)
   }
 
   @Suppress("unused")
   @ReactProp(name = "media")
-  fun setMedia(gifView: GiphyRNMediaView, rnMedia: ReadableMap?) {
+  fun setMedia(gifView: RNGiphyMediaView, rnMedia: ReadableMap?) {
     gifView.setMedia(rnMedia)
   }
 
   @Suppress("unused")
   @ReactProp(name = "renditionType")
-  fun setRenditionType(gifView: GiphyRNMediaView, renditionName: String?) {
+  fun setRenditionType(gifView: RNGiphyMediaView, renditionName: String?) {
     gifView.setRenditionType(renditionName)
   }
 
   @Suppress("unused")
   @ReactProp(name = "resizeMode")
-  fun setResizeMode(gifView: GiphyRNMediaView, resizeMode: String?) {
+  fun setResizeMode(gifView: RNGiphyMediaView, resizeMode: String?) {
     gifView.setResizeMode(resizeMode)
   }
 
   @Suppress("unused")
   @ReactProp(name = "showCheckeredBackground")
-  fun setShowCheckeredBackground(gifView: GiphyRNMediaView, rnValue: Boolean?) {
+  fun setShowCheckeredBackground(gifView: RNGiphyMediaView, rnValue: Boolean?) {
     gifView.setShowCheckeredBackground(rnValue)
   }
 
@@ -58,7 +58,7 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
   }
 
   override fun receiveCommand(
-    root: GiphyRNMediaView,
+    root: RNGiphyMediaView,
     commandId: String?,
     args: ReadableArray?
   ) {
@@ -68,14 +68,14 @@ class GiphyMediaViewManager() : SimpleViewManager<GiphyRNMediaView>() {
     }
   }
 
-  override fun receiveCommand(root: GiphyRNMediaView, commandId: Int, args: ReadableArray?) {
+  override fun receiveCommand(root: RNGiphyMediaView, commandId: Int, args: ReadableArray?) {
     val command = commandsMap?.keys?.first { commandId == commandsMap?.get(it) }
     if (command != null) {
       receiveCommand(root, command, args)
     }
   }
 
-  override fun createViewInstance(reactContext: ThemedReactContext): GiphyRNMediaView {
-    return GiphyRNMediaView(reactContext)
+  override fun createViewInstance(reactContext: ThemedReactContext): RNGiphyMediaView {
+    return RNGiphyMediaView(reactContext)
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import type { NativeSyntheticEvent } from 'react-native'
 
-import { GiphyMedia, makeGiphyMedia } from './giphyMedia'
-import { NativeGiphyGridView, NativeGiphyGridViewProps } from './native/GiphyGridView'
+import { deserializeGiphyMedia, type GiphyMedia } from './dto/giphyMedia'
+import { NativeGiphyGridView, type NativeGiphyGridViewProps } from './native/GiphyGridView'
 
 export type GiphyGridViewProps = NativeGiphyGridViewProps
 
@@ -13,7 +13,7 @@ export class GiphyGridView extends React.Component<GiphyGridViewProps, {}> {
       return
     }
 
-    e.nativeEvent.media = makeGiphyMedia(e.nativeEvent.media)
+    e.nativeEvent.media = deserializeGiphyMedia(e.nativeEvent.media)
     return onMediaSelect(e)
   }
 

@@ -2,7 +2,6 @@ package com.giphyreactnativesdk
 
 import com.facebook.react.bridge.*
 import com.giphy.sdk.ui.Giphy
-import com.giphyreactnativesdk.utils.RNSDKInfo
 import com.giphyreactnativesdk.utils.getVideoPlayerFactory
 import com.giphyreactnativesdk.utils.initializeVideoCache
 
@@ -42,7 +41,7 @@ class GiphySDKModule(reactContext: ReactApplicationContext) :
         apiKey,
         verificationMode,
         metadata = hashMapOf(appInfo.name to appInfo.version),
-        frescoImageRequestHandler = GiphyRNFrescoImageRequestHandler()
+        frescoImageRequestHandler = RNGiphyFrescoImageRequestHandler()
       )
     }
   }

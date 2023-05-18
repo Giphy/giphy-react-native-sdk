@@ -1,6 +1,5 @@
 import { EmitterSubscription, NativeEventEmitter } from 'react-native'
 
-import { makeGiphyMedia } from './giphyMedia'
 import { noop } from './utils/noop'
 import { GiphyVideoManager } from './GiphyVideoManager'
 import {
@@ -10,12 +9,13 @@ import {
   IOSGiphyDialogConfig,
   NativeGiphyDialog,
 } from './native/GiphyDialog'
+import { deserializeGiphyMedia } from './dto/giphyMedia'
 
 export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
 
 function wrapMediaSelectedListener(listener: (...args: any[]) => any): GiphyDialogMediaSelectEventHandler {
   return (e) => {
-    e.media = makeGiphyMedia(e.media)
+    e.media = deserializeGiphyMedia(e.media)
     return listener(e)
   }
 }

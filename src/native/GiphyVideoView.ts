@@ -1,6 +1,6 @@
 import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
 
-import type { GiphyMediaID } from '../giphyMedia'
+import type { GiphyMediaID } from '../dto/giphyMedia'
 
 export enum GiphyVideoViewPlaybackState {
   Unknown = 0,

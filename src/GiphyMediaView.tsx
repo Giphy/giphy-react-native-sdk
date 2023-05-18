@@ -3,10 +3,10 @@ import { findNodeHandle } from 'react-native'
 
 import { runViewManagerCommand } from './utils/viewManager'
 import {
-  NativeGiphyMediaView,
-  NativeGiphyMediaViewProps,
-  NativeGiphyMediaViewCommands,
   COMPONENT_NAME,
+  NativeGiphyMediaView,
+  NativeGiphyMediaViewCommands,
+  type NativeGiphyMediaViewProps,
 } from './native/GiphyMediaView'
 
 export type GiphyMediaViewProps = NativeGiphyMediaViewProps

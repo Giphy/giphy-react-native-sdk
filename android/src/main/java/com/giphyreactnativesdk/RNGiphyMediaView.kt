@@ -9,10 +9,12 @@ import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.utils.aspectRatio
 import com.giphy.sdk.ui.views.GPHMediaView
+import com.giphyreactnativesdk.dto.RNResizeMode
+import com.giphyreactnativesdk.utils.CaseConverter
 import timber.log.Timber
 
 
-class GiphyRNMediaView @JvmOverloads constructor(
+class RNGiphyMediaView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
@@ -22,7 +24,7 @@ class GiphyRNMediaView @JvmOverloads constructor(
   }
 
   private var renditionType = DEFAULT_RENDITION_TYPE
-  private var resizeMode = ResizeMode.DEFAULT_MODE
+  private var resizeMode = RNResizeMode.DEFAULT_MODE
   private var loadedMedia: Media? = null
   private var autoPlay: Boolean = true
 
@@ -49,13 +51,13 @@ class GiphyRNMediaView @JvmOverloads constructor(
 
   fun setRenditionType(renditionName: String?) {
     renditionType = RenditionType.values().firstOrNull {
-      it.name == snakeToCamel(renditionName)
+      it.name == CaseConverter.snakeToCamel(renditionName)
     } ?: DEFAULT_RENDITION_TYPE
     syncMedia()
   }
 
   fun setResizeMode(rnValue: String?) {
-    resizeMode = ResizeMode.fromRNValue(rnValue) ?: ResizeMode.DEFAULT_MODE
+    resizeMode = RNResizeMode.fromRNValue(rnValue) ?: RNResizeMode.DEFAULT_MODE
     adjustResizeMode()
     syncMedia()
   }
@@ -77,16 +79,19 @@ class GiphyRNMediaView @JvmOverloads constructor(
 
   private fun adjustResizeMode() {
     when (resizeMode) {
-      ResizeMode.CENTER -> {
+      RNResizeMode.CENTER -> {
         scaleType = ScalingUtils.ScaleType.CENTER_INSIDE
       }
-      ResizeMode.CONTAIN -> {
+
+      RNResizeMode.CONTAIN -> {
         scaleType = ScalingUtils.ScaleType.FIT_CENTER
       }
-      ResizeMode.COVER -> {
+
+      RNResizeMode.COVER -> {
         scaleType = ScalingUtils.ScaleType.CENTER_CROP
       }
-      ResizeMode.STRETCH -> {
+
+      RNResizeMode.STRETCH -> {
         scaleType = ScalingUtils.ScaleType.FIT_XY
       }
     }

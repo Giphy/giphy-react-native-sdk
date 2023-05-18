@@ -11,8 +11,10 @@ import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphy.sdk.ui.GPHRequestType
 import com.giphy.sdk.ui.pagination.GPHContent
 import com.giphy.sdk.ui.views.GiphyGridView
+import com.giphyreactnativesdk.dto.RNGiphyRating
+import com.giphyreactnativesdk.dto.RNGiphyRendition
 
-class GiphyRNGridView @JvmOverloads constructor(
+class RNGiphyGridView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
@@ -64,7 +66,7 @@ class GiphyRNGridView @JvmOverloads constructor(
       }
     }
 
-    content.rating = gphRatingByName(value?.getString("rating")) ?: RatingType.pg13;
+    content.rating = RNGiphyRating.fromRNValue(value?.getString("rating")) ?: RatingType.pg13
 
     if (query != null) {
       content.searchQuery = query
@@ -104,11 +106,11 @@ class GiphyRNGridView @JvmOverloads constructor(
   }
 
   fun setRenditionType(value: String?) {
-    renditionType = renditionByName(value) ?: DEFAULT_RENDITION_TYPE
+    renditionType = RNGiphyRendition.fromRNValue(value) ?: DEFAULT_RENDITION_TYPE
   }
 
   fun setClipsPreviewRenditionType(value: String?) {
-    clipsPreviewRenditionType = renditionByName(value) ?: DEFAULT_RENDITION_TYPE
+    clipsPreviewRenditionType = RNGiphyRendition.fromRNValue(value) ?: DEFAULT_RENDITION_TYPE
   }
 
   fun setShowCheckeredBackground(value: Boolean?) {

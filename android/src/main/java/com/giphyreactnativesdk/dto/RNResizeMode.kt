@@ -1,6 +1,6 @@
-package com.giphyreactnativesdk
+package com.giphyreactnativesdk.dto
 
-enum class ResizeMode {
+enum class RNResizeMode {
   CENTER,
   CONTAIN,
   COVER,
@@ -9,7 +9,7 @@ enum class ResizeMode {
   companion object {
     val DEFAULT_MODE = COVER
 
-    fun fromRNValue(rnValue: String?): ResizeMode? {
+    fun fromRNValue(rnValue: String?): RNResizeMode? {
       return when (rnValue) {
         "center" -> CENTER
         "contain" -> CONTAIN

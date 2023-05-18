@@ -8,7 +8,7 @@ import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.uimanager.events.RCTEventEmitter
 
 
-class GiphyVideoViewManager() : SimpleViewManager<GiphyRNVideoView>() {
+class RNGiphyVideoViewManager : SimpleViewManager<GiphyRNVideoView>() {
   override fun getName(): String {
     return "GiphyReactNativeVideoView"
   }
