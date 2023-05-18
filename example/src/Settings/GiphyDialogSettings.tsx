@@ -12,9 +12,10 @@ import {
 } from '@giphy/react-native-sdk'
 
 import { Card } from './Card'
-import { SwitchCard, SwitchCardField } from './SwitchCard'
-import { PickerSelectCard } from './PickerSelectCard'
+import { customThemeSample } from '../theme/customThemeSample'
 import { NumberInputCard } from './InputCard'
+import { PickerSelectCard } from './PickerSelectCard'
+import { SwitchCard, SwitchCardField } from './SwitchCard'
 
 export type GiphyDialogSettingsProps = {
   settings: GiphyDialogConfig
@@ -69,7 +70,7 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (props) =
       <PickerSelectCard
         title="Theme"
         testID="gph-settings_theme"
-        items={enumToPickerItems(GiphyThemePreset)}
+        items={[...enumToPickerItems(GiphyThemePreset), { label: 'Custom', value: customThemeSample }]}
         value={settings.theme}
         onValueChange={(theme) => updateSettings({ theme })}
       />

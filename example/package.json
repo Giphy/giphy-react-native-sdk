@@ -14,7 +14,7 @@
   "dependencies": {
     "@react-native-picker/picker": "^2.4.10",
     "react": "18.2.0",
-    "react-native": "0.66.4",
+    "react-native": "0.66.5",
     "react-native-dotenv": "^3.4.8",
     "react-native-picker-select": "^8.0.4",
     "react-native-status-bar-height": "^2.6.0"

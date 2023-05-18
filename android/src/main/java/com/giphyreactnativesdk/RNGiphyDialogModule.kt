@@ -40,6 +40,9 @@ private fun giphyDialogSettingsFromRNValue(
 ): GPHSettings {
   val settings = initialSettings?.copy() ?: GPHSettings()
 
+  RNGiphyTheme(context, options.getMap("theme")).applyToGPHCustomTheme()
+  settings.theme = GPHTheme.Custom
+
   if (options.hasKey(RNSettings.renditionType.toString())) {
     settings.renditionType = RNGiphyRendition.fromRNValue(
       options.getString(RNSettings.renditionType.toString())

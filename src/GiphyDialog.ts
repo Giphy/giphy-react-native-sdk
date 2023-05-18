@@ -1,17 +1,20 @@
 import { EmitterSubscription, NativeEventEmitter } from 'react-native'
 
-import { noop } from './utils/noop'
-import { GiphyVideoManager } from './GiphyVideoManager'
-import {
-  AndroidGiphyDialogConfig,
-  GiphyDialogEvent,
-  GiphyDialogMediaSelectEventHandler,
-  IOSGiphyDialogConfig,
-  NativeGiphyDialog,
-} from './native/GiphyDialog'
 import { deserializeGiphyMedia } from './dto/giphyMedia'
+import { GiphyVideoManager } from './GiphyVideoManager'
+import { noop } from './utils/noop'
+import { type GiphyTheme, serializeTheme } from './dto/giphyTheme'
+import { type GiphyThemePreset } from './dto/giphyThemePreset'
+import {
+  GiphyDialogEvent,
+  type GiphyDialogMediaSelectEventHandler,
+  NativeGiphyDialog,
+  type NativeGiphyDialogConfig,
+} from './native/GiphyDialog'
 
-export type GiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
+export type GiphyDialogConfig = Omit<NativeGiphyDialogConfig, 'theme'> & {
+  theme: GiphyTheme | GiphyThemePreset
+}
 
 function wrapMediaSelectedListener(listener: (...args: any[]) => any): GiphyDialogMediaSelectEventHandler {
   return (e) => {
@@ -37,7 +40,10 @@ export const GiphyDialog = new (class extends NativeEventEmitter {
   }
 
   configure(config: GiphyDialogConfig) {
-    NativeGiphyDialog.configure(config)
+    NativeGiphyDialog.configure({
+      ...config,
+      theme: serializeTheme(config.theme),
+    })
   }
 
   show() {

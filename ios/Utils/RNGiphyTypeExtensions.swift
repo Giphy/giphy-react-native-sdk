@@ -106,21 +106,6 @@ public extension GPHStickerColumnCount {
   }
 }
 
-public extension GPHTheme {
-  static func fromRNValue(value: String?) -> GPHTheme? {
-    switch value {
-    case "automatic":
-      return GPHTheme(type: .automatic)
-    case "dark":
-      return GPHTheme(type: .dark)
-    case "light":
-      return GPHTheme(type: .light)
-    default:
-      return nil
-    }
-  }
-}
-
 public extension GPHFileExtension {
   static func fromRNValue(value: String) -> GPHFileExtension? {
     switch value {
@@ -145,6 +130,36 @@ public extension UICollectionView.ScrollDirection {
       return .vertical
     default:
       return .vertical
+    }
+  }
+}
+
+public extension UIKeyboardAppearance {
+  static func fromRNValue(_ value: String) -> UIKeyboardAppearance? {
+    switch value {
+    case "default":
+      return .default
+    case "dark":
+      return .dark
+    case "light":
+      return .light
+    default:
+      return nil
+    }
+  }
+}
+
+public extension UIScrollView.IndicatorStyle {
+  static func fromRNValue(_ value: String) -> UIScrollView.IndicatorStyle? {
+    switch value {
+    case "default":
+      return .default
+    case "dark":
+      return .black
+    case "light":
+      return .white
+    default:
+      return nil
     }
   }
 }
@@ -206,5 +221,20 @@ public extension GPHVideoPlayerState {
       }
     }
     return rnState.toRNValue()
+  }
+}
+
+public extension GPHThemeType {
+  static func fromRNValue(_ value: String) -> GPHThemeType? {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "dark":
+      return .dark
+    case "light":
+      return .light
+    default:
+      return nil
+    }
   }
 }
