@@ -169,10 +169,6 @@ describe('Giphy Dialog Settings', () => {
     // Check confirmation screen
     await getGPHDialogMediaCell().atIndex(0).tap({ x: 50, y: 50 })
     await expectToMatchImageSnapshot(device.takeScreenshot('Confirmation Screen'))
-
-    // Reload App
-    await device.terminateApp()
-    await device.launchApp()
   })
 
   test('Media Type', async () => {
