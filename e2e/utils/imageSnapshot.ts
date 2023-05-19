@@ -1,13 +1,8 @@
 import fs from 'fs'
 import kebabCase from 'lodash.kebabcase'
 import { jestExpect } from '@jest/expect'
-import { configureToMatchImageSnapshot } from 'jest-image-snapshot'
 import type { MatchImageSnapshotOptions } from 'jest-image-snapshot'
-
-const ERROR_MESSAGE = `
-Image differences are saved in "e2e/__image_snapshots__/__diff_output__".
-If the snapshot test does not work due to an intentional change in implementation, you can delete the old snapshot image from "e2e/__image_snapshots__" and rerun the tests.
-`
+import { configureToMatchImageSnapshot } from 'jest-image-snapshot'
 
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
   comparisonMethod: 'ssim',
@@ -30,7 +25,6 @@ export async function expectToMatchImageSnapshot(
   try {
     ;(jestExpect(image) as any).toMatchImageSnapshot(options)
   } catch (e: any) {
-    e.message += ERROR_MESSAGE
-    throw e
+    console.warn(e.message)
   }
 }

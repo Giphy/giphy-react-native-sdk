@@ -8,10 +8,18 @@ function downloadTestButler() {
   execSync(`curl --create-dirs -f -o ${TEST_BUTLER_LOCAL_PATH} ${TEST_BUTLER_SOURCE}`)
 }
 
+function clearImageSnapshotsDiff() {
+  execSync('rm -rf ./e2e/__image_snapshots__/__diff_output__')
+}
+
 module.exports = async function () {
   await require('detox/runners/jest/index').globalSetup()
+  console.log('Clear __image_snapshots__/__diff_output__')
+  clearImageSnapshotsDiff()
+
   switch (process.env.DETOX_CONFIGURATION) {
     case 'android': {
+      console.log('Download TestButler')
       downloadTestButler()
       return
     }

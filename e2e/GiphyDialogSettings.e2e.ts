@@ -1,7 +1,8 @@
 import { imageSize } from 'image-size'
 import { jestExpect } from '@jest/expect'
 
-import { GiphyContentType, GiphyThemePreset } from '../src/native/types'
+import { GiphyContentType } from '../src/dto/giphyContentType'
+import { GiphyThemePreset } from '../src/dto/giphyThemePreset'
 import {
   expectToMatchImageSnapshot,
   getElWidth,
@@ -12,6 +13,17 @@ import {
 } from './utils'
 
 type AnyRecord = Record<string, any>
+
+const SETTINGS_CARD = {
+  checkeredBackground: 'gph-settings_checkered-background',
+  confirmationScreen: 'gph-settings_confirmation-screen',
+  dynamicText: 'gph-settings_dynamic-text',
+  selectedContentType: 'gph-settings_selected-content-type',
+  stickerColumnCount: 'gph-settings_sticker-column-count',
+  suggestionsBar: 'gph-settings_suggestions-bar',
+  theme: 'gph-settings_theme',
+  trayHeight: 'gph-settings_tray-height',
+} as const
 
 async function showGPHDialogSettings() {
   await element(by.id('show-gph-dialog-settings')).tap()
@@ -24,7 +36,7 @@ async function hideGPHDialogSettings() {
 }
 
 function scrollGPHDialogSettingsTo(matcher: Detox.NativeMatcher) {
-  return waitFor(element(matcher)).toBeVisible().whileElement(by.id('gph-dialog-content')).scroll(1000, 'down')
+  return waitFor(element(matcher)).toBeVisible().whileElement(by.id('gph-dialog-content')).scroll(800, 'down')
 }
 
 async function setCardPickerValue(cardId: string, value: string) {
@@ -120,14 +132,13 @@ describe('Giphy Dialog Settings', () => {
     await device.terminateApp()
   })
 
-  test('Theme', async () => {
-    const cardId = 'gph-settings_theme'
+  test('Theme Preset', async () => {
     const variants = Object.keys(GiphyThemePreset)
 
     for (const theme of variants) {
       // Update settings
       await showGPHDialogSettings()
-      await setCardPickerValue(cardId, theme)
+      await setCardPickerValue(SETTINGS_CARD.theme, theme)
       await hideGPHDialogSettings()
 
       // Show GPH Dialog
@@ -139,6 +150,29 @@ describe('Giphy Dialog Settings', () => {
       await device.terminateApp()
       await device.launchApp()
     }
+  })
+
+  test('Custom Theme', async () => {
+    // Update settings
+    await showGPHDialogSettings()
+    await setCardPickerValue(SETTINGS_CARD.theme, 'Custom')
+    await toggleSwitches(Object.values(GiphyContentType), Object.values(GiphyContentType))
+    await toggleSwitches([SETTINGS_CARD.suggestionsBar], [SETTINGS_CARD.suggestionsBar])
+    await toggleSwitches([SETTINGS_CARD.confirmationScreen], [SETTINGS_CARD.confirmationScreen])
+    await hideGPHDialogSettings()
+
+    // Show GPH Dialog
+    await showGPHDialog()
+    await getGPHDialogSearchField().typeText(STABLE_SEARCH_TERMS.gif)
+    await expectToMatchImageSnapshot(device.takeScreenshot('Search'))
+
+    // Check confirmation screen
+    await getGPHDialogMediaCell().atIndex(0).tap({ x: 50, y: 50 })
+    await expectToMatchImageSnapshot(device.takeScreenshot('Confirmation Screen'))
+
+    // Reload App
+    await device.terminateApp()
+    await device.launchApp()
   })
 
   test('Media Type', async () => {
@@ -175,14 +209,13 @@ describe('Giphy Dialog Settings', () => {
   })
 
   test('Selected Content Type', async () => {
-    const cardId = 'gph-settings_selected-content-type'
     const variants = Object.keys(GiphyContentType)
 
     for (const contentType of variants) {
       // Update settings
       await showGPHDialogSettings()
       await toggleSwitches(Object.values(GiphyContentType), Object.values(GiphyContentType))
-      await setCardPickerValue(cardId, contentType)
+      await setCardPickerValue(SETTINGS_CARD.selectedContentType, contentType)
       await hideGPHDialogSettings()
 
       // Show GPH Dialog
@@ -196,12 +229,13 @@ describe('Giphy Dialog Settings', () => {
   })
 
   test('Confirmation Screen', async () => {
-    const cardId = 'gph-settings_confirmation-screen'
-
     for (const showConfirmation of [true, false]) {
       // Update settings
       await showGPHDialogSettings()
-      await toggleSwitches([cardId], showConfirmation ? [cardId] : [])
+      await toggleSwitches(
+        [SETTINGS_CARD.confirmationScreen],
+        showConfirmation ? [SETTINGS_CARD.confirmationScreen] : []
+      )
       await hideGPHDialogSettings()
 
       // Show GPH Dialog
@@ -226,7 +260,6 @@ describe('Giphy Dialog Settings', () => {
   })
 
   test('Sticker Column Count', async () => {
-    const cardId = 'gph-settings_sticker-column-count'
     const variants = [
       { columnCount: 2, columnCountLabel: 'Two' },
       { columnCount: 3, columnCountLabel: 'Three' },
@@ -236,12 +269,13 @@ describe('Giphy Dialog Settings', () => {
     for (const { columnCount, columnCountLabel } of variants) {
       // Update settings
       await showGPHDialogSettings()
-      await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Sticker])
-      await setCardPickerValue(cardId, columnCountLabel)
+      await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Sticker, GiphyContentType.Emoji])
+      await setCardPickerValue(SETTINGS_CARD.stickerColumnCount, columnCountLabel)
       await hideGPHDialogSettings()
 
       //  Show GPH dialog and check the number of columns
       await showGPHDialog()
+      await getGPHTabBar().tap({ x: 10, y: 10 })
       await getGPHDialogSearchField().typeText(STABLE_SEARCH_TERMS.stickerCollection)
       const cell = getGPHDialogMediaCell().atIndex(0)
       await waitFor(cell).toBeVisible().withTimeout(5000)
@@ -259,13 +293,11 @@ describe('Giphy Dialog Settings', () => {
   })
 
   test('Dynamic Text Enabled', async () => {
-    const cardId = 'gph-settings_dynamic-text'
-
     // Update settings
     await showGPHDialogSettings()
     await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Gif, GiphyContentType.Text])
-    await toggleSwitches([cardId], [cardId])
-    await toggleSwitches(['gph-settings_suggestions-bar'], ['gph-settings_suggestions-bar'])
+    await toggleSwitches([SETTINGS_CARD.dynamicText], [SETTINGS_CARD.dynamicText])
+    await toggleSwitches([SETTINGS_CARD.suggestionsBar], [SETTINGS_CARD.suggestionsBar])
     await hideGPHDialogSettings()
 
     // Show GPH Dialog
@@ -291,13 +323,11 @@ describe('Giphy Dialog Settings', () => {
   })
 
   test('Dynamic Text Disabled', async () => {
-    const cardId = 'gph-settings_dynamic-text'
-
     // Update settings
     await showGPHDialogSettings()
     await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Gif, GiphyContentType.Text])
-    await toggleSwitches([cardId], [])
-    await toggleSwitches(['gph-settings_suggestions-bar'], ['gph-settings_suggestions-bar'])
+    await toggleSwitches([SETTINGS_CARD.dynamicText], [])
+    await toggleSwitches([SETTINGS_CARD.suggestionsBar], [SETTINGS_CARD.suggestionsBar])
     await hideGPHDialogSettings()
 
     // Show GPH Dialog
@@ -314,13 +344,14 @@ describe('Giphy Dialog Settings', () => {
   /* ANDROID SPECIFIC */
   if (device.getPlatform() === 'android') {
     test('Checkered Background', async () => {
-      const cardId = 'gph-settings_checkered-background'
-
       for (const showCheckeredBg of [true, false]) {
         // Update settings
         await showGPHDialogSettings()
         await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Sticker])
-        await toggleSwitches([cardId], showCheckeredBg ? [cardId] : [])
+        await toggleSwitches(
+          [SETTINGS_CARD.checkeredBackground],
+          showCheckeredBg ? [SETTINGS_CARD.checkeredBackground] : []
+        )
         await hideGPHDialogSettings()
 
         // Show GPH Dialog
@@ -336,12 +367,10 @@ describe('Giphy Dialog Settings', () => {
     })
 
     test('Suggestions Bar', async () => {
-      const cardId = 'gph-settings_suggestions-bar'
-
       for (const showSuggestionsBar of [true, false]) {
         // Update settings
         await showGPHDialogSettings()
-        await toggleSwitches([cardId], showSuggestionsBar ? [cardId] : [])
+        await toggleSwitches([SETTINGS_CARD.suggestionsBar], showSuggestionsBar ? [SETTINGS_CARD.suggestionsBar] : [])
         await hideGPHDialogSettings()
 
         // Show GPH Dialog
@@ -381,7 +410,7 @@ describe('Giphy Dialog Settings', () => {
         // Update settings
         await showGPHDialogSettings()
         await toggleSwitches(Object.values(GiphyContentType), [GiphyContentType.Text])
-        await setTextFieldValue('gph-settings_tray-height', heightMultiplier)
+        await setTextFieldValue(SETTINGS_CARD.trayHeight, heightMultiplier)
         await hideGPHDialogSettings()
 
         // Show GPH Dialog and check its size

@@ -10,7 +10,6 @@ import {
   GiphyRendition,
 } from '@giphy/react-native-sdk'
 
-import { customThemeSample } from './theme/customThemeSample'
 import { Dialog } from './Dialog'
 
 type MediaGridSampleProps = {
@@ -74,7 +73,6 @@ export function MediaGridSample(props: MediaGridSampleProps) {
             showCheckeredBackground={false}
             style={styles.giphyGridView}
             testID="gph-grid-view"
-            theme={customThemeSample}
             onContentUpdate={(e) => console.log('onContentUpdate', JSON.stringify(e.nativeEvent, null, 2))}
             onScroll={(e) => console.log('onScroll', JSON.stringify(e.nativeEvent, null, 2))}
             onMediaSelect={(e) => {
