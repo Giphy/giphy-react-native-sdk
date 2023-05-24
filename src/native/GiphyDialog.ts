@@ -1,17 +1,14 @@
-import { NativeModules, EventSubscriptionVendor } from 'react-native'
+import { EventSubscriptionVendor, NativeModules } from 'react-native'
 
-import type { GiphyMedia } from '../giphyMedia'
-import type {
-  GiphyClipsRendition,
-  GiphyContentType,
-  GiphyFileExtension,
-  GiphyRating,
-  GiphyRendition,
-  GiphyStickersColumnCount,
-  GiphyThemePreset,
-} from './types'
+import type { GiphyClipsRendition, GiphyRendition } from '../dto/giphyRendition'
+import type { GiphyContentType } from '../dto/giphyContentType'
+import type { GiphyFileExtension } from '../dto/giphyFileExtension'
+import type { GiphyMedia } from '../dto/giphyMedia'
+import type { GiphyRating } from '../dto/giphyRating'
+import type { GiphyStickersColumnCount } from '../dto/misc'
+import type { NativeGiphyTheme } from '../dto/giphyTheme'
 
-export type BaseNativeGiphyDialogConfig = {
+export interface BaseNativeGiphyDialogConfig {
   clipsPreviewRenditionType?: GiphyClipsRendition
   enableDynamicText?: boolean
   fileType?: GiphyFileExtension
@@ -21,21 +18,21 @@ export type BaseNativeGiphyDialogConfig = {
   selectedContentType?: GiphyContentType
   showConfirmationScreen?: boolean
   stickerColumnCount?: GiphyStickersColumnCount
-  theme?: GiphyThemePreset
+  theme?: NativeGiphyTheme
 }
 
-export type IOSGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
+export interface IOSGiphyDialogConfig extends BaseNativeGiphyDialogConfig {
   shouldLocalizeSearch?: boolean
   trayHeightMultiplier?: number
 }
 
-export type AndroidGiphyDialogConfig = BaseNativeGiphyDialogConfig & {
+export interface AndroidGiphyDialogConfig extends BaseNativeGiphyDialogConfig {
   confirmationRenditionType?: GiphyRendition
   showCheckeredBackground?: boolean
   showSuggestionsBar?: boolean
 }
 
-export type NativeGiphyDialogConfig = IOSGiphyDialogConfig & AndroidGiphyDialogConfig
+export interface NativeGiphyDialogConfig extends IOSGiphyDialogConfig, AndroidGiphyDialogConfig {}
 
 export enum GiphyDialogEvent {
   MediaSelected = 'onMediaSelect',

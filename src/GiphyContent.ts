@@ -1,4 +1,6 @@
-import { GiphyContentRequest, GiphyContentRequestType, GiphyMediaType, GiphyRating } from './native/types'
+import { GiphyMediaType } from './dto/giphyMediaType'
+import { type GiphyContentRequest, GiphyContentRequestType } from './dto/giphyContentRequest'
+import { type GiphyRating } from './dto/giphyRating'
 
 type GiphyContentRating = {
   rating?: GiphyRating

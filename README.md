@@ -41,6 +41,7 @@ staying in the experience in your app.
 - [GiphyVideoManager](docs/api.md#giphyvideomanager)
 - [GiphyGridView](docs/api.md#giphygridview)
 - [GiphyContent](docs/api.md#giphycontent)
+- [GiphyTheme](docs/api.md#giphytheme)
 
 ### Guides
 

@@ -63,6 +63,10 @@ class RNGiphyGridView: UIView, GPHGridDelegate {
     gridController.fixedSizeCells = value
   }
 
+  @objc func setTheme(_ value: NSDictionary) -> Void {
+    gridController.theme = RNGiphyTheme(rnConfig: value)
+  }
+
   //MARK: GPHGridDelegate stubs
   func contentDidUpdate(resultCount: Int, error: Error?) {
     onContentUpdate?(["resultCount": resultCount])

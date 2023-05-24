@@ -1,6 +1,6 @@
 import { UIManager } from 'react-native'
 
-export type ViewManager = ReturnType<typeof UIManager['getViewManagerConfig']>
+export type ViewManager = ReturnType<(typeof UIManager)['getViewManagerConfig']>
 
 export function getViewManagerConfig(moduleName: string): ViewManager {
   if (UIManager.getViewManagerConfig) {
