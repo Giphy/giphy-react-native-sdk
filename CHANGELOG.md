@@ -1,5 +1,24 @@
 
 
+# 2.4.0 (2023-05-24)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.5](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.5)
+* Giphy iOS SDK [v2.2.5](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.5)
+
+
+### Features
+* [GiphyDialog] Add theme support ([04cfdfe](https://github.com/Giphy/giphy-react-native-sdk/commit/04cfdfefc353fb276c3d0d61757facbf3ccab1e2))
+* [GiphyGridView] Add theme support ([70a94e9](https://github.com/Giphy/giphy-react-native-sdk/commit/70a94e96155830996e7fc72fa13527ee71596f42))
+
+### Documentation
+* Add the GIPHY Theme section ([33f4808](https://github.com/Giphy/giphy-react-native-sdk/commit/33f480878617e8c08e23615edb58d25cf592803f))
+
+### Build System
+* [deps] Bump Android SDK version from 2.3.4 to 2.3.5 ([93864e6](https://github.com/Giphy/giphy-react-native-sdk/commit/93864e6ee82389bfc0873f9c481864d58beec6c0))
+* [deps] Bump iOS SDK version from 2.2.4 to 2.2.5 ([18679a5](https://github.com/Giphy/giphy-react-native-sdk/commit/18679a5e8c7c4c2b9d6adf9053b2a3f4b2c4bb9e))
+* [deps] Bump type-fest, @giphy/js-types, and other dev deps ([6007de4](https://github.com/Giphy/giphy-react-native-sdk/commit/6007de4bab46bf17da7a5e6c1ce8909dd8ac5a68))
+
 # 2.3.0 (2023-05-08)
 
 ### Native SDKs
