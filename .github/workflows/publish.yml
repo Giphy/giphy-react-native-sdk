@@ -1,0 +1,46 @@
+name: 'Build & Publish to NPM'
+
+on:
+  workflow_run:
+    workflows: [ 'CI' ]
+    types: [ 'completed' ]
+    branch: [ 'main' ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-publish:
+    name: Build & Publish
+    if: ${{ github.event.workflow_run.conclusion == 'success' && startsWith(github.ref, 'refs/tags/v') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 👀 Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: 🏷 Set vars
+        id: vars
+        run: |
+          echo "package-version=${GITHUB_REF#refs/*/v}" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
+      - name: 🛠️ Set up environment
+        uses: ./.github/actions/setup
+
+      - name: 🚀 Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🗒 Add summary
+        if: ${{ success() }}
+        run: |
+          echo 'RN SDK [${{ steps.vars.outputs.tag }}](https://github.com/Giphy/giphy-react-native-sdk/releases/tag/${{ steps.vars.outputs.tag }}) released.' >> $GITHUB_STEP_SUMMARY
+          echo 'Release: <https://github.com/Giphy/giphy-react-native-sdk/releases/tag/${{ steps.vars.outputs.tag }}>' >> $GITHUB_STEP_SUMMARY
+          echo 'NPM: <https://www.npmjs.com/package/@giphy/react-native-sdk/v/${{ steps.vars.outputs.package-version }}>' >> $GITHUB_STEP_SUMMARY

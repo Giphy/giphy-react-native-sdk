@@ -43,6 +43,7 @@ example/ios/Pods
 # node.js
 #
 node_modules/
+.npmrc
 
 # Log files
 *.log

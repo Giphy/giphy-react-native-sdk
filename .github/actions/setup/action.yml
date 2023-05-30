@@ -1,0 +1,77 @@
+name: 'Setup'
+description: 'Set up the environment and install dependencies'
+
+inputs:
+  cocoa-pods:
+    description: 'Set up CocoaPods environment'
+    required: false
+  jdk:
+    description: 'Set up JDK environment'
+    required: false
+  java-version:
+    default: '13.0.13'
+    description: 'Java version'
+    required: false
+  node-version:
+    default: '18'
+    description: 'NodeJS version'
+    required: false
+  ruby-version:
+    default: '3.0'
+    description: 'Ruby version'
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: ⬢ Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: yarn
+        cache-dependency-path: |
+          yarn.lock
+          example/yarn.lock
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: ♻️ Restore node_modules from cache
+      id: node-modules-cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock', 'example/yarn.lock') }}
+        path: |
+          node_modules
+          example/node_modules
+
+    - name: 📦 Install JS dependencies
+      if: steps.node-modules-cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile && yarn example install --frozen-lockfile
+      shell: bash
+
+    - name: 🛠 Setup JDK
+      uses: actions/setup-java@v2
+      if: inputs.jdk == 'true'
+      with:
+        cache: gradle
+        distribution: zulu
+        java-version: ${{ inputs.java-version }}
+
+    - name: ♻️ Restore example/ios/Pods from cache
+      id: pods-cache
+      if: inputs.cocoa-pods == 'true'
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-pods-${{ hashFiles('example/ios/Podfile.lock') }}
+        path: example/ios/Pods
+
+    - name: 💎 Setup Ruby
+      uses: ruby/setup-ruby@v1
+      if: inputs.cocoa-pods == 'true'
+      with:
+        bundler-cache: true
+        ruby-version: ${{ inputs.ruby-version }}
+
+    - name: ⏯ Bootstrap
+      if: steps.pods-cache.outputs.cache-hit != 'true'
+      run: yarn bootstrap
+      shell: bash
