@@ -1,0 +1,58 @@
+name: 'CI'
+
+on:
+  push:
+    branches: [ 'main' ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ 'main' ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 👀 Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: 🛠️ Set up environment
+        uses: ./.github/actions/setup
+
+      - name: 🕵️ Lint
+        run: yarn lint
+
+      - name: 👮 Check Types
+        run: yarn typescript
+
+  check-licenses:
+    name: Check Licenses
+    runs-on: macos-latest
+    steps:
+      - name: 👀 Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: 🛠️ Set up environment
+        uses: ./.github/actions/setup
+        with:
+          cocoa-pods: true
+          jdk: true
+
+      - name: 🏭 Generate Licenses
+        run: yarn licenses:generate
+
+      - name: 👮 Check Licenses
+        run: yarn licenses:check
+        env:
+          LICENSE_CATEGORIES_LOCATION: ${{ secrets.LICENSE_CATEGORIES_LOCATION }}
+          LICENSE_PROJECT_LOCATION: ${{ secrets.LICENSE_PROJECT_LOCATION }}
