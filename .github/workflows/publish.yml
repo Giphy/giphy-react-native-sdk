@@ -1,9 +1,9 @@
 name: 'Build & Publish to NPM'
 
-on: 
+on:
   push:
     tags:
-      - 'v*'
+      - v**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
