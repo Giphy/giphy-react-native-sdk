@@ -167,6 +167,6 @@ preBuild.dependsOn configureGiphyVideoPlayerAdapter
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
-  implementation 'com.giphy.sdk:ui:2.3.5'
+  implementation 'com.giphy.sdk:ui:2.3.6'
   implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.31'
 }
