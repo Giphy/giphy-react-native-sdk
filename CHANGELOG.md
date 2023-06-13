@@ -1,14 +1,50 @@
+# 2.4.1 (2023-06-13)
 
+### Native SDKs
+
+* Giphy Android SDK [v2.3.6](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.6)
+* Giphy iOS SDK [v2.2.6](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.6)
+
+### Build System
+
+* [deps] Bump Android SDK version from 2.3.5 to
+  2.3.6 ([b61625e](https://github.com/Giphy/giphy-react-native-sdk/commit/b61625e684ef8d3f9cb5ac4fed78e120193c1daa))
+* [deps] Bump iOS SDK version from 2.2.5 to
+  2.2.6 ([35bce1d](https://github.com/Giphy/giphy-react-native-sdk/commit/35bce1df96dd3201158d00238b08d8fc51671468))
+* [deps] Bump @sideway/formula from 3.0.0 to 3.0.1 in
+  /example ([bb41d8b](https://github.com/Giphy/giphy-react-native-sdk/commit/bb41d8bc4393130f9502e0e56e01d9c8ca1482e8))
+* [deps] Bump ansi-regex from 3.0.0 to
+  3.0.1 ([a3c430d](https://github.com/Giphy/giphy-react-native-sdk/commit/a3c430dbc676c4396703b87d9a2cabbcbbc6461a))
+* [deps] Bump async from 2.6.3 to
+  2.6.4 ([cc740a9](https://github.com/Giphy/giphy-react-native-sdk/commit/cc740a9cdd410c698278d5a7522ded90ad88a1df))
+* [deps] Bump decode-uri-component from 0.2.0 to
+  0.2.2 ([98b613c](https://github.com/Giphy/giphy-react-native-sdk/commit/98b613cf7d70455ae653c56f5a19c74a5d9fc57c))
+* [deps] Bump decode-uri-component from 0.2.0 to 0.2.2 in
+  /example ([8be76e4](https://github.com/Giphy/giphy-react-native-sdk/commit/8be76e4166f68eefc56203328549c835b45248d9))
+* [deps] Bump http-cache-semantics from 4.1.0 to
+  4.1.1 ([2d7c007](https://github.com/Giphy/giphy-react-native-sdk/commit/2d7c0076447a37ee3f8f604778d62b74b7b20d64))
+* [deps] Bump json5 from 2.2.1 to
+  2.2.3 ([df2825f](https://github.com/Giphy/giphy-react-native-sdk/commit/df2825f93ffb973b5163ba17ef42cda82ff92e38))
+* [deps] Bump minimatch from 3.0.4 to
+  3.1.2 ([057683d](https://github.com/Giphy/giphy-react-native-sdk/commit/057683d88eafa83561127286fc716a335327f734))
+* [deps] Bump shell-quote from 1.6.1 to
+  1.8.1 ([95d938b](https://github.com/Giphy/giphy-react-native-sdk/commit/95d938bf6f9136092595212f39f01448d49368c9))
+* [deps] Bump simple-plist from 1.3.0 to
+  1.3.1 ([b0a7731](https://github.com/Giphy/giphy-react-native-sdk/commit/b0a77313ac1254ce3babada11cfd581517d11880))
+* [deps] Bump vm2 from 3.9.10 to
+  3.9.19 ([cda53db](https://github.com/Giphy/giphy-react-native-sdk/commit/cda53db9391901d7933f19e4a2d7247f38389c17))
 
 # 2.4.0 (2023-05-24)
 
 ### Native SDKs
+
 * Giphy Android SDK [v2.3.5](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.5)
 * Giphy iOS SDK [v2.2.5](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.5)
 
-
 ### Features
-* [GiphyDialog] Add theme support ([04cfdfe](https://github.com/Giphy/giphy-react-native-sdk/commit/04cfdfefc353fb276c3d0d61757facbf3ccab1e2))
+
+* [GiphyDialog] Add theme
+  support ([04cfdfe](https://github.com/Giphy/giphy-react-native-sdk/commit/04cfdfefc353fb276c3d0d61757facbf3ccab1e2))
 * [GiphyGridView] Add theme support ([70a94e9](https://github.com/Giphy/giphy-react-native-sdk/commit/70a94e96155830996e7fc72fa13527ee71596f42))
 
 ### Documentation
