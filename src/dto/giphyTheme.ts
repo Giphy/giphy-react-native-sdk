@@ -3,9 +3,9 @@ import { processColor } from 'react-native'
 import type { IndicatorStyle, KeyboardAppearance } from './misc'
 import type { GiphyThemePreset } from './giphyThemePreset'
 
-type NativeColorValue = number
+type NativeColorValue = ReturnType<typeof processColor>
 
-type ColorValue = NativeColorValue | string
+type ColorValue = Exclude<NativeColorValue, null> | string
 
 export interface NativeGiphyTheme {
   preset?: GiphyThemePreset

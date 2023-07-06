@@ -1,4 +1,4 @@
-import { EventSubscriptionVendor, NativeModules } from 'react-native'
+import { NativeModule, NativeModules } from 'react-native'
 
 import type { GiphyClipsRendition, GiphyRendition } from '../dto/giphyRendition'
 import type { GiphyContentType } from '../dto/giphyContentType'
@@ -43,7 +43,7 @@ export type GiphyDialogMediaSelectEventHandler = (e: { media: GiphyMedia }) => v
 
 export type GiphyDialogDismissEventHandler = (e: undefined) => void
 
-export interface INativeGiphyDialog extends EventSubscriptionVendor {
+export interface INativeGiphyDialog extends NativeModule {
   configure(options: NativeGiphyDialogConfig): void
 
   show(): void
