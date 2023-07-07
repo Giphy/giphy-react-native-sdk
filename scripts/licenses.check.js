@@ -34,21 +34,24 @@ async function fetchJSON(url) {
           data += chunk
         })
         resp.on('end', () => {
-          const json = JSON.parse(data.replace(/\/\/.*/g, ''))
-          resolve(json)
+          resolve(JSON.parse(data))
         })
       })
       .on('error', reject)
   })
 }
 
-async function fetchLicenseCategories(categories) {
-  const data = {}
-  const uniqueCategories = [...new Set([...categories])]
-  for (const category of uniqueCategories) {
-    data[category] = await fetchJSON(`${LICENSE_CATEGORIES_LOCATION}/${category}.json`)
+async function fetchCategoryLicenses(categories) {
+  let result = []
+  for (const category of categories) {
+    const ctgLicenses = await fetchJSON(`${LICENSE_CATEGORIES_LOCATION}/${category}.json`)
+    const flatCtgLicenses = Object.entries(ctgLicenses).flatMap(([licenseName, license]) => [
+      licenseName,
+      ...license.aliases,
+    ])
+    result = [...result, ...flatCtgLicenses]
   }
-  return data
+  return result
 }
 
 function toSemicolonList(list) {
@@ -58,9 +61,6 @@ function toSemicolonList(list) {
   return list.join(';')
 }
 
-function pickLicensesForCategories(categoriesMapping, categories) {
-  return categories.flatMap((category) => categoriesMapping[category])
-}
 
 function normalizeModuleName(name) {
   return (name ?? '').trim().toLowerCase()
@@ -86,7 +86,7 @@ async function getExampleAppIOSDeps(filePath) {
   const bytes = await fs.promises.readFile(filePath)
   const data = plist.parse(bytes.toString())
   return data.PreferenceSpecifiers.filter(
-    ({ Title }) => Title && Title !== columnTitle
+    ({ Title }) => Title && Title !== columnTitle,
   ).map(({ Title, License = '' }) => ({
     moduleName: normalizeModuleName(Title),
     moduleLicense: License || UNKNOWN_LICENSE,
@@ -101,7 +101,7 @@ function checkModules(modules, options = {}) {
   const spdxIsValid = (spdx) => spdxCorrect(spdx) === spdx
   const spdxIsInvalid = (spdx) => !spdxIsValid(spdx)
   const validSPDXLicenses = allowedLicenses.filter(spdxIsValid)
-  const invalidSPDXLicenses = allowedLicenses.filter(spdxIsInvalid)
+  const invalidSPDXLicenses = allowedLicenses.filter(spdxIsInvalid).map(l => l.toLowerCase())
   const spdxExcluder = '( ' + validSPDXLicenses.join(' OR ') + ' )'
   const allowedLicensesRepr = JSON.stringify(allowedLicenses)
 
@@ -110,7 +110,7 @@ function checkModules(modules, options = {}) {
       return false
     }
     return (
-      invalidSPDXLicenses.indexOf(l) >= 0 ||
+      invalidSPDXLicenses.indexOf(l.toLowerCase()) >= 0 ||
       (spdxCorrect(l) && spdxSatisfies(spdxCorrect(l), spdxExcluder))
     )
   }
@@ -118,15 +118,14 @@ function checkModules(modules, options = {}) {
   modules.forEach((m) => {
     assert(
       isModuleIgnored(m.moduleName) || isLicenseAllowed(m.moduleLicense),
-      `Module "${m.moduleName}" with "${m.moduleLicense}" license is not allowed. Allowed licenses: ${allowedLicensesRepr}`
+      `Module "${m.moduleName}" with "${m.moduleLicense}" license is not allowed. Allowed licenses: ${allowedLicensesRepr}`,
     )
   })
 }
 
 async function main() {
   const projCfg = await fetchJSON(LICENSE_PROJECT_LOCATION)
-  const categories = await fetchLicenseCategories(projCfg.license_categories)
-  const allowedLicenses = pickLicensesForCategories(categories, projCfg.license_categories)
+  const allowedLicenses = await fetchCategoryLicenses(projCfg.license_categories)
   const allowedLicensesStr = toSemicolonList(allowedLicenses).replace(/,/g, '')
   const giphySDKPkg = require(path.posix.resolve(DEPENDENCIES.rootJS, 'package.json'))
   const exampleAppPkg = require(path.posix.resolve(DEPENDENCIES.exampleAppJS, 'package.json'))
