@@ -3,9 +3,8 @@ name: 'CI'
 on:
   push:
     branches: [ 'main' ]
-    tags: [ 'v*' ]
   pull_request:
-    branches: [ 'main' ]
+    branches: [ '**' ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
@@ -54,5 +53,5 @@ jobs:
       - name: 👮 Check Licenses
         run: yarn licenses:check
         env:
-          LICENSE_CATEGORIES_LOCATION: ${{ secrets.LICENSE_CATEGORIES_LOCATION }}
+          LICENSE_CATEGORIES_LOCATION: ${{ secrets.LICENSE_CATEGORIES_V2_LOCATION }}
           LICENSE_PROJECT_LOCATION: ${{ secrets.LICENSE_PROJECT_LOCATION }}
