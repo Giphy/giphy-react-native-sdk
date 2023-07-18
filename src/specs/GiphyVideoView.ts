@@ -1,13 +1,15 @@
-import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
+import { NativeSyntheticEvent, ViewProps } from 'react-native'
 
 import type { GiphyMediaID } from '../dto/giphyMedia'
 
-export enum GiphyVideoViewPlaybackState {
-  Unknown = 0,
-  ReadyToPlay = 3,
-  Playing = 4,
-  Paused = 5,
-}
+export const GiphyVideoViewPlaybackState = {
+  Unknown: 0,
+  ReadyToPlay: 3,
+  Playing: 4,
+  Paused: 5,
+} as const
+
+export type GiphyVideoViewPlaybackState = (typeof GiphyVideoViewPlaybackState)[keyof typeof GiphyVideoViewPlaybackState]
 
 export type NativeGiphyVideoViewProps = ViewProps & {
   autoPlay?: boolean
@@ -19,4 +21,4 @@ export type NativeGiphyVideoViewProps = ViewProps & {
   onUnmute?: (e: NativeSyntheticEvent<{}>) => void
 }
 
-export const NativeGiphyVideoView = requireNativeComponent<NativeGiphyVideoViewProps>('GiphyReactNativeVideoView')
+export const NativeGiphyVideoView: any = null

@@ -35,10 +35,14 @@ project.xcworkspace
 .gradle
 local.properties
 android.iml
+.cxx/
 
 # Cocoapods
 #
 example/ios/Pods
+
+# Ruby
+example/vendor
 
 # node.js
 #

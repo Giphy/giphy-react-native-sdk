@@ -41,6 +41,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GiphyReactNativeSdkExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8522DE2E6B38351E0B7530B1 /* Pods-GiphyReactNativeSdkExample-GiphyReactNativeSdkExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyReactNativeSdkExample-GiphyReactNativeSdkExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-GiphyReactNativeSdkExample-GiphyReactNativeSdkExampleTests/Pods-GiphyReactNativeSdkExample-GiphyReactNativeSdkExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B052007F66B2592CDC658C9E /* libPods-GiphyReactNativeSdkExample-GiphyReactNativeSdkExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GiphyReactNativeSdkExample-GiphyReactNativeSdkExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D786B15D2A67625E00299150 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E00ACF0FDA8BF921659E2F9A /* Pods-GiphyReactNativeSdkExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyReactNativeSdkExample.release.xcconfig"; path = "Target Support Files/Pods-GiphyReactNativeSdkExample/Pods-GiphyReactNativeSdkExample.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -82,6 +83,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D786B15D2A67625E00299150 /* libReact-hermes.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				0F881E9B00C807C55FC8876F /* libPods-GiphyReactNativeSdkExample.a */,

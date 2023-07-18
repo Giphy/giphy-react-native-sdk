@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppState, AppStateStatus } from 'react-native'
 
-import { NativeGiphyVideoView, type NativeGiphyVideoViewProps } from './native/GiphyVideoView'
+import { NativeGiphyVideoView, type NativeGiphyVideoViewProps } from './specs/GiphyVideoView'
 import { GiphyVideoManager } from './GiphyVideoManager'
 
 export type GiphyVideoViewProps = NativeGiphyVideoViewProps

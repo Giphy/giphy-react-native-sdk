@@ -10,7 +10,7 @@ import {
   type GiphyDialogMediaSelectEventHandler,
   NativeGiphyDialog,
   type NativeGiphyDialogConfig,
-} from './native/GiphyDialog'
+} from './specs/GiphyDialog'
 
 export type GiphyDialogConfig = Omit<NativeGiphyDialogConfig, 'theme'> & {
   theme: GiphyTheme | GiphyThemePreset

@@ -15,14 +15,14 @@ export {
   GiphyDialogEvent,
   type GiphyDialogMediaSelectEventHandler,
   type GiphyDialogDismissEventHandler,
-} from './native/GiphyDialog'
+} from './specs/GiphyDialog'
 export { GiphyDialog, type GiphyDialogConfig } from './GiphyDialog'
 
 export { GiphyMediaView, type GiphyMediaViewProps } from './GiphyMediaView'
 
 export { GiphyVideoManager } from './GiphyVideoManager'
 export { GiphyVideoView, type GiphyVideoViewProps } from './GiphyVideoView'
-export { GiphyVideoViewPlaybackState } from './native/GiphyVideoView'
+export { GiphyVideoViewPlaybackState } from './specs/GiphyVideoView'
 
 export { GiphyGridView, type GiphyGridViewProps } from './GiphyGridView'
 

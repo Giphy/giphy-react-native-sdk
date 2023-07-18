@@ -3,7 +3,7 @@ import type { NativeSyntheticEvent } from 'react-native'
 
 import { deserializeGiphyMedia, type GiphyMedia } from './dto/giphyMedia'
 import { GiphyThemePreset } from './dto/giphyThemePreset'
-import { NativeGiphyGridView, type NativeGiphyGridViewProps } from './native/GiphyGridView'
+import { NativeGiphyGridView, type NativeGiphyGridViewProps } from './specs/GiphyGridView'
 import { type GiphyTheme, serializeTheme } from './dto/giphyTheme'
 
 export type GiphyGridViewProps = Omit<NativeGiphyGridViewProps, 'theme'> & {
