@@ -34,15 +34,6 @@ runs:
           example/yarn.lock
         registry-url: 'https://registry.npmjs.org'
 
-    - name: ♻️ Restore node_modules from cache
-      id: node-modules-cache
-      uses: actions/cache@v3
-      with:
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock', 'example/yarn.lock') }}
-        path: |
-          node_modules
-          example/node_modules
-
     - name: 📦 Install JS dependencies
       if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile && yarn example install --frozen-lockfile

@@ -1,6 +1,6 @@
 import React from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { StyleSheet, View, Modal, Text, TouchableOpacity, ModalProps, ScrollView } from 'react-native'
+import { Modal, ModalProps, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
