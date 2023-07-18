@@ -1,9 +1,9 @@
 import type { Merge } from 'type-fest'
 import type { IGif, IImages, IUser } from '@giphy/js-types'
 
-export type GiphyMediaID = {
+export type GiphyMediaID = Readonly<{
   id: string
-}
+}>
 
 export type GiphyMediaData = GiphyMediaID & IGif
 
