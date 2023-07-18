@@ -1,20 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import {
-  GiphyDialog,
-  GiphyDialogConfig,
-  GiphyDialogEvent,
-  GiphyMedia,
-  GiphyVideoManager,
-} from '@giphy/react-native-sdk'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { type GiphyDialogConfig } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
-import { GIPHY_MEDIA_FIXTURE } from './fixtures'
-import { MediaGridSample } from './MediaGridSample'
-import { MediaViewSample } from './MediaViewSample'
+// import { GIPHY_MEDIA_FIXTURE } from './fixtures'
+// import { MediaGridSample } from './MediaGridSample'
+// import { MediaViewSample } from './MediaViewSample'
 
 const styles = StyleSheet.create({
   container: {
@@ -57,43 +51,43 @@ const styles = StyleSheet.create({
   },
 })
 
-function useLatest<V>(value: V) {
-  const ref = useRef<V>(value)
-  ref.current = value
-  return ref
-}
+// function useLatest<V>(value: V) {
+//   const ref = useRef<V>(value)
+//   ref.current = value
+//   return ref
+// }
 
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
-  const [medias, setMedias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
+  // const [medias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
   const [giphyDialogSettings, setGiphyDialogSettings] = useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
-
-  const addMedia = (media: GiphyMedia) => {
-    setMedias([media, ...medias])
-  }
+  //
+  // const addMedia = (media: GiphyMedia) => {
+  //   setMedias([media, ...medias])
+  // }
 
   // Apply Giphy Dialog settings
-  useEffect(() => {
-    GiphyDialog.configure(giphyDialogSettings)
-  }, [giphyDialogSettings])
-
-  // Mute all clips when a user opens the settings dialog
-  useEffect(() => {
-    if (dialogSettingsVisible) {
-      GiphyVideoManager.muteAll()
-    }
-  }, [dialogSettingsVisible])
-
-  const addMediaRef = useLatest(addMedia)
-  useEffect(() => {
-    const listener = GiphyDialog.addListener(GiphyDialogEvent.MediaSelected, (e) => {
-      addMediaRef.current(e.media)
-      GiphyDialog.hide()
-    })
-    return () => {
-      listener.remove()
-    }
-  }, [addMediaRef])
+  // useEffect(() => {
+  //   GiphyDialog.configure(giphyDialogSettings)
+  // }, [giphyDialogSettings])
+  //
+  // // Mute all clips when a user opens the settings dialog
+  // useEffect(() => {
+  //   if (dialogSettingsVisible) {
+  //     GiphyVideoManager.muteAll()
+  //   }
+  // }, [dialogSettingsVisible])
+  //
+  // const addMediaRef = useLatest(addMedia)
+  // useEffect(() => {
+  //   const listener = GiphyDialog.addListener(GiphyDialogEvent.MediaSelected, (e) => {
+  //     addMediaRef.current(e.media)
+  //     GiphyDialog.hide()
+  //   })
+  //   return () => {
+  //     listener.remove()
+  //   }
+  // }, [addMediaRef])
 
   return (
     <View testID="app" style={styles.container}>
@@ -106,7 +100,11 @@ export default function App() {
         >
           <Text style={styles.cardButtonText}>Dialog Settings</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.cardButton} testID="show-gph-dialog" onPress={() => GiphyDialog.show()}>
+        <TouchableOpacity
+          style={styles.cardButton}
+          testID="show-gph-dialog"
+          /* onPress={() => GiphyDialog.show()} */
+        >
           <Text style={styles.cardButtonText}>Show Dialog</Text>
         </TouchableOpacity>
       </View>
@@ -115,19 +113,19 @@ export default function App() {
       </Dialog>
 
       {/* Displaying Giphy Grid View with the custom search bar */}
-      <MediaGridSample onMediaSelect={addMedia} style={styles.card} />
+      {/*<MediaGridSample onMediaSelect={addMedia} style={styles.card} />*/}
 
       {/* Displaying selected media */}
-      <View style={styles.card}>
-        <Text style={styles.header}>Preview</Text>
-        <ScrollView style={styles.previewContainer}>
-          {medias.map((media) => (
-            <View key={media.id} style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}>
-              <MediaViewSample media={media} />
-            </View>
-          ))}
-        </ScrollView>
-      </View>
+      {/*<View style={styles.card}>*/}
+      {/*  <Text style={styles.header}>Preview</Text>*/}
+      {/*  <ScrollView style={styles.previewContainer}>*/}
+      {/*    {medias.map((media) => (*/}
+      {/*      <View key={media.id} style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}>*/}
+      {/*        <MediaViewSample media={media} />*/}
+      {/*      </View>*/}
+      {/*    ))}*/}
+      {/*  </ScrollView>*/}
+      {/*</View>*/}
     </View>
   )
 }

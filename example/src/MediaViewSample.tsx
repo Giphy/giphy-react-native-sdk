@@ -1,5 +1,5 @@
 import React from 'react'
-import { GiphyMediaView, GiphyVideoView, GiphyMedia } from '@giphy/react-native-sdk'
+import { GiphyMedia, GiphyMediaView, GiphyVideoView } from '@giphy/react-native-sdk'
 import { Image } from 'react-native'
 
 type MediaViewSampleProps = {

@@ -44,9 +44,9 @@ private func deserializeRNConfig(_ rawConfig: NSDictionary?) -> NSDictionary {
   }
   
   THEME_COLOR_FIELDS.forEach { field in
-    if config[field] != nil {
-      config[field] = RCTConvert.uiColor(config[field])
-    }
+//    if config[field] != nil {
+//      config[field] = RCTConvert.uiColor(config[field])
+//    }
   }
   
   return config
