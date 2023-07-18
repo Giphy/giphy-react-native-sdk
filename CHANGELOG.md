@@ -1,3 +1,24 @@
+# 2.4.2 (2023-07-18)
+
+### Native SDKs
+
+* Giphy Android SDK [v2.3.6-hotfix-grid](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.6-hotfix-grid)
+* Giphy iOS SDK [v2.2.6](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.6)
+
+### Bug Fixes
+
+* [android] GiphyGridView doesn't refresh its content in certain
+  scenarios ([#126](https://github.com/Giphy/giphy-react-native-sdk/issues/126)) ([6f5ca67](https://github.com/Giphy/giphy-react-native-sdk/commit/6f5ca6778611eb06313d7b97856e21df31db1854))
+
+### Build System
+
+* [deps] Bump Android SDK version from 2.3.6 to
+  2.3.6-hotfix-grid ([#126](https://github.com/Giphy/giphy-react-native-sdk/issues/126)) ([6f5ca67](https://github.com/Giphy/giphy-react-native-sdk/commit/6f5ca6778611eb06313d7b97856e21df31db1854))
+* [deps] Bump semver from 5.7.1 to
+  5.7.2 ([a2f047b](https://github.com/Giphy/giphy-react-native-sdk/commit/a2f047becbe28c2b416c41ca6e0ecb330901b2ee))
+* [deps] Bump semver from 5.7.1 to 5.7.2 in
+  /example ([dfc6e42](https://github.com/Giphy/giphy-react-native-sdk/commit/dfc6e42153e59f0120fa0a2ee4e708fd36abcee8))
+
 # 2.4.1 (2023-06-13)
 
 ### Native SDKs
@@ -61,7 +82,6 @@
 * Giphy Android SDK [v2.3.4](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.4)
 * Giphy iOS SDK [v2.2.4](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.4)
 
-
 ### Features
 * [GiphyDialog] Add enableDynamicText property ([281c715](https://github.com/Giphy/giphy-react-native-sdk/commit/281c715106930e7cebe632c580cb64f75f94ecf4))
 
@@ -74,7 +94,6 @@
 * Giphy Android SDK [v2.3.4](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.4)
 * Giphy iOS SDK [v2.2.4](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.4)
 
-
 ### Build System
 * [deps] Bump Android SDK version from 2.3.1 to 2.3.4 ([491a526](https://github.com/Giphy/giphy-react-native-sdk/commit/491a5264ce6a4f41db0ce552616a53ed8cd1adfc))
 
@@ -83,7 +102,6 @@
 ### Native SDKs
 * Giphy Android SDK [v2.3.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.1)
 * Giphy iOS SDK [v2.2.4](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.4)
-
 
 ### Features
 * [iOS:GiphyDialog] Add selectedContentType property ([#99](https://github.com/Giphy/giphy-react-native-sdk/issues/99)) ([e21a85a](https://github.com/Giphy/giphy-react-native-sdk/commit/e21a85a63d498f11638423a041011e8520bae14f))
@@ -97,7 +115,6 @@
 * Giphy Android SDK [v2.3.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.1)
 * Giphy iOS SDK [v2.2.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.2)
 
-
 ### Bug Fixes
 * [Android] App crashes when selecting a Gif ([#90](https://github.com/Giphy/giphy-react-native-sdk/issues/90)) ([8a18094](https://github.com/Giphy/giphy-react-native-sdk/commit/8a18094e19e152d53e0a7c4427f48646724ac927))
 
@@ -106,7 +123,6 @@
 ### Native SDKs
 * Giphy Android SDK [v2.3.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.1)
 * Giphy iOS SDK [v2.2.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.2)
-
 
 ### Bug Fixes
 * [android] Project-wide requests headers rewritten by GIPHY ([#92](https://github.com/Giphy/giphy-react-native-sdk/issues/92)) ([b0ce09c](https://github.com/Giphy/giphy-react-native-sdk/commit/b0ce09c893a20cd2522c1597c7ded8a34536bd76))
@@ -120,7 +136,6 @@
 * Giphy Android SDK [v2.3.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.0)
 * Giphy iOS SDK [v2.2.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.2)
 
-
 ### Build System
 * [deps] Bump iOS SDK version from 2.2.1 to 2.2.2 ([28b45e7](https://github.com/Giphy/giphy-react-native-sdk/commit/28b45e7fcee8e7b4a9e87ee1c46687188c289390))
 
@@ -129,7 +144,6 @@
 ### Native SDKs
 * Giphy Android SDK [v2.3.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.0)
 * Giphy iOS SDK [v2.2.1](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.1)
-
 
 ### Build System
 * [deps] Bump Android SDK version from 2.2.0 to 2.3.0 ([682bfa5](https://github.com/Giphy/giphy-react-native-sdk/commit/682bfa5943006140eec8469f9e9a0cc92c44995e))
@@ -146,7 +160,6 @@ If you already have the emoji content type included in your integration, no addi
 ### Native SDKs
 * Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
-
 
 ### Features
 * Update ExoPlayer configuration ([907ea53](https://github.com/Giphy/giphy-react-native-sdk/commit/907ea537fbad0945f69b987c5cf8c64714d6b6d3))
@@ -172,7 +185,6 @@ If you already have the emoji content type included in your integration, no addi
 * Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
-
 ### Bug Fixes
 * TypeScript definitions are placed in the wrong folder ([#80](https://github.com/Giphy/giphy-react-native-sdk/issues/80)) ([4bea260](https://github.com/Giphy/giphy-react-native-sdk/commit/4bea26087abdacd897d16e0e005b7cc84ebd4a78))
 
@@ -181,7 +193,6 @@ If you already have the emoji content type included in your integration, no addi
 ### Native SDKs
 * Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
-
 
 ### Build System
 * [deps] Bump Gradle to 7.3.3 ([2ffb2e5](https://github.com/Giphy/giphy-react-native-sdk/commit/2ffb2e52c534f8aa36f43ee761745b006d838f81))
@@ -192,7 +203,6 @@ If you already have the emoji content type included in your integration, no addi
 ### Native SDKs
 * Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
-
 
 ### Documentation
 * Add the ExoPlayer troubleshooting page ([00dfa75](https://github.com/Giphy/giphy-react-native-sdk/commit/00dfa75eb9bb38f6e50f0f6f56a701a19055f5a9))
@@ -212,7 +222,6 @@ If you already have the emoji content type included in your integration, no addi
 * Giphy Android SDK [v2.2.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.2.0)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
-
 ### Documentation
 * Add the ExoPlayer troubleshooting page ([00dfa75](https://github.com/Giphy/giphy-react-native-sdk/commit/00dfa75eb9bb38f6e50f0f6f56a701a19055f5a9))
 * Update contribution guide ([f3ef81b](https://github.com/Giphy/giphy-react-native-sdk/commit/f3ef81bc1789da2ff41d90adaa9b7863be4952bd))
@@ -231,7 +240,6 @@ If you already have the emoji content type included in your integration, no addi
 * Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
 
-
 ### Bug Fixes
 * [Android:GiphyDialog] GIPHY rating does not work when using GiphyDialog.configure to specify it ([#74](https://github.com/Giphy/giphy-react-native-sdk/issues/74)) ([cf2b55e](https://github.com/Giphy/giphy-react-native-sdk/commit/cf2b55e3a195aa9ac1255d15ee8da42fc6aa0a39))
 
@@ -240,7 +248,6 @@ If you already have the emoji content type included in your integration, no addi
 ### Native SDKs
 * Giphy Android SDK [v2.1.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.1.18)
 * Giphy iOS SDK [v2.1.22](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.1.22)
-
 
 ### Features
 * [GiphyVideoManager] Add the resume method to continue paused playback ([c2d6d1b](https://github.com/Giphy/giphy-react-native-sdk/commit/c2d6d1b03bab65896417f4893542bc2739eb0f0b))
