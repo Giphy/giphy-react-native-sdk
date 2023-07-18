@@ -1,9 +1,14 @@
-import { NativeGiphySDK, type NativeGiphySDKConfig } from './native/GiphySDK'
+import NativeGiphySDK from './specs/NativeGiphySDK'
 
-export type GiphySDKConfig = NativeGiphySDKConfig
+export interface GiphySDKConfig {
+  apiKey: string
+  verificationMode?: boolean
+  videoCacheMaxBytes?: number
+}
 
 export class GiphySDK {
   static configure(options: GiphySDKConfig) {
-    NativeGiphySDK.configure(options)
+    const { apiKey, videoCacheMaxBytes, verificationMode } = options
+    NativeGiphySDK.configure(apiKey, verificationMode, videoCacheMaxBytes)
   }
 }

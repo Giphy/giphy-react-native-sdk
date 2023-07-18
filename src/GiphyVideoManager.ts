@@ -1,4 +1,4 @@
-import { NativeGiphyVideoManager } from './native/GiphyVideoManager'
+import { NativeGiphyVideoManager } from './specs/GiphyVideoManager'
 
 export class GiphyVideoManager {
   static muteAll() {

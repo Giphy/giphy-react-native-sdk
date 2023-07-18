@@ -1,4 +1,4 @@
-import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from 'react-native'
+import { NativeSyntheticEvent, ViewProps } from 'react-native'
 
 import type { GiphyClipsRendition, GiphyRendition } from '../dto/giphyRendition'
 import type { GiphyContentRequest } from '../dto/giphyContentRequest'
@@ -21,4 +21,4 @@ export type NativeGiphyGridViewProps = ViewProps & {
   theme?: NativeGiphyTheme
 }
 
-export const NativeGiphyGridView = requireNativeComponent<NativeGiphyGridViewProps>('GiphyReactNativeGridView')
+export const NativeGiphyGridView: any = null

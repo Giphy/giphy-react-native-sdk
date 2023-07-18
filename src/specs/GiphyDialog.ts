@@ -1,4 +1,4 @@
-import { NativeModule, NativeModules } from 'react-native'
+import { NativeModule } from 'react-native'
 
 import type { GiphyClipsRendition, GiphyRendition } from '../dto/giphyRendition'
 import type { GiphyContentType } from '../dto/giphyContentType'
@@ -34,10 +34,12 @@ export interface AndroidGiphyDialogConfig extends BaseNativeGiphyDialogConfig {
 
 export interface NativeGiphyDialogConfig extends IOSGiphyDialogConfig, AndroidGiphyDialogConfig {}
 
-export enum GiphyDialogEvent {
-  MediaSelected = 'onMediaSelect',
-  Dismissed = 'onDismiss',
-}
+export const GiphyDialogEvent = {
+  MediaSelected: 'onMediaSelect',
+  Dismissed: 'onDismiss',
+} as const
+
+export type GiphyDialogEvent = (typeof GiphyDialogEvent)[keyof typeof GiphyDialogEvent]
 
 export type GiphyDialogMediaSelectEventHandler = (e: { media: GiphyMedia }) => void
 
@@ -51,4 +53,4 @@ export interface INativeGiphyDialog extends NativeModule {
   hide(): void
 }
 
-export const NativeGiphyDialog: INativeGiphyDialog = NativeModules.GiphyReactNativeDialog
+export const NativeGiphyDialog: any = null
