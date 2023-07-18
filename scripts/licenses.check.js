@@ -61,7 +61,6 @@ function toSemicolonList(list) {
   return list.join(';')
 }
 
-
 function normalizeModuleName(name) {
   return (name ?? '').trim().toLowerCase()
 }
@@ -85,23 +84,22 @@ async function getExampleAppIOSDeps(filePath) {
   const columnTitle = 'Acknowledgements'
   const bytes = await fs.promises.readFile(filePath)
   const data = plist.parse(bytes.toString())
-  return data.PreferenceSpecifiers.filter(
-    ({ Title }) => Title && Title !== columnTitle,
-  ).map(({ Title, License = '' }) => ({
-    moduleName: normalizeModuleName(Title),
-    moduleLicense: License || UNKNOWN_LICENSE,
-  }))
+  return data.PreferenceSpecifiers.filter(({ Title }) => Title && Title !== columnTitle).map(
+    ({ Title, License = '' }) => ({
+      moduleName: normalizeModuleName(Title),
+      moduleLicense: License || UNKNOWN_LICENSE,
+    })
+  )
 }
 
 function checkModules(modules, options = {}) {
-  const { allowedLicenses = [], ignoredModules: rawIgnoredModules = [] } =
-    options
+  const { allowedLicenses = [], ignoredModules: rawIgnoredModules = [] } = options
   const ignoredModules = rawIgnoredModules.map(normalizeModuleName)
   const isModuleIgnored = (m) => ignoredModules.includes(normalizeModuleName(m))
   const spdxIsValid = (spdx) => spdxCorrect(spdx) === spdx
   const spdxIsInvalid = (spdx) => !spdxIsValid(spdx)
   const validSPDXLicenses = allowedLicenses.filter(spdxIsValid)
-  const invalidSPDXLicenses = allowedLicenses.filter(spdxIsInvalid).map(l => l.toLowerCase())
+  const invalidSPDXLicenses = allowedLicenses.filter(spdxIsInvalid).map((l) => l.toLowerCase())
   const spdxExcluder = '( ' + validSPDXLicenses.join(' OR ') + ' )'
   const allowedLicensesRepr = JSON.stringify(allowedLicenses)
 
@@ -118,7 +116,7 @@ function checkModules(modules, options = {}) {
   modules.forEach((m) => {
     assert(
       isModuleIgnored(m.moduleName) || isLicenseAllowed(m.moduleLicense),
-      `Module "${m.moduleName}" with "${m.moduleLicense}" license is not allowed. Allowed licenses: ${allowedLicensesRepr}`,
+      `Module "${m.moduleName}" with "${m.moduleLicense}" license is not allowed. Allowed licenses: ${allowedLicensesRepr}`
     )
   })
 }
