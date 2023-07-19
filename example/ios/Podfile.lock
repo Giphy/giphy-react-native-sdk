@@ -1289,7 +1289,7 @@ SPEC CHECKSUMS:
   FlipperKit: 2efad7007d6745a3f95e4034d547be637f89d3f6
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   Giphy: f64bff5937fbc4987b6a26c8ef625501c68a1e97
-  giphy-react-native-sdk: d5a85e0d5c9b78df98264b8529d3430eaf1cd169
+  giphy-react-native-sdk: f086b19e890707b19619d073f17bea8a40e319f8
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 3f42310d66bcbc814b3771b79ad8d5a3f8df3df1
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913

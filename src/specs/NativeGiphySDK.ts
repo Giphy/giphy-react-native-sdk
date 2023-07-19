@@ -1,13 +1,8 @@
-import type { TurboModule } from 'react-native'
-import { TurboModuleRegistry } from 'react-native'
-import { Int32, WithDefault } from 'react-native/Libraries/Types/CodegenTypes'
+import { type TurboModule, TurboModuleRegistry } from 'react-native'
+import type { Int32 } from 'react-native/Libraries/Types/CodegenTypes'
 
 export interface Spec extends TurboModule {
-  configure(
-    apiKey: string,
-    verificationMode?: WithDefault<boolean, false>,
-    videoCacheMaxBytes?: WithDefault<Int32, null>
-  ): void
+  configure(apiKey: string, verificationMode: boolean, videoCacheMaxBytes: Int32): void
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('GiphySDKModule')
+export default TurboModuleRegistry.getEnforcing<Spec>('RTNGiphySDKModule')

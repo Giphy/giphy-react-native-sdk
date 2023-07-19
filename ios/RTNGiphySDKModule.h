@@ -3,13 +3,13 @@
 #ifdef RCT_NEW_ARCH_ENABLED
 
 #import <GiphyReactNativeSDKSpec/GiphyReactNativeSDKSpec.h>
-@interface GiphySDKModule: NSObject <NativeGiphySDKSpec>
+@interface RTNGiphySDKModule: NSObject <NativeGiphySDKSpec>
 
 #else
 
 #import <React/RCTBridgeModule.h>
 
-@interface GiphySDKModule : NSObject <RCTBridgeModule>
+@interface RTNGiphySDKModule : NSObject <RCTBridgeModule>
 
 #endif
 

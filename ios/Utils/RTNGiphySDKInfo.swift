@@ -1,5 +1,5 @@
-class RNSDKInfo {
-  static let shared = RNSDKInfo()
+class RTNGiphySDKInfo {
+  static let shared = RTNGiphySDKInfo()
 
   let name = "RNSDK"
 

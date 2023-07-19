@@ -1,13 +1,12 @@
-#import "GiphySDKModule.h"
+#import "RTNGiphySDKModule.h"
 
-// MARK: Swift classes in ObjC++
 #if __has_include("giphy_react_native_sdk/giphy_react_native_sdk-Swift.h")
 #import <giphy_react_native_sdk/giphy_react_native_sdk-Swift.h>
 #else
 #import "giphy_react_native_sdk-Swift.h"
 #endif
 
-@implementation GiphySDKModule
+@implementation RTNGiphySDKModule
 
 RCT_EXPORT_MODULE()
 
@@ -20,9 +19,9 @@ RCT_EXPORT_MODULE()
 }
 
 RCT_EXPORT_METHOD(configure:(NSString *)apiKey
-                  verificationMode:(NSNumber *)verificationMode
-                  videoCacheMaxBytes:(NSNumber *)videoCacheMaxBytes) {
-  [GiphySDKModuleImpl configureWithApiKey:apiKey verificationMode:verificationMode];
+                  verificationMode:(BOOL)verificationMode
+                  videoCacheMaxBytes:(double)videoCacheMaxBytes) {
+  [RTNGiphySDKModuleImpl configureWithApiKey:apiKey verificationMode:verificationMode];
 }
 
 #ifdef RCT_NEW_ARCH_ENABLED

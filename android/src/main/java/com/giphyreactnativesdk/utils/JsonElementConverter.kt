@@ -1,6 +1,9 @@
 package com.giphyreactnativesdk.utils
 
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.WritableArray
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.WritableNativeArray
+import com.facebook.react.bridge.WritableNativeMap
 import com.google.gson.JsonElement
 
 fun jsonObjectToRNMap(json: JsonElement): WritableMap {
@@ -24,6 +27,7 @@ fun jsonObjectToRNMap(json: JsonElement): WritableMap {
           else -> output.putString(key, primitive.asString)
         }
       }
+
       else -> output.putString(key, el.asString)
     }
   }
@@ -51,6 +55,7 @@ fun jsonArrayToRNArray(json: JsonElement): WritableArray {
           else -> output.pushString(primitive.asString)
         }
       }
+
       else -> output.pushString(el.asString)
     }
   }

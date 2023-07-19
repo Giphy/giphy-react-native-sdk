@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { type GiphyDialogConfig } from '@giphy/react-native-sdk'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { type GiphyDialogConfig, type GiphyMedia } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
-// import { GIPHY_MEDIA_FIXTURE } from './fixtures'
+import { MediaViewSample } from './MediaViewSample'
+import { GIPHY_MEDIA_FIXTURE } from './fixtures'
 // import { MediaGridSample } from './MediaGridSample'
 // import { MediaViewSample } from './MediaViewSample'
 
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
 
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
-  // const [medias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
+  const [medias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
   const [giphyDialogSettings, setGiphyDialogSettings] = useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
   //
   // const addMedia = (media: GiphyMedia) => {
@@ -111,21 +112,20 @@ export default function App() {
       <Dialog visible={dialogSettingsVisible} onRequestClose={() => setDialogSettingsVisible(false)}>
         <GiphyDialogSettings settings={giphyDialogSettings} onSettingsChange={setGiphyDialogSettings} />
       </Dialog>
-
       {/* Displaying Giphy Grid View with the custom search bar */}
       {/*<MediaGridSample onMediaSelect={addMedia} style={styles.card} />*/}
 
-      {/* Displaying selected media */}
-      {/*<View style={styles.card}>*/}
-      {/*  <Text style={styles.header}>Preview</Text>*/}
-      {/*  <ScrollView style={styles.previewContainer}>*/}
-      {/*    {medias.map((media) => (*/}
-      {/*      <View key={media.id} style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}>*/}
-      {/*        <MediaViewSample media={media} />*/}
-      {/*      </View>*/}
-      {/*    ))}*/}
-      {/*  </ScrollView>*/}
-      {/*</View>*/}
+      {/*Displaying selected media*/}
+      <View style={styles.card}>
+        <Text style={styles.header}>Preview</Text>
+        <ScrollView style={styles.previewContainer}>
+          {medias.map((media) => (
+            <View key={media.id} style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}>
+              <MediaViewSample media={media} />
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   )
 }

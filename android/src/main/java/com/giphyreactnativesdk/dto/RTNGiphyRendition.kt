@@ -3,7 +3,7 @@ package com.giphyreactnativesdk.dto
 import com.giphy.sdk.core.models.enums.RenditionType
 import com.giphyreactnativesdk.utils.CaseConverter
 
-object RNGiphyRendition {
+object RTNGiphyRendition {
   fun fromRNValue(renditionName: String?): RenditionType? {
     return when (renditionName) {
       null -> null

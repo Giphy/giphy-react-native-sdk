@@ -2,7 +2,7 @@ package com.giphyreactnativesdk.dto
 
 import com.giphy.sdk.core.models.enums.RatingType
 
-object RNGiphyRating {
+object RTNGiphyRating {
   fun fromRNValue(ratingName: String?): RatingType? {
     return when (ratingName) {
       null -> null
