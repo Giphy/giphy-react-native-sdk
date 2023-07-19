@@ -11,7 +11,7 @@ import com.giphyreactnativesdk.utils.jsonObjectToRNMap
 import com.google.gson.Gson
 
 
-object RNGiphyMedia {
+object RTNGiphyMedia {
   private fun getGifURL(media: Media, renditionType: RenditionType?): String? {
     val rendition = renditionType ?: RenditionType.downsized
     return GifUtils.getImageDataForType(media, rendition)?.gifUrl

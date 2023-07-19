@@ -1,6 +1,6 @@
 import React from 'react'
-import { GiphyMedia, GiphyMediaView, GiphyVideoView } from '@giphy/react-native-sdk'
-import { Image } from 'react-native'
+import { type GiphyMedia, GiphyMediaView } from '@giphy/react-native-sdk'
+import { Button, Image } from 'react-native'
 
 type MediaViewSampleProps = {
   media: GiphyMedia
@@ -8,20 +8,24 @@ type MediaViewSampleProps = {
 
 export function MediaViewSample(props: MediaViewSampleProps) {
   const { media } = props
+  const [playing, setPlaying] = React.useState(false)
+  const [resizeMode, setResizeMode] = React.useState('stretch')
+  const ref = React.useRef<GiphyMediaView>(null)
 
-  if (media.isVideo) {
-    return (
-      <GiphyVideoView
-        autoPlay={false}
-        media={media}
-        muted={true}
-        style={{ aspectRatio: media.aspectRatio }}
-        testID={`gph-video-view-${media.id}`}
-        onError={(e) => console.error(e.nativeEvent.description)}
-        onPlaybackStateChanged={(e) => console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))}
-      />
-    )
-  } else if (media.isDynamic) {
+  // if (media.isVideo) {
+  //   return (
+  //     <GiphyVideoView
+  //       autoPlay={false}
+  //       media={media}
+  //       muted={true}
+  //       style={{ aspectRatio: media.aspectRatio }}
+  //       testID={`gph-video-view-${media.id}`}
+  //       onError={(e) => console.error(e.nativeEvent.description)}
+  //       onPlaybackStateChanged={(e) => console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))}
+  //     />
+  //   )
+  // } else
+  if (media.isDynamic) {
     return (
       <Image
         style={{ aspectRatio: media.aspectRatio }}
@@ -32,6 +36,32 @@ export function MediaViewSample(props: MediaViewSampleProps) {
   }
 
   return (
-    <GiphyMediaView media={media} style={{ aspectRatio: media.aspectRatio }} testID={`gph-media-view-${media.id}`} />
+    <>
+      <Button
+        title={'Play/Pause'}
+        onPress={() => {
+          setPlaying((v) => !v)
+          if (playing) {
+            ref.current?.pause()
+          } else {
+            ref.current?.resume()
+          }
+        }}
+      />
+      <Button
+        title={'Resize Mode'}
+        onPress={() => {
+          setResizeMode((v) => (v === 'stretch' ? 'center' : 'stretch'))
+        }}
+      />
+      <GiphyMediaView
+        autoPlay={false}
+        ref={ref}
+        media={media}
+        resizeMode={resizeMode as any}
+        style={{ aspectRatio: media.aspectRatio }}
+        testID={`gph-media-view-${media.id}`}
+      />
+    </>
   )
 }

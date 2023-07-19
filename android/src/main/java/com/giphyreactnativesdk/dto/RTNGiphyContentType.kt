@@ -2,7 +2,7 @@ package com.giphyreactnativesdk.dto
 
 import com.giphy.sdk.ui.GPHContentType
 
-object RNGiphyContentType {
+object RTNGiphyContentType {
   fun fromRNValue(contentType: String?): GPHContentType {
     return when (contentType) {
       null -> GPHContentType.gif

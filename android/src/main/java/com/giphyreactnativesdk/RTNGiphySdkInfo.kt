@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 
-class RNSDKInfo (val context: Context){
+class RTNGiphySdkInfo(val context: Context) {
   val name = "RNSDK"
 
   val version: String
@@ -13,7 +13,7 @@ class RNSDKInfo (val context: Context){
       try {
         packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
       } catch (e: PackageManager.NameNotFoundException) {
-        e.printStackTrace();
+        e.printStackTrace()
       }
 
       return packageInfo?.versionName.toString()
