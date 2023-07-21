@@ -1,5 +1,5 @@
 import React from 'react'
-import { type GiphyMedia, GiphyMediaView } from '@giphy/react-native-sdk'
+import { type GiphyMedia, GiphyMediaView, GiphyVideoView } from '@giphy/react-native-sdk'
 import { Button, Image } from 'react-native'
 
 type MediaViewSampleProps = {
@@ -12,20 +12,21 @@ export function MediaViewSample(props: MediaViewSampleProps) {
   const [resizeMode, setResizeMode] = React.useState('stretch')
   const ref = React.useRef<GiphyMediaView>(null)
 
-  // if (media.isVideo) {
-  //   return (
-  //     <GiphyVideoView
-  //       autoPlay={false}
-  //       media={media}
-  //       muted={true}
-  //       style={{ aspectRatio: media.aspectRatio }}
-  //       testID={`gph-video-view-${media.id}`}
-  //       onError={(e) => console.error(e.nativeEvent.description)}
-  //       onPlaybackStateChanged={(e) => console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))}
-  //     />
-  //   )
-  // } else
-  if (media.isDynamic) {
+  if (media.isVideo) {
+    return (
+      <GiphyVideoView
+        autoPlay={true}
+        media={media}
+        muted={true}
+        style={{ aspectRatio: media.aspectRatio }}
+        testID={`gph-video-view-${media.id}`}
+        onMute={(e) => console.log('Mute', e.target)}
+        onUnmute={(e) => console.log('Unmute', e.target)}
+        onError={(e) => console.error(e.nativeEvent.description)}
+        onPlaybackStateChanged={(e) => console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))}
+      />
+    )
+  } else if (media.isDynamic) {
     return (
       <Image
         style={{ aspectRatio: media.aspectRatio }}
