@@ -3,13 +3,14 @@ import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTyp
 import { AppState, type AppStateStatus, type ViewProps } from 'react-native'
 
 import type { GiphyMediaID } from './dto/giphyMedia'
+import { GiphyVideoManager } from './GiphyVideoManager'
+import { noop } from './utils/noop'
 import NativeGiphyVideoView, {
   type GiphyVideoViewErrorEvent,
   type GiphyVideoViewMuteEvent,
   type GiphyVideoViewPlaybackStateEvent,
   type GiphyVideoViewUnmuteEvent,
 } from './specs/GiphyVideoViewNativeComponent'
-import { noop } from './utils/noop'
 
 export type GiphyVideoViewProps = ViewProps & {
   autoPlay?: boolean
@@ -29,10 +30,10 @@ let latestAppState: AppStateStatus = AppState.currentState
 
 function appStateListener(appState: AppStateStatus) {
   if (latestAppState === 'active' && appState.match(BACKGROUND_STATE_REGEX)) {
-    // GiphyVideoManager.pauseAll()
+    GiphyVideoManager.pauseAll()
   } else if (appState === 'active' && latestAppState.match(BACKGROUND_STATE_REGEX)) {
-    // GiphyVideoManager.resume()
-    // GiphyVideoManager.muteAll()
+    GiphyVideoManager.resume()
+    GiphyVideoManager.muteAll()
   }
   latestAppState = appState
 }

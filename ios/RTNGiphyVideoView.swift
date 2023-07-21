@@ -35,7 +35,8 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
   //  @objc public var onUnmute: RCTDirectEventBlock?
   
   //MARK: RN Properties
-  @objc public var autoPlay: Bool = false
+  @objc
+  public var autoPlay: Bool = false
   
   var media: GPHMedia? {
     didSet {
@@ -121,7 +122,8 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
   }
   
   //MARK: RN Setters
-  @objc public func setMediaId(_ rnValue: NSString?) -> Void {
+  @objc
+  public func setMediaId(_ rnValue: NSString?) -> Void {
     guard
       let mediaId = rnValue as? String
     else {
@@ -137,7 +139,8 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
     }
   }
   
-  @objc public func setMuted(_ value: Bool) -> Void {
+  @objc
+  public func setMuted(_ value: Bool) -> Void {
     guard muted != value else {
       return
     }

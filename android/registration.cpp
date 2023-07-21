@@ -7,6 +7,8 @@ namespace facebook {
             auto providerRegistry = CoreComponentsRegistry::sharedProviderRegistry();
             providerRegistry->add(
                     concreteComponentDescriptorProvider<RTNGiphyMediaViewComponentDescriptor>());
+            providerRegistry->add(
+                    concreteComponentDescriptorProvider<RTNGiphyVideoViewComponentDescriptor>());
         }
     }
 }
