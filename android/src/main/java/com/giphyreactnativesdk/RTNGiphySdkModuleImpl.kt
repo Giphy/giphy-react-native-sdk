@@ -6,7 +6,7 @@ import com.giphy.sdk.ui.Giphy
 import com.giphyreactnativesdk.utils.getVideoPlayerFactory
 import com.giphyreactnativesdk.utils.initializeVideoCache
 
-class RTNGiphySDKModule internal constructor(context: ReactApplicationContext) :
+class RTNGiphySDKModuleImpl internal constructor(context: ReactApplicationContext) :
   RTNGiphySdkModuleSpec(context) {
   override fun getName() = NAME
 

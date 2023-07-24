@@ -37,15 +37,18 @@ open class RTNGiphyMediaView: UIView {
     return GPHMediaView()
   }()
 
-  @objc public func pause() {
+  @objc
+  public func pause() {
     mediaView.stopAnimating()
   }
 
-  @objc public func resume() {
+  @objc
+  public func resume() {
     mediaView.startAnimating()
   }
 
-  @objc public func setMediaId(_ rnValue: NSString?) -> Void {
+  @objc
+  public func setMediaId(_ rnValue: NSString?) -> Void {
     guard
         let mediaId = rnValue as? String
     else {
@@ -61,11 +64,13 @@ open class RTNGiphyMediaView: UIView {
     }
   }
 
-  @objc public func setAutoPlay(_ rnValue: Bool) -> Void {
+  @objc
+  public func setAutoPlay(_ rnValue: Bool) -> Void {
     mediaView.autoPlayAnimatedImage = rnValue
   }
 
-  @objc public func setRenditionType(_ rnValue: NSString) -> Void {
+  @objc
+  public func setRenditionType(_ rnValue: NSString) -> Void {
     let value = rnValue as String?
     if (value == nil) {
       renditionType = RTNGiphyMediaView.DEFAULT_RENDITION_TYPE
@@ -74,7 +79,8 @@ open class RTNGiphyMediaView: UIView {
     }
   }
 
-  @objc public func setResizeMode(_ rnValue: NSString) -> Void {
+  @objc
+  public func setResizeMode(_ rnValue: NSString) -> Void {
     resizeMode = ResizeMode.fromRNValue(value: rnValue as String?) ?? ResizeMode.defaultMode
   }
 

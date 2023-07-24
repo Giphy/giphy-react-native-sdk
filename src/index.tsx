@@ -22,7 +22,7 @@ export { GiphyMediaView, type GiphyMediaViewProps } from './GiphyMediaView'
 
 export { GiphyVideoManager } from './GiphyVideoManager'
 export { GiphyVideoView, type GiphyVideoViewProps } from './GiphyVideoView'
-export { GiphyVideoViewPlaybackState } from './specs/GiphyVideoView'
+export { GiphyVideoViewPlaybackState } from './specs/GiphyVideoViewNativeComponent'
 
 export { GiphyGridView, type GiphyGridViewProps } from './GiphyGridView'
 
