@@ -33,7 +33,7 @@ export class GiphyMediaView extends React.Component<GiphyMediaViewProps, {}> {
 
   render() {
     const {
-      autoPlay = false,
+      autoPlay = true,
       renditionType = 'fixed_width',
       media,
       showCheckeredBackground = false,

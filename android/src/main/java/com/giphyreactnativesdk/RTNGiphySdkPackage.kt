@@ -11,12 +11,16 @@ import com.facebook.react.uimanager.ViewManager
 class RTNGiphySdkPackage : TurboReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
     return when (name) {
-      RTNGiphySDKModuleImpl.NAME -> {
-        RTNGiphySDKModuleImpl(reactContext)
+      RTNGiphySdkModule.NAME -> {
+        RTNGiphySdkModule(reactContext)
       }
 
-      RTNGiphyVideoManagerImpl.NAME -> {
-        RTNGiphyVideoManagerImpl(reactContext)
+      RTNGiphyDialogModule.NAME -> {
+        RTNGiphyDialogModule(reactContext)
+      }
+
+      RTNGiphyVideoManager.NAME -> {
+        RTNGiphyVideoManager(reactContext)
       }
 
       else -> {
@@ -36,18 +40,27 @@ class RTNGiphySdkPackage : TurboReactPackage() {
     return ReactModuleInfoProvider {
       val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
       val isTurboModule: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-      moduleInfos[RTNGiphySDKModuleImpl.NAME] = ReactModuleInfo(
-        RTNGiphySDKModuleImpl.NAME,
-        RTNGiphySDKModuleImpl.NAME,
+      moduleInfos[RTNGiphySdkModule.NAME] = ReactModuleInfo(
+        RTNGiphySdkModule.NAME,
+        RTNGiphySdkModule.NAME,
         false,
         false,
         true,
         false,
         isTurboModule
       )
-      moduleInfos[RTNGiphyVideoManagerImpl.NAME] = ReactModuleInfo(
-        RTNGiphyVideoManagerImpl.NAME,
-        RTNGiphyVideoManagerImpl.NAME,
+      moduleInfos[RTNGiphyDialogModule.NAME] = ReactModuleInfo(
+        RTNGiphyDialogModule.NAME,
+        RTNGiphyDialogModule.NAME,
+        false,
+        false,
+        true,
+        false,
+        isTurboModule
+      )
+      moduleInfos[RTNGiphyVideoManager.NAME] = ReactModuleInfo(
+        RTNGiphyVideoManager.NAME,
+        RTNGiphyVideoManager.NAME,
         false,
         false,
         true,

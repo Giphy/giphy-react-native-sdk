@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "adb:reverse": "adb reverse tcp:8081 tcp:8081",
     "android": "NODE_OPTIONS=--openssl-legacy-provider react-native run-android",
     "build:android": "NODE_OPTIONS=--openssl-legacy-provider scripts/build.android.sh",
     "build:ios": ". ../scripts/sim.defaults.sh && scripts/build.ios.sh",
     "ios": "NODE_OPTIONS=--openssl-legacy-provider react-native run-ios",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider react-native start",
-    "adb:reverse": "adb reverse tcp:8081 tcp:8081"
+    "pods": "pod-install",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-native start"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.4.10",

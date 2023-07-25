@@ -34,7 +34,7 @@ RCT_EXPORT_METHOD(resume) {
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
 (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-  return std::make_shared<facebook::react::NativeGiphySDKSpecJSI>(params);
+  return std::make_shared<facebook::react::NativeGiphyVideoManagerSpecJSI>(params);
 }
 #endif
 

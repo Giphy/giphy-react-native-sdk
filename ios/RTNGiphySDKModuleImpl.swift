@@ -1,7 +1,6 @@
 import Foundation
 import GiphyUISDK
 
-@objc
 open class RTNGiphySDKModuleImpl: NSObject {
   @objc
   public static func configure(apiKey: NSString, verificationMode: Bool) -> Void {

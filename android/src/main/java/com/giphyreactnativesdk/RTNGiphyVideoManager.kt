@@ -3,7 +3,7 @@ package com.giphyreactnativesdk
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 
-class RTNGiphyVideoManagerImpl internal constructor(context: ReactApplicationContext) :
+class RTNGiphyVideoManager internal constructor(context: ReactApplicationContext) :
   RTNGiphyVideoManagerSpec(context) {
   override fun getName() = NAME
 

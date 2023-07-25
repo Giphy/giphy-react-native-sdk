@@ -1,3 +1,5 @@
+#import "RTNGiphyMediaView.h"
+
 #import <React/RCTViewManager.h>
 #import <React/RCTUIManager.h>
 #import "RCTBridge.h"
@@ -13,20 +15,24 @@
 
 @implementation RTNGiphyMediaViewManager
 
-RCT_EXPORT_MODULE(RTNGiphyMediaView)
+RCT_EXPORT_MODULE()
 
-- (UIView *)view
+- (RTNGiphyMediaViewImpl *)view
 {
-  return [[RTNGiphyMediaView alloc] init];
+  return [RTNGiphyMediaViewImpl new];
+}
+
++ (BOOL)requiresMainQueueSetup {
+    return YES;
 }
 
 #define QUICK_RCT_EXPORT_COMMAND_METHOD(name)                                                                        \
 RCT_EXPORT_METHOD(name:(nonnull NSNumber *)reactTag)                                                                 \
 {                                                                                                                    \
   [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {   \
-    RTNGiphyMediaView *view = (RTNGiphyMediaView *)viewRegistry[reactTag];                                           \
-    if (!view || ![view isKindOfClass:[RTNGiphyMediaView class]]) {                                                  \
-      RCTLogError(@"Cannot find RTNGiphyMediaView with tag #%@", reactTag);                                          \
+    RTNGiphyMediaViewImpl *view = (RTNGiphyMediaViewImpl *)viewRegistry[reactTag];                                   \
+    if (!view || ![view isKindOfClass:[RTNGiphyMediaViewImpl class]]) {                                              \
+      RCTLogError(@"Cannot find RTNGiphyMediaViewImpl with tag #%@", reactTag);                                      \
       return;                                                                                                        \
     }                                                                                                                \
     [view name];                                                                                                     \

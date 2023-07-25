@@ -12,11 +12,12 @@ export { GiphyDirection, GiphyStickersColumnCount, ResizeMode, IndicatorStyle, K
 export { GiphySDK, type GiphySDKConfig } from './GiphySDK'
 
 export {
+  GiphyDialog,
   GiphyDialogEvent,
-  type GiphyDialogMediaSelectEventHandler,
-  type GiphyDialogDismissEventHandler,
-} from './specs/GiphyDialog'
-export { GiphyDialog, type GiphyDialogConfig } from './GiphyDialog'
+  GiphyDialogMediaSelectEventHandler,
+  GiphyDialogDismissEventHandler,
+  type GiphyDialogConfig,
+} from './GiphyDialog'
 
 export { GiphyMediaView, type GiphyMediaViewProps } from './GiphyMediaView'
 

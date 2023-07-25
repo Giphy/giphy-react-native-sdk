@@ -1,8 +1,7 @@
 import UIKit
 import GiphyUISDK
 
-@objc
-open class RTNGiphyMediaView: UIView {
+open class RTNGiphyMediaViewImpl: UIView {
   static let DEFAULT_RENDITION_TYPE: GPHRenditionType = .fixedWidth
 
   private var media: GPHMedia? {
@@ -11,7 +10,7 @@ open class RTNGiphyMediaView: UIView {
     }
   }
 
-  private var renditionType: GPHRenditionType = RTNGiphyMediaView.DEFAULT_RENDITION_TYPE {
+  private var renditionType: GPHRenditionType = RTNGiphyMediaViewImpl.DEFAULT_RENDITION_TYPE {
     didSet {
       syncMediaViewSource()
     }
@@ -52,7 +51,7 @@ open class RTNGiphyMediaView: UIView {
     guard
         let mediaId = rnValue as? String
     else {
-      self.media = nil
+      media = nil
       return
     }
 
@@ -73,9 +72,9 @@ open class RTNGiphyMediaView: UIView {
   public func setRenditionType(_ rnValue: NSString) -> Void {
     let value = rnValue as String?
     if (value == nil) {
-      renditionType = RTNGiphyMediaView.DEFAULT_RENDITION_TYPE
+      renditionType = RTNGiphyMediaViewImpl.DEFAULT_RENDITION_TYPE
     } else {
-      renditionType = GPHRenditionType.fromRNValue(value: value!) ?? RTNGiphyMediaView.DEFAULT_RENDITION_TYPE
+      renditionType = GPHRenditionType.fromRNValue(value: value!) ?? RTNGiphyMediaViewImpl.DEFAULT_RENDITION_TYPE
     }
   }
 
