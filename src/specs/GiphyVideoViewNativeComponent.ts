@@ -16,7 +16,7 @@ export interface GiphyVideoViewMuteEvent {}
 
 export interface GiphyVideoViewUnmuteEvent {}
 
-export interface GiphyVideoViewPlaybackStateEvent {
+export interface GiphyVideoViewPlaybackStateChangeEvent {
   state: Int32
 }
 
@@ -28,10 +28,10 @@ export interface NativeProps extends ViewProps {
   autoPlay: boolean
   mediaId?: string
   muted: boolean
-  onError: DirectEventHandler<GiphyVideoViewErrorEvent>
-  onMute: DirectEventHandler<GiphyVideoViewMuteEvent>
-  onPlaybackStateChanged: DirectEventHandler<GiphyVideoViewPlaybackStateEvent>
-  onUnmute: DirectEventHandler<GiphyVideoViewUnmuteEvent>
+  onError?: DirectEventHandler<GiphyVideoViewErrorEvent>
+  onMute?: DirectEventHandler<GiphyVideoViewMuteEvent>
+  onPlaybackStateChanged?: DirectEventHandler<GiphyVideoViewPlaybackStateChangeEvent>
+  onUnmute?: DirectEventHandler<GiphyVideoViewUnmuteEvent>
 }
 
 export default codegenNativeComponent<NativeProps>('RTNGiphyVideoView') as HostComponent<NativeProps>

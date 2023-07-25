@@ -12,6 +12,7 @@
 		BFC4FAB5E21994F378B9177C /* ResizeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4F160020716974F4FCE5C /* ResizeMode.swift */; };
 		BFC4FEEFC5624121D7DB8417 /* RTNGiphyVideoManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFC4FA2EF2849FEF944FE9FC /* RTNGiphyVideoManager.mm */; };
 		D71E9BEA264D778500AF36FA /* RTNGiphyDialogModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E9BE9264D778500AF36FA /* RTNGiphyDialogModuleImpl.swift */; };
+		D728E89E2A704F2500373D90 /* RTNGiphyGridView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D728E89D2A704F2500373D90 /* RTNGiphyGridView.mm */; };
 		D74C198A2A5F003100398785 /* RTNGiphySDKModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* RTNGiphySDKModuleImpl.swift */; };
 		D75465C626B1AA170003EC5B /* RTNGiphySDKInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75465C526B1AA170003EC5B /* RTNGiphySDKInfo.swift */; };
 		D758E4E12A6AC84600EA89C8 /* RTNGiphyVideoView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D758E4E02A6AC84600EA89C8 /* RTNGiphyVideoView.mm */; };
@@ -24,9 +25,8 @@
 		D7CF43E12A6F0B76008C48D2 /* RTNGiphyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CF43E02A6F0B76008C48D2 /* RTNGiphyTheme.swift */; };
 		D7F008472667CBB700D31762 /* RTNGiphyMediaViewManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EE2653E4F30057D899 /* RTNGiphyMediaViewManager.mm */; };
 		D7F008492667CBC000D31762 /* RTNGiphyMediaViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C64EF2653EECD0057D899 /* RTNGiphyMediaViewImpl.swift */; };
-		D7F0084A2667CBD000D31762 /* RNGiphyGridViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */; };
-		D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */; };
-		D7F0084C2667CBD900D31762 /* RNGiphyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */; };
+		D7F0084B2667CBD400D31762 /* RTNGiphyGridViewManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D763A5F926553DBE00EF93C3 /* RTNGiphyGridViewManager.mm */; };
+		D7F0084C2667CBD900D31762 /* RTNGiphyGridViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A5FA26553DF500EF93C3 /* RTNGiphyGridViewImpl.swift */; };
 		D7F0084D2667CBE500D31762 /* RTNGiphySDKModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RTNGiphySDKModule.mm */; };
 		E09779C4375186BB133A97FA /* Pods_GiphyReactNativeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A70D494DD5AC43DFB0586E2 /* Pods_GiphyReactNativeSDK.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +52,8 @@
 		BFC4FA2EF2849FEF944FE9FC /* RTNGiphyVideoManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyVideoManager.mm; sourceTree = "<group>"; };
 		BFC4FB0A7EDF1B61F68C89DB /* RTNGiphyVideoViewImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTNGiphyVideoViewImpl.swift; sourceTree = "<group>"; };
 		D71E9BE9264D778500AF36FA /* RTNGiphyDialogModuleImpl.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RTNGiphyDialogModuleImpl.swift; sourceTree = "<group>"; tabWidth = 2; };
+		D728E89C2A704F0900373D90 /* RTNGiphyGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTNGiphyGridView.h; sourceTree = "<group>"; };
+		D728E89D2A704F2500373D90 /* RTNGiphyGridView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyGridView.mm; sourceTree = "<group>"; };
 		D73C64EE2653E4F30057D899 /* RTNGiphyMediaViewManager.mm */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyMediaViewManager.mm; sourceTree = "<group>"; tabWidth = 2; };
 		D73C64EF2653EECD0057D899 /* RTNGiphyMediaViewImpl.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RTNGiphyMediaViewImpl.swift; sourceTree = "<group>"; tabWidth = 2; };
 		D74C19882A5EC7AE00398785 /* RTNGiphySDKModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTNGiphySDKModule.h; sourceTree = "<group>"; };
@@ -60,9 +62,8 @@
 		D758E4E02A6AC84600EA89C8 /* RTNGiphyVideoView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyVideoView.mm; sourceTree = "<group>"; };
 		D758E4E22A6AC9DC00EA89C8 /* RTNGiphyVideoViewManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyVideoViewManager.mm; sourceTree = "<group>"; };
 		D758E4E42A6AD2EB00EA89C8 /* RTNGiphyVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTNGiphyVideoManager.h; sourceTree = "<group>"; };
-		D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridViewManager.swift; sourceTree = "<group>"; };
-		D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGiphyGridViewManager.m; sourceTree = "<group>"; };
-		D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNGiphyGridView.swift; sourceTree = "<group>"; };
+		D763A5F926553DBE00EF93C3 /* RTNGiphyGridViewManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyGridViewManager.mm; sourceTree = "<group>"; };
+		D763A5FA26553DF500EF93C3 /* RTNGiphyGridViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTNGiphyGridViewImpl.swift; sourceTree = "<group>"; };
 		D7C1A5FD27D0A1D200EF6E93 /* SharedVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedVideoPlayer.swift; sourceTree = "<group>"; };
 		D7C7FF072A6912690052F7A8 /* RTNGiphyMediaView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTNGiphyMediaView.h; sourceTree = "<group>"; };
 		D7C7FF082A6913810052F7A8 /* RTNGiphyMediaView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RTNGiphyMediaView.mm; sourceTree = "<group>"; };
@@ -101,12 +102,13 @@
 				E675D1333EAD4E1C97D6EC73 /* Frameworks */,
 				D7F008502667D6E700D31762 /* GiphyReactNativeSDK-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
-				D763A5FA26553DF500EF93C3 /* RNGiphyGridView.swift */,
-				D763A5F926553DBE00EF93C3 /* RNGiphyGridViewManager.m */,
-				D763A5F826553DAF00EF93C3 /* RNGiphyGridViewManager.swift */,
 				D7CF43DD2A6EFEEB008C48D2 /* RTNGiphyDialogModule.h */,
 				D7CF43DE2A6EFF0F008C48D2 /* RTNGiphyDialogModule.mm */,
 				D71E9BE9264D778500AF36FA /* RTNGiphyDialogModuleImpl.swift */,
+				D728E89C2A704F0900373D90 /* RTNGiphyGridView.h */,
+				D728E89D2A704F2500373D90 /* RTNGiphyGridView.mm */,
+				D763A5FA26553DF500EF93C3 /* RTNGiphyGridViewImpl.swift */,
+				D763A5F926553DBE00EF93C3 /* RTNGiphyGridViewManager.mm */,
 				D7C7FF072A6912690052F7A8 /* RTNGiphyMediaView.h */,
 				D7C7FF082A6913810052F7A8 /* RTNGiphyMediaView.mm */,
 				D73C64EF2653EECD0057D899 /* RTNGiphyMediaViewImpl.swift */,
@@ -230,16 +232,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F0084D2667CBE500D31762 /* RTNGiphySDKModule.mm in Sources */,
-				D7F0084C2667CBD900D31762 /* RNGiphyGridView.swift in Sources */,
+				D7F0084C2667CBD900D31762 /* RTNGiphyGridViewImpl.swift in Sources */,
 				D75465C626B1AA170003EC5B /* RTNGiphySDKInfo.swift in Sources */,
-				D7F0084B2667CBD400D31762 /* RNGiphyGridViewManager.m in Sources */,
+				D7F0084B2667CBD400D31762 /* RTNGiphyGridViewManager.mm in Sources */,
 				D7C1A5FE27D0A1D200EF6E93 /* SharedVideoPlayer.swift in Sources */,
 				D7CBE3FD2693220300A00F75 /* RTNGiphyTypeExtensions.swift in Sources */,
 				D7CF43E12A6F0B76008C48D2 /* RTNGiphyTheme.swift in Sources */,
 				D7F008492667CBC000D31762 /* RTNGiphyMediaViewImpl.swift in Sources */,
 				D758E4E32A6AC9DC00EA89C8 /* RTNGiphyVideoViewManager.mm in Sources */,
 				D7CF43DF2A6EFF0F008C48D2 /* RTNGiphyDialogModule.mm in Sources */,
-				D7F0084A2667CBD000D31762 /* RNGiphyGridViewManager.swift in Sources */,
 				D758E4E12A6AC84600EA89C8 /* RTNGiphyVideoView.mm in Sources */,
 				D71E9BEA264D778500AF36FA /* RTNGiphyDialogModuleImpl.swift in Sources */,
 				D7F008472667CBB700D31762 /* RTNGiphyMediaViewManager.mm in Sources */,
@@ -250,6 +251,7 @@
 				BFC4FEEFC5624121D7DB8417 /* RTNGiphyVideoManager.mm in Sources */,
 				BFC4F75222740EF60EF0F8EB /* RTNGiphyVideoViewImpl.swift in Sources */,
 				BFC4FAB5E21994F378B9177C /* ResizeMode.swift in Sources */,
+				D728E89E2A704F2500373D90 /* RTNGiphyGridView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

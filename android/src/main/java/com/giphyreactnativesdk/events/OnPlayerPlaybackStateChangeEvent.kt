@@ -11,9 +11,9 @@ enum class RTNGiphyVideoPlaybackState(val code: Int) {
   Paused(5),
 }
 
-class OnPlaybackStateChangeEvent
+class OnPlayerPlaybackStateChangeEvent
 constructor(surfaceId: Int, viewId: Int, private val state: RTNGiphyVideoPlaybackState) :
-  Event<OnPlaybackStateChangeEvent>(surfaceId, viewId) {
+  Event<OnPlayerPlaybackStateChangeEvent>(surfaceId, viewId) {
 
   override fun getEventName() = EVENT_NAME
 
@@ -28,6 +28,6 @@ constructor(surfaceId: Int, viewId: Int, private val state: RTNGiphyVideoPlaybac
   }
 
   companion object {
-    const val EVENT_NAME = "topPlaybackStateChange"
+    const val EVENT_NAME = "topPlayerPlaybackStateChange"
   }
 }

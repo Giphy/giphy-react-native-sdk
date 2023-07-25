@@ -23,7 +23,7 @@ export type GiphyDialogMediaSelectEventHandler = (e: { media: GiphyMedia }) => v
 
 export type GiphyDialogDismissEventHandler = (e: {}) => void
 
-export type GiphyDialogConfig = {
+export interface GiphyDialogConfig {
   clipsPreviewRenditionType?: GiphyClipsRendition
   confirmationRenditionType?: GiphyRendition
   enableDynamicText?: boolean
@@ -37,7 +37,7 @@ export type GiphyDialogConfig = {
   showConfirmationScreen?: boolean
   showSuggestionsBar?: boolean
   stickerColumnCount?: GiphyStickersColumnCount
-  theme: GiphyTheme | GiphyThemePreset
+  theme?: GiphyTheme | GiphyThemePreset
   trayHeightMultiplier?: number
 }
 
@@ -70,7 +70,7 @@ export const GiphyDialog = new (class GiphyDialog extends NativeEventEmitter {
   configure(config: GiphyDialogConfig) {
     NativeGiphyDialog.configure({
       ...config,
-      theme: serializeTheme(config.theme),
+      theme: serializeTheme(config.theme ?? 'light'),
     })
   }
 

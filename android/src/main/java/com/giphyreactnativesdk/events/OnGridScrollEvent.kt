@@ -4,9 +4,13 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.Event
 
-class OnErrorEvent
-constructor(surfaceId: Int, viewId: Int, private val details: String) :
-  Event<OnErrorEvent>(surfaceId, viewId) {
+class OnGridScrollEvent
+constructor(
+  surfaceId: Int,
+  viewId: Int,
+  private val offset: Double
+) :
+  Event<OnGridScrollEvent>(surfaceId, viewId) {
 
   override fun getEventName() = EVENT_NAME
 
@@ -16,11 +20,11 @@ constructor(surfaceId: Int, viewId: Int, private val details: String) :
 
   override fun getEventData(): WritableMap? {
     val event = Arguments.createMap()
-    event.putString("details", details)
+    event.putDouble("offset", offset)
     return event
   }
 
   companion object {
-    const val EVENT_NAME = "topErrorEvent"
+    const val EVENT_NAME = "topGridScroll"
   }
 }

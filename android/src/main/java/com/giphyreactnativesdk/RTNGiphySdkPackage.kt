@@ -33,6 +33,7 @@ class RTNGiphySdkPackage : TurboReactPackage() {
     val viewManagers: MutableList<ViewManager<*, *>> = ArrayList()
     viewManagers.add(RTNGiphyMediaViewManager())
     viewManagers.add(RTNGiphyVideoViewManager())
+    viewManagers.add(RTNGiphyGridViewManager())
     return viewManagers
   }
 

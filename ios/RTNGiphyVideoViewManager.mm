@@ -12,12 +12,11 @@
 @end
 
 @implementation RTNGiphyVideoViewManager {
-  RTNGiphyVideoViewImpl *_videoView;
 }
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
+- (RTNGiphyVideoViewImpl *)view
 {
   return [RTNGiphyVideoViewImpl new];
 }

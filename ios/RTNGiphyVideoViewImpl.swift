@@ -11,8 +11,7 @@ open class RTNGiphyVideoViewImpl: UIView {
   //MARK: RN Properties
   @objc public var autoPlay: Bool = false
 
-  private var videoPlayerDelegate: RTNGiphyVideoPlayerDelegate?
-
+  var videoPlayerDelegate: RTNGiphyVideoPlayerDelegate?
   var media: GPHMedia? {
     didSet {
       syncMedia()
@@ -43,6 +42,7 @@ open class RTNGiphyVideoViewImpl: UIView {
     ViewsRegister.shared.unregisterView(view: self)
     if (SharedGPHVideoPlayer.initialized && videoPlayerDelegate != nil) {
       SharedGPHVideoPlayer.shared.remove(listener: videoPlayerDelegate! as RTNGiphyVideoPlayerDelegate)
+      videoPlayerDelegate = nil
     }
   }
 
@@ -153,7 +153,7 @@ private class ViewsRegister {
   }
 }
 
-private class RTNGiphyVideoPlayerDelegate: GPHVideoPlayerStateListener {
+class RTNGiphyVideoPlayerDelegate: GPHVideoPlayerStateListener {
   private let view: RTNGiphyVideoViewImpl
 
   init(view: RTNGiphyVideoViewImpl) {

@@ -9,9 +9,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RTNGiphyVideoView : RCTViewComponentView
-@property (nonatomic, copy, nullable) NSString *mediaId;
-@property (nonatomic, assign) BOOL autoPlay;
-@property (nonatomic, assign) BOOL muted;
 @end
 
 NS_ASSUME_NONNULL_END

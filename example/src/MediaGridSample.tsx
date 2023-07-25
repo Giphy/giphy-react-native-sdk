@@ -69,7 +69,7 @@ export function MediaGridSample(props: MediaGridSampleProps) {
             fixedSizeCells={false}
             orientation={GiphyDirection.Vertical}
             renditionType={GiphyRendition.FixedWidth}
-            spanCount={1}
+            spanCount={2}
             showCheckeredBackground={false}
             style={styles.giphyGridView}
             testID="gph-grid-view"

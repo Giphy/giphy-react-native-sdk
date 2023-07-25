@@ -1,15 +1,15 @@
 package com.giphyreactnativesdk
 
+import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
-import com.giphyreactnativesdk.events.OnErrorEvent
-import com.giphyreactnativesdk.events.OnMuteEvent
-import com.giphyreactnativesdk.events.OnPlaybackStateChangeEvent
-import com.giphyreactnativesdk.events.OnUnmuteEvent
+import com.giphyreactnativesdk.events.OnPlayerErrorEvent
+import com.giphyreactnativesdk.events.OnPlayerMuteEvent
+import com.giphyreactnativesdk.events.OnPlayerPlaybackStateChangeEvent
+import com.giphyreactnativesdk.events.OnPlayerUnmuteEvent
 
-@Suppress("unused")
 @ReactModule(name = RTNGiphyVideoViewManager.NAME)
 class RTNGiphyVideoViewManager :
   RTNGiphyVideoViewManagerSpec<RTNGiphyVideoView>() {
@@ -37,16 +37,28 @@ class RTNGiphyVideoViewManager :
   override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any> {
     val export = super.getExportedCustomDirectEventTypeConstants() ?: MapBuilder.newHashMap()
 
-    export[OnPlaybackStateChangeEvent.EVENT_NAME] =
+    export[OnPlayerPlaybackStateChangeEvent.EVENT_NAME] =
       MapBuilder.of("registrationName", "onPlaybackStateChanged")
-    export[OnMuteEvent.EVENT_NAME] =
+    export[OnPlayerMuteEvent.EVENT_NAME] =
       MapBuilder.of("registrationName", "onMuteEvent")
-    export[OnUnmuteEvent.EVENT_NAME] =
+    export[OnPlayerUnmuteEvent.EVENT_NAME] =
       MapBuilder.of("registrationName", "onUnmuteEvent")
-    export[OnErrorEvent.EVENT_NAME] =
+    export[OnPlayerErrorEvent.EVENT_NAME] =
       MapBuilder.of("registrationName", "onErrorEvent")
 
     return export
+  }
+
+  @Suppress("unused", "UNUSED_PARAMETER")
+  @ReactMethod
+  fun addListener(eventName: String?) {
+    // Keep: Required for RN built in Event Emitter Calls.
+  }
+
+  @Suppress("unused", "UNUSED_PARAMETER")
+  @ReactMethod
+  fun removeListeners(count: Int?) {
+    // Keep: Required for RN built in Event Emitter Calls.
   }
 
   companion object {
