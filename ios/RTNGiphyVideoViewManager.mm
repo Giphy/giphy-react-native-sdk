@@ -13,11 +13,15 @@
 
 @implementation RTNGiphyVideoViewManager
 
-RCT_EXPORT_MODULE(RTNGiphyVideoView)
+RCT_EXPORT_MODULE()
 
-- (UIView *)view
+- (RTNGiphyVideoViewImpl *)view
 {
-  return [[RTNGiphyVideoView alloc] init];
+  return [[RTNGiphyVideoViewImpl alloc] init];
+}
+
++ (BOOL)requiresMainQueueSetup {
+    return YES;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(mediaId, NSString)

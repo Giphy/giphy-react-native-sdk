@@ -1,42 +1,17 @@
 import UIKit
 import GiphyUISDK
 
-private class ViewsRegister {
-  static let shared = ViewsRegister()
-  
-  private var views: [RTNGiphyVideoView] = []
-  
-  private init() {
-  }
-  
-  func registerView(view: RTNGiphyVideoView) {
-    views.append(view)
-  }
-  
-  func unregisterView(view: RTNGiphyVideoView) {
-    views.removeAll {
-      $0 == view
-    }
-  }
-  
-  func getLatestViewWithAutoPlayback() -> RTNGiphyVideoView? {
-    return views.last {
-      $0.autoPlay && $0.media != nil
-    }
-  }
-}
-
 @objc
-open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
-  //MARK: RN callbacks
-  //  @objc public var onError: RCTDirectEventBlock?
-  //  @objc public var onMute: RCTDirectEventBlock?
-  //  @objc public var onPlaybackStateChanged: RCTDirectEventBlock?
-  //  @objc public var onUnmute: RCTDirectEventBlock?
+open class RTNGiphyVideoViewImpl: UIView {
+  @objc public var onError: ((_ data: NSDictionary) -> Void)?
+  @objc public var onMute: ((_ data: NSDictionary) -> Void)?
+  @objc public var onPlaybackStateChanged: ((_ data: NSDictionary) -> Void)?
+  @objc public var onUnmute: ((_ data: NSDictionary) -> Void)?
   
   //MARK: RN Properties
-  @objc
-  public var autoPlay: Bool = false
+  @objc public var autoPlay: Bool = false
+
+  private var videoPlayerDelegate: RTNGiphyVideoPlayerDelegate?
   
   var media: GPHMedia? {
     didSet {
@@ -52,9 +27,12 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupView()
-    //    SharedGPHVideoPlayer.shared.add(listener: self)
+    
     ViewsRegister.shared.registerView(view: self)
+    setupView()
+    
+    videoPlayerDelegate = RTNGiphyVideoPlayerDelegate(view: self)
+    SharedGPHVideoPlayer.shared.add(listener: videoPlayerDelegate!)
   }
   
   required public init?(coder aDecoder: NSCoder) {
@@ -63,8 +41,8 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
   
   deinit {
     ViewsRegister.shared.unregisterView(view: self)
-    if (SharedGPHVideoPlayer.initialized) {
-      //      SharedGPHVideoPlayer.shared.remove(listener: self)
+    if (SharedGPHVideoPlayer.initialized && videoPlayerDelegate != nil) {
+      SharedGPHVideoPlayer.shared.remove(listener: videoPlayerDelegate! as RTNGiphyVideoPlayerDelegate)
     }
   }
   
@@ -85,7 +63,7 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
     playerView.backgroundColor = .clear
   }
   
-  private func isViewPlayerActive() -> Bool {
+  func isViewPlayerActive() -> Bool {
     return SharedGPHVideoPlayer.initialized && SharedGPHVideoPlayer.shared.playerView == playerView
   }
   
@@ -146,33 +124,66 @@ open class RTNGiphyVideoView: UIView /*, GPHVideoPlayerStateListener*/ {
     }
     muted = value
   }
+}
+
+private class ViewsRegister {
+  static let shared = ViewsRegister()
   
-  //  //MARK: GPHVideoViewDelegate stubs
-  //  func playerDidFail(_ description: String?) {
-  //    guard isViewPlayerActive() else {
-  //      return
-  //    }
+  private var views: [RTNGiphyVideoViewImpl] = []
   
-  //    onError?(["description": description ?? ""])
-  //  }
-  //
-  //  func playerStateDidChange(_ state: GPHVideoPlayerState) {
-  //    guard isViewPlayerActive() else {
-  //      return
-  //    }
-  //
-  //    onPlaybackStateChanged?(["state": state.toRNValue()])
-  //  }
-  //
-  //  func muteDidChange(isMuted: Bool) {
-  //    guard isViewPlayerActive() else {
-  //      return
-  //    }
-  //
-  //    if isMuted {
-  //      onMute?([:])
-  //    } else {
-  //      onUnmute?([:])
-  //    }
-  //  }
+  private init() {
+  }
+  
+  func registerView(view: RTNGiphyVideoViewImpl) {
+    views.append(view)
+  }
+  
+  func unregisterView(view: RTNGiphyVideoViewImpl) {
+    views.removeAll {
+      $0 == view
+    }
+  }
+  
+  func getLatestViewWithAutoPlayback() -> RTNGiphyVideoViewImpl? {
+    return views.last {
+      $0.autoPlay && $0.media != nil
+    }
+  }
+}
+
+private class RTNGiphyVideoPlayerDelegate: GPHVideoPlayerStateListener {
+  private let view: RTNGiphyVideoViewImpl
+  
+  init(view: RTNGiphyVideoViewImpl) {
+    self.view = view
+  }
+  
+  //MARK: GPHVideoViewDelegate stubs
+  func playerDidFail(_ description: String?) {
+    guard view.isViewPlayerActive() else {
+      return
+    }
+    
+    view.onError?(["description": description ?? ""])
+  }
+  
+  func playerStateDidChange(_ state: GPHVideoPlayerState) {
+    guard view.isViewPlayerActive() else {
+      return
+    }
+    
+    view.onPlaybackStateChanged?(["state": state.toRNValue()])
+  }
+  
+  func muteDidChange(isMuted: Bool) {
+    guard view.isViewPlayerActive() else {
+      return
+    }
+    
+    if isMuted {
+      view.onMute?([:])
+    } else {
+      view.onUnmute?([:])
+    }
+  }
 }

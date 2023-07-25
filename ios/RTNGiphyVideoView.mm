@@ -1,5 +1,5 @@
 #ifdef RCT_NEW_ARCH_ENABLED
-#import "RTNGiphyMediaBridgeView.h"
+#import "RTNGiphyVideoView.h"
 
 #import <React/RCTConversions.h>
 #import <React/RCTFabricComponentsPlugins.h>
@@ -18,38 +18,38 @@
 
 using namespace facebook::react;
 
-@interface RTNGiphyMediaBridgeView () <RCTRTNGiphyMediaViewViewProtocol>
+@interface RTNGiphyVideoView () <RCTRTNGiphyVideoViewViewProtocol>
 
 @end
 
-@implementation RTNGiphyMediaBridgeView {
-  RTNGiphyMediaView * _view;
+@implementation RTNGiphyVideoView {
+  RTNGiphyVideoViewImpl * _view;
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider
 {
-  return concreteComponentDescriptorProvider<RTNGiphyMediaViewComponentDescriptor>();
+  return concreteComponentDescriptorProvider<RTNGiphyVideoViewComponentDescriptor>();
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
   if (self = [super initWithFrame:frame]) {
-    static const auto defaultProps = std::make_shared<const RTNGiphyMediaViewProps>();
+    static const auto defaultProps = std::make_shared<const RTNGiphyVideoViewProps>();
     _props = defaultProps;
-    
-    _view = [[RTNGiphyMediaView alloc] init];
-    
+
+    _view = [[RTNGiphyVideoViewImpl alloc] init];
+
     self.contentView = _view;
   }
-  
+
   return self;
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
 {
-  const auto &oldViewProps = *std::static_pointer_cast<RTNGiphyMediaViewProps const>(_props);
-  const auto &newViewProps = *std::static_pointer_cast<RTNGiphyMediaViewProps const>(props);
-  
+  const auto &oldViewProps = *std::static_pointer_cast<RTNGiphyVideoViewProps const>(_props);
+  const auto &newViewProps = *std::static_pointer_cast<RTNGiphyVideoViewProps const>(props);
+
   #define REMAP_GPH_MEDIA_VIEW_PROP(name)                    \
   if (oldViewProps.name != newViewProps.name) {              \
     _view.name = newViewProps.name;                          \
@@ -62,35 +62,17 @@ using namespace facebook::react;
 
   REMAP_GPH_MEDIA_VIEW_STR_PROP(mediaId)
   REMAP_GPH_MEDIA_VIEW_PROP(autoPlay)
-  REMAP_GPH_MEDIA_VIEW_STR_PROP(renditionType)
-  REMAP_GPH_MEDIA_VIEW_STR_PROP(resizeMode)
+  REMAP_GPH_MEDIA_VIEW_PROP(muted)
 
   [super updateProps:props oldProps:oldProps];
 }
-
-- (void)handleCommand:(nonnull const NSString *)commandName args:(nonnull const NSArray *)args {
-  NSString *PAUSE = @"pause";
-  NSString *RESUME = @"resume";
-  if([commandName isEqual:PAUSE]) {
-    [self pause];
-  } else if ([commandName isEqual:RESUME]) {
-    [self resume];
-  }
-}
-
-- (void)pause {
-  [_view pause];
-}
-
-- (void)resume {
-  [_view resume];
-}
-
-Class<RCTComponentViewProtocol> RTNGiphyMediaViewCls(void)
-{
-  return RTNGiphyMediaBridgeView.class;
-}
-
 @end
+
+Class<RCTComponentViewProtocol> RTNGiphyVideoViewCls(void)
+{
+  return RTNGiphyVideoView.class;
+}
+
 #endif
+
 
