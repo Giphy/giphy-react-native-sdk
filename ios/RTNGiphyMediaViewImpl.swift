@@ -1,7 +1,6 @@
 import UIKit
 import GiphyUISDK
 
-@objc
 open class RTNGiphyMediaViewImpl: UIView {
   static let DEFAULT_RENDITION_TYPE: GPHRenditionType = .fixedWidth
 
@@ -52,7 +51,7 @@ open class RTNGiphyMediaViewImpl: UIView {
     guard
         let mediaId = rnValue as? String
     else {
-      self.media = nil
+      media = nil
       return
     }
 

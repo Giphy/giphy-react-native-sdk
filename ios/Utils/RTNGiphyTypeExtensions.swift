@@ -238,3 +238,56 @@ public extension GPHThemeType {
     }
   }
 }
+
+public extension GiphyViewController {
+  func applyRNConfig(_ options: NSDictionary) -> Void {
+    if let rawMediaTypeConfig = options["mediaTypeConfig"] as? [String] {
+      mediaTypeConfig = rawMediaTypeConfig.compactMap {
+        GPHContentType.fromRNValue(value: $0)
+      }
+    }
+
+    enableDynamicText = options["enableDynamicText"] as? Bool ?? false
+    theme = RTNGiphyTheme(rnConfig: options["theme"] as? NSDictionary)
+
+    let rawRating = options["rating"] as? String
+    if let rating = GPHRatingType.fromRNValue(value: rawRating) {
+      self.rating = rating
+    }
+    
+    let rawRenditionType = options["renditionType"] as? String
+    if let renditionType = GPHRenditionType.fromRNValue(value: rawRenditionType) {
+      self.renditionType = renditionType
+    }
+    
+    let rawClipsPreviewRenditionType = options["clipsPreviewRenditionType"] as? String
+    if let clipsPreviewRenditionType = GPHRenditionType.fromRNValue(value: rawClipsPreviewRenditionType) {
+      self.clipsPreviewRenditionType = clipsPreviewRenditionType
+    }
+    
+    let showConfirmationScreen = options["showConfirmationScreen"] as? Bool
+    if showConfirmationScreen != nil {
+      self.showConfirmationScreen = showConfirmationScreen!
+    }
+    
+    let rawStickerColumnCount = options["stickerColumnCount"] as? Int
+    if let stickerColumnCount = GPHStickerColumnCount.fromRNValue(value: rawStickerColumnCount) {
+      self.stickerColumnCount = stickerColumnCount
+    }
+    
+    let shouldLocalizeSearch = options["shouldLocalizeSearch"] as? Bool
+    if shouldLocalizeSearch != nil {
+      self.shouldLocalizeSearch = shouldLocalizeSearch!
+    }
+    
+    let trayHeightMultiplier = options["trayHeightMultiplier"] as? CGFloat
+    if trayHeightMultiplier != nil {
+      GiphyViewController.trayHeightMultiplier = trayHeightMultiplier!
+    }
+    
+    let rawSelectedContentType = options["selectedContentType"] as? String
+    if let selectedContentType = GPHContentType.fromRNValue(value: rawSelectedContentType) {
+      self.selectedContentType = selectedContentType
+    }
+  }
+}
