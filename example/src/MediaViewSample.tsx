@@ -20,8 +20,8 @@ export function MediaViewSample(props: MediaViewSampleProps) {
         muted={true}
         style={{ aspectRatio: media.aspectRatio }}
         testID={`gph-video-view-${media.id}`}
-        onMute={(e) => console.log('Mute', e.target)}
-        onUnmute={(e) => console.log('Unmute', e.target)}
+        onMute={(e) => console.log('Mute', e.nativeEvent)}
+        onUnmute={(e) => console.log('Unmute', e.nativeEvent)}
         onError={(e) => console.error(e.nativeEvent.description)}
         onPlaybackStateChanged={(e) => console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))}
       />

@@ -19,7 +19,7 @@ RCT_EXPORT_MODULE()
 
 - (RTNGiphyMediaViewImpl *)view
 {
-  return [[RTNGiphyMediaViewImpl alloc] init];
+  return [RTNGiphyMediaViewImpl new];
 }
 
 + (BOOL)requiresMainQueueSetup {

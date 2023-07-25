@@ -3,14 +3,15 @@ import GiphyUISDK
 
 @objc
 open class RTNGiphyVideoViewImpl: UIView {
-  @objc public var onError: ((_ data: NSDictionary) -> Void)?
-  @objc public var onMute: ((_ data: NSDictionary) -> Void)?
-  @objc public var onPlaybackStateChanged: ((_ data: NSDictionary) -> Void)?
-  @objc public var onUnmute: ((_ data: NSDictionary) -> Void)?
+  //MARK: RN Event Handlers
+  @objc public var onError: ((_ data: NSDictionary) -> Void)? = nil
+  @objc public var onMute: ((_ data: NSDictionary) -> Void)? = nil
+  @objc public var onPlaybackStateChanged: ((_ data: NSDictionary) -> Void)? = nil
+  @objc public var onUnmute: ((_ data: NSDictionary) -> Void)? = nil
   
   //MARK: RN Properties
   @objc public var autoPlay: Bool = false
-
+  
   private var videoPlayerDelegate: RTNGiphyVideoPlayerDelegate?
   
   var media: GPHMedia? {

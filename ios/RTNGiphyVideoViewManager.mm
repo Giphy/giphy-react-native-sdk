@@ -11,17 +11,19 @@
 @interface RTNGiphyVideoViewManager : RCTViewManager
 @end
 
-@implementation RTNGiphyVideoViewManager
+@implementation RTNGiphyVideoViewManager {
+  RTNGiphyVideoViewImpl *_videoView;
+}
 
 RCT_EXPORT_MODULE()
 
-- (RTNGiphyVideoViewImpl *)view
+- (UIView *)view
 {
-  return [[RTNGiphyVideoViewImpl alloc] init];
+  return [RTNGiphyVideoViewImpl new];
 }
 
 + (BOOL)requiresMainQueueSetup {
-    return YES;
+  return YES;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(mediaId, NSString)
@@ -30,12 +32,11 @@ RCT_EXPORT_VIEW_PROPERTY(autoPlay, BOOL)
 
 RCT_EXPORT_VIEW_PROPERTY(muted, BOOL)
 
-//RCT_EXPORT_VIEW_PROPERTY(onError, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onError, RCTDirectEventBlock)
 
-//RCT_EXPORT_VIEW_PROPERTY(onMute, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onMute, RCTDirectEventBlock)
 
-//RCT_EXPORT_VIEW_PROPERTY(onPlaybackStateChanged, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onPlaybackStateChanged, RCTDirectEventBlock)
 
-//RCT_EXPORT_VIEW_PROPERTY(onUnmute, RCTDirectEventBlock)
-
+RCT_EXPORT_VIEW_PROPERTY(onUnmute, RCTDirectEventBlock)
 @end

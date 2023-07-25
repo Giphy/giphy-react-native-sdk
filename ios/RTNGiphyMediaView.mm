@@ -36,7 +36,7 @@ using namespace facebook::react;
     static const auto defaultProps = std::make_shared<const RTNGiphyMediaViewProps>();
     _props = defaultProps;
 
-    _view = [[RTNGiphyMediaViewImpl alloc] init];
+    _view = [RTNGiphyMediaViewImpl new];
 
     self.contentView = _view;
   }

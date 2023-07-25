@@ -44,10 +44,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 10,
     maxHeight: 300,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
     width: '100%',
   },
 })
