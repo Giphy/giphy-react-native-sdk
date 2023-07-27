@@ -75,29 +75,29 @@ extension RTNGiphyDialogModuleImpl {
 }
 
 class RTNGiphyViewControllerDelegate: GiphyDelegate {
-  private let module: RTNGiphyDialogModuleImpl
+  private weak var module: RTNGiphyDialogModuleImpl?
 
   init(module: RTNGiphyDialogModuleImpl) {
     self.module = module
   }
 
   open func didSelectMedia(giphyViewController: GiphyViewController, media: GPHMedia) {
-    let rawFileType = module.config["fileType"] as? String
+    let rawFileType = module?.config["fileType"] as? String
     var fileType: GPHFileExtension = .gif
     if rawFileType != nil {
       fileType = GPHFileExtension.fromRNValue(value: rawFileType!) ?? .gif
     }
 
-    let mediaData = media.toRNValue(rendition: module.giphyViewController?.renditionType,
+    let mediaData = media.toRNValue(rendition: module?.giphyViewController?.renditionType,
         fileType: fileType)
-    module.rtnDelegate?.sendEvent(
+    module?.rtnDelegate?.sendEvent(
         name: RTNGiphyDialogModuleImpl.Event.onMediaSelect.rawValue,
         result: ["media": mediaData]
     );
   }
 
   open func didDismiss(controller: GiphyViewController?) {
-    module.rtnDelegate?.sendEvent(
+    module?.rtnDelegate?.sendEvent(
         name: RTNGiphyDialogModuleImpl.Event.onDismiss.rawValue,
         result: [:]
     );

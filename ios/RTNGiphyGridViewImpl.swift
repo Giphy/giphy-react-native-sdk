@@ -89,7 +89,7 @@ open class RTNGiphyGridViewImpl: UIView {
 }
 
 class RTNGiphyGridDelegate: GPHGridDelegate {
-  private let view: RTNGiphyGridViewImpl
+  private weak var view: RTNGiphyGridViewImpl?
 
   init(view: RTNGiphyGridViewImpl) {
     self.view = view
@@ -97,16 +97,16 @@ class RTNGiphyGridDelegate: GPHGridDelegate {
   
   //MARK: GPHGridDelegate stubs
   public func contentDidUpdate(resultCount: Int, error: Error?) {
-    view.onContentUpdate?(["resultCount": resultCount])
+    view?.onContentUpdate?(["resultCount": resultCount])
   }
 
   public func didSelectMedia(media: GPHMedia, cell: UICollectionViewCell) {
-    let mediaData = media.toRNValue(rendition: view.gridController.renditionType)
-    view.onMediaSelect?(["media": RCTJSONStringify(mediaData, nil) ?? ""])
+    let mediaData = media.toRNValue(rendition: view?.gridController.renditionType)
+    view?.onMediaSelect?(["media": RCTJSONStringify(mediaData, nil) ?? ""])
   }
 
   public func didScroll(offset: CGFloat) {
-    view.onScroll?(["offset": offset])
+    view?.onScroll?(["offset": offset])
   }
 
   public func didSelectMoreByYou(query: String) {

@@ -154,7 +154,7 @@ private class ViewsRegister {
 }
 
 class RTNGiphyVideoPlayerDelegate: GPHVideoPlayerStateListener {
-  private let view: RTNGiphyVideoViewImpl
+  private weak var view: RTNGiphyVideoViewImpl?
 
   init(view: RTNGiphyVideoViewImpl) {
     self.view = view
@@ -162,30 +162,30 @@ class RTNGiphyVideoPlayerDelegate: GPHVideoPlayerStateListener {
 
   //MARK: GPHVideoViewDelegate stubs
   func playerDidFail(_ description: String?) {
-    guard view.isViewPlayerActive() else {
+    guard view != nil, view!.isViewPlayerActive() else {
       return
     }
 
-    view.onError?(["description": description ?? ""])
+    view?.onError?(["description": description ?? ""])
   }
 
   func playerStateDidChange(_ state: GPHVideoPlayerState) {
-    guard view.isViewPlayerActive() else {
+    guard view != nil, view!.isViewPlayerActive() else {
       return
     }
 
-    view.onPlaybackStateChanged?(["state": state.toRNValue()])
+    view?.onPlaybackStateChanged?(["state": state.toRNValue()])
   }
 
   func muteDidChange(isMuted: Bool) {
-    guard view.isViewPlayerActive() else {
+    guard view != nil, view!.isViewPlayerActive() else {
       return
     }
 
     if isMuted {
-      view.onMute?([:])
+      view?.onMute?([:])
     } else {
-      view.onUnmute?([:])
+      view?.onUnmute?([:])
     }
   }
 }
