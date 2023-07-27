@@ -9,6 +9,8 @@ namespace facebook {
                     concreteComponentDescriptorProvider<RTNGiphyMediaViewComponentDescriptor>());
             providerRegistry->add(
                     concreteComponentDescriptorProvider<RTNGiphyVideoViewComponentDescriptor>());
+            providerRegistry->add(
+                    concreteComponentDescriptorProvider<RTNGiphyGridViewComponentDescriptor>());
         }
     }
 }

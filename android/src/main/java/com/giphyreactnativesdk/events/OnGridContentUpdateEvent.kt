@@ -4,9 +4,13 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.Event
 
-class OnUnmuteEvent
-constructor(surfaceId: Int, viewId: Int) :
-  Event<OnUnmuteEvent>(surfaceId, viewId) {
+class OnGridContentUpdateEvent
+constructor(
+  surfaceId: Int,
+  viewId: Int,
+  private val resultCount: Int,
+) :
+  Event<OnGridContentUpdateEvent>(surfaceId, viewId) {
 
   override fun getEventName() = EVENT_NAME
 
@@ -15,10 +19,12 @@ constructor(surfaceId: Int, viewId: Int) :
   override fun getCoalescingKey(): Short = 0
 
   override fun getEventData(): WritableMap? {
-    return Arguments.createMap()
+    val event = Arguments.createMap()
+    event.putInt("resultCount", resultCount)
+    return event
   }
 
   companion object {
-    const val EVENT_NAME = "topUnmuteEvent"
+    const val EVENT_NAME = "topGridContentUpdate"
   }
 }

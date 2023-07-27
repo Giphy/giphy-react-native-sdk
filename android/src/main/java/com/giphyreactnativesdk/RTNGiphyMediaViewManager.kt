@@ -5,7 +5,6 @@ import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 
-@Suppress("unused")
 @ReactModule(name = RTNGiphyMediaViewManager.NAME)
 class RTNGiphyMediaViewManager :
   RTNGiphyMediaViewManagerSpec<RTNGiphyMediaView>() {

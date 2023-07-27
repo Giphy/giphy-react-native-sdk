@@ -3,15 +3,15 @@
 #import <React/RCTViewComponentView.h>
 #import <UIKit/UIKit.h>
 
-#ifndef RTNGiphyMediaViewNativeComponent_h
-#define RTNGiphyMediaViewNativeComponent_h
+#ifndef RTNGiphyGridViewNativeComponent_h
+#define RTNGiphyGridViewNativeComponent_h
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RTNGiphyMediaView : RCTViewComponentView
+@interface RTNGiphyGridView : RCTViewComponentView
 @end
 
 NS_ASSUME_NONNULL_END
 
-#endif /* RTNGiphyMediaView_h */
+#endif /* RTNGiphyGridView_h */
 #endif /* RCT_NEW_ARCH_ENABLED */

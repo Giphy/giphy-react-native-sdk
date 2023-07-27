@@ -4,21 +4,20 @@ import { AppState, type AppStateStatus, type ViewProps } from 'react-native'
 
 import type { GiphyMediaID } from './dto/giphyMedia'
 import { GiphyVideoManager } from './GiphyVideoManager'
-import { noop } from './utils/noop'
 import NativeGiphyVideoView, {
   type GiphyVideoViewErrorEvent,
   type GiphyVideoViewMuteEvent,
-  type GiphyVideoViewPlaybackStateEvent,
+  type GiphyVideoViewPlaybackStateChangeEvent,
   type GiphyVideoViewUnmuteEvent,
 } from './specs/GiphyVideoViewNativeComponent'
 
-export type GiphyVideoViewProps = ViewProps & {
+export interface GiphyVideoViewProps extends ViewProps {
   autoPlay?: boolean
   media?: GiphyMediaID
   muted?: boolean
   onError?: DirectEventHandler<GiphyVideoViewErrorEvent>
   onMute?: DirectEventHandler<GiphyVideoViewMuteEvent>
-  onPlaybackStateChanged?: DirectEventHandler<GiphyVideoViewPlaybackStateEvent>
+  onPlaybackStateChanged?: DirectEventHandler<GiphyVideoViewPlaybackStateChangeEvent>
   onUnmute?: DirectEventHandler<GiphyVideoViewUnmuteEvent>
 }
 
@@ -73,28 +72,8 @@ export class GiphyVideoView extends React.Component<GiphyVideoViewProps, {}> {
   }
 
   render() {
-    const {
-      autoPlay = false,
-      media,
-      muted = false,
-      onError = noop,
-      onMute = noop,
-      onPlaybackStateChanged = noop,
-      onUnmute = noop,
-      ...other
-    } = this.props
+    const { autoPlay = false, media, muted = false, ...other } = this.props
 
-    return (
-      <NativeGiphyVideoView
-        autoPlay={autoPlay}
-        mediaId={media?.id}
-        muted={muted}
-        onError={onError}
-        onMute={onMute}
-        onPlaybackStateChanged={onPlaybackStateChanged}
-        onUnmute={onUnmute}
-        {...other}
-      />
-    )
+    return <NativeGiphyVideoView autoPlay={autoPlay} mediaId={media?.id} muted={muted} {...other} />
   }
 }

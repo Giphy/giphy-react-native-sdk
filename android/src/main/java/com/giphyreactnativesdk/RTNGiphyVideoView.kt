@@ -11,10 +11,10 @@ import com.giphy.sdk.ui.utils.GPHAbstractVideoPlayer
 import com.giphy.sdk.ui.utils.GPHPlayerStateListener
 import com.giphy.sdk.ui.utils.GPHVideoPlayerState
 import com.giphy.sdk.ui.views.GPHVideoPlayerView
-import com.giphyreactnativesdk.events.OnErrorEvent
-import com.giphyreactnativesdk.events.OnMuteEvent
-import com.giphyreactnativesdk.events.OnPlaybackStateChangeEvent
-import com.giphyreactnativesdk.events.OnUnmuteEvent
+import com.giphyreactnativesdk.events.OnPlayerErrorEvent
+import com.giphyreactnativesdk.events.OnPlayerMuteEvent
+import com.giphyreactnativesdk.events.OnPlayerPlaybackStateChangeEvent
+import com.giphyreactnativesdk.events.OnPlayerUnmuteEvent
 import com.giphyreactnativesdk.events.RTNGiphyVideoPlaybackState
 import timber.log.Timber
 
@@ -104,7 +104,7 @@ class RTNGiphyVideoView @JvmOverloads constructor(
         is GPHVideoPlayerState.Ready -> {
           syncRNState()
           dispatchEvent(
-            OnPlaybackStateChangeEvent(
+            OnPlayerPlaybackStateChangeEvent(
               surfaceId,
               this.id,
               RTNGiphyVideoPlaybackState.ReadyToPlay
@@ -114,7 +114,7 @@ class RTNGiphyVideoView @JvmOverloads constructor(
 
         is GPHVideoPlayerState.Playing -> {
           dispatchEvent(
-            OnPlaybackStateChangeEvent(
+            OnPlayerPlaybackStateChangeEvent(
               surfaceId,
               this.id,
               RTNGiphyVideoPlaybackState.Playing
@@ -124,7 +124,7 @@ class RTNGiphyVideoView @JvmOverloads constructor(
 
         is GPHVideoPlayerState.Error -> {
           dispatchEvent(
-            OnErrorEvent(
+            OnPlayerErrorEvent(
               surfaceId,
               this.id, it.details
             )
@@ -133,14 +133,14 @@ class RTNGiphyVideoView @JvmOverloads constructor(
 
         is GPHVideoPlayerState.MuteChanged -> {
           if (it.muted) {
-            dispatchEvent(OnUnmuteEvent(surfaceId, this.id))
+            dispatchEvent(OnPlayerUnmuteEvent(surfaceId, this.id))
           } else {
-            dispatchEvent(OnMuteEvent(surfaceId, this.id))
+            dispatchEvent(OnPlayerMuteEvent(surfaceId, this.id))
           }
         }
 
         is GPHVideoPlayerState.Unknown -> dispatchEvent(
-          OnPlaybackStateChangeEvent(
+          OnPlayerPlaybackStateChangeEvent(
             surfaceId,
             this.id,
             RTNGiphyVideoPlaybackState.Unknown
@@ -153,7 +153,7 @@ class RTNGiphyVideoView @JvmOverloads constructor(
 
       if (videoPlayer?.paused == true) {
         dispatchEvent(
-          OnPlaybackStateChangeEvent(
+          OnPlayerPlaybackStateChangeEvent(
             surfaceId,
             this.id,
             RTNGiphyVideoPlaybackState.Paused

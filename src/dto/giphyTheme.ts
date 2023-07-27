@@ -96,10 +96,8 @@ type ChangeThemeColorType<T> = {
 
 export type GiphyTheme = ChangeThemeColorType<NativeGiphyTheme>
 
-export function serializeTheme(theme: GiphyTheme | GiphyThemePreset | undefined): NativeGiphyTheme | undefined {
-  if (!theme) {
-    return undefined
-  } else if (typeof theme === 'string') {
+export function serializeTheme(theme: GiphyTheme | GiphyThemePreset): NativeGiphyTheme {
+  if (typeof theme === 'string') {
     return {
       preset: theme,
     }

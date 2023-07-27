@@ -7,8 +7,8 @@ import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
 import { Dialog } from './Dialog'
 import { GIPHY_MEDIA_FIXTURE } from './fixtures'
+import { MediaGridSample } from './MediaGridSample'
 import { MediaViewSample } from './MediaViewSample'
-// import { MediaGridSample } from './MediaGridSample'
 
 const styles = StyleSheet.create({
   container: {
@@ -103,8 +103,9 @@ export default function App() {
       <Dialog visible={dialogSettingsVisible} onRequestClose={() => setDialogSettingsVisible(false)}>
         <GiphyDialogSettings settings={giphyDialogSettings} onSettingsChange={setGiphyDialogSettings} />
       </Dialog>
+
       {/* Displaying Giphy Grid View with the custom search bar */}
-      {/*<MediaGridSample onMediaSelect={addMedia} style={styles.card} />*/}
+      <MediaGridSample onMediaSelect={addMedia} style={styles.card} />
 
       {/*Displaying selected media*/}
       <View style={styles.card}>
