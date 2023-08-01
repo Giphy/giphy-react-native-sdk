@@ -1,6 +1,5 @@
 package com.giphyreactnativesdk.dto
 
-import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
 import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.core.models.enums.MediaType
@@ -9,6 +8,7 @@ import com.giphy.sdk.ui.utils.GifUtils
 import com.giphy.sdk.ui.utils.aspectRatio
 import com.giphyreactnativesdk.utils.jsonObjectToRNMap
 import com.google.gson.Gson
+import com.google.gson.JsonElement
 
 
 object RTNGiphyMedia {
@@ -18,17 +18,20 @@ object RTNGiphyMedia {
   }
 
   fun toRNValue(media: Media, renditionType: RenditionType?): WritableMap {
+    return jsonObjectToRNMap(toJson(media, renditionType))
+  }
+
+  fun toJson(media: Media, renditionType: RenditionType?): JsonElement {
     val gson = Gson()
-    val mediaJson = gson.toJsonTree(media)
-    val output = Arguments.createMap()
+    val output = HashMap<String, Any>()
 
-    output.putString("id", media.id)
-    output.putString("url", getGifURL(media, renditionType))
-    output.putDouble("aspectRatio", media.aspectRatio.toDouble())
-    output.putBoolean("isVideo", media.type == MediaType.video)
-    output.putBoolean("isDynamic", media.isDynamic)
-    output.putMap("data", jsonObjectToRNMap(mediaJson))
+    output["id"] = media.id
+    output["url"] = getGifURL(media, renditionType) ?: ""
+    output["aspectRatio"] = media.aspectRatio.toDouble()
+    output["isVideo"] = media.type == MediaType.video
+    output["isDynamic"] = media.isDynamic
+    output["data"] = media
 
-    return output
+    return gson.toJsonTree(output)
   }
 }
