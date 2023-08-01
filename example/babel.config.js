@@ -13,13 +13,5 @@ module.exports = {
         },
       },
     ],
-    [
-      'module:react-native-dotenv',
-      {
-        moduleName: 'react-native-dotenv',
-        safe: true,
-        whitelist: ['ANDROID_GIPHY_API_KEY', 'IOS_GIPHY_API_KEY'],
-      },
-    ],
   ],
 }

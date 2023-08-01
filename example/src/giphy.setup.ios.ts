@@ -1,6 +1,6 @@
+import Config from 'react-native-config'
 import { GiphySDK } from '@giphy/react-native-sdk'
-import { IOS_GIPHY_API_KEY } from 'react-native-dotenv'
 
-if (IOS_GIPHY_API_KEY) {
-  GiphySDK.configure({ apiKey: IOS_GIPHY_API_KEY })
+if (Config.IOS_GIPHY_API_KEY) {
+  GiphySDK.configure({ apiKey: Config.IOS_GIPHY_API_KEY })
 }
