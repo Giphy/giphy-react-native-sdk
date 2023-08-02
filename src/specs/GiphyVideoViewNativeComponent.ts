@@ -12,17 +12,17 @@ export const GiphyVideoViewPlaybackState = {
 
 export type GiphyVideoViewPlaybackState = (typeof GiphyVideoViewPlaybackState)[keyof typeof GiphyVideoViewPlaybackState]
 
-export interface GiphyVideoViewMuteEvent {}
+export type GiphyVideoViewMuteEvent = Readonly<{}>
 
-export interface GiphyVideoViewUnmuteEvent {}
+export type GiphyVideoViewUnmuteEvent = Readonly<{}>
 
-export interface GiphyVideoViewPlaybackStateChangeEvent {
+export type GiphyVideoViewPlaybackStateChangeEvent = Readonly<{
   state: Int32
-}
+}>
 
-export interface GiphyVideoViewErrorEvent {
+export type GiphyVideoViewErrorEvent = Readonly<{
   description: string
-}
+}>
 
 export interface NativeProps extends ViewProps {
   autoPlay: boolean

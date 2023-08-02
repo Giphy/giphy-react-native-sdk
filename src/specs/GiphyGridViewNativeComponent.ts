@@ -2,17 +2,17 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 import type { HostComponent, ViewProps } from 'react-native'
 import type { DirectEventHandler, Double, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
 
-export interface GiphyGridViewContentUpdateEvent {
+export type GiphyGridViewContentUpdateEvent = Readonly<{
   resultCount: Int32
-}
+}>
 
-export interface GiphyGridViewRawMediaSelectEvent {
+export type GiphyGridViewRawMediaSelectEvent = Readonly<{
   media: string
-}
+}>
 
-export interface GiphyGridViewMediaScrollEvent {
+export type GiphyGridViewMediaScrollEvent = Readonly<{
   offset: Double
-}
+}>
 
 export interface NativeProps extends ViewProps {
   cellPadding: Int32

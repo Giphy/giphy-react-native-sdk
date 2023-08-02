@@ -24,7 +24,7 @@ constructor(
 
   override fun getEventData(): WritableMap? {
     val event = Arguments.createMap()
-    event.putString("media", RTNGiphyMedia.toRNValue(media, renditionType).toString())
+    event.putString("media", RTNGiphyMedia.toJson(media, renditionType).toString())
     return event
   }
 

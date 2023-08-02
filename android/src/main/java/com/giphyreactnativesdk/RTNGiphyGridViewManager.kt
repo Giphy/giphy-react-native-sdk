@@ -1,6 +1,5 @@
 package com.giphyreactnativesdk
 
-import com.facebook.react.bridge.JSONArguments
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.module.annotations.ReactModule
@@ -16,6 +15,7 @@ import com.giphy.sdk.ui.views.GifView
 import com.giphyreactnativesdk.events.OnGridContentUpdateEvent
 import com.giphyreactnativesdk.events.OnGridMediaSelectEvent
 import com.giphyreactnativesdk.events.OnGridScrollEvent
+import com.giphyreactnativesdk.utils.JsonArguments
 
 @ReactModule(name = RTNGiphyGridViewManager.NAME)
 class RTNGiphyGridViewManager :
@@ -37,7 +37,7 @@ class RTNGiphyGridViewManager :
     if (value.isNullOrEmpty()) {
       view?.setTheme(null)
     } else {
-      view?.setTheme(JSONArguments.fromJSONObjectString(value))
+      view?.setTheme(JsonArguments.fromJSONObjectString(value))
     }
   }
 
@@ -71,7 +71,7 @@ class RTNGiphyGridViewManager :
     if (value.isNullOrEmpty()) {
       view?.setContent(null)
     } else {
-      view?.setContent(JSONArguments.fromJSONObjectString(value))
+      view?.setContent(JsonArguments.fromJSONObjectString(value))
     }
   }
 

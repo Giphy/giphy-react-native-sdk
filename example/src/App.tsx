@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { GiphyDialog, type GiphyDialogConfig, type GiphyMedia, GiphyVideoManager } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
@@ -13,7 +12,6 @@ import { MediaViewSample } from './MediaViewSample'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: getStatusBarHeight() ?? 0,
     backgroundColor: '#eee',
   },
   header: {
@@ -86,7 +84,7 @@ export default function App() {
   }, [addMediaRef])
 
   return (
-    <View testID="app" style={styles.container}>
+    <SafeAreaView testID="app" style={styles.container}>
       {/* Displaying Giphy Dialog & settings for it  */}
       <View style={styles.card}>
         <TouchableOpacity
@@ -118,6 +116,6 @@ export default function App() {
           ))}
         </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
