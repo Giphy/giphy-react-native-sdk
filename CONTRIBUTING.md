@@ -28,7 +28,7 @@ to rebuild the example app.
 
 ### Run the example app
 
-- To run the example application, you need to configure the API keys. To do this,
+- To run the example application, you need to configure the GIPHY API keys. To do this,
   you can copy the `.example.env` file and fill in the necessary variables:
   ```shell
   cp example/.example.env example/.env
