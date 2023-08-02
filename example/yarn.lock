@@ -4073,11 +4073,6 @@ react-native-picker-select@^8.0.4:
     "@react-native-picker/picker" "^1.8.3"
     lodash.isequal "^4.5.0"
 
-react-native-status-bar-height@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
-  integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==
-
 react-native@0.72.2:
   version "0.72.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.72.2.tgz#e2acf4be0238b0e5d2e2501ca53994488f13712a"
