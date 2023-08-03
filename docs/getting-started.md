@@ -32,6 +32,33 @@ Go to your ios folder and run:
 pod install
 ```
 
+### New architecture setup (Fabric)
+
+This library supports new architecture!
+In order to use the new architecture some extra steps are needed.
+
+#### iOS
+
+Install pods with this flag inside `ios` folder:
+
+```sh
+RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
+```
+
+#### Android
+
+Set `newArchEnabled` to `true` inside `android/gradle.properties` and then run:
+
+```sh
+yarn android
+```
+
+If you have issues with running android build you can try to generate codegen before the build using this command:
+
+```sh
+cd android && ./gradlew generateCodegenArtifactsFromSchema
+```
+
 ### Troubleshooting
 
 This [StackOverflow thread](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios)
