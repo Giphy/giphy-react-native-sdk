@@ -65,7 +65,7 @@ using namespace facebook::react;
         videoViewEventEmitter->onMute(event);
       }
     };
-    _view.onMute = [self](NSDictionary* data) {
+    _view.onUnmute = [self](NSDictionary* data) {
       if (_eventEmitter != nil) {
         auto videoViewEventEmitter = std::static_pointer_cast<RTNGiphyVideoViewEventEmitter const>(_eventEmitter);
         facebook::react::RTNGiphyVideoViewEventEmitter::OnUnmute event = {};
