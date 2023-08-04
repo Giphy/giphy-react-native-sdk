@@ -27,14 +27,16 @@ jobs:
         run: |
           echo "package-version=${GITHUB_REF#refs/*/v}" >> $GITHUB_OUTPUT
           echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo "npm-tag=$(node ./scripts/pkg.get-tag.js)" >> $GITHUB_OUTPUT
 
       - name: 🛠️ Set up environment
         uses: ./.github/actions/setup
 
       - name: 🚀 Publish to NPM
-        run: npm publish
+        run: npm publish --tag "$NPM_TAG"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TAG: ${{ steps.vars.outputs.npm-tag }}
 
       - name: 🗒 Add summary
         if: ${{ success() }}
