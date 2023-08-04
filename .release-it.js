@@ -135,7 +135,7 @@ module.exports = {
     commitMessage: 'chore: release ${version}',
     tag: true,
     tagName: 'v${version}',
-    requireBranch: 'main',
+    requireBranch: ['main', 'next', 'release/*'],
   },
   npm: {
     publish: false,
