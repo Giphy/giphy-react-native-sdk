@@ -1,10 +1,25 @@
 import React from 'react'
-import { AppState, AppStateStatus } from 'react-native'
+import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes'
+import { AppState, type AppStateStatus, type ViewProps } from 'react-native'
 
-import { NativeGiphyVideoView, type NativeGiphyVideoViewProps } from './native/GiphyVideoView'
+import type { GiphyMediaID } from './dto/giphyMedia'
 import { GiphyVideoManager } from './GiphyVideoManager'
+import NativeGiphyVideoView, {
+  type GiphyVideoViewErrorEvent,
+  type GiphyVideoViewMuteEvent,
+  type GiphyVideoViewPlaybackStateChangeEvent,
+  type GiphyVideoViewUnmuteEvent,
+} from './specs/GiphyVideoViewNativeComponent'
 
-export type GiphyVideoViewProps = NativeGiphyVideoViewProps
+export interface GiphyVideoViewProps extends ViewProps {
+  autoPlay?: boolean
+  media?: GiphyMediaID
+  muted?: boolean
+  onError?: DirectEventHandler<GiphyVideoViewErrorEvent>
+  onMute?: DirectEventHandler<GiphyVideoViewMuteEvent>
+  onPlaybackStateChanged?: DirectEventHandler<GiphyVideoViewPlaybackStateChangeEvent>
+  onUnmute?: DirectEventHandler<GiphyVideoViewUnmuteEvent>
+}
 
 const BACKGROUND_STATE_REGEX = /inactive|background/
 
@@ -57,6 +72,8 @@ export class GiphyVideoView extends React.Component<GiphyVideoViewProps, {}> {
   }
 
   render() {
-    return <NativeGiphyVideoView {...this.props} />
+    const { autoPlay = false, media, muted = false, ...other } = this.props
+
+    return <NativeGiphyVideoView autoPlay={autoPlay} mediaId={media?.id} muted={muted} {...other} />
   }
 }

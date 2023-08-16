@@ -1,13 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import {
-  GiphyDialog,
-  GiphyDialogConfig,
-  GiphyDialogEvent,
-  GiphyMedia,
-  GiphyVideoManager,
-} from '@giphy/react-native-sdk'
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { GiphyDialog, type GiphyDialogConfig, type GiphyMedia, GiphyVideoManager } from '@giphy/react-native-sdk'
 
 import './giphy.setup'
 import { DEFAULT_DIALOG_SETTINGS, GiphyDialogSettings } from './Settings'
@@ -19,7 +12,6 @@ import { MediaViewSample } from './MediaViewSample'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: getStatusBarHeight() ?? 0,
     backgroundColor: '#eee',
   },
   header: {
@@ -49,10 +41,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 10,
     maxHeight: 300,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
     width: '100%',
   },
 })
@@ -86,7 +74,7 @@ export default function App() {
 
   const addMediaRef = useLatest(addMedia)
   useEffect(() => {
-    const listener = GiphyDialog.addListener(GiphyDialogEvent.MediaSelected, (e) => {
+    const listener = GiphyDialog.addListener('onMediaSelect', (e) => {
       addMediaRef.current(e.media)
       GiphyDialog.hide()
     })
@@ -96,7 +84,7 @@ export default function App() {
   }, [addMediaRef])
 
   return (
-    <View testID="app" style={styles.container}>
+    <SafeAreaView testID="app" style={styles.container}>
       {/* Displaying Giphy Dialog & settings for it  */}
       <View style={styles.card}>
         <TouchableOpacity
@@ -117,7 +105,7 @@ export default function App() {
       {/* Displaying Giphy Grid View with the custom search bar */}
       <MediaGridSample onMediaSelect={addMedia} style={styles.card} />
 
-      {/* Displaying selected media */}
+      {/*Displaying selected media*/}
       <View style={styles.card}>
         <Text style={styles.header}>Preview</Text>
         <ScrollView style={styles.previewContainer}>
@@ -128,6 +116,6 @@ export default function App() {
           ))}
         </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }

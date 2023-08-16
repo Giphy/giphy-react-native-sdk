@@ -1,13 +1,11 @@
 import React from 'react'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { Modal, ModalProps, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Modal, ModalProps, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#eee',
     flex: 1,
     flexDirection: 'column',
-    paddingTop: getStatusBarHeight() ?? 0,
   },
   content: {
     flex: 1,
@@ -33,16 +31,16 @@ export const Dialog: React.FC<ModalProps> = (props) => {
 
   return (
     <Modal onRequestClose={onRequestClose} {...other}>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView style={styles.content} testID="gph-dialog-content">
           {children}
         </ScrollView>
-        <TouchableOpacity style={styles.buttonClose} onPress={() => (onRequestClose ? onRequestClose() : undefined)}>
+        <TouchableOpacity style={styles.buttonClose} onPress={(e) => (onRequestClose ? onRequestClose(e) : undefined)}>
           <Text style={styles.buttonTextClose} testID="gph-close-dialog">
             Close
           </Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </Modal>
   )
 }

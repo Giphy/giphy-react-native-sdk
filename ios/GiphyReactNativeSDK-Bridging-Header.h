@@ -1,4 +1,5 @@
-#import <React/RCTBridgeModule.h>
-#import <React/RCTViewManager.h>
-#import <React/RCTUIManager.h>
-#import "React/RCTEventEmitter.h"
+#ifdef RCT_NEW_ARCH_ENABLED
+#import <React/RCTConversions.h>
+#else
+#import <React/RCTConvert.h>
+#endif // RCT_NEW_ARCH_ENABLED

@@ -1,40 +1,56 @@
 import React from 'react'
-import { findNodeHandle } from 'react-native'
+import type { ViewProps } from 'react-native/Libraries/Components/View/ViewPropTypes'
 
-import { runViewManagerCommand } from './utils/viewManager'
-import {
-  COMPONENT_NAME,
-  NativeGiphyMediaView,
-  NativeGiphyMediaViewCommands,
-  type NativeGiphyMediaViewProps,
-} from './native/GiphyMediaView'
+import NativeGiphyMediaView, { Commands } from './specs/GiphyMediaViewNativeComponent'
+import type { GiphyMediaID } from './dto/giphyMedia'
+import type { GiphyRendition } from './dto/giphyRendition'
+import type { ResizeMode } from './dto/misc'
 
-export type GiphyMediaViewProps = NativeGiphyMediaViewProps
+export interface GiphyMediaViewProps extends ViewProps {
+  autoPlay?: boolean
+  media?: GiphyMediaID
+  renditionType?: GiphyRendition
+  resizeMode?: ResizeMode
+  showCheckeredBackground?: boolean
+}
+
+type ComponentRef = InstanceType<typeof NativeGiphyMediaView>
 
 export class GiphyMediaView extends React.Component<GiphyMediaViewProps, {}> {
-  private view: React.Component | null = null
+  ref = React.createRef<ComponentRef>()
 
   pause = () => {
-    runViewManagerCommand({
-      command: NativeGiphyMediaViewCommands.Pause,
-      moduleName: COMPONENT_NAME,
-      nodeHandle: findNodeHandle(this.view),
-    })
+    if (this.ref.current) {
+      Commands.pause(this.ref.current)
+    }
   }
 
   resume = () => {
-    runViewManagerCommand({
-      command: NativeGiphyMediaViewCommands.Resume,
-      moduleName: COMPONENT_NAME,
-      nodeHandle: findNodeHandle(this.view),
-    })
-  }
-
-  private viewRef = (component: React.Component | null) => {
-    this.view = component
+    if (this.ref.current) {
+      Commands.resume(this.ref.current)
+    }
   }
 
   render() {
-    return <NativeGiphyMediaView {...this.props} ref={this.viewRef} />
+    const {
+      autoPlay = true,
+      renditionType = 'fixed_width',
+      media,
+      showCheckeredBackground = false,
+      resizeMode = 'cover',
+      ...other
+    } = this.props
+
+    return (
+      <NativeGiphyMediaView
+        ref={this.ref}
+        autoPlay={autoPlay}
+        mediaId={media?.id}
+        renditionType={renditionType}
+        resizeMode={resizeMode}
+        showCheckeredBackground={showCheckeredBackground}
+        {...other}
+      />
+    )
   }
 }

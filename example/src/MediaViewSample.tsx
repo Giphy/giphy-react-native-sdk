@@ -1,6 +1,6 @@
 import React from 'react'
-import { GiphyMediaView, GiphyVideoView, GiphyMedia } from '@giphy/react-native-sdk'
 import { Image } from 'react-native'
+import { type GiphyMedia, GiphyMediaView, GiphyVideoView } from '@giphy/react-native-sdk'
 
 type MediaViewSampleProps = {
   media: GiphyMedia
@@ -12,11 +12,13 @@ export function MediaViewSample(props: MediaViewSampleProps) {
   if (media.isVideo) {
     return (
       <GiphyVideoView
-        autoPlay={false}
+        autoPlay={true}
         media={media}
         muted={true}
         style={{ aspectRatio: media.aspectRatio }}
         testID={`gph-video-view-${media.id}`}
+        onMute={(e) => console.log('Mute', e.nativeEvent)}
+        onUnmute={(e) => console.log('Unmute', e.nativeEvent)}
         onError={(e) => console.error(e.nativeEvent.description)}
         onPlaybackStateChanged={(e) => console.log('onPlaybackStateChanged', JSON.stringify(e.nativeEvent, null, 2))}
       />

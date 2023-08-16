@@ -1,6 +1,6 @@
 {
   "name": "@giphy/react-native-sdk",
-  "version": "2.4.2",
+  "version": "3.0.0-beta.0",
   "description": "Giphy React Native SDK",
   "license": "Apache-2.0",
   "main": "lib/commonjs/index",
@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "bootstrap": "yarn example && yarn && yarn pods",
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build",
     "detox:bootstrap:android": ". ./scripts/avd.defaults.sh && ./scripts/avd.create.sh && ./scripts/avd.run.sh",
     "detox:bootstrap:ios": ". ./scripts/sim.defaults.sh && ./scripts/sim.create.sh",
     "detox:build:android": "detox build --configuration android",
@@ -33,13 +34,13 @@
     "example": "yarn --cwd example",
     "licenses:check": "scripts/licenses.check.js",
     "licenses:generate": "scripts/licenses.generate.sh",
-    "lint": "eslint \"**/*.{js,ts,tsx}\" --fix ",
+    "lint": "eslint \"**/*.{js,mjs,ts,tsx}\" --fix ",
     "pods": "cd example && pod-install --quiet",
     "prepare": "husky install && bob build",
     "release": "release-it",
     "sdk:bump:android": "scripts/sdk.bump.android.sh",
     "sdk:bump:ios": "scripts/sdk.bump.ios.sh",
-    "typescript": "tsc --noEmit"
+    "typescript": "tsc -p ./tsconfig.check.json --noEmit"
   },
   "keywords": [
     "react-native",
@@ -59,7 +60,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@babel/core": "7.22.5",
+    "@babel/core": "7.22.8",
+    "@babel/eslint-parser": "^7.22.7",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@react-native-community/eslint-config": "^3.2.0",
@@ -67,15 +69,17 @@
     "@types/jest": "^29.5.2",
     "@types/jest-image-snapshot": "^6.1.0",
     "@types/lodash.kebabcase": "^4.1.7",
-    "@types/node": "20.3.1",
-    "@types/react": "^17.0.50",
-    "@types/react-native": "0.62.13",
+    "@types/node": "20.4.1",
+    "@types/react": "^18.2.14",
+    "@types/react-native": "0.72.2",
     "commitlint": "^17.6.5",
     "cz-conventional-changelog": "^3.3.0",
+    "del-cli": "^5.0.0",
     "detox": "^20.9.1",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-ft-flow": "^2.0.3",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-prettier": "^4.2.1",
     "handlebars": "^4.7.7",
@@ -85,22 +89,22 @@
     "jest-image-snapshot": "^6.1.0",
     "license-checker": "^25.0.1",
     "lodash.kebabcase": "^4.1.1",
-    "metro-react-native-babel-preset": "^0.76.6",
+    "metro-react-native-babel-preset": "^0.77.0",
     "plist": "^3.0.6",
     "pod-install": "^0.1.38",
     "prettier": "^2.8.8",
-    "react": "17.0.2",
-    "react-native": "0.66.4",
-    "react-native-builder-bob": "^0.20.4",
+    "react": "18.2.0",
+    "react-native": "0.72.2",
+    "react-native-builder-bob": "^0.21.2",
     "release-it": "^15.11.0",
     "spdx-correct": "^3.2.0",
     "spdx-satisfies": "^5.0.1",
     "ts-jest": "^29.1.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "@giphy/js-types": "^4.4.0",
-    "type-fest": "^3.10.0"
+    "type-fest": "^3.13.0"
   },
   "peerDependencies": {
     "react": "*",
@@ -146,5 +150,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "codegenConfig": {
+    "name": "GiphyReactNativeSDKSpec",
+    "type": "all",
+    "jsSrcsDir": "src/specs"
   }
 }

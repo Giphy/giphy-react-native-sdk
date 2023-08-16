@@ -12,17 +12,18 @@ export { GiphyDirection, GiphyStickersColumnCount, ResizeMode, IndicatorStyle, K
 export { GiphySDK, type GiphySDKConfig } from './GiphySDK'
 
 export {
+  GiphyDialog,
   GiphyDialogEvent,
-  type GiphyDialogMediaSelectEventHandler,
-  type GiphyDialogDismissEventHandler,
-} from './native/GiphyDialog'
-export { GiphyDialog, type GiphyDialogConfig } from './GiphyDialog'
+  GiphyDialogMediaSelectEventHandler,
+  GiphyDialogDismissEventHandler,
+  type GiphyDialogConfig,
+} from './GiphyDialog'
 
 export { GiphyMediaView, type GiphyMediaViewProps } from './GiphyMediaView'
 
 export { GiphyVideoManager } from './GiphyVideoManager'
 export { GiphyVideoView, type GiphyVideoViewProps } from './GiphyVideoView'
-export { GiphyVideoViewPlaybackState } from './native/GiphyVideoView'
+export { GiphyVideoViewPlaybackState } from './specs/GiphyVideoViewNativeComponent'
 
 export { GiphyGridView, type GiphyGridViewProps } from './GiphyGridView'
 
