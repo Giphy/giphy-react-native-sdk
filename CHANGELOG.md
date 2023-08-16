@@ -1,3 +1,15 @@
+# 3.0.0 (2023-08-16)
+
+### Native SDKs
+
+* Giphy Android SDK [v2.3.9](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.9)
+* Giphy iOS SDK [v2.2.6](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.6)
+
+### Features
+
+* Add support for new React Native
+  architecture ([5158df3](https://github.com/Giphy/giphy-react-native-sdk/commit/5158df31da3af190219a443541e86090921a8bd5))
+
 # 2.4.2 (2023-07-18)
 
 ### Native SDKs
