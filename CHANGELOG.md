@@ -1,3 +1,18 @@
+
+
+# 3.0.1 (2023-10-19)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.9](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.9)
+* Giphy iOS SDK [v2.2.6](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.6)
+
+
+### Documentation
+* Add Expo integration guide ([f21545e](https://github.com/Giphy/giphy-react-native-sdk/commit/f21545e700a8510362901c590352fd53d6adb23b))
+
+### Build System
+* [deps] Bump activesupport from 7.0.6 to 7.0.7.2 in /example ([6fd834c](https://github.com/Giphy/giphy-react-native-sdk/commit/6fd834cafedda97a07c9d90d261c9c8e36609f4b))
+
 # 3.0.0 (2023-08-16)
 
 ### Native SDKs
