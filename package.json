@@ -15,6 +15,7 @@
     "ios",
     "cpp",
     "giphy-react-native-sdk.podspec",
+    "app.plugin.js",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
