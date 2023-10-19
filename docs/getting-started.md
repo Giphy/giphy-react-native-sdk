@@ -16,6 +16,9 @@
 
 ### Installation
 
+> 🚨 Expo: This package is not available in the [Expo Go](https://expo.io/client) app. Learn how you can use it
+> with [custom dev clients](./expo-integration.md).
+
 ```bash
 yarn add @giphy/react-native-sdk
 ```
