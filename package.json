@@ -105,7 +105,7 @@
   },
   "dependencies": {
     "@giphy/js-types": "^4.4.0",
-    "type-fest": "^3.13.0"
+    "type-fest": "^4.5.0"
   },
   "peerDependencies": {
     "react": "*",
