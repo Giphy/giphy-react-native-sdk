@@ -96,6 +96,7 @@ using namespace facebook::react;
 
   REMAP_GPH_GRID_VIEW_JSON_PROP(content)
   REMAP_GPH_GRID_VIEW_PROP(cellPadding)
+  REMAP_GPH_GRID_VIEW_PROP(disableEmojiVariations)
   REMAP_GPH_GRID_VIEW_STR_PROP(clipsPreviewRenditionType)
   REMAP_GPH_GRID_VIEW_STR_PROP(orientation)
   REMAP_GPH_GRID_VIEW_STR_PROP(renditionType)

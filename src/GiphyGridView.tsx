@@ -21,6 +21,7 @@ export interface GiphyGridViewProps extends ViewProps {
   cellPadding?: number
   clipsPreviewRenditionType?: GiphyClipsRendition
   content?: GiphyContentRequest
+  disableEmojiVariations?: boolean
   fixedSizeCells?: boolean
   onContentUpdate?: DirectEventHandler<GiphyGridViewContentUpdateEvent>
   onMediaSelect?: DirectEventHandler<GiphyGridViewMediaSelectEvent>
@@ -49,6 +50,7 @@ export class GiphyGridView extends React.Component<GiphyGridViewProps, {}> {
       cellPadding = 0,
       clipsPreviewRenditionType = 'fixed_width',
       content,
+      disableEmojiVariations = false,
       fixedSizeCells = false,
       onMediaSelect,
       orientation = 'vertical',
@@ -63,6 +65,7 @@ export class GiphyGridView extends React.Component<GiphyGridViewProps, {}> {
         cellPadding={cellPadding}
         clipsPreviewRenditionType={clipsPreviewRenditionType}
         content={content ? JSON.stringify(content) : ''}
+        disableEmojiVariations={disableEmojiVariations}
         fixedSizeCells={fixedSizeCells}
         onMediaSelect={onMediaSelect ? this.mediaSelectHandler : undefined}
         orientation={orientation}

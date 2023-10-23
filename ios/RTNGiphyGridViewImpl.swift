@@ -60,6 +60,11 @@ open class RTNGiphyGridViewImpl: UIView {
     let renditionType = GPHRenditionType.fromRNValue(value: value as String)
     gridController.clipsPreviewRenditionType = renditionType ?? .fixedWidth
   }
+  
+  @objc
+  public func setDisableEmojiVariations(_ value: Bool) -> Void {
+    gridController.emojiSettings.disableVariations = value
+  }
 
   @objc
   public func setRenditionType(_ value: NSString) -> Void {
