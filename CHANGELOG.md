@@ -1,5 +1,24 @@
 
 
+# 3.2.0 (2023-10-23)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.12](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.12)
+* Giphy iOS SDK [v2.2.7](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.7)
+
+
+### Features
+* [GiphyGridView] Add disableEmojiVariations property ([151782d](https://github.com/Giphy/giphy-react-native-sdk/commit/151782decbe41cc997007ca7f63688953b975274))
+
+### Build System
+* [deps] Bump @babel/traverse from 7.22.8 to 7.23.2 ([31231d5](https://github.com/Giphy/giphy-react-native-sdk/commit/31231d5afcfe8a24f8b1970e756458f67afdfac8))
+* [deps] Bump @babel/traverse from 7.22.8 to 7.23.2 in /example ([63f723b](https://github.com/Giphy/giphy-react-native-sdk/commit/63f723b1ba6855db29b404e8580c8209a774a142))
+* [deps] Bump Android SDK version from 2.3.9 to 2.3.12 ([5c541ad](https://github.com/Giphy/giphy-react-native-sdk/commit/5c541ad58c6353d054c45a510f6be24b6d16e6ab))
+* [deps] Bump iOS SDK version from 2.2.6 to 2.2.7 ([3e07646](https://github.com/Giphy/giphy-react-native-sdk/commit/3e07646a80d347c431071d46e9c6e51b42026f29))
+* [deps] Bump react-devtools-core from 4.27.8 to 4.28.4 ([26c9848](https://github.com/Giphy/giphy-react-native-sdk/commit/26c984815a5822a99a9ab2cca59cff74a77c8bc1))
+* [deps] Bump react-devtools-core from 4.27.8 to 4.28.4 in /example ([a213401](https://github.com/Giphy/giphy-react-native-sdk/commit/a213401016ef2a39bf52b0e8d298301453fbcb91))
+* [deps] Bump type-fest version from 3.13.0 to 4.5.0 ([c2508a6](https://github.com/Giphy/giphy-react-native-sdk/commit/c2508a6cce820adfb31e713e307d6afa189e71d3))
+
 # 3.0.1 (2023-10-19)
 
 ### Native SDKs
