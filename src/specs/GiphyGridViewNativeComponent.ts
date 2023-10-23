@@ -18,6 +18,7 @@ export interface NativeProps extends ViewProps {
   cellPadding: Int32
   clipsPreviewRenditionType: string
   content?: string
+  disableEmojiVariations: boolean
   fixedSizeCells: boolean
   onContentUpdate?: DirectEventHandler<GiphyGridViewContentUpdateEvent>
   onMediaSelect?: DirectEventHandler<GiphyGridViewRawMediaSelectEvent>

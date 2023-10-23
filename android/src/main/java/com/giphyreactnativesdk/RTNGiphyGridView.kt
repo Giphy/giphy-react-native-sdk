@@ -86,6 +86,12 @@ class RTNGiphyGridView @JvmOverloads constructor(
     }
   }
 
+  fun setDisableEmojiVariations(value: Boolean?) {
+    if (value != null) {
+      gridView.disableEmojiVariations = value
+    }
+  }
+
   fun setFixedSizeCells(value: Boolean?) {
     if (value != null) {
       gridView.fixedSizeCells = value

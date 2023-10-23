@@ -14,6 +14,9 @@ abstract class RTNGiphyGridViewManagerSpec<T : View> : SimpleViewManager<T>() {
   abstract fun setContent(view: T?, value: String?)
 
   @Suppress("unused")
+  abstract fun setDisableEmojiVariations(view: T?, value: Boolean)
+
+  @Suppress("unused")
   abstract fun setFixedSizeCells(view: T?, value: Boolean)
 
   @Suppress("unused")

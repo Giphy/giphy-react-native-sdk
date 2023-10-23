@@ -85,6 +85,11 @@ class RTNGiphyGridViewManager :
     view?.setCellPadding(value)
   }
 
+  @ReactProp(name = "disableEmojiVariations")
+  override fun setDisableEmojiVariations(view: RTNGiphyGridView?, value: Boolean) {
+    view?.setDisableEmojiVariations(value)
+  }
+  
   private fun getGridCallback(
     view: RTNGiphyGridView,
     context: ThemedReactContext
