@@ -71,7 +71,7 @@ PODS:
   - fmt (6.2.1)
   - Giphy (2.2.7):
     - libwebp
-  - giphy-react-native-sdk (3.0.1):
+  - giphy-react-native-sdk (3.1.0):
     - Giphy (= 2.2.7)
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -689,9 +689,9 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  boost: 57d2868c099736d80fcd648bf211b4431e51a558
+  boost: a7c83b31436843459a1961bfd74b96033dc77234
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   FBLazyVector: 748c0ef74f2bf4b36cfcccf37916806940a64c32
   FBReactNativeSpec: 966f29e4e697de53a3b366355e8f57375c856ad9
   Flipper: 6edb735e6c3e332975d1b17956bcc584eccf5818
@@ -704,8 +704,8 @@ SPEC CHECKSUMS:
   FlipperKit: 2efad7007d6745a3f95e4034d547be637f89d3f6
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   Giphy: dad025aa0c82e4c057e1989cde959034829dfca7
-  giphy-react-native-sdk: 28e23d529722c8ac39f5e87a6a15741725585e5a
-  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  giphy-react-native-sdk: 65dab4767b1d0e5ccd18e47265f58317d7f0fa6b
+  glog: 5337263514dd6f09803962437687240c5dc39aa4
   hermes-engine: 8057e75cfc1437b178ac86c8654b24e7fead7f60
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
@@ -750,4 +750,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d3b1fe9cfe34ee21941e5394ae70547980bd6f8a
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0
