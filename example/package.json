@@ -8,6 +8,7 @@
     "android": "NODE_OPTIONS=--openssl-legacy-provider react-native run-android",
     "build:android": "NODE_OPTIONS=--openssl-legacy-provider scripts/build.android.sh",
     "build:ios": ". ../scripts/sim.defaults.sh && scripts/build.ios.sh",
+    "gem:install": "bundle install",
     "ios": "NODE_OPTIONS=--openssl-legacy-provider react-native run-ios",
     "pods": "pod-install",
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-native start"
