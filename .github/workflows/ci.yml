@@ -25,6 +25,8 @@ jobs:
 
       - name: 🛠️ Set up environment
         uses: ./.github/actions/setup
+        with:
+          cocoa-pods: true
 
       - name: 🕵️ Lint
         run: yarn lint
