@@ -24,7 +24,7 @@
     "!**/__mocks__"
   ],
   "scripts": {
-    "bootstrap": "yarn example && yarn && yarn pods",
+    "bootstrap": "yarn example gem:install && yarn example && yarn && yarn pods",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build",
     "detox:bootstrap:android": ". ./scripts/avd.defaults.sh && ./scripts/avd.create.sh && ./scripts/avd.run.sh",
     "detox:bootstrap:ios": ". ./scripts/sim.defaults.sh && ./scripts/sim.create.sh",
