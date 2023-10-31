@@ -31,6 +31,8 @@ jobs:
 
       - name: 🛠️ Set up environment
         uses: ./.github/actions/setup
+        with:
+          cocoa-pods: true
 
       - name: 🚀 Publish to NPM
         run: npm publish --tag "$NPM_TAG"
