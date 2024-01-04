@@ -52,141 +52,141 @@ private func deserializeRNConfig(_ rawConfig: NSDictionary?) -> NSDictionary {
   return config
 }
 
-public class RTNGiphyTheme: GPHTheme {
+class RTNGiphyTheme: GPHTheme {
   var config: NSDictionary
 
-  public init(rnConfig: NSDictionary?) {
+  init(rnConfig: NSDictionary?) {
     config = deserializeRNConfig(rnConfig)
     super.init()
     type = config["preset"] as? GPHThemeType ?? .light
   }
 
   // MARK: - Dialog's Handle
-  public override var handleBarColor: UIColor {
+  override var handleBarColor: UIColor {
     config["handleBarColor"] as? UIColor ?? super.handleBarColor
   }
 
   // MARK: - Emoji Drawer
-  public override var emojiDrawerScrollIndicatorStyle: UIScrollView.IndicatorStyle {
+  override var emojiDrawerScrollIndicatorStyle: UIScrollView.IndicatorStyle {
     config["emojiDrawerScrollIndicatorStyle"] as? UIScrollView.IndicatorStyle ?? super.emojiDrawerScrollIndicatorStyle
   }
 
-  public override var emojiDrawerGradientTopColor: UIColor {
+  override var emojiDrawerGradientTopColor: UIColor {
     config["emojiDrawerGradientTopColor"] as? UIColor ?? super.emojiDrawerGradientTopColor
   }
 
-  public override var emojiDrawerGradientBottomColor: UIColor {
+  override var emojiDrawerGradientBottomColor: UIColor {
     config["emojiDrawerGradientBottomColor"] as? UIColor ?? super.emojiDrawerGradientBottomColor
   }
 
-  public override var emojiDrawerSeparatorColor: UIColor {
+  override var emojiDrawerSeparatorColor: UIColor {
     config["emojiDrawerSeparatorColor"] as? UIColor ?? super.emojiDrawerSeparatorColor
   }
 
   // MARK: - Search Bar
-  public override var searchBackButtonColor: UIColor {
+  override var searchBackButtonColor: UIColor {
     config["searchBackButtonColor"] as? UIColor ?? super.searchBackButtonColor
   }
 
-  public override var searchPlaceholderTextColor: UIColor {
+  override var searchPlaceholderTextColor: UIColor {
     config["searchPlaceholderTextColor"] as? UIColor ?? super.searchPlaceholderTextColor
   }
 
-  public override var searchTextColor: UIColor {
+  override var searchTextColor: UIColor {
     config["searchTextColor"] as? UIColor ?? super.searchTextColor
   }
 
-  public override var searchBarBackgroundColor: UIColor {
+  override var searchBarBackgroundColor: UIColor {
     config["searchBarBackgroundColor"] as? UIColor ?? super.searchBarBackgroundColor
   }
 
-  public override var searchBarPadding: CGFloat {
+  override var searchBarPadding: CGFloat {
     config["searchBarPadding"] as? CGFloat ?? super.searchBarPadding
   }
 
-  public override var searchBarCornerRadius: CGFloat {
+  override var searchBarCornerRadius: CGFloat {
     config["searchBarCornerRadius"] as? CGFloat ?? super.searchBarCornerRadius
   }
 
   // MARK: - Suggestions
-  public override var showSuggestionsBar: Bool {
+  override var showSuggestionsBar: Bool {
     config["showSuggestionsBar"] as? Bool ?? super.showSuggestionsBar
   }
 
-  public override var suggestionCellBackgroundColor: UIColor {
+  override var suggestionCellBackgroundColor: UIColor {
     config["suggestionCellBackgroundColor"] as? UIColor ?? super.suggestionCellBackgroundColor
   }
 
-  public override var suggestionCellTextColor: UIColor {
+  override var suggestionCellTextColor: UIColor {
     config["suggestionCellTextColor"] as? UIColor ?? super.suggestionCellTextColor
   }
 
   // MARK: - Tab Bar
-  public override var tabBarSwitchSelectedColor: UIColor {
+  override var tabBarSwitchSelectedColor: UIColor {
     config["tabBarSwitchSelectedColor"] as? UIColor ?? super.tabBarSwitchSelectedColor
   }
 
-  public override var tabBarSwitchDefaultColor: UIColor? {
+  override var tabBarSwitchDefaultColor: UIColor? {
     config["tabBarSwitchDefaultColor"] as? UIColor ?? super.tabBarSwitchDefaultColor
   }
 
-  public override var tabBarBackgroundAlpha: CGFloat {
+  override var tabBarBackgroundAlpha: CGFloat {
     config["tabBarBackgroundAlpha"] as? CGFloat ?? super.tabBarBackgroundAlpha
   }
 
   // MARK: - Confirmation
-  public override var confirmationSelectButtonColor: UIColor {
+  override var confirmationSelectButtonColor: UIColor {
     config["confirmationSelectButtonColor"] as? UIColor ?? super.confirmationSelectButtonColor
   }
 
-  public override var confirmationSelectButtonTextColor: UIColor {
+  override var confirmationSelectButtonTextColor: UIColor {
     config["confirmationSelectButtonTextColor"] as? UIColor ?? super.confirmationSelectButtonTextColor
   }
 
-  public override var usernameColor: UIColor {
+  override var usernameColor: UIColor {
     config["usernameColor"] as? UIColor ?? super.usernameColor
   }
 
-  public override var confirmationBackButtonColor: UIColor {
+  override var confirmationBackButtonColor: UIColor {
     config["confirmationBackButtonColor"] as? UIColor ?? super.confirmationBackButtonColor
   }
 
-  public override var confirmationViewOnGiphyColor: UIColor {
+  override var confirmationViewOnGiphyColor: UIColor {
     config["confirmationViewOnGiphyColor"] as? UIColor ?? super.confirmationViewOnGiphyColor
   }
 
-  public override var avatarPlaceholderColor: UIColor {
+  override var avatarPlaceholderColor: UIColor {
     config["avatarPlaceholderColor"] as? UIColor ?? super.avatarPlaceholderColor
   }
 
   // MARK: - Grid Content
-  public override var cellCornerRadius: CGFloat {
+  override var cellCornerRadius: CGFloat {
     config["cellCornerRadius"] as? CGFloat ?? super.cellCornerRadius
   }
 
-  public override var stickerBackgroundColor: UIColor {
+  override var stickerBackgroundColor: UIColor {
     config["stickerBackgroundColor"] as? UIColor ?? super.stickerBackgroundColor
   }
 
-  public override var fixedSizeCells: Bool {
+  override var fixedSizeCells: Bool {
     config["fixedSizeCells"] as? Bool ?? super.fixedSizeCells
   }
 
-  public override var backgroundColorForLoadingCells: UIColor {
+  override var backgroundColorForLoadingCells: UIColor {
     config["backgroundColorForLoadingCells"] as? UIColor ?? super.backgroundColorForLoadingCells
   }
 
   // MARK: - Keyboard
-  public override var keyboardAppearance: UIKeyboardAppearance {
+  override var keyboardAppearance: UIKeyboardAppearance {
     config["keyboardAppearance"] as? UIKeyboardAppearance ?? super.keyboardAppearance
   }
 
   // MARK: - Other
-  public override var backgroundColor: UIColor {
+  override var backgroundColor: UIColor {
     config["backgroundColor"] as? UIColor ?? super.backgroundColor
   }
 
-  public override var defaultTextColor: UIColor {
+  override var defaultTextColor: UIColor {
     config["defaultTextColor"] as? UIColor ?? super.defaultTextColor
   }
 }
