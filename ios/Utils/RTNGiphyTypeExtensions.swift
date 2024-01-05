@@ -2,7 +2,7 @@ import UIKit
 
 import GiphyUISDK
 
-public extension GPHContentType {
+extension GPHContentType {
   static func fromRNValue(value: String?) -> GPHContentType? {
     switch value {
     case "emoji":
@@ -23,7 +23,7 @@ public extension GPHContentType {
   }
 }
 
-public extension GPHRatingType {
+extension GPHRatingType {
   static func fromRNValue(value: String?) -> GPHRatingType? {
     switch value {
     case "g":
@@ -44,7 +44,7 @@ public extension GPHRatingType {
   }
 }
 
-public extension GPHRenditionType {
+extension GPHRenditionType {
   static func fromRNValue(value: String?) -> GPHRenditionType? {
     switch value {
     case "original":
@@ -91,7 +91,7 @@ public extension GPHRenditionType {
   }
 }
 
-public extension GPHStickerColumnCount {
+extension GPHStickerColumnCount {
   static func fromRNValue(value: Int?) -> GPHStickerColumnCount? {
     switch value {
     case 2:
@@ -106,7 +106,7 @@ public extension GPHStickerColumnCount {
   }
 }
 
-public extension GPHFileExtension {
+extension GPHFileExtension {
   static func fromRNValue(value: String) -> GPHFileExtension? {
     switch value {
     case "gif":
@@ -121,7 +121,7 @@ public extension GPHFileExtension {
   }
 }
 
-public extension UICollectionView.ScrollDirection {
+extension UICollectionView.ScrollDirection {
   static func fromRNValue(value: String) -> UICollectionView.ScrollDirection {
     switch value {
     case "horizontal":
@@ -134,7 +134,7 @@ public extension UICollectionView.ScrollDirection {
   }
 }
 
-public extension UIKeyboardAppearance {
+extension UIKeyboardAppearance {
   static func fromRNValue(_ value: String) -> UIKeyboardAppearance? {
     switch value {
     case "default":
@@ -149,7 +149,7 @@ public extension UIKeyboardAppearance {
   }
 }
 
-public extension UIScrollView.IndicatorStyle {
+extension UIScrollView.IndicatorStyle {
   static func fromRNValue(_ value: String) -> UIScrollView.IndicatorStyle? {
     switch value {
     case "default":
@@ -164,13 +164,13 @@ public extension UIScrollView.IndicatorStyle {
   }
 }
 
-public extension GPHMediaType {
+extension GPHMediaType {
   static func fromRNValue(value: String) -> GPHMediaType {
     return GPHMediaType.init(rawValue: value) ?? .gif
   }
 }
 
-public extension GPHContent {
+extension GPHContent {
   static func fromRNValue(value: NSDictionary) -> GPHContent {
     let requestType = value["requestType"] as? String
     let searchQuery = value["searchQuery"] as? String ?? ""
@@ -193,7 +193,7 @@ public extension GPHContent {
   }
 }
 
-public enum RNGPHVideoPlayerState: Int {
+enum RNGPHVideoPlayerState: Int {
   case unknown = 0
   case readyToPlay = 3
   case playing = 4
@@ -204,7 +204,7 @@ public enum RNGPHVideoPlayerState: Int {
   }
 }
 
-public extension GPHVideoPlayerState {
+extension GPHVideoPlayerState {
   func toRNValue() -> Int {
     var rnState: RNGPHVideoPlayerState {
       switch self {
@@ -224,7 +224,7 @@ public extension GPHVideoPlayerState {
   }
 }
 
-public extension GPHThemeType {
+extension GPHThemeType {
   static func fromRNValue(_ value: String) -> GPHThemeType? {
     switch value {
     case "automatic":
@@ -239,7 +239,7 @@ public extension GPHThemeType {
   }
 }
 
-public extension GiphyViewController {
+extension GiphyViewController {
   func applyRNConfig(_ options: NSDictionary) -> Void {
     if let rawMediaTypeConfig = options["mediaTypeConfig"] as? [String] {
       mediaTypeConfig = rawMediaTypeConfig.compactMap {
