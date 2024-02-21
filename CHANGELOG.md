@@ -1,5 +1,19 @@
 
 
+# 3.2.3 (2024-02-21)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.13-fresco-v2.5.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.13-fresco-v2.5.0)
+* Giphy iOS SDK [v2.2.7](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.7)
+
+
+### Bug Fixes
+* [iOS] GiphyDialog does not work with formSheet modal when using native-stack ([e4e7974](https://github.com/Giphy/giphy-react-native-sdk/commit/e4e79747bd3fcb773047f9dacedf721a6ba6fb47))
+
+### Build System
+* [deps] Bump ip from 1.1.8 to 1.1.9 ([dbc1c03](https://github.com/Giphy/giphy-react-native-sdk/commit/dbc1c03766e17c0e36d48de1d7daa4aab0ea665a))
+* [deps] Bump ip from 1.1.8 to 1.1.9 in /example ([9bbb472](https://github.com/Giphy/giphy-react-native-sdk/commit/9bbb4725971ba1011799bc09abe81c3c93766fe2))
+
 # 3.2.2 (2024-01-05)
 
 ### Native SDKs
