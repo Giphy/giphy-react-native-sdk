@@ -39,10 +39,13 @@ open class RTNGiphyDialogModuleImpl: NSObject {
       }
 
       let giphy = GiphyViewController()
-      let rootViewController = UIApplication.shared.windows.first?.rootViewController
+      var currentViewController = UIApplication.shared.windows.first?.rootViewController
+      while let presentedViewController = currentViewController?.presentedViewController {
+          currentViewController = presentedViewController
+      }
       giphy.applyRNConfig(self.config)
       giphy.delegate = self.giphyViewControllerDelegate
-      rootViewController?.present(giphy, animated: true, completion: { [weak self] in
+      currentViewController?.present(giphy, animated: true, completion: { [weak self] in
         self?.giphyViewController = giphy
       })
     }
