@@ -2,7 +2,9 @@ package com.giphyreactnativesdk
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.view.children
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.uimanager.ThemedReactContext
 import com.giphy.sdk.core.models.enums.MediaType
@@ -36,6 +38,18 @@ class RTNGiphyGridView @JvmOverloads constructor(
     val activity = (context as? ThemedReactContext)?.currentActivity
     gridView = GiphyGridView(activity ?: context)
     addView(gridView)
+  }
+
+  fun onDropViewInstance() {
+    gridView.children.forEach {
+      (it as? ViewGroup)?.let { vg ->
+        vg.removeAllViews()
+        vg.clearDisappearingChildren()
+      }
+    }
+    gridView.removeAllViews()
+    gridView.clearDisappearingChildren()
+    removeAllViews()
   }
 
   override fun requestLayout() {
