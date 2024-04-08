@@ -32,6 +32,11 @@ class RTNGiphyGridViewManager :
     return view
   }
 
+  override fun onDropViewInstance(view: RTNGiphyGridView) {
+    view.onDropViewInstance()
+    super.onDropViewInstance(view)
+  }
+
   @ReactProp(name = "theme")
   override fun setTheme(view: RTNGiphyGridView?, value: String?) {
     if (value.isNullOrEmpty()) {
