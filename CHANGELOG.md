@@ -1,5 +1,15 @@
 
 
+# 3.2.4 (2024-04-08)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.13-fresco-v2.5.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.13-fresco-v2.5.0)
+* Giphy iOS SDK [v2.2.7](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.7)
+
+
+### Bug Fixes
+* The GridView crashes when scrolling and closing the screen ([#172](https://github.com/Giphy/giphy-react-native-sdk/issues/172)) ([0288130](https://github.com/Giphy/giphy-react-native-sdk/commit/028813077c70c5b0a2cdbe8e7e257fc9f22b0206))
+
 # 3.2.3 (2024-02-21)
 
 ### Native SDKs
