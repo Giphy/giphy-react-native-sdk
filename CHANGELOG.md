@@ -1,5 +1,16 @@
 
 
+# 3.2.6 (2024-05-22)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.14-fresco-v2.5.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.14-fresco-v2.5.0)
+* Giphy iOS SDK [v2.2.9](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.9)
+
+
+### Build System
+* [deps] Bump Android SDK version from 2.3.13-fresco-v2.5.0 to 2.3.14-fresco-v2.5.0 ([b8c219f](https://github.com/Giphy/giphy-react-native-sdk/commit/b8c219f330217377fd94f06068bb78c0023b104c))
+* [deps] Bump rexml from 3.2.5 to 3.2.8 in /example ([0bcbb7b](https://github.com/Giphy/giphy-react-native-sdk/commit/0bcbb7be93b691da548bff713a56b0c1f4ad0c02))
+
 # 3.2.5 (2024-04-26)
 
 ### Native SDKs
