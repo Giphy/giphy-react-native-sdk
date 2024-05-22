@@ -7,21 +7,14 @@
 # GIPHY SDK for React Native
 
 The fastest and easiest way to bring the full GIPHY experience directly to your app is with the GIPHY SDK. Built with
-developers and product designers in mind, GIPHY SDK is a top-to-bottom solution for all things GIF in your app. With the
-React Native SDK we're taking this one step ahead - no more tedious API implementations, time-consuming wrapper setup.
-It comes with ready to use wrappers officially supported by the GIPHY crew and includes interfacing with GIPHY API,
-fetching and caching assets, and displaying GIFs and Stickers on screen in customizable UI templates.
+developers and product designers in mind, GIPHY SDK is a top-to-bottom solution for all things GIF in your app.
 
+With support for the React Native developer ecosystem, this project enables you to easily integrate our battle-tested native [iOS](https://github.com/Giphy/giphy-ios-sdk) and [Android](https://github.com/Giphy/giphy-ios-sdk) SDKs, which handle everything from interfacing with the GIPHY API, fetching and caching assets, and displaying GIFs and Stickers on screen in customizable UI templates.
+ 
 With billions of requests a day, it’s safe to say GIPHY knows GIFs. We're excited to share our best-in-class tools with
 you so your users can have the best GIF experience possible, with all the same features they're already enjoying on
 Facebook, Slack, Instagram, and more – with just a few lines of code.
-
-**New!**  GIPHY’s proud to introduce GIPHY Clips, aka GIFs with Sound, to the mix!  GIPHY Clips is our newest content
-format
-at the intersection of GIFs and Video. They combine the expression and entertainment of GIFs, with the added engagement
-of audio. Integrating the SDK will allow your users to seamlessly express themselves with this new format, all while
-staying in the experience in your app.
-
+ 
 ### [Getting Started](docs/getting-started.md)
 
 - [Requirements](docs/getting-started.md#requirements)
