@@ -25,6 +25,7 @@ Facebook, Slack, Instagram, and more – with just a few lines of code.
 - [GIPHY Animated Text Creation](docs/animated.md)
 - [Example App](https://github.com/Giphy/giphy-react-native-sdk/tree/main/example)
 - [How to mock the Giphy dependency in Jest](docs/testing-jest.md)
+- [How to localize the Giphy SDK](docs/localization.md)
 
 ### [API Reference](docs/api.md)
 
