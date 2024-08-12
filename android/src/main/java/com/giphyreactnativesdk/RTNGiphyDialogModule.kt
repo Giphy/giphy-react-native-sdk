@@ -28,6 +28,7 @@ private enum class RTNDialogProps(val key: String) {
   CLIPS_PREVIEW_RENDITION_TYPE("clipsPreviewRenditionType"),
   CONFIRMATION_RENDITION_TYPE("confirmationRenditionType"),
   ENABLE_DYNAMIC_TEXT("enableDynamicText"),
+  TRAY_HEIGHT_MULTIPLIER("trayHeightMultiplier"),
   MEDIA_TYPE_CONFIG("mediaTypeConfig"),
   RATING("rating"),
   RENDITION_TYPE("renditionType"),
@@ -58,6 +59,12 @@ private fun giphyDialogSettingsFromRNValue(
     settings.confirmationRenditionType = RTNGiphyRendition.fromRNValue(
       options.getString(RTNDialogProps.CONFIRMATION_RENDITION_TYPE.key)
     )
+  }
+
+  if (options.hasKey(RTNDialogProps.TRAY_HEIGHT_MULTIPLIER.key)) {
+    settings.trayHeightMultiplier = options.getDouble(
+      RTNDialogProps.TRAY_HEIGHT_MULTIPLIER.key
+    ).toFloat()
   }
 
   if (options.hasKey(RTNDialogProps.RATING.key)) {
