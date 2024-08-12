@@ -1,5 +1,26 @@
 
 
+# 3.3.0 (2024-08-12)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.15-fresco-v2.5.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.15-fresco-v2.5.0)
+* Giphy iOS SDK [v2.2.10](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.10)
+
+
+### Features
+* [localization] Add localizations support ([#183](https://github.com/Giphy/giphy-react-native-sdk/issues/183)) ([973abbe](https://github.com/Giphy/giphy-react-native-sdk/commit/973abbec77fc4e70953432b624a3cf8e2fb4758a))
+
+### Documentation
+* How to mock the Giphy dependency in Jest ([#184](https://github.com/Giphy/giphy-react-native-sdk/issues/184)) ([5426f23](https://github.com/Giphy/giphy-react-native-sdk/commit/5426f2391c7f0be11a205e12a084c4e92f4ba1a8))
+
+### Build System
+* [deps] Bump Android SDK version from 2.3.14-fresco-v2.5.0 to 2.3.15-fresco-v2.5.0 ([e502281](https://github.com/Giphy/giphy-react-native-sdk/commit/e502281d3ce261ca8c1bae11cddcafc1db75ac66))
+* [deps] Bump braces from 3.0.2 to 3.0.3 ([fcd5ce9](https://github.com/Giphy/giphy-react-native-sdk/commit/fcd5ce974bc58f5649b65cae4e365448306a35cd))
+* [deps] Bump braces from 3.0.2 to 3.0.3 in /example ([bbe36c7](https://github.com/Giphy/giphy-react-native-sdk/commit/bbe36c7f841026418425814ceb4f0b2da167ce9d))
+* [deps] Bump fast-xml-parser from 4.2.5 to 4.4.1 ([d6ecd35](https://github.com/Giphy/giphy-react-native-sdk/commit/d6ecd350e92774fe312204ae21e7eabe40b072d3))
+* [deps] Bump iOS SDK version from 2.2.9 to 2.2.10 ([e357a45](https://github.com/Giphy/giphy-react-native-sdk/commit/e357a4585d3b5f3d425b770a74a32c3f8b17764f))
+* [deps] Bump ws from 6.2.2 to 6.2.3 in /example ([be1b73d](https://github.com/Giphy/giphy-react-native-sdk/commit/be1b73dd3370949588df67bba403fe5a05d8a1da))
+
 # 3.2.6 (2024-05-22)
 
 ### Native SDKs
