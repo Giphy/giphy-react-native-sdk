@@ -69,10 +69,10 @@ PODS:
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
-  - Giphy (2.2.10):
+  - Giphy (2.2.13):
     - libwebp
   - giphy-react-native-sdk (3.3.0):
-    - Giphy (= 2.2.10)
+    - Giphy (= 2.2.13)
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - glog (0.3.5)
@@ -703,8 +703,8 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: 2efad7007d6745a3f95e4034d547be637f89d3f6
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  Giphy: 0b86baaae0173dac8acc44a0088f51194ec4d5de
-  giphy-react-native-sdk: 2d2e0817267fff878c0bbc386b7c094556f74c95
+  Giphy: a11dd02b51ac2ec37b881de1717ebf2cc8e9df62
+  giphy-react-native-sdk: f6384a588505d4da2c684189b2dc7021e7122a9b
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 8057e75cfc1437b178ac86c8654b24e7fead7f60
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
@@ -750,4 +750,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d3b1fe9cfe34ee21941e5394ae70547980bd6f8a
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
