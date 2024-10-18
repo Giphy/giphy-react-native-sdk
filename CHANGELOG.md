@@ -1,5 +1,21 @@
 
 
+# 3.3.1 (2024-10-18)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.15-fresco-v2.5.0](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.15-fresco-v2.5.0)
+* Giphy iOS SDK [v2.2.13](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.13)
+
+
+### Build System
+* [deps] Bump fast-xml-parser from 4.2.5 to 4.4.1 in /example ([47aec8a](https://github.com/Giphy/giphy-react-native-sdk/commit/47aec8a359963e575f8aeb4419fb8c7873110baf))
+* [deps] Bump iOS SDK version from 2.2.10 to 2.2.13 ([ddfac07](https://github.com/Giphy/giphy-react-native-sdk/commit/ddfac07c15dc3260d5410125fe8e853752af55fa))
+* [deps] Bump micromatch from 4.0.5 to 4.0.8 ([2379e70](https://github.com/Giphy/giphy-react-native-sdk/commit/2379e70baaea2edc5d165ba7b896032f838800fb))
+* [deps] Bump micromatch from 4.0.5 to 4.0.8 in /example ([0c8f17b](https://github.com/Giphy/giphy-react-native-sdk/commit/0c8f17bbe568efded80416e73c7b1bac72765992))
+* [deps] Bump rexml from 3.2.8 to 3.3.6 in /example ([da06fc5](https://github.com/Giphy/giphy-react-native-sdk/commit/da06fc5aac29be960bb49492661957566d7185a9))
+* [deps] Bump serve-static from 1.15.0 to 1.16.2 ([1736c96](https://github.com/Giphy/giphy-react-native-sdk/commit/1736c9661aeab2a9feaa68efb90c7600452d30f4))
+* [deps] Bump serve-static from 1.15.0 to 1.16.2 in /example ([e223fba](https://github.com/Giphy/giphy-react-native-sdk/commit/e223fba6687ff619333cb418325374b577c0e7be))
+
 # 3.3.0 (2024-08-12)
 
 ### Native SDKs
