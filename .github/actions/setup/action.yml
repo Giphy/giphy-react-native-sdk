@@ -9,7 +9,7 @@ inputs:
     description: 'Set up JDK environment'
     required: false
   java-version:
-    default: '13.0.13'
+    default: '17'
     description: 'Java version'
     required: false
   node-version:
