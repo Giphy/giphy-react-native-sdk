@@ -72,17 +72,15 @@ may be helpful if you experience issues linking your iOS project.
 If you encounter an issue where GIFs appear as static images instead of animating, this may be due to a dependency conflict between 
 React Native and the Fresco library used by our SDK.
 
-By default, our SDK references our Android SDK, which uses Fresco version 2.5.0. However, as of React Native 0.73.0, 
-the default Fresco version is 3.1.3. 
+By default, our SDK versions below 3.3.2 use Fresco 2.5.0, while React Native 0.73.0 and above defaults to a newer Fresco version.
 
-Developers using our SDK with React Native versions from 0.73 up to but not including 0.76 can resolve this conflict 
-by adding the following block to the `android/build.gradle` file in the `:app module`, 
-right before the `dependencies` section:
+If you are using our SDK below 3.3.2 and React Native below 0.73.0, follow the configurations to resolve potential conflicts:
 
+For React Native 0.73 up to (but not including) 0.76, add this block to android/build.gradle(:app) before `dependencies`: 
 ```gradle
 configurations.all {
     resolutionStrategy {
-        forcedModules = ['com.giphy.sdk:ui:2.3.13']
+        forcedModules = ['com.giphy.sdk:ui:2.3.15']
     }
 }
 ```
@@ -109,6 +107,7 @@ configurations.configureEach {
 }
 ```
 
+However, if you are using our SDK version 3.3.2 or later, there is no need for any manual Fresco configuration. Our latest SDK version fully supports React Native starting from 0.73.0, ensuring compatibility with the correct Fresco version.
 
 #### Feel free to open an [issue](https://github.com/Giphy/giphy-react-native-sdk/issues) here in this repo if you run into any problems.
 

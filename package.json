@@ -72,7 +72,7 @@
     "@types/lodash.kebabcase": "^4.1.8",
     "@types/node": "20.8.7",
     "@types/react": "^18.2.31",
-    "@types/react-native": "0.72.5",
+    "@types/react-native": "0.73.0",
     "commitlint": "^18.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "del-cli": "^5.1.0",
@@ -95,7 +95,7 @@
     "pod-install": "^0.1.39",
     "prettier": "^3.0.3",
     "react": "18.2.0",
-    "react-native": "0.72.6",
+    "react-native": "0.73.0",
     "react-native-builder-bob": "^0.23.1",
     "release-it": "^16.2.1",
     "spdx-correct": "^3.2.0",
@@ -108,8 +108,8 @@
     "type-fest": "^4.5.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+    "react-native": ">=0.73.0",
+    "react": "^18.2.0"
   },
   "commitlint": {
     "extends": [

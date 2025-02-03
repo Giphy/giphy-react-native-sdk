@@ -56,8 +56,7 @@ target 'GiphyReactNativeSdkExample' do
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false
-    )
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    )    
 
     require 'fileutils'
     FileUtils.cp_r('Pods/Target Support Files/Pods-GiphyReactNativeSdkExample/Pods-GiphyReactNativeSdkExample-acknowledgements.plist', 'Resources/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
@@ -65,6 +64,20 @@ target 'GiphyReactNativeSdkExample' do
       aggregate_target.xcconfigs.each do |config_name, config_file|
         xcconfig_path = aggregate_target.xcconfig_path(config_name)
         config_file.save_as(xcconfig_path)
+      end
+    end
+
+    installer.pods_project.targets.each do |target|
+      if target.name == 'Flipper'
+        file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
+        contents = File.read(file_path)
+        unless contents.include?('#include <functional>')
+          File.chmod(0755, file_path)
+          File.open(file_path, 'w') do |file|
+            file.puts('#include <functional>')
+            file.puts(contents)
+          end
+        end
       end
     end
   end
