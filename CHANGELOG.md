@@ -1,5 +1,27 @@
 
 
+# 4.0.0 (2025-02-03)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.16)
+* Giphy iOS SDK [v2.2.13](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.13)
+
+
+### Documentation
+* Add troubleshooting page for "GIFs Are Not Playing on Android" ([7fe466e](https://github.com/Giphy/giphy-react-native-sdk/commit/7fe466ed6fddfaec95f9cbc959d33bd75ad8f900))
+
+### Build System
+* [deps] Bump rexml from 3.3.6 to 3.3.9 in /example ([e824735](https://github.com/Giphy/giphy-react-native-sdk/commit/e8247358a955645d0e5082ca667c9ec48ab1d179))
+
+
+* Feat!: drop support for React Native <0.73.0 ([ec9b8ba](https://github.com/Giphy/giphy-react-native-sdk/commit/ec9b8bacab494cc4114790d205becaf2e4c57489))
+
+
+### BREAKING CHANGES
+* Support for React Native versions before 0.73.0 has been removed.
+
+build(deps): bump Android SDK version from 2.3.15-fresco-v2.5.0 to 2.3.16
+
 # 3.3.1 (2024-10-18)
 
 ### Native SDKs
