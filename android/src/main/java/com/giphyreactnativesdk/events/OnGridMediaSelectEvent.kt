@@ -29,6 +29,6 @@ constructor(
   }
 
   companion object {
-    const val EVENT_NAME = "topGridMediaSelect"
+    const val EVENT_NAME = "topMediaSelect"
   }
 }
