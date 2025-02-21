@@ -25,6 +25,6 @@ constructor(
   }
 
   companion object {
-    const val EVENT_NAME = "topGridScroll"
+    const val EVENT_NAME = "topScroll"
   }
 }

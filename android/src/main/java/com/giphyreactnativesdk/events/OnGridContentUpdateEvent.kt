@@ -25,6 +25,6 @@ constructor(
   }
 
   companion object {
-    const val EVENT_NAME = "topGridContentUpdate"
+    const val EVENT_NAME = "topContentUpdate"
   }
 }
