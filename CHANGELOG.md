@@ -1,5 +1,19 @@
 
 
+# 4.0.1 (2025-02-21)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.16](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.16)
+* Giphy iOS SDK [v2.2.14](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.14)
+
+
+### Bug Fixes
+* [android): RN 0.76+(new arch] Unsupported top level event type ([14a9a3c](https://github.com/Giphy/giphy-react-native-sdk/commit/14a9a3c4dd1403d928b177ea83db70d41fdd1c74))
+
+### Build System
+* [deps] Bump cross-spawn from 7.0.3 to 7.0.6 in /example ([79f142b](https://github.com/Giphy/giphy-react-native-sdk/commit/79f142bf21e57d499e66c07e37b59d7adb7802f7))
+* [deps] Bump iOS SDK version from 2.2.13 to 2.2.14 ([e3c84e3](https://github.com/Giphy/giphy-react-native-sdk/commit/e3c84e3863cba1abebc0eb760c0a7620993d45ad))
+
 # 4.0.0 (2025-02-03)
 
 ### Native SDKs
