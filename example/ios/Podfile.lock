@@ -69,7 +69,7 @@ PODS:
   - fmt (6.2.1)
   - Giphy (2.2.16):
     - libwebp
-  - giphy-react-native-sdk (4.0.1):
+  - giphy-react-native-sdk (4.0.2):
     - Giphy (= 2.2.16)
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1356,7 +1356,7 @@ SPEC CHECKSUMS:
   FlipperKit: 37525a5d056ef9b93d1578e04bc3ea1de940094f
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   Giphy: 55914215541027873875757f350530e6d8986fba
-  giphy-react-native-sdk: 7bb2172d4a8474243219741adb641964b30cd91b
+  giphy-react-native-sdk: 1990bab5553b408d6ec58fab0f9eed730c4261bc
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: b361c9ef5ef3cda53f66e195599b47e1f84ffa35
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
