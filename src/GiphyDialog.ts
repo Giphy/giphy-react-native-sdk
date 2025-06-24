@@ -39,6 +39,7 @@ export interface GiphyDialogConfig {
   stickerColumnCount?: GiphyStickersColumnCount
   theme?: GiphyTheme | GiphyThemePreset
   trayHeightMultiplier?: number
+  enableEdgeToEdge?: boolean
 }
 
 function wrapMediaSelectedListener(listener: (...args: any[]) => any): GiphyDialogMediaSelectEventHandler {

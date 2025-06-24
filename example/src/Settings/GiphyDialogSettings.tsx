@@ -38,6 +38,7 @@ export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
   stickerColumnCount: GiphyStickersColumnCount.Three,
   theme: GiphyThemePreset.Dark,
   trayHeightMultiplier: 0.7,
+  enableEdgeToEdge: false
 }
 
 const styles = StyleSheet.create({
@@ -179,6 +180,12 @@ export const GiphyDialogSettings: React.FC<GiphyDialogSettingsProps> = (props) =
         testID="gph-settings_suggestions-bar"
         value={settings.showSuggestionsBar}
         onValueChange={(showSuggestionsBar) => updateSettings({ showSuggestionsBar })}
+      />
+      <SwitchCard
+        title="Enable Edge-to-Edge UI Rendering (*Android)"
+        testID="gph-settings_edge-to-edge"
+        value={settings.enableEdgeToEdge}
+        onValueChange={(enableEdgeToEdge) => updateSettings({ enableEdgeToEdge })}
       />
     </View>
   )
