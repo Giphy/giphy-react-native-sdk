@@ -1,5 +1,19 @@
 
 
+# 4.1.0 (2025-06-24)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.17](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.17)
+* Giphy iOS SDK [v2.2.16](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.16)
+
+
+### Features
+* [android] Add Edge-To-Edge support ([b8c1191](https://github.com/Giphy/giphy-react-native-sdk/commit/b8c11911b4127d58eb0579f6f017cb56c4e29e80))
+
+### Build System
+* [deps-dev] Bump @babel/runtime from 7.23.2 to 7.26.10 in /example ([180cdaf](https://github.com/Giphy/giphy-react-native-sdk/commit/180cdaf2110db260304f1187a47e338e32b91210))
+* [deps] Bump @babel/helpers from 7.22.6 to 7.27.1 in /example ([b0d86db](https://github.com/Giphy/giphy-react-native-sdk/commit/b0d86db0e8c541f94acf0a241f261307ce974c06))
+
 # 4.0.2 (2025-05-21)
 
 ### Native SDKs
