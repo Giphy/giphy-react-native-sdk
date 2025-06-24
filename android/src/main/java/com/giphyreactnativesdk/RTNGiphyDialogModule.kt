@@ -37,6 +37,7 @@ private enum class RTNDialogProps(val key: String) {
   SHOW_CONFIRMATION_SCREEN("showConfirmationScreen"),
   SHOW_SUGGESTIONS_BAR("showSuggestionsBar"),
   STICKER_COLUMN_COUNT("stickerColumnCount"),
+  ENABLE_EDGE_TO_EDGE("enableEdgeToEdge"),
 }
 
 private fun giphyDialogSettingsFromRNValue(
@@ -118,6 +119,12 @@ private fun giphyDialogSettingsFromRNValue(
   if (options.hasKey(RTNDialogProps.CLIPS_PREVIEW_RENDITION_TYPE.key)) {
     settings.clipsPreviewRenditionType = RTNGiphyRendition.fromRNValue(
       options.getString(RTNDialogProps.CLIPS_PREVIEW_RENDITION_TYPE.key)
+    )
+  }
+
+  if (options.hasKey(RTNDialogProps.ENABLE_EDGE_TO_EDGE.key)) {
+    settings.enableEdgeToEdge = options.getBoolean(
+      RTNDialogProps.ENABLE_EDGE_TO_EDGE.key
     )
   }
 
