@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  FlatList,
-} from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Modal, FlatList } from 'react-native'
 import { Card, CardProps } from './Card'
 
 interface PickerItem<T> {
@@ -21,24 +14,14 @@ interface PickerSelectCardProps<T> extends CardProps {
   testID?: string
 }
 
-export const PickerSelectCard = <T,>({
-  title,
-  testID,
-  items,
-  value,
-  onValueChange,
-}: PickerSelectCardProps<T>) => {
+export const PickerSelectCard = <T,>({ title, testID, items, value, onValueChange }: PickerSelectCardProps<T>) => {
   const [modalVisible, setModalVisible] = React.useState(false)
 
   const selectedLabel = items.find((item) => item.value === value)?.label || 'Select an option'
 
   return (
     <Card testID={testID} title={title}>
-      <TouchableOpacity
-        testID="gph-card_picker"
-        style={styles.pickerButton}
-        onPress={() => setModalVisible(true)}
-      >
+      <TouchableOpacity testID="gph-card_picker" style={styles.pickerButton} onPress={() => setModalVisible(true)}>
         <Text style={styles.pickerText}>{selectedLabel}</Text>
       </TouchableOpacity>
 
