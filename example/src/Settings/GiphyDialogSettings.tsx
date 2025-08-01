@@ -38,7 +38,7 @@ export const DEFAULT_DIALOG_SETTINGS: Required<GiphyDialogConfig> = {
   stickerColumnCount: GiphyStickersColumnCount.Three,
   theme: GiphyThemePreset.Dark,
   trayHeightMultiplier: 0.7,
-  enableEdgeToEdge: false
+  enableEdgeToEdge: false,
 }
 
 const styles = StyleSheet.create({

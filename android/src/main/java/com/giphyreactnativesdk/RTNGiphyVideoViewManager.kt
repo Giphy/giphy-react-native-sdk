@@ -40,11 +40,11 @@ class RTNGiphyVideoViewManager :
     export[OnPlayerPlaybackStateChangeEvent.EVENT_NAME] =
       MapBuilder.of("registrationName", "onPlaybackStateChanged")
     export[OnPlayerMuteEvent.EVENT_NAME] =
-      MapBuilder.of("registrationName", "onMuteEvent")
+      MapBuilder.of("registrationName", "onMute")
     export[OnPlayerUnmuteEvent.EVENT_NAME] =
-      MapBuilder.of("registrationName", "onUnmuteEvent")
+      MapBuilder.of("registrationName", "onUnmute")
     export[OnPlayerErrorEvent.EVENT_NAME] =
-      MapBuilder.of("registrationName", "onErrorEvent")
+      MapBuilder.of("registrationName", "onError")
 
     return export
   }

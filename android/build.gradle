@@ -48,12 +48,12 @@ def getExtOrIntegerDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["GiphyReactNativeSDK." + name]).toInteger()
 }
 
-android {  
+android {
   buildFeatures {
     buildConfig = true
-  }  
-  
-  namespace "com.giphyreactnativesdk"  
+  }
+
+  namespace "com.giphyreactnativesdk"
 
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
 

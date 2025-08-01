@@ -1,8 +1,18 @@
+type AnyRecord = Record<string, any>
+
 export async function getElWidth(el: Detox.NativeElement | Detox.IndexableNativeElement) {
   const allAttrs = await el.getAttributes()
   const attrs = 'elements' in allAttrs ? allAttrs.elements[0] : allAttrs
-  if ('frame' in attrs) {
-    return attrs.frame.width
+
+  const attrsRecord = attrs as AnyRecord
+
+  if (attrsRecord.frame && attrsRecord.frame.width !== undefined) {
+    return attrsRecord.frame.width
   }
-  return attrs.width
+
+  if (attrsRecord.width !== undefined) {
+    return attrsRecord.width
+  }
+
+  return 0
 }

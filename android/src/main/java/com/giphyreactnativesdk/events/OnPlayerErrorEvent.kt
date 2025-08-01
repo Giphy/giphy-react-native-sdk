@@ -21,6 +21,6 @@ constructor(surfaceId: Int, viewId: Int, private val details: String) :
   }
 
   companion object {
-    const val EVENT_NAME = "topErrorEvent"
+    const val EVENT_NAME = "topError"
   }
 }

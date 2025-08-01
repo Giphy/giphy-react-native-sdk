@@ -19,6 +19,6 @@ constructor(surfaceId: Int, viewId: Int) :
   }
 
   companion object {
-    const val EVENT_NAME = "topUnmuteEvent"
+    const val EVENT_NAME = "topUnmute"
   }
 }

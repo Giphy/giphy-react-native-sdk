@@ -28,6 +28,6 @@ constructor(surfaceId: Int, viewId: Int, private val state: RTNGiphyVideoPlaybac
   }
 
   companion object {
-    const val EVENT_NAME = "topPlaybackStateChange"
+    const val EVENT_NAME = "topPlaybackStateChanged"
   }
 }
