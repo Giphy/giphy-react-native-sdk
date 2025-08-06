@@ -25,7 +25,7 @@ runs:
   using: composite
   steps:
     - name: ⬢ Setup Node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
         cache: yarn
@@ -40,7 +40,7 @@ runs:
       shell: bash
 
     - name: 🛠 Setup JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v4
       if: inputs.jdk == 'true'
       with:
         cache: gradle
@@ -50,7 +50,7 @@ runs:
     - name: ♻️ Restore example/ios/Pods from cache
       id: pods-cache
       if: inputs.cocoa-pods == 'true'
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         key: ${{ runner.os }}-pods-${{ hashFiles('example/ios/Podfile.lock') }}
         path: example/ios/Pods

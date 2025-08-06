@@ -1,6 +1,4 @@
-import type { Validator } from 'react'
-
-import { noop } from './noop'
+import type { Validator } from 'prop-types'
 
 let warned: Record<string, boolean> = {}
 
@@ -9,12 +7,14 @@ type DeprecatedPropTypeOptions<T> = {
   explanation?: string
 }
 
-export default function deprecatedPropType<T = any>(options: DeprecatedPropTypeOptions<T> = {}): Validator<T> {
-  const { propType = noop, explanation = '' } = options
+const noopValidator: Validator<any> = () => null
 
-  return ((props, propName, componentName, ...rest) => {
+export default function deprecatedPropType<T = any>(options: DeprecatedPropTypeOptions<T> = {}): Validator<T> {
+  const { propType = noopValidator, explanation = '' } = options
+
+  return ((props: any, propName: string, componentName: string, location?: string, propFullName?: string) => {
     if (process.env.NODE_ENV === 'production') {
-      return () => null
+      return null
     }
 
     if (props[propName] != null) {
@@ -25,6 +25,6 @@ export default function deprecatedPropType<T = any>(options: DeprecatedPropTypeO
       }
     }
 
-    return propType(props, propName, componentName, ...rest)
+    return propType(props, propName, componentName, location || '', propFullName || '')
   }) as Validator<T>
 }
