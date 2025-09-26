@@ -1,3 +1,18 @@
+
+
+# 5.0.1 (2025-09-26)
+
+### Native SDKs
+* Giphy Android SDK [v2.3.18](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.3.18)
+* Giphy iOS SDK [v2.2.16](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.2.16)
+
+
+### Bug Fixes
+* [android] EAS build fails on Android - Expo SDK 54 [#221](https://github.com/Giphy/giphy-react-native-sdk/issues/221) ([112048d](https://github.com/Giphy/giphy-react-native-sdk/commit/112048df312d1f620a880d3a34c86569c06f4fd0))
+
+### Build System
+* [deps] Bump Android SDK version from 2.3.17 to 2.3.18 ([661a276](https://github.com/Giphy/giphy-react-native-sdk/commit/661a276166208286b18757ca86f38746cd384de5))
+
 # 5.0.0 (2025-08-06)
 
 ### Native SDKs
