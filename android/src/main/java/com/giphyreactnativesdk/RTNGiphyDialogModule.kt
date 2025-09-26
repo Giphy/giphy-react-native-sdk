@@ -162,7 +162,7 @@ class RTNGiphyDialogModule internal constructor(context: ReactApplicationContext
     GlobalScope.launch(Dispatchers.Main) {
       initializeDialog()
 
-      val compatActivity: AppCompatActivity = currentActivity as AppCompatActivity
+      val compatActivity: AppCompatActivity = reactApplicationContext.currentActivity as AppCompatActivity
       val fragmentManager = compatActivity.supportFragmentManager
 
       gifsDialog!!.gifSelectionListener = getGifSelectionListener()

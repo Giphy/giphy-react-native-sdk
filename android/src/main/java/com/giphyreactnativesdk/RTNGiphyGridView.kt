@@ -35,7 +35,7 @@ class RTNGiphyGridView @JvmOverloads constructor(
   }
 
   private fun prepareLayout() {
-    val activity = (context as? ThemedReactContext)?.currentActivity
+    val activity = (context as? ThemedReactContext)?.reactApplicationContext?.currentActivity
     gridView = GiphyGridView(activity ?: context)
     addView(gridView)
   }
