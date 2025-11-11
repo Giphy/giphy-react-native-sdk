@@ -15,11 +15,21 @@ function patchDeviceScreenshot() {
 }
 
 function setAVDDemoMode() {
-  execSync('source ./scripts/avd.defaults.sh && ./scripts/avd.demo-mode.sh')
+  try {
+    execSync('source ./scripts/avd.defaults.sh && ./scripts/avd.demo-mode.sh')
+  } catch (error) {
+    console.warn('Warning: Failed to set Android emulator demo mode.')
+    console.warn('Tests will continue without demo mode settings.')
+  }
 }
 
 function setSIMDemoMode() {
-  execSync('source ./scripts/sim.defaults.sh && ./scripts/sim.demo-mode.sh')
+  try {
+    execSync('source ./scripts/sim.defaults.sh && ./scripts/sim.demo-mode.sh')
+  } catch (error) {
+    console.warn('Warning: Failed to set iOS simulator demo mode.')
+    console.warn('Tests will continue without demo mode settings.')
+  }
 }
 
 function showSimulator() {

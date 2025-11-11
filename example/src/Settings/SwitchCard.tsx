@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react'
 import { View, Switch, StyleSheet, Text, SwitchProps } from 'react-native'
 
@@ -28,11 +27,8 @@ export const SwitchCardField: React.FC<SwitchCardFieldProps> = (props) => {
 
   return (
     <View style={switchCardFieldStyles.switchContainer}>
-      <Switch testID={testID} value={value} {...other} />
+      <Switch testID={testID} value={value} accessibilityState={{ checked: value }} {...other} />
       <Text style={switchCardFieldStyles.switchText}>{value ? selectedLabel : unselectedLabel}</Text>
-      <Text testID={testID ? `${testID}-value` : undefined} style={{ display: 'none' }}>
-        {Boolean(value).toString()}
-      </Text>
     </View>
   )
 }

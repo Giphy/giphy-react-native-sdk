@@ -24,7 +24,7 @@ export const Card: React.FC<CardProps> = (props) => {
   const { title, testID, children } = props
 
   return (
-    <View testID={testID}>
+    <View nativeID={testID} testID={testID}>
       <Text style={styles.header}>{title}</Text>
       <View style={styles.card}>{children}</View>
     </View>

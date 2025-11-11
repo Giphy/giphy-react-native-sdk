@@ -1,4 +1,4 @@
-import { expectToMatchImageSnapshot, STABLE_SEARCH_TERMS } from './utils'
+import { expectToMatchImageSnapshot, STABLE_SEARCH_TERMS, wait } from './utils'
 
 function getGPHGridView() {
   return element(by.id('gph-grid-view'))
@@ -10,7 +10,9 @@ function getGPHGridSearchInput() {
 
 async function showGiphyGrid() {
   await element(by.id('gph-grid_search-stub')).tap()
-  await expect(getGPHGridView()).toBeVisible()
+  await waitFor(getGPHGridView()).toExist().withTimeout(5000)
+  // Give a moment for the modal animation to complete
+  await wait(500)
 }
 
 async function hideGiphyGrid() {
@@ -29,11 +31,13 @@ describe('Giphy Grid View', () => {
 
   test('should select a gif from the search results', async () => {
     await showGiphyGrid()
+    wait(1000)
     await expectToMatchImageSnapshot(device.takeScreenshot('Default'))
 
     // Search sticker
     await getGPHGridSearchInput().replaceText(STABLE_SEARCH_TERMS.sticker)
     await getGPHGridSearchInput().tapReturnKey()
+    wait(1000)
     await expectToMatchImageSnapshot(device.takeScreenshot('Search Result'), {
       failureThreshold: 0.03,
     })
