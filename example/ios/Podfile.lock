@@ -4,11 +4,11 @@ PODS:
   - fast_float (6.1.4)
   - FBLazyVector (0.78.0)
   - fmt (11.0.2)
-  - Giphy (2.2.16):
+  - Giphy (2.3.0):
     - libwebp
   - giphy-react-native-sdk (5.0.1):
     - DoubleConversion
-    - Giphy (= 2.2.16)
+    - Giphy (= 2.3.0)
     - glog
     - hermes-engine
     - RCT-Folly (= 2024.11.18.00)
@@ -1815,8 +1815,8 @@ SPEC CHECKSUMS:
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
   FBLazyVector: 6fe148afcef2e3213e484758e3459609d40d57f5
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
-  Giphy: 55914215541027873875757f350530e6d8986fba
-  giphy-react-native-sdk: 41d6a3c92778e0b4ff2a37b7e92d47f5c18ed765
+  Giphy: 980856ee41d0a96def9cf9dcf341fce36d5fa5af
+  giphy-react-native-sdk: 8d529a012f86462d7d81723923975e7100f6c435
   glog: eb93e2f488219332457c3c4eafd2738ddc7e80b8
   hermes-engine: b417d2b2aee3b89b58e63e23a51e02be91dc876d
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8

@@ -11,6 +11,7 @@ concurrency:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   build-and-publish:
@@ -33,12 +34,13 @@ jobs:
         uses: ./.github/actions/setup
         with:
           cocoa-pods: true
+      - name: 📦 Upgrade npm for OIDC support
+        run: npm install -g npm@latest
 
       - name: 🚀 Publish to NPM
-        run: npm publish --tag "$NPM_TAG"
+        run: npm publish --provenance --access public --tag "$NPM_TAG"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TAG: ${{ steps.vars.outputs.npm-tag }}
+          NPM_TAG: ${{ steps.vars.outputs.npm-tag }}        
 
       - name: 🗒 Add summary
         if: ${{ success() }}

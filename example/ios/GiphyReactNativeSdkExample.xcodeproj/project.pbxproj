@@ -508,11 +508,13 @@
 				DEVELOPMENT_TEAM = ZA8J22RJJC;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GiphyReactNativeSdkExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.giphyreactnativesdk;
 				PRODUCT_NAME = GiphyReactNativeSdkExample;
@@ -534,11 +536,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZA8J22RJJC;
 				INFOPLIST_FILE = GiphyReactNativeSdkExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.giphyreactnativesdk;
 				PRODUCT_NAME = GiphyReactNativeSdkExample;

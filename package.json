@@ -3,6 +3,9 @@
   "version": "5.0.1",
   "description": "Giphy React Native SDK",
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.14.0"
+  },
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
