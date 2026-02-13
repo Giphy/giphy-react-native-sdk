@@ -140,7 +140,7 @@ preBuild.dependsOn configureGiphyVideoPlayerAdapter
 dependencies {
   implementation "com.facebook.react:react-android:$reactNativeVersion"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'com.giphy.sdk:ui:2.3.18'
+  implementation 'com.giphy.sdk:ui:2.4.1'
 }
 
 if (isNewArchitectureEnabled()) {

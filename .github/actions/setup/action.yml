@@ -13,7 +13,7 @@ inputs:
     description: 'Java version'
     required: false
   node-version:
-    default: '18'
+    default: '22'
     description: 'NodeJS version'
     required: false
   ruby-version:

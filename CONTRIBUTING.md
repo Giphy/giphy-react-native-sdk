@@ -169,6 +169,8 @@ To publish new versions, run the following:
 yarn release
 ```
 
+Publishing from CI uses [npm Trusted Publisher](https://docs.npmjs.com/trusted-publishers) (OIDC) with GitHub Actions.
+
 ### Scripts
 
 The `package.json` file contains various scripts for common tasks:
