@@ -2,14 +2,15 @@
 
 ### Requirements
 
+- React Native 0.83.0 or later
 - Android:
   - Giphy SDK only supports projects that have been upgraded
     to [androidx](https://developer.android.com/jetpack/androidx/)
-  - Requires minSdkVersion 21
+  - Requires minSdkVersion 24
   - A Giphy Android SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
     Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
 - iOS:
-  - iOS 13.0 or later
+  - iOS 15.1 or later
   - Xcode 16 and later
   - A Giphy iOS SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
     Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
@@ -72,22 +73,10 @@ may be helpful if you experience issues linking your iOS project.
 If you encounter an issue where GIFs appear as static images instead of animating, this may be due to a dependency conflict between 
 React Native and the Fresco library used by our SDK.
 
-By default, our SDK versions below 3.3.2 use Fresco 2.5.0, while React Native 0.73.0 and above defaults to a newer Fresco version.
-
-If you are using our SDK below 3.3.2 and React Native below 0.73.0, follow the configurations to resolve potential conflicts:
-
-For React Native 0.73 up to (but not including) 0.76, add this block to android/build.gradle(:app) before `dependencies`: 
-```gradle
-configurations.all {
-    resolutionStrategy {
-        forcedModules = ['com.giphy.sdk:ui:2.3.15']
-    }
-}
-```
-
-For React Native 0.76.0 and above, where Fresco defaults to version 3.2.0, use the following configuration to ensure compatibility. 
+The current SDK supports React Native 0.83.0 and later. If you are using an older SDK version, upgrade first.
+If you still need to force Fresco versions, use the Fresco version that matches your React Native version.
 **Please check the exact version of Fresco used by the specific React Native version you are working with**, as this may vary. 
-Add this block to the same `android/build.gradle(:app)` file right before `dependencies`:
+Add a block like this to `android/build.gradle(:app)` right before `dependencies`:
 
 ```gradle
 configurations.configureEach {
@@ -106,8 +95,6 @@ configurations.configureEach {
     }
 }
 ```
-
-However, if you are using our SDK version 3.3.2 or later, there is no need for any manual Fresco configuration. Our latest SDK version fully supports React Native starting from 0.73.0, ensuring compatibility with the correct Fresco version.
 
 #### Feel free to open an [issue](https://github.com/Giphy/giphy-react-native-sdk/issues) here in this repo if you run into any problems.
 

@@ -61,18 +61,18 @@ def enableProguardInReleaseBuilds = false
  * The preferred build flavor of JavaScriptCore (JSC)
  *
  * For example, to use the international variant, you can use:
- * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ * `def jscFlavor = 'io.github.react-native-community:jsc-android-intl:2026004.+'`
  *
  * The international variant includes ICU i18n library and necessary data
  * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
  * give correct results when using with locales other than en-US. Note that
  * this variant is about 6MiB larger per architecture than default.*/
-def jscFlavor = 'org.webkit:android-jsc:+'
+def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 android {
   ndkVersion rootProject.ext.ndkVersion
 
-  compileSdkVersion rootProject.ext.compileSdkVersion
+  compileSdk rootProject.ext.compileSdkVersion
 
   namespace "com.example.giphyreactnativesdk"
   defaultConfig {
@@ -114,13 +114,6 @@ dependencies {
   // The version of react-native is set by the React Native Gradle Plugin
   implementation("com.facebook.react:react-android")
 
-  debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
-  debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-    exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-  }
-
-  debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
-
   if (hermesEnabled.toBoolean()) {
     implementation("com.facebook.react:hermes-android")
   } else {
@@ -129,4 +122,3 @@ dependencies {
 
   androidTestImplementation('com.wix:detox:+')
 }
-

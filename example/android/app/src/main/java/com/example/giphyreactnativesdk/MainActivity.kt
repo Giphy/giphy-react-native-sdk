@@ -1,4 +1,4 @@
-package com.example.giphyreactnativesdk;
+package com.example.giphyreactnativesdk
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
