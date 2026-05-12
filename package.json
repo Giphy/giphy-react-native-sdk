@@ -29,6 +29,7 @@
   "scripts": {
     "bootstrap": "yarn example gem:install && yarn example && yarn && yarn pods",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build",
+    "clean:caches": "scripts/clean-caches.sh",
     "detox:bootstrap:android": ". ./scripts/avd.defaults.sh && ./scripts/avd.create.sh && ./scripts/avd.run.sh",
     "detox:bootstrap:ios": ". ./scripts/sim.defaults.sh && ./scripts/sim.create.sh",
     "detox:build:android": "detox build --configuration android",
@@ -71,14 +72,14 @@
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
     "@react-native-community/eslint-config": "^3.2.0",
-    "@react-native/babel-preset": "0.78.0",
+    "@react-native/babel-preset": "0.83.0",
     "@release-it/conventional-changelog": "^7.0.2",
     "@types/jest": "^29.5.6",
     "@types/jest-image-snapshot": "^6.2.2",
     "@types/lodash.kebabcase": "^4.1.8",
     "@types/node": "20.8.7",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.0.0",
+    "@types/react": "^19.2.0",
     "commitlint": "^18.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "del-cli": "^5.1.0",
@@ -99,8 +100,8 @@
     "plist": "^3.0.6",
     "pod-install": "^0.1.39",
     "prettier": "^3.0.3",
-    "react": "19.0.0",
-    "react-native": "0.78.0",
+    "react": "19.2.0",
+    "react-native": "0.83.0",
     "react-native-builder-bob": "^0.23.1",
     "release-it": "^16.2.1",
     "spdx-correct": "^3.2.0",
@@ -113,8 +114,8 @@
     "type-fest": "^4.5.0"
   },
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-native": ">=0.78.0"
+    "react": "^19.2.0",
+    "react-native": ">=0.83.0"
   },
   "commitlint": {
     "extends": [

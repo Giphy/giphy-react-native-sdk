@@ -4,12 +4,13 @@ import com.github.jk1.license.render.JsonReportRenderer
 
 buildscript {
   ext {
-    buildToolsVersion = "34.0.0"
+    buildToolsVersion = "36.0.0"
     minSdkVersion = 24
-    compileSdkVersion = 34
-    targetSdkVersion = 34
+    compileSdkVersion = 36
+    targetSdkVersion = 36
     
-    ndkVersion = "26.1.10909125"
+    ndkVersion = "27.1.12297006"
+    kotlinVersion = "2.1.20"
   }
   repositories {
     google()
@@ -18,12 +19,15 @@ buildscript {
   dependencies {
     classpath("com.android.tools.build:gradle")
     classpath("com.facebook.react:react-native-gradle-plugin")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
   }
 }
 
 plugins {
   id 'com.github.jk1.dependency-license-report' version '2.5'
 }
+
+apply plugin: "com.facebook.react.rootproject"
 
 licenseReport {
   outputDir = "$projectDir/build/licenses"
