@@ -34,8 +34,7 @@ jobs:
         uses: ./.github/actions/setup
         with:
           cocoa-pods: true
-      - name: 📦 Upgrade npm for OIDC support
-        run: npm install -g npm@latest
+          node-version: 24
 
       - name: 🚀 Publish to NPM
         run: npm publish --provenance --access public --tag "$NPM_TAG"
