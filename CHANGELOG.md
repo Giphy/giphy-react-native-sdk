@@ -1,5 +1,19 @@
 
 
+# 6.0.0 (2026-05-12)
+
+### Native SDKs
+* Giphy Android SDK [v2.4.2](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.4.2)
+* Giphy iOS SDK [v2.3.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.3.2)
+
+
+
+* Feat!: drop support for React Native <0.83.0 ([2d00712](https://github.com/Giphy/giphy-react-native-sdk/commit/2d00712173bfa8e7e10354f1db19b99edd4e830f))
+
+
+### BREAKING CHANGES
+* Support for React Native versions before 0.83.0 has been removed.* The iOS deployment target is now 15.1 or later.
+
 # 5.0.2 (2026-02-13)
 
 ### Native SDKs

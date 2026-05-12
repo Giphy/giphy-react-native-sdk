@@ -6,7 +6,7 @@ PODS:
   - fmt (11.0.2)
   - Giphy (2.3.2):
     - libwebp
-  - giphy-react-native-sdk (5.0.2):
+  - giphy-react-native-sdk (6.0.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2787,7 +2787,7 @@ SPEC CHECKSUMS:
   FBLazyVector: a293a88992c4c33f0aee184acab0b64a08ff9458
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   Giphy: 7a50c497dca4fdf83aa23d5afc0c6768fabb2a21
-  giphy-react-native-sdk: aa874eced766de569d85f8ba4fa2060d5e8724ad
+  giphy-react-native-sdk: 37e7c949dcda56a2c44da32705b8f0984a9a3af8
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 34bdd9e35e72a13453a42675e06b8eacbb706d6d
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
