@@ -10,3 +10,5 @@ function getPkgTag() {
 if (require.main === module) {
   console.log(getPkgTag())
 }
+
+module.exports = getPkgTag

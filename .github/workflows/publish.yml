@@ -17,29 +17,33 @@ jobs:
   build-and-publish:
     name: Build & Publish
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: 👀 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
       - name: 🏷 Set vars
         id: vars
-        run: |
-          echo "package-version=${GITHUB_REF#refs/*/v}" >> $GITHUB_OUTPUT
-          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-          echo "npm-tag=$(node ./scripts/pkg.get-tag.js)" >> $GITHUB_OUTPUT
+        run: node ./scripts/pkg.release-vars.js
 
       - name: 🛠️ Set up environment
         uses: ./.github/actions/setup
         with:
-          cocoa-pods: true
+          example-dependencies: false
           node-version: 24
 
+      - name: 🧱 Build package
+        run: yarn build
+
+      - name: 📦 Check package contents
+        run: npm pack --dry-run --ignore-scripts
+
       - name: 🚀 Publish to NPM
-        run: npm publish --provenance --access public --tag "$NPM_TAG"
+        run: npm publish --provenance --access public --tag "$NPM_TAG" --ignore-scripts
         env:
-          NPM_TAG: ${{ steps.vars.outputs.npm-tag }}        
+          NPM_TAG: ${{ steps.vars.outputs.npm-tag }}
 
       - name: 🗒 Add summary
         if: ${{ success() }}
