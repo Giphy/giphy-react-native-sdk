@@ -16,6 +16,12 @@ yarn
 > While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built
 > around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development.
 
+To install local Git hooks, run this once after cloning:
+
+```sh
+yarn hooks:install
+```
+
 To edit the Objective-C files, open `example/ios/GiphyReactNativeSdkExample.xcworkspace` in XCode and find the source
 files at `Pods > Development Pods > giphy-react-native-sdk`.
 
@@ -177,6 +183,7 @@ The `package.json` file contains various scripts for common tasks:
 
 - `yarn bootstrap`: setup project by installing all dependencies and pods.
 - `yarn clean`: cleanup all build folders.
+- `yarn clean:caches`: remove project-local dependency, native build, and generated output caches. Run `yarn clean:caches --dry-run` to preview removals, or pass `--lockfiles` if lockfiles should be removed too.
 - `yarn detox:bootstrap:android`: prepare the environment for e2e-tests on the Android platform.
 - `yarn detox:bootstrap:ios`: prepare the environment for e2e-tests on the iOS platform.
 - `yarn detox:build:android`: create a build of the example app ready for e2e-testing on the Android platform.
@@ -186,6 +193,7 @@ The `package.json` file contains various scripts for common tasks:
 - `yarn example android`: run the example app on Android.
 - `yarn example ios`: run the example app on iOS.
 - `yarn example start`: start the Metro server for the example app.
+- `yarn hooks:install`: install local Git hooks.
 - `yarn licenses:check`: check that all licenses of all dependencies used in the package are correct.
 - `yarn licenses:generate`: generate license lists of all dependencies used in the package.
 - `yarn lint`: lint files with ESLint.

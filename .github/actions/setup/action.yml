@@ -5,6 +5,14 @@ inputs:
   cocoa-pods:
     description: 'Set up CocoaPods environment'
     required: false
+  example-dependencies:
+    default: 'true'
+    description: 'Install example app JavaScript dependencies'
+    required: false
+  install-scripts:
+    default: 'false'
+    description: 'Allow package manager lifecycle scripts during dependency install'
+    required: false
   jdk:
     description: 'Set up JDK environment'
     required: false
@@ -35,9 +43,20 @@ runs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: 📦 Install JS dependencies
-      if: steps.node-modules-cache.outputs.cache-hit != 'true'
-      run: yarn install --frozen-lockfile && yarn example install --frozen-lockfile
+      run: |
+        install_args=(--frozen-lockfile)
+        if [ "${{ inputs.install-scripts }}" != "true" ]; then
+          install_args+=(--ignore-scripts)
+        fi
+
+        yarn install "${install_args[@]}"
+
+        if [ "${{ inputs.example-dependencies }}" == "true" ]; then
+          yarn example install "${install_args[@]}"
+        fi
       shell: bash
+      env:
+        HUSKY: '0'
 
     - name: 🛠 Setup JDK
       uses: actions/setup-java@v4
@@ -62,7 +81,9 @@ runs:
         bundler-cache: true
         ruby-version: ${{ inputs.ruby-version }}
 
-    - name: ⏯ Bootstrap
-      if: steps.pods-cache.outputs.cache-hit != 'true'
-      run: yarn bootstrap
+    - name: ⏯ Install Pods
+      if: inputs.cocoa-pods == 'true' && steps.pods-cache.outputs.cache-hit != 'true'
+      run: |
+        yarn example gem:install
+        yarn pods
       shell: bash
