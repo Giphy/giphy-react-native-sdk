@@ -5621,6 +5621,11 @@ react-native-picker-select@^8.1.0:
     "@react-native-picker/picker" "^1.8.3"
     lodash.isequal "^4.5.0"
 
+react-native-safe-area-context@^5.4.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.8.0.tgz#d2fb9fc8e0f0583311e261dc484b95ceb80f8902"
+  integrity sha512-t+ZsAVzY/wWzzx34vqGbo3/as9EEESJdbyZNL7Yg5EYX+toYMtMqFoDDCvqZUi35eeGVsXc6pAaEk4edMwbuCQ==
+
 react-native@0.83.0:
   version "0.83.0"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.83.0.tgz#30f815ca6355c9fe32daa8772338075d3e2d84f1"
