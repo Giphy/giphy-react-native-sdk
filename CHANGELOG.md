@@ -1,5 +1,11 @@
 
 
+# 6.0.2 (2026-07-02)
+
+### Native SDKs
+* Giphy Android SDK [v2.5.1](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.5.1)
+* Giphy iOS SDK [v2.3.2](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.3.2)
+
 # 6.0.1 (2026-05-21)
 
 ### Native SDKs
