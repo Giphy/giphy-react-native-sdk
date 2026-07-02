@@ -142,7 +142,7 @@ class RTNGiphyDialogModule internal constructor(context: ReactApplicationContext
     gifsDialog = GiphyDialogFragment.newInstance(
       settings,
       videoPlayer = getVideoPlayerFactory()
-    )
+    ).setHostHandlesBottomSafeArea(true)
   }
 
   @ReactMethod

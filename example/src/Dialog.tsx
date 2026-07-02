@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, ModalProps, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { Modal, ModalProps, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const styles = StyleSheet.create({
   container: {
