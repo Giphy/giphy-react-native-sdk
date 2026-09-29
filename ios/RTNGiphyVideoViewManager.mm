@@ -1,6 +1,6 @@
 #import <React/RCTViewManager.h>
 #import <React/RCTUIManager.h>
-#import "RCTBridge.h"
+#import <React/RCTBridge.h>
 
 #if __has_include("giphy_react_native_sdk/giphy_react_native_sdk-Swift.h")
 #import <giphy_react_native_sdk/giphy_react_native_sdk-Swift.h>
