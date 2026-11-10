@@ -5,7 +5,7 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.Event
 
 class OnPlayerErrorEvent
-constructor(surfaceId: Int, viewId: Int, private val details: String) :
+constructor(surfaceId: Int, viewId: Int, private val description: String) :
   Event<OnPlayerErrorEvent>(surfaceId, viewId) {
 
   override fun getEventName() = EVENT_NAME
@@ -16,7 +16,7 @@ constructor(surfaceId: Int, viewId: Int, private val details: String) :
 
   override fun getEventData(): WritableMap? {
     val event = Arguments.createMap()
-    event.putString("details", details)
+    event.putString("description", description)
     return event
   }
 

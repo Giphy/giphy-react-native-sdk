@@ -149,6 +149,12 @@ module.exports = {
   plugins: {
     '@release-it/conventional-changelog': {
       infile: 'CHANGELOG.md',
+      // The angular preset doesn't accept the "!" breaking-change marker in a header ("feat!:", "build(deps)!:"):
+      // such a commit lost its type and scope and was listed outside of every group.
+      parserOpts: {
+        headerPattern: /^(\w*)(?:\((.*)\))?!?: (.*)$/,
+        breakingHeaderPattern: /^(\w*)(?:\((.*)\))?!: (.*)$/,
+      },
       writerOpts: {
         commitPartial: readTemplateSync('changelog-commit'),
         footerPartial: readTemplateSync('changelog-footer'),

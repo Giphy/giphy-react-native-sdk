@@ -1,4 +1,5 @@
 export * from './elementActions'
+export * from './giphyApi'
 export * from './giphyDialog'
 export * from './imageSnapshot'
 export * from './rootElement'

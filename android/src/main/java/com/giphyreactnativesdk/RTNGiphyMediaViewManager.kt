@@ -1,9 +1,12 @@
 package com.giphyreactnativesdk
 
 import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.common.MapBuilder
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
+import com.giphyreactnativesdk.events.OnMediaErrorEvent
+import com.giphyreactnativesdk.events.OnMediaLoadEvent
 
 @ReactModule(name = RTNGiphyMediaViewManager.NAME)
 class RTNGiphyMediaViewManager :
@@ -56,6 +59,17 @@ class RTNGiphyMediaViewManager :
 
   override fun pause(view: RTNGiphyMediaView?) {
     view?.pause()
+  }
+
+  override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any> {
+    val export = super.getExportedCustomDirectEventTypeConstants() ?: MapBuilder.newHashMap()
+
+    export[OnMediaErrorEvent.EVENT_NAME] =
+      MapBuilder.of("registrationName", "onError")
+    export[OnMediaLoadEvent.EVENT_NAME] =
+      MapBuilder.of("registrationName", "onLoad")
+
+    return export
   }
 
   companion object {

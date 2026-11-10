@@ -4,6 +4,16 @@ import GiphyUISDK
 open class RTNGiphyMediaViewImpl: UIView {
   static let DEFAULT_RENDITION_TYPE: GPHRenditionType = .fixedWidth
 
+  //MARK: RN Event Handlers
+  @objc public var onError: ((_ data: NSDictionary) -> Void)? = nil
+  @objc public var onLoad: ((_ data: NSDictionary) -> Void)? = nil
+
+  private var requestedMediaId: String?
+  // The media the SDK view is loading, and the last one reported as loaded.
+  private var loadingMediaId: String?
+  private var reportedLoadMediaId: String?
+  private var imageObservation: NSKeyValueObservation?
+
   private var media: GPHMedia? {
     didSet {
       syncMediaViewSource()
@@ -48,6 +58,8 @@ open class RTNGiphyMediaViewImpl: UIView {
 
   @objc
   public func setMediaId(_ rnValue: NSString?) -> Void {
+    requestedMediaId = rnValue as? String
+    reportedLoadMediaId = nil
     guard
         let mediaId = rnValue as? String
     else {
@@ -56,10 +68,24 @@ open class RTNGiphyMediaViewImpl: UIView {
     }
 
     GiphyCore.shared.gifByID(mediaId) { [weak self] (response, error) in
-      guard let self = self else {
+      // The SDK calls back on the main queue. Ignore the answer for media that is no longer requested.
+      guard let self = self, self.requestedMediaId == mediaId else {
         return
       }
       self.media = response?.data
+      if response?.data == nil {
+        self.reportLoadError(mediaId: mediaId, error: error)
+      }
+    }
+  }
+
+  private func reportLoadError(mediaId: String, error: Error?) -> Void {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self, self.requestedMediaId == mediaId else {
+        return
+      }
+
+      self.onError?(["description": error?.localizedDescription ?? "Media not found: \(mediaId)"])
     }
   }
 
@@ -85,6 +111,21 @@ open class RTNGiphyMediaViewImpl: UIView {
 
   private func setupView() -> Void {
     addSubview(mediaView)
+
+    // The SDK has no load callback, but it sets the image once it is downloaded.
+    imageObservation = mediaView.observe(\.image) { [weak self] view, _ in
+      guard view.image != nil else {
+        return
+      }
+      // Check right away: the media can change before a deferred check runs.
+      if Thread.isMainThread {
+        self?.reportLoad()
+      } else {
+        DispatchQueue.main.async {
+          self?.reportLoad()
+        }
+      }
+    }
 
     mediaView.clipsToBounds = true
     mediaView.translatesAutoresizingMaskIntoConstraints = false
@@ -113,11 +154,30 @@ open class RTNGiphyMediaViewImpl: UIView {
         return
       }
 
-      if self.media == nil {
-        self.mediaView.media = self.media
-      } else {
-        self.mediaView.setMedia(self.media!, rendition: self.renditionType)
+      guard let media = self.media else {
+        self.loadingMediaId = nil
+        // The SDK view ignores a nil media, so clear it explicitly.
+        self.mediaView.cancelLoading()
+        return
       }
+
+      // Set first: a cached image is set before setMedia returns. The SDK ignores the images of
+      // earlier loads, so every image after this belongs to this media.
+      self.loadingMediaId = media.id
+      self.mediaView.setMedia(media, rendition: self.renditionType)
     }
+  }
+
+  // Reports a load once per requested media, not again when a rendition change reloads it.
+  private func reportLoad() -> Void {
+    guard let mediaId = loadingMediaId,
+          mediaId == requestedMediaId,
+          mediaId != reportedLoadMediaId
+    else {
+      return
+    }
+
+    reportedLoadMediaId = mediaId
+    onLoad?([:])
   }
 }

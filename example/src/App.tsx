@@ -9,6 +9,7 @@ import { Dialog } from './Dialog'
 import { GIPHY_MEDIA_FIXTURE } from './fixtures'
 import { MediaGridSample } from './MediaGridSample'
 import { MediaViewSample } from './MediaViewSample'
+import { MediaViewTests } from './MediaViewTests'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,6 +19,16 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
+    paddingHorizontal: 16,
+  },
+  headerRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  headerLink: {
+    color: '#2196F3',
+    fontSize: 14,
     paddingHorizontal: 16,
   },
   card: {
@@ -54,6 +65,7 @@ function useLatest<V>(value: V) {
 
 export default function App() {
   const [dialogSettingsVisible, setDialogSettingsVisible] = useState(false)
+  const [mediaTestsVisible, setMediaTestsVisible] = useState(false)
   const [medias, setMedias] = useState<GiphyMedia[]>(GIPHY_MEDIA_FIXTURE)
   const [giphyDialogSettings, setGiphyDialogSettings] = useState<GiphyDialogConfig>(DEFAULT_DIALOG_SETTINGS)
 
@@ -103,12 +115,22 @@ export default function App() {
         <GiphyDialogSettings settings={giphyDialogSettings} onSettingsChange={setGiphyDialogSettings} />
       </Dialog>
 
+      {/* Media and video views driven by the e2e tests */}
+      <Dialog visible={mediaTestsVisible} onRequestClose={() => setMediaTestsVisible(false)}>
+        <MediaViewTests />
+      </Dialog>
+
       {/* Displaying Giphy Grid View with the custom search bar */}
       <MediaGridSample onMediaSelect={addMedia} style={styles.card} />
 
       {/*Displaying selected media*/}
       <View style={styles.card}>
-        <Text style={styles.header}>Preview</Text>
+        <View style={styles.headerRow}>
+          <Text style={styles.header}>Preview</Text>
+          <TouchableOpacity testID="show-media-tests" onPress={() => setMediaTestsVisible(true)}>
+            <Text style={styles.headerLink}>Media View Tests</Text>
+          </TouchableOpacity>
+        </View>
         <ScrollView style={styles.previewContainer}>
           {medias.map((media) => (
             <View key={media.id} style={[styles.previewCell, { aspectRatio: media.aspectRatio }]}>

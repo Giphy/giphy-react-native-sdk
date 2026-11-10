@@ -1,6 +1,6 @@
 import React from 'react'
 import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes'
-import { AppState, type AppStateStatus, type ViewProps } from 'react-native'
+import { AppState, type AppStateStatus, type NativeEventSubscription, type ViewProps } from 'react-native'
 
 import type { GiphyMediaID } from './dto/giphyMedia'
 import { GiphyVideoManager } from './GiphyVideoManager'
@@ -24,7 +24,7 @@ export interface GiphyVideoViewProps extends ViewProps {
 const BACKGROUND_STATE_REGEX = /inactive|background/
 
 let mountedComponentsCount = 0
-let appStateListenerAdded = false
+let appStateSubscription: NativeEventSubscription | null = null
 let latestAppState: AppStateStatus = AppState.currentState
 
 function appStateListener(appState: AppStateStatus) {
@@ -39,25 +39,24 @@ function appStateListener(appState: AppStateStatus) {
 
 function addAppStateListener() {
   latestAppState = AppState.currentState
-  AppState.addEventListener('change', appStateListener)
-  appStateListenerAdded = true
+  appStateSubscription = AppState.addEventListener('change', appStateListener)
 }
 
 function removeAppStateListener() {
-  AppState.addEventListener('change', appStateListener)
-  appStateListenerAdded = false
+  appStateSubscription?.remove()
+  appStateSubscription = null
 }
 
 function registerComponent() {
   mountedComponentsCount += 1
-  if (!appStateListenerAdded) {
+  if (!appStateSubscription) {
     addAppStateListener()
   }
 }
 
 function unregisterComponent() {
   mountedComponentsCount = Math.max(0, mountedComponentsCount - 1)
-  if (mountedComponentsCount === 0 && appStateListenerAdded) {
+  if (mountedComponentsCount === 0 && appStateSubscription) {
     removeAppStateListener()
   }
 }
