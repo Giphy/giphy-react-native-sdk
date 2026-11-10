@@ -7,25 +7,6 @@
 * Giphy iOS SDK [v2.4.0](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.4.0)
 
 
-### Bug Fixes
-* [android] Skip explicit Kotlin plugin when AGP registers the kotlin extension ([67c8a92](https://github.com/Giphy/giphy-react-native-sdk/commit/67c8a9286444002375f76ba44dececb379c80100))
-* [ios] Import RCTBridge.h with the angle-bracket form ([6550d7d](https://github.com/Giphy/giphy-react-native-sdk/commit/6550d7d9bd8786b1fc4e03528133a3300bc5fe06))
-
-### Build System
-* [deps] Bump rexml from 3.3.9 to 3.4.2 in /example ([377a4f9](https://github.com/Giphy/giphy-react-native-sdk/commit/377a4f9c02f69171797f712594c0268f178a4699))
-* [deps] Bump iOS SDK version from 2.3.2 to 2.4.0 ([b0ee2a5](https://github.com/Giphy/giphy-react-native-sdk/commit/b0ee2a5640232528f3058fdef9505f7f74643031))
-
-
-### BREAKING CHANGES
-* (deps) iOS builds need Xcode 26.4 or later (Swift 6.3 or later).
-
-# Unreleased
-
-### BREAKING CHANGES
-* iOS: building an app now needs Xcode 26.4 or later (the first Xcode with the Swift 6.3 compiler), because GIPHY iOS
-  SDK 2.4.0 requires it. Apps can still be written in Swift 5 language mode or Objective-C. The minimum iOS version
-  stays 15.1.
-
 ### Features
 * `GiphyMediaView` has a new `onError` callback. It reports when the media can't be loaded, for example when no media
   has the given ID.
@@ -37,6 +18,9 @@
   React Native's legacy interop layer. A `testID` is now set on one native view instead of two.
 
 ### Bug Fixes
+* [android] Skip explicit Kotlin plugin when AGP registers the kotlin extension ([67c8a92](https://github.com/Giphy/giphy-react-native-sdk/commit/67c8a9286444002375f76ba44dececb379c80100))
+* [ios] Import RCTBridge.h with the angle-bracket form ([6550d7d](https://github.com/Giphy/giphy-react-native-sdk/commit/6550d7d9bd8786b1fc4e03528133a3300bc5fe06))
+* [ios] `RCTFabricComponentsPlugins.h` is imported once, with the angle-bracket form.
 * [ios] Unmounted `GiphyVideoView`s were never freed.
 * [ios] Unmounting a playing `GiphyVideoView` now stops its clip. It used to keep playing after the view was gone.
 * [ios] With GIPHY iOS SDK 2.4.0, a `GiphyMediaView` whose media changes while loading no longer shows the previous
@@ -57,6 +41,10 @@
   **If you use a custom video player adapter** copied from an earlier version, change `MuteChanged(volume > 0)` to
   `MuteChanged(muted = volume == 0f)`. Otherwise `onMute` and `onUnmute` are swapped.
 
+### Build System
+* [deps] Bump rexml from 3.3.9 to 3.4.2 in /example ([377a4f9](https://github.com/Giphy/giphy-react-native-sdk/commit/377a4f9c02f69171797f712594c0268f178a4699))
+* [deps] Bump iOS SDK version from 2.3.2 to 2.4.0 ([b0ee2a5](https://github.com/Giphy/giphy-react-native-sdk/commit/b0ee2a5640232528f3058fdef9505f7f74643031))
+
 ### Developer Tooling
 * The example app uses the UIScene life cycle, which apps built with the iOS 27 SDK require to launch.
 * New e2e tests for `GiphyMediaView` and `GiphyVideoView` (`e2e/MediaViews.e2e.ts`), driven by a test screen in the
@@ -65,6 +53,12 @@
 * The example app's dialogs respect the safe area on iOS 27, and the e2e tests set text fields with `replaceText`.
 * `yarn detox:bootstrap:android` creates the emulator with GPU rendering. The e2e snapshots are recorded again on the
   devices the bootstrap scripts create.
+
+
+### BREAKING CHANGES
+* iOS: building an app now needs Xcode 26.4 or later (the first Xcode with the Swift 6.3 compiler), because GIPHY iOS
+  SDK 2.4.0 requires it. Apps can still be written in Swift 5 language mode or Objective-C. The minimum iOS version
+  stays 15.1.
 
 # 6.0.3 (2026-08-12)
 
