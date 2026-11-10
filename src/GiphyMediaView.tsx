@@ -1,7 +1,12 @@
 import React from 'react'
+import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes'
 import type { ViewProps } from 'react-native/Libraries/Components/View/ViewPropTypes'
 
-import NativeGiphyMediaView, { Commands } from './specs/GiphyMediaViewNativeComponent'
+import NativeGiphyMediaView, {
+  Commands,
+  type GiphyMediaViewErrorEvent,
+  type GiphyMediaViewLoadEvent,
+} from './specs/GiphyMediaViewNativeComponent'
 import type { GiphyMediaID } from './dto/giphyMedia'
 import type { GiphyRendition } from './dto/giphyRendition'
 import type { ResizeMode } from './dto/misc'
@@ -9,6 +14,8 @@ import type { ResizeMode } from './dto/misc'
 export interface GiphyMediaViewProps extends ViewProps {
   autoPlay?: boolean
   media?: GiphyMediaID
+  onError?: DirectEventHandler<GiphyMediaViewErrorEvent>
+  onLoad?: DirectEventHandler<GiphyMediaViewLoadEvent>
   renditionType?: GiphyRendition
   resizeMode?: ResizeMode
   showCheckeredBackground?: boolean

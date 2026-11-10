@@ -48,7 +48,7 @@ class VideoPlayerAdapterImpl(
     val volume = if (isDeviceMuted) 0f else audioVolume
     player?.audioComponent?.volume = volume
     listeners.forEach {
-      it(GPHVideoPlayerState.MuteChanged(volume > 0))
+      it(GPHVideoPlayerState.MuteChanged(muted = volume == 0f))
     }
   }
 

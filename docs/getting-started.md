@@ -11,7 +11,8 @@
     Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
 - iOS:
   - iOS 15.1 or later
-  - Xcode 16 and later
+  - Xcode 26.4 or later (it includes the Swift 6.3 compiler). Your app's code can still use Swift 5 language mode or
+    Objective-C.
   - A Giphy iOS SDK key from the [Giphy Developer Portal](https://developers.giphy.com/dashboard/?create=true).
     Please remember, you should use a separate key for every platform (Android, iOS, Web) you add our SDKs to.
 

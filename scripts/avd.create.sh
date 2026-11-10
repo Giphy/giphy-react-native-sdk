@@ -26,7 +26,10 @@ echo "no" | "$ANDROID_CMD_TOOLS"/avdmanager --verbose create avd \
   --package "${ANDROID_SYSTEM_IMAGE}" \
 
 # Update AVD’s config
+# avdmanager disables the GPU, and with software rendering the example app stops responding.
 cat >>"${AVD_CONFIG}" <<-EOM
+hw.gpu.enabled=yes
+hw.gpu.mode=host
 hw.lcd.density=440
 hw.lcd.height=2280
 hw.lcd.width=1080

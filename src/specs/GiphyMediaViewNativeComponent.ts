@@ -1,12 +1,21 @@
 import React from 'react'
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
+import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes'
 import type { HostComponent } from 'react-native'
 import type { ViewProps } from 'react-native/Libraries/Components/View/ViewPropTypes'
+
+export type GiphyMediaViewErrorEvent = Readonly<{
+  description: string
+}>
+
+export type GiphyMediaViewLoadEvent = Readonly<{}>
 
 export interface NativeProps extends ViewProps {
   autoPlay: boolean
   mediaId?: string
+  onError?: DirectEventHandler<GiphyMediaViewErrorEvent>
+  onLoad?: DirectEventHandler<GiphyMediaViewLoadEvent>
   renditionType: string
   resizeMode: string
   showCheckeredBackground: boolean

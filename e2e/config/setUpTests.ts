@@ -33,7 +33,12 @@ function setSIMDemoMode() {
 }
 
 function showSimulator() {
-  execSync('open -a simulator')
+  try {
+    execSync('open -a simulator')
+  } catch (error) {
+    console.warn('Warning: Failed to open the Simulator app.')
+    console.warn('Tests will continue with a headless simulator.')
+  }
 }
 
 beforeAll(() => {

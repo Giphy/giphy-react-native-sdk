@@ -27,6 +27,8 @@ class RTNGiphyVideoView @JvmOverloads constructor(
   private var autoPlay: Boolean = false
   private var muted = false
   private var rnStateSynchronized = false
+  private var requestedMediaId: String? = null
+  private var destroyed = false
 
   init {
     videoPlayer = SharedVideoPlayer.gphPlayer
@@ -68,17 +70,33 @@ class RTNGiphyVideoView @JvmOverloads constructor(
   }
 
   fun setMedia(mediaId: String?) {
+    requestedMediaId = mediaId
     if (mediaId == null) {
       return
     }
 
     GPHCore.gifById(mediaId) { result, e ->
-      val media = result?.data ?: return@gifById
-      preloadFirstFrame(media)
-      SharedVideoPlayer.gphPlayer.loadMedia(media, view = this, autoPlay = this.autoPlay)
       e?.let {
         Timber.d("Error while fetching GIF: %s", e.localizedMessage)
       }
+      // The view may have been dropped, or given other media, while the lookup ran. Loading the
+      // media then would start playback that nobody sees.
+      if (destroyed || mediaId != requestedMediaId) {
+        return@gifById
+      }
+      val media = result?.data
+      if (media == null) {
+        dispatchEvent(
+          OnPlayerErrorEvent(
+            UIManagerHelper.getSurfaceId(this),
+            this.id,
+            e?.localizedMessage ?: "Media not found: $mediaId"
+          )
+        )
+        return@gifById
+      }
+      preloadFirstFrame(media)
+      SharedVideoPlayer.gphPlayer.loadMedia(media, view = this, autoPlay = this.autoPlay)
     }
   }
 
@@ -133,9 +151,9 @@ class RTNGiphyVideoView @JvmOverloads constructor(
 
         is GPHVideoPlayerState.MuteChanged -> {
           if (it.muted) {
-            dispatchEvent(OnPlayerUnmuteEvent(surfaceId, this.id))
-          } else {
             dispatchEvent(OnPlayerMuteEvent(surfaceId, this.id))
+          } else {
+            dispatchEvent(OnPlayerUnmuteEvent(surfaceId, this.id))
           }
         }
 
@@ -170,11 +188,25 @@ class RTNGiphyVideoView @JvmOverloads constructor(
     UIManagerHelper.getEventDispatcherForReactTag(context, id)?.dispatchEvent(event)
   }
 
+  fun dispatchPaused() {
+    dispatchEvent(
+      OnPlayerPlaybackStateChangeEvent(
+        UIManagerHelper.getSurfaceId(this),
+        this.id,
+        RTNGiphyVideoPlaybackState.Paused
+      )
+    )
+  }
+
   override fun onDestroy() {
+    destroyed = true
     super.onDestroy()
+    // The view can't receive events any more, so stop listening before pausing.
+    videoPlayer?.removeListener(playerListener)
     if (isViewPlayerActive()) {
       videoPlayer?.onPause()
+      // Otherwise SharedVideoPlayer.resume() would load the media into this dropped view.
+      videoPlayer?.playerView = null
     }
-    videoPlayer?.removeListener(playerListener)
   }
 }

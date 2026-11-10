@@ -193,7 +193,8 @@ async function toggleSwitches(allIds: string[], turnOnIds: string[]) {
 async function setTextFieldValue(textFieldId: string, value: string) {
   const matcher = by.id(textFieldId)
   await scrollGPHDialogSettingsTo(matcher)
-  await element(matcher).typeText(value)
+  // typeText would append to the current value.
+  await element(matcher).replaceText(value)
   await element(matcher).tapReturnKey()
 }
 
@@ -559,18 +560,13 @@ describe('Giphy Dialog Settings', () => {
   /* iOS SPECIFIC */
   if (device.getPlatform() === 'ios') {
     test('Tray Height Multiplier', async () => {
-      const variants = [
-        {
-          heightMultiplier: '0.5',
-          expectedHeight: 1149,
-          expectedWidth: 1170,
-        },
-        {
-          heightMultiplier: '1',
-          expectedHeight: 2391,
-          expectedWidth: 1170,
-        },
-      ] as const
+      // The dialog takes the multiplier's share of the screen height and the full screen width.
+      const screen = imageSize(await device.takeScreenshot('Screen'))
+      const variants = ['0.5', '1'].map((heightMultiplier) => ({
+        heightMultiplier,
+        expectedHeight: Math.round(screen.height! * Number(heightMultiplier)),
+        expectedWidth: screen.width!,
+      }))
 
       for (const variant of variants) {
         const { heightMultiplier, expectedHeight, expectedWidth } = variant

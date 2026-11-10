@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, ModalProps, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
 const styles = StyleSheet.create({
   container: {
@@ -32,16 +32,22 @@ export const Dialog: React.FC<ModalProps> = (props) => {
 
   return (
     <Modal onRequestClose={onRequestClose} {...other}>
-      <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.content} testID="gph-dialog-content">
-          {children}
-        </ScrollView>
-        <TouchableOpacity style={styles.buttonClose} onPress={(e) => (onRequestClose ? onRequestClose(e) : undefined)}>
-          <Text style={styles.buttonTextClose} testID="gph-close-dialog">
-            Close
-          </Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+      {/* A modal is a separate native view tree, so it needs its own provider to get safe area insets. */}
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.container}>
+          <ScrollView style={styles.content} testID="gph-dialog-content">
+            {children}
+          </ScrollView>
+          <TouchableOpacity
+            style={styles.buttonClose}
+            onPress={(e) => (onRequestClose ? onRequestClose(e) : undefined)}
+          >
+            <Text style={styles.buttonTextClose} testID="gph-close-dialog">
+              Close
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </SafeAreaProvider>
     </Modal>
   )
 }

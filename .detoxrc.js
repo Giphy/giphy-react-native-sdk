@@ -33,7 +33,7 @@ module.exports = {
     simulator: {
       type: 'ios.simulator',
       device: {
-        type: process.env.SIM_DEVICE_NAME,
+        name: process.env.SIM_DEVICE_NAME,
       },
     },
     emulator: {

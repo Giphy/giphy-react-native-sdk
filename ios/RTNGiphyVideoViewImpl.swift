@@ -12,6 +12,7 @@ open class RTNGiphyVideoViewImpl: UIView {
   @objc public var autoPlay: Bool = false
 
   var videoPlayerDelegate: RTNGiphyVideoPlayerDelegate?
+  private var requestedMediaId: String?
   var media: GPHMedia? {
     didSet {
       syncMedia()
@@ -40,9 +41,32 @@ open class RTNGiphyVideoViewImpl: UIView {
 
   deinit {
     ViewsRegister.shared.unregisterView(view: self)
-    if (SharedGPHVideoPlayer.initialized && videoPlayerDelegate != nil) {
-      SharedGPHVideoPlayer.shared.remove(listener: videoPlayerDelegate! as RTNGiphyVideoPlayerDelegate)
-      videoPlayerDelegate = nil
+    let playerView = self.playerView
+    let videoPlayerDelegate = self.videoPlayerDelegate
+    if Thread.isMainThread {
+      RTNGiphyVideoViewImpl.releasePlayer(of: playerView, delegate: videoPlayerDelegate)
+    } else {
+      DispatchQueue.main.async {
+        RTNGiphyVideoViewImpl.releasePlayer(of: playerView, delegate: videoPlayerDelegate)
+      }
+    }
+  }
+
+  // The shared player outlives the views. Besides the view's delegate, the SDK's player view listens to it,
+  // and the player keeps playing into that view while it is the player's view, even after it is unmounted.
+  private static func releasePlayer(of playerView: GPHVideoPlayerView, delegate: RTNGiphyVideoPlayerDelegate?) {
+    guard SharedGPHVideoPlayer.initialized else {
+      return
+    }
+
+    let player = SharedGPHVideoPlayer.shared
+    if let delegate = delegate {
+      player.remove(listener: delegate)
+    }
+    player.remove(listener: playerView)
+    if player.playerView == playerView {
+      // Also cancels a load that hasn't started playing yet.
+      player.stop()
     }
   }
 
@@ -104,6 +128,7 @@ open class RTNGiphyVideoViewImpl: UIView {
   //MARK: RN Setters
   @objc
   public func setMediaId(_ rnValue: NSString?) -> Void {
+    requestedMediaId = rnValue as? String
     guard
         let mediaId = rnValue as? String
     else {
@@ -112,10 +137,24 @@ open class RTNGiphyVideoViewImpl: UIView {
     }
 
     GiphyCore.shared.gifByID(mediaId) { [weak self] (response, error) in
-      guard let self = self else {
+      // The SDK calls back on the main queue. Ignore the answer for media that is no longer requested.
+      guard let self = self, self.requestedMediaId == mediaId else {
         return
       }
       self.media = response?.data
+      if response?.data == nil {
+        self.reportLoadError(mediaId: mediaId, error: error)
+      }
+    }
+  }
+
+  private func reportLoadError(mediaId: String, error: Error?) -> Void {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self, self.requestedMediaId == mediaId else {
+        return
+      }
+
+      self.onError?(["description": error?.localizedDescription ?? "Media not found: \(mediaId)"])
     }
   }
 
@@ -131,25 +170,33 @@ open class RTNGiphyVideoViewImpl: UIView {
 private class ViewsRegister {
   static let shared = ViewsRegister()
 
-  private var views: [RTNGiphyVideoViewImpl] = []
+  private struct WeakView {
+    weak var view: RTNGiphyVideoViewImpl?
+  }
+
+  // Weak, so registering a view doesn't keep it alive: deinit unregisters it.
+  private var views: [WeakView] = []
 
   private init() {
   }
 
   func registerView(view: RTNGiphyVideoViewImpl) {
-    views.append(view)
+    views.append(WeakView(view: view))
   }
 
   func unregisterView(view: RTNGiphyVideoViewImpl) {
     views.removeAll {
-      $0 == view
+      $0.view == nil || $0.view == view
     }
   }
 
   func getLatestViewWithAutoPlayback() -> RTNGiphyVideoViewImpl? {
     return views.last {
-      $0.autoPlay && $0.media != nil
-    }
+      guard let view = $0.view else {
+        return false
+      }
+      return view.autoPlay && view.media != nil
+    }?.view
   }
 }
 

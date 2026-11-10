@@ -135,6 +135,10 @@ yarn detox:build:ios
 yarn detox:test:ios
 ```
 
+The e2e tests load live GIPHY content, so they need network access and the API keys in `example/.env`
+(see [Run the example app](#run-the-example-app)). `e2e/MediaViews.e2e.ts` covers `GiphyMediaView` and `GiphyVideoView`
+through a test screen in the example app (`example/src/MediaViewTests.tsx`) that shows what the views report.
+
 Commands listed above expects the test environment to be configured. Here is a quick guide on how this can be done:
 
 #### Android
@@ -150,19 +154,25 @@ Fortunately, you can do this simply by running the following command:
 
 `yarn detox:bootstrap:android`
 
+The emulator needs GPU rendering (`hw.gpu.enabled=yes`, `hw.gpu.mode=host`, which the bootstrap sets). Don't run an
+Xcode or Gradle build while the Android e2e tests run: under heavy load the emulator can stop responding, and the
+remaining tests fail.
+
 #### iOS
 
 Prerequisites:
 
 - ✅ Detox Command Line Tools. This can be done by running this command: `npm install -g detox-cli`
-- ✅ MacOS Catalina or newer
-- ✅ Xcode v12.x or newer (v13 support - see [here](https://github.com/wix/Detox/issues/2895)), with Xcode command-line
-  tools installed
+- ✅ Xcode 26.4 or newer, with Xcode command-line tools installed
+- ✅ [applesimutils](https://github.com/wix/AppleSimulatorUtils) (`yarn detox:bootstrap:ios` installs it with Homebrew)
 
 If all of the above is ready, you need to configure the iOS Simulator to run the e2e test. This can be done by running
 the following command:
 
 `yarn detox:bootstrap:ios`
+
+It creates the `GiphyRNSDK iPhone 12 Pro` simulator with the newest iOS runtime installed. `yarn detox:build:ios` and
+`yarn detox:test:ios` use that simulator.
 
 ### Publishing to npm
 

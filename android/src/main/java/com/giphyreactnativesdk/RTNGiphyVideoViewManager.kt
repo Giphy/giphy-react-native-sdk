@@ -19,6 +19,11 @@ class RTNGiphyVideoViewManager :
     return RTNGiphyVideoView(context)
   }
 
+  override fun onDropViewInstance(view: RTNGiphyVideoView) {
+    view.onDestroy()
+    super.onDropViewInstance(view)
+  }
+
   @ReactProp(name = "autoPlay")
   override fun setAutoPlay(view: RTNGiphyVideoView?, value: Boolean) {
     view?.setAutoPlay(value)

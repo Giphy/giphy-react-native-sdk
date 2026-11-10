@@ -40,7 +40,7 @@
     "detox:build:android": "detox build --configuration android",
     "detox:build:ios": "detox build --configuration ios",
     "detox:test:android": ". ./scripts/avd.defaults.sh && ./scripts/avd.run.sh && detox test --configuration android",
-    "detox:test:ios": "detox test --configuration ios",
+    "detox:test:ios": ". ./scripts/sim.defaults.sh && detox test --configuration ios",
     "example": "yarn --cwd example",
     "hooks:install": "husky install",
     "licenses:check": "scripts/licenses.check.js",
@@ -166,6 +166,13 @@
   "codegenConfig": {
     "name": "GiphyReactNativeSDKSpec",
     "type": "all",
-    "jsSrcsDir": "src/specs"
+    "jsSrcsDir": "src/specs",
+    "ios": {
+      "componentProvider": {
+        "RTNGiphyGridView": "RTNGiphyGridView",
+        "RTNGiphyMediaView": "RTNGiphyMediaView",
+        "RTNGiphyVideoView": "RTNGiphyVideoView"
+      }
+    }
   }
 }

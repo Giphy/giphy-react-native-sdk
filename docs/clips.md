@@ -55,3 +55,6 @@ adapter, you need to specify the path to the folder where the adapter is located
 ```groovy
 GiphyReactNativeSDK.videoPlayerAdaptersPath=/root/custom-video-player-adapters/
 ```
+
+When your adapter reports volume changes, send `GPHVideoPlayerState.MuteChanged(muted = true)` when the player is
+muted and `MuteChanged(muted = false)` when it has sound.

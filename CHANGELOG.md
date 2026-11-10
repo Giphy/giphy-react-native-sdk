@@ -1,5 +1,52 @@
 
 
+# Unreleased
+
+### BREAKING CHANGES
+* iOS: building an app now needs Xcode 26.4 or later (the first Xcode with the Swift 6.3 compiler), because GIPHY iOS
+  SDK 2.4.0 requires it. Apps can still be written in Swift 5 language mode or Objective-C. The minimum iOS version
+  stays 15.1.
+
+### Features
+* `GiphyMediaView` has a new `onError` callback. It reports when the media can't be loaded, for example when no media
+  has the given ID.
+* `GiphyVideoView.onError` now also reports when the media can't be loaded, not only playback errors.
+* `GiphyMediaView` has a new `onLoad` callback. It reports when the media's image is shown.
+
+### Changes
+* [ios] `GiphyGridView`, `GiphyMediaView` and `GiphyVideoView` now run as native Fabric components instead of through
+  React Native's legacy interop layer. A `testID` is now set on one native view instead of two.
+
+### Bug Fixes
+* [ios] Unmounted `GiphyVideoView`s were never freed.
+* [ios] Unmounting a playing `GiphyVideoView` now stops its clip. It used to keep playing after the view was gone.
+* [ios] With GIPHY iOS SDK 2.4.0, a `GiphyMediaView` whose media changes while loading no longer shows the previous
+  media's image.
+* [ios] Removing the media from a `GiphyMediaView` now clears it. The previous image used to stay.
+* `GiphyMediaView` and `GiphyVideoView` ignore a late lookup for media they no longer show, which could replace the
+  new media with the old one.
+* `GiphyVideoView` now removes its app state listener when the last video view unmounts. The listener used to stay,
+  and another was added each time video views mounted again, so the video player was still paused, resumed and muted
+  on app state changes with no video view on screen.
+* [android] A `GiphyVideoView` unmounted before its media loaded started playing it anyway, with nothing on screen.
+* [android] Unmounting a playing `GiphyVideoView` now stops and releases its player. The clip used to keep playing, with
+  sound, after the view was gone.
+* [android] `GiphyVideoManager.pauseAll()` now reports `Paused` to the video view that was playing.
+* [android] `GiphyVideoView.onError` now sends the error text in `description`, as on iOS. It used to be `undefined`.
+* [android] The bundled ExoPlayer video player adapter now sends `GPHVideoPlayerState.MuteChanged(true)` when the
+  player is muted, as the GIPHY Android SDK defines it, and `GiphyVideoView` reports that as `onMute`.
+  **If you use a custom video player adapter** copied from an earlier version, change `MuteChanged(volume > 0)` to
+  `MuteChanged(muted = volume == 0f)`. Otherwise `onMute` and `onUnmute` are swapped.
+
+### Developer Tooling
+* The example app uses the UIScene life cycle, which apps built with the iOS 27 SDK require to launch.
+* New e2e tests for `GiphyMediaView` and `GiphyVideoView` (`e2e/MediaViews.e2e.ts`), driven by a test screen in the
+  example app.
+* iOS e2e tests find the simulator by name and no longer fail when the Simulator app can't be opened.
+* The example app's dialogs respect the safe area on iOS 27, and the e2e tests set text fields with `replaceText`.
+* `yarn detox:bootstrap:android` creates the emulator with GPU rendering. The e2e snapshots are recorded again on the
+  devices the bootstrap scripts create.
+
 # 6.0.3 (2026-08-12)
 
 ### Native SDKs
