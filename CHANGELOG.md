@@ -1,5 +1,24 @@
 
 
+# 7.0.0 (2026-11-10)
+
+### Native SDKs
+* Giphy Android SDK [v2.5.2](https://github.com/Giphy/giphy-android-sdk/releases/tag/v2.5.2)
+* Giphy iOS SDK [v2.4.0](https://github.com/Giphy/giphy-ios-sdk/releases/tag/v2.4.0)
+
+
+### Bug Fixes
+* [android] Skip explicit Kotlin plugin when AGP registers the kotlin extension ([67c8a92](https://github.com/Giphy/giphy-react-native-sdk/commit/67c8a9286444002375f76ba44dececb379c80100))
+* [ios] Import RCTBridge.h with the angle-bracket form ([6550d7d](https://github.com/Giphy/giphy-react-native-sdk/commit/6550d7d9bd8786b1fc4e03528133a3300bc5fe06))
+
+### Build System
+* [deps] Bump rexml from 3.3.9 to 3.4.2 in /example ([377a4f9](https://github.com/Giphy/giphy-react-native-sdk/commit/377a4f9c02f69171797f712594c0268f178a4699))
+* [deps] Bump iOS SDK version from 2.3.2 to 2.4.0 ([b0ee2a5](https://github.com/Giphy/giphy-react-native-sdk/commit/b0ee2a5640232528f3058fdef9505f7f74643031))
+
+
+### BREAKING CHANGES
+* (deps) iOS builds need Xcode 26.4 or later (Swift 6.3 or later).
+
 # Unreleased
 
 ### BREAKING CHANGES
